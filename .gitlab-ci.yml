@@ -5,12 +5,12 @@ stages:
 build:
   stage: build
   script:
-    - cd GroupProjectAPI     
+    - cd GroupProjectApi   
     - ./gradlew build -x test
     - ./gradlew.bat --stop 
 test:
   stage: test
   script:
-    - cd GroupProjectAPI   
+    - cd GroupProjectApi   
     - ./gradlew test
     - ./gradlew.bat --stop
