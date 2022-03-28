@@ -1,5 +1,6 @@
 package com.example.S3_GPS_Ivanti.business.Impl;
 
+import com.example.S3_GPS_Ivanti.model.Application;
 import com.example.S3_GPS_Ivanti.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -16,7 +17,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     private final ApplicationRepository applicationRepository;
 
     @Override
-    public ArrayList<Application> getApplicationsSorted( boolean rating, boolean date) {
+    public ArrayList<Application> getApplicationsSorted(boolean rating, boolean date) {
         return applicationRepository.getApplicationsSorted(rating, date);
     }
 
