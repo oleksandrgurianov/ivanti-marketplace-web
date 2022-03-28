@@ -5,10 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class Creater extends User{
 
     private ArrayList<Application> MyApplications;

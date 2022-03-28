@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Application {
 
     private int id;
-    private Creater creater;
+    private Creator creater;
     private ArrayList<Review> reviews;
 
 }
