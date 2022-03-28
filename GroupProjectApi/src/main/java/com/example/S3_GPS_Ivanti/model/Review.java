@@ -4,14 +4,17 @@ import lombok.*;
 
 import java.util.ArrayList;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@RequiredArgsConstructor
+@Getter
+@Setter
 public class Review {
 
     private int id;
     private ArrayList<Response> responses;
     private Customer customer;
+
+    public Review(int id, Customer customer){
+        this.id = id;
+        this.customer = customer;
+        this.responses = new ArrayList<>();
+    }
 }
