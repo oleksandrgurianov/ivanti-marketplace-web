@@ -8,7 +8,7 @@ import java.util.ArrayList;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class Creater extends User{
+public class Creator extends User{
 
     private ArrayList<Application> MyApplications;
     private ArrayList<Response> MyResponses;
