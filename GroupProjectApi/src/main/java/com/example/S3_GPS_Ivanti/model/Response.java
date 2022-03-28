@@ -10,5 +10,5 @@ public class Response {
     private int id;
 
     private Review review;
-    private Creater creater;
+    private Creator creater;
 }
