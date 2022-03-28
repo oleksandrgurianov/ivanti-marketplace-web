@@ -6,15 +6,10 @@ import java.util.ArrayList;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class Review {
 
     private int id;
     private ArrayList<Response> responses;
     private Customer customer;
-
-    public Review(int id, Customer customer){
-        this.id = id;
-        this.customer = customer;
-        this.responses = new ArrayList<>();
-    }
 }
