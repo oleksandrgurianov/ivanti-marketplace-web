@@ -16,13 +16,13 @@ import java.util.ArrayList;
 @RequestMapping("/application")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class ApplicationControle {
+public class ApplicationController {
 
     private final ApplicationService applicationService;
     private final UserService userService;
 
     @GetMapping("/filter/{rating}/{date}")
-    public ResponseEntity<ArrayList<Application>> getApplicationsSorted(@PathVariable("rating") boolean rating,@PathVariable("date") boolean date , @RequestBody String username,@RequestBody String password) {
+    public ResponseEntity<ArrayList<Application>> getApplicationsSorted(@PathVariable("rating") boolean rating,@PathVariable("date") boolean date , @RequestBody String username, String password) {
         User user = userService.getUser(username, password);
 
         if(user != null) {

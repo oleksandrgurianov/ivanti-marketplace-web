@@ -1,5 +1,7 @@
-package com.example.S3_GPS_Ivanti.business;
+package com.example.S3_GPS_Ivanti.business.Impl;
 
+import com.example.S3_GPS_Ivanti.business.ApplicationService;
+import com.example.S3_GPS_Ivanti.business.ResponseService;
 import com.example.S3_GPS_Ivanti.model.Application;
 import com.example.S3_GPS_Ivanti.model.Response;
 import com.example.S3_GPS_Ivanti.model.Review;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 @Service
 @Primary
 @RequiredArgsConstructor
-public class ResponseServiceImpl implements ResponseService{
+public class ResponseServiceImpl implements ResponseService {
 
     private final ResponseRepository responseRepository;
     private final ApplicationService applicationService;

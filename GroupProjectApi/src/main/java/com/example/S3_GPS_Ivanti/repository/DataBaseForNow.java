@@ -13,7 +13,7 @@ public class DataBaseForNow {
 
     public DataBaseForNow()
     {
-        //Create users
+      /*  //Create users
         Creater user1 = new Creater("Lars1", "Lars1");
         Creater user2 = new Creater("Lars2", "Lars2");
         Customer user3 = new Customer("Lars3", "Lars3");
@@ -45,6 +45,6 @@ public class DataBaseForNow {
         ArrayList<Application> applications2 = new ArrayList<Application>();
         applications2.add(application2);
         applications2.add(application3);
-        user2.setMyApplications(applications2);
+        user2.setMyApplications(applications2);*/
     }
 }

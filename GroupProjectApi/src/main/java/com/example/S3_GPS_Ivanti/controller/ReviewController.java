@@ -15,7 +15,7 @@ import java.util.ArrayList;
 @RequestMapping("/review")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class ReviewControle {
+public class ReviewController {
 
     private final ReviewService reviewService;
     private final UserService userService;

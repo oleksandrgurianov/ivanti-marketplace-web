@@ -1,7 +1,9 @@
-package com.example.S3_GPS_Ivanti.repository;
+package com.example.S3_GPS_Ivanti.repository.Impl;
 
 import com.example.S3_GPS_Ivanti.model.Response;
 import com.example.S3_GPS_Ivanti.model.User;
+import com.example.S3_GPS_Ivanti.repository.DataBaseForNow;
+import com.example.S3_GPS_Ivanti.repository.ResponseRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 
 @Primary
 @Service
-public class ResponseRepositoryImpl implements ResponseRepository{
+public class ResponseRepositoryImpl implements ResponseRepository {
     private DataBaseForNow database;
 
     @Override

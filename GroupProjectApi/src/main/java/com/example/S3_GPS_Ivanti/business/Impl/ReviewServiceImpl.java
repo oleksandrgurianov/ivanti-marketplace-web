@@ -1,5 +1,6 @@
-package com.example.S3_GPS_Ivanti.business;
+package com.example.S3_GPS_Ivanti.business.Impl;
 
+import com.example.S3_GPS_Ivanti.business.ReviewService;
 import com.example.S3_GPS_Ivanti.model.Review;
 import com.example.S3_GPS_Ivanti.model.User;
 import com.example.S3_GPS_Ivanti.repository.ReviewRepository;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 @Service
 @Primary
 @RequiredArgsConstructor
-public class ReviewServiceImpl implements ReviewService{
+public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewRepository reviewRepository;
 

@@ -1,24 +1,15 @@
 package com.example.S3_GPS_Ivanti.model;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
 @Data
-@Builder
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Creater extends User{
 
     private ArrayList<Application> MyApplications;
     private ArrayList<Response> MyResponses;
-
-
-
-    public Creater(String username, String password) {
-        super(username, password);
-
-        MyApplications = new ArrayList<Application>();
-        MyResponses = new ArrayList<Response>();
-
-    }
 }

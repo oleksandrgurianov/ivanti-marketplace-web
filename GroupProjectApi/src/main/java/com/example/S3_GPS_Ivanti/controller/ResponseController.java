@@ -15,7 +15,7 @@ import java.util.ArrayList;
 @RequestMapping("/response")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class ResponseControle {
+public class ResponseController {
 
     private final ResponseService responseService;
     private final UserService userService;

@@ -1,5 +1,6 @@
-package com.example.S3_GPS_Ivanti.business;
+package com.example.S3_GPS_Ivanti.business.Impl;
 
+import com.example.S3_GPS_Ivanti.business.ApplicationService;
 import com.example.S3_GPS_Ivanti.model.Application;
 import com.example.S3_GPS_Ivanti.model.User;
 import com.example.S3_GPS_Ivanti.repository.ApplicationRepository;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 @Service
 @Primary
 @RequiredArgsConstructor
-public class ApplicationServiceImpl implements ApplicationService{
+public class ApplicationServiceImpl implements ApplicationService {
 
     private final ApplicationRepository applicationRepository;
 
