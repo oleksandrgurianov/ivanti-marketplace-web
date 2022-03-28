@@ -4,9 +4,10 @@ import lombok.*;
 
 import java.util.ArrayList;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Customer extends User{
 
     private ArrayList<Review> myReviews;

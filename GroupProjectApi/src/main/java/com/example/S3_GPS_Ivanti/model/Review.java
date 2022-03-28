@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class Review {
 
