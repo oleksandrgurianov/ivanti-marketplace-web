@@ -11,6 +11,6 @@ build:
 test:
   stage: test
   script:
-    - cd GroupProjectApi   
+    - cd GroupProjectApi 
     - ./gradlew test
     - ./gradlew.bat --stop
