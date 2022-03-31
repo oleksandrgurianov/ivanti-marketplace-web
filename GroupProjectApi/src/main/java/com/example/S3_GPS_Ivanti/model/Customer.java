@@ -12,4 +12,11 @@ public class Customer extends User{
 
     private ArrayList<Review> myReviews;
     private ArrayList<Application> downloadedApplications;
+
+    public Customer(String username,String password,ArrayList<Review> myReviews, ArrayList<Application> downloadedApplications)
+    {
+        super(username, password);
+        this.myReviews = myReviews;
+        this.downloadedApplications = downloadedApplications;
+    }
 }

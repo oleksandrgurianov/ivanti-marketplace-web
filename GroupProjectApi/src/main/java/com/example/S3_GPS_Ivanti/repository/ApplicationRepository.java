@@ -14,6 +14,8 @@ public interface ApplicationRepository {
 
     ArrayList<Application> getApplications();
 
+    Application getApplicationsByID(long ID);
+
     boolean createApplications(Application app);
 
     boolean updateApplications(Application app);

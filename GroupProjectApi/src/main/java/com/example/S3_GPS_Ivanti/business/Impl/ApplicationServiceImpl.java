@@ -29,6 +29,13 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
+    public Application getApplicationsByID(long ID)
+    {
+       return applicationRepository.getApplicationsByID(ID);
+    }
+
+
+    @Override
     public ArrayList<Application> getApplications() {
         return applicationRepository.getApplications();
     }

@@ -38,8 +38,8 @@ public class ApplicationController {
         return new ResponseEntity("Please make sure your username and password are correct", HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping("{search}")
-    public ResponseEntity<ArrayList<Application>> getApplicationsBySearch(@PathVariable("search") String search, @RequestBody String username, @RequestBody String password) {
+    @GetMapping("search/{search}")
+    public ResponseEntity<ArrayList<Application>> getApplicationsBySearch(@PathVariable("search") String search, @RequestBody String username,  String password) {
         User user = userService.getUser(username, password);
 
         if(user != null) {
@@ -55,8 +55,20 @@ public class ApplicationController {
         return new ResponseEntity("Please make sure your username and password are correct", HttpStatus.BAD_REQUEST);
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<Application> getApplicationsBySearch(@PathVariable("id") long id) {
+
+            Application application = applicationService.getApplicationsByID(id);
+
+            if(application != null) {
+                return ResponseEntity.ok().body(application);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+    }
+
     @GetMapping()
-    public ResponseEntity<ArrayList<Application>>getApplications(@RequestBody String username, @RequestBody String password) {
+    public ResponseEntity<ArrayList<Application>>getApplications(@RequestBody String username, String password) {
         User user = userService.getUser(username, password);
 
         if(user != null) {
@@ -73,7 +85,7 @@ public class ApplicationController {
     }
 
     @PostMapping()
-    public ResponseEntity createApplications(@RequestBody String username, @RequestBody String password, @RequestBody Application app) {
+    public ResponseEntity createApplications(@RequestBody String username, String password,  Application app) {
         User user = userService.getUser(username, password);
 
         if(user != null) {

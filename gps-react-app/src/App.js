@@ -1,7 +1,9 @@
+import View_Product_Default from "./Product/View_Product_Default";
+
 function App() {
   return (
     <div className="App">
-      <h1>Test</h1>
+      <View_Product_Default productID={1}/>
     </div>
   );
 }

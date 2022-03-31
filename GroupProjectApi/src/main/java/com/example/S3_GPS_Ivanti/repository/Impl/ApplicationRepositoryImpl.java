@@ -13,7 +13,7 @@ import java.util.ArrayList;
 @Service
 public class ApplicationRepositoryImpl implements ApplicationRepository {
 
-    private DataBaseForNow database;
+    private DataBaseForNow database = new DataBaseForNow();
 
     @Override
     public ArrayList<Application> getApplicationsSorted(boolean rating, boolean date) {
@@ -22,6 +22,16 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
 
     @Override
     public ArrayList<Application> getApplicationsBySearch(String search) {
+        return null;
+    }
+
+    @Override
+    public Application getApplicationsByID(long ID) {
+        for(Application p : database.applications) {
+            if (p.getId() == ID) {
+                return p;
+            }
+        }
         return null;
     }
 
