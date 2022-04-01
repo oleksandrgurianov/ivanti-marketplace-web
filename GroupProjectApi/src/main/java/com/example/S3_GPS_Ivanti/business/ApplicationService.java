@@ -12,6 +12,8 @@ public interface ApplicationService {
 
     ArrayList<Application> getApplicationsBySearch(String search);
 
+    Application getApplicationsByID(long ID);
+
     ArrayList<Application> getApplications();
 
     boolean createApplications( Application app);

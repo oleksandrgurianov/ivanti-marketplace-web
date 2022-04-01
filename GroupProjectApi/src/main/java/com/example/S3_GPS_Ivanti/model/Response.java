@@ -1,14 +1,15 @@
 package com.example.S3_GPS_Ivanti.model;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
-@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Response {
 
     private int id;
 
     private Review review;
-    private Creater creater;
+    private Creator creater;
 }

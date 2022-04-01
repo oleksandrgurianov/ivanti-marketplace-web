@@ -13,10 +13,19 @@ public class DataBaseForNow {
 
     public DataBaseForNow()
     {
-        //Create users
-        Creater user1 = new Creater("Lars1", "Lars1");
-        Creater user2 = new Creater("Lars2", "Lars2");
-        Customer user3 = new Customer("Lars3", "Lars3");
+
+        users = new ArrayList<>();
+        reviews = new ArrayList<>();
+        applications = new ArrayList<>();
+        responses = new ArrayList<>();
+
+       //Create users
+        Creator user1 = new Creator("Lars1", "Lars1",null,null);
+        Creator user2 = new Creator("Lars2", "Lars2",null,null);
+        Customer user3 = new Customer("Lars3", "Lars3", null, null);
+        users.add(user1);
+        users.add(user2);
+        users.add(user3);
 
         //Create applications
         Application application1 = new Application(1, user1, null);
@@ -46,5 +55,9 @@ public class DataBaseForNow {
         applications2.add(application2);
         applications2.add(application3);
         user2.setMyApplications(applications2);
+
+        applications.add(application1);
+        applications.add(application2);
+        applications.add(application3);
     }
 }

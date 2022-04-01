@@ -1,21 +1,22 @@
 package com.example.S3_GPS_Ivanti.model;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.util.ArrayList;
 
-@Data
-@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer extends User{
 
     private ArrayList<Review> myReviews;
     private ArrayList<Application> downloadedApplications;
 
-    public Customer(String username, String password) {
+    public Customer(String username,String password,ArrayList<Review> myReviews, ArrayList<Application> downloadedApplications)
+    {
         super(username, password);
-
-        myReviews = new ArrayList<Review>();
-        downloadedApplications = new ArrayList<Application>();
+        this.myReviews = myReviews;
+        this.downloadedApplications = downloadedApplications;
     }
 }

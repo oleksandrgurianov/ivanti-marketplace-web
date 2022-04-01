@@ -4,12 +4,12 @@ import lombok.*;
 
 import java.util.ArrayList;
 
-@Data
-@Builder
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Review {
+
     private int id;
     private ArrayList<Response> responses;
     private Customer customer;
