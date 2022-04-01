@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios';
 
-function View_Product_Default({productID}) {
+function View_Product_Default({appName}) {
 
     const [product, setProduct] = useState({});
 
@@ -10,14 +10,10 @@ function View_Product_Default({productID}) {
     },[]);
 
     const View_Products_Default =() => {
-        axios.get(`http://localhost:8080/application/` + productID)
+        axios.get(`http://localhost:8080/application/details/` + appName)
             .then(res => {
                 setProduct(res.data);
-                console.log(res.data);
             })
-            .catch(err => {
-                console.log(err.message);
-            });
     }
 
     return(

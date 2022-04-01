@@ -1,7 +1,9 @@
+import Add_Application from "./Product/Add_Application";
+
 function App() {
   return (
-    <div className="App">
-      <h1>Test</h1>
+    <div>
+        <Add_Application/>
     </div>
   );
 }
