@@ -1,8 +1,6 @@
 package com.example.S3_GPS_Ivanti.model;
 
 import lombok.*;
-import org.springframework.stereotype.Repository;
-import org.yaml.snakeyaml.error.MarkedYAMLException;
 
 import java.util.ArrayList;
 

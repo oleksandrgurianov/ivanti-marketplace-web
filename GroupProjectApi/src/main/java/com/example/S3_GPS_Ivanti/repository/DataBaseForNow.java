@@ -4,7 +4,8 @@ import com.example.S3_GPS_Ivanti.model.*;
 
 import java.util.ArrayList;
 
-public class DataBaseForNow {
+public class
+DataBaseForNow {
 
     public ArrayList<User> users;
     public ArrayList<Review> reviews;
@@ -38,13 +39,19 @@ public class DataBaseForNow {
 
 
         //Adding the reviews to the applications
-        ArrayList<Review> reviews1 = new ArrayList<Review>();
+
+
+
+       /* ArrayList<Review> reviews1 = new ArrayList<Review>();
         reviews1.add(review1);
         ArrayList<Review> reviews2 = new ArrayList<Review>();
         reviews2.add(review2);
 
         application1.setReviews(reviews1);
-        application2.setReviews(reviews2);
+        application2.setReviews(reviews2);*/
+
+
+
 
         //Giving applications to users
         ArrayList<Application> applications1 = new ArrayList<Application>();

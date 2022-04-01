@@ -1,7 +1,6 @@
 package com.example.S3_GPS_Ivanti.business;
 
-import com.example.S3_GPS_Ivanti.model.Application;
-import com.example.S3_GPS_Ivanti.model.User;
+import com.example.S3_GPS_Ivanti.model.*;
 
 import java.io.File;
 import java.util.ArrayList;

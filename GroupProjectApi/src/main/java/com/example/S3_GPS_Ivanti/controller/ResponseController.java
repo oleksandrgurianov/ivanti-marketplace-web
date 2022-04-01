@@ -1,9 +1,8 @@
 package com.example.S3_GPS_Ivanti.controller;
 
 import com.example.S3_GPS_Ivanti.business.ResponseService;
-import com.example.S3_GPS_Ivanti.business.UserService;
-import com.example.S3_GPS_Ivanti.model.Response;
-import com.example.S3_GPS_Ivanti.model.User;
+
+import com.example.S3_GPS_Ivanti.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +19,7 @@ public class ResponseController {
     private final ResponseService responseService;
     private final UserService userService;
 
+    //Creator
     @GetMapping("{reviewID}")
     public ResponseEntity<ArrayList<Response>> getResponse(@PathVariable("reviewID")int reviewID, @RequestBody  String username, @RequestBody  String password) {
         User user = userService.getUser(username, password);
@@ -38,7 +38,7 @@ public class ResponseController {
     }
 
     @PostMapping("{reviewID}")
-    public ResponseEntity createResponse(@PathVariable("reviewID")int reviewID, @RequestBody  Response response, @RequestBody  String username, @RequestBody  String password) {
+    public ResponseEntity createResponse(@PathVariable("reviewID")int reviewID, @RequestBody  Response response, @RequestBody  String username, String password) {
         User user = userService.getUser(username, password);
 
         if(user != null) {
@@ -56,7 +56,7 @@ public class ResponseController {
     }
 
     @PutMapping()
-    public ResponseEntity updateResponse( @RequestBody Response response, @RequestBody  String username, @RequestBody  String password) {
+    public ResponseEntity updateResponse( @RequestBody Response response, @RequestBody  String username, String password) {
         User user = userService.getUser(username, password);
 
         if(user != null) {
@@ -68,7 +68,7 @@ public class ResponseController {
     }
 
     @DeleteMapping({"{appID}"})
-    public ResponseEntity deleteResponse( @PathVariable("appID") int responseID, @RequestBody  String username, @RequestBody  String password) {
+    public ResponseEntity deleteResponse( @PathVariable("appID") int responseID, @RequestBody  String username, String password) {
         User user = userService.getUser(username, password);
 
         if(user != null) {
