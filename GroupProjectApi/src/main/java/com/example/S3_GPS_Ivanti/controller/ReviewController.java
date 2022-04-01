@@ -1,7 +1,6 @@
 package com.example.S3_GPS_Ivanti.controller;
 
 import com.example.S3_GPS_Ivanti.business.ReviewService;
-
 import com.example.S3_GPS_Ivanti.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -39,7 +38,7 @@ public class ReviewController {
         if (reviewService.createReview(review)) {
             return ResponseEntity.ok().build();
         } else {
-            return new ResponseEntity("Error", HttpStatus.CONFLICT);
+            return  ResponseEntity.status( HttpStatus.CONFLICT).build();
         }
     }
 
@@ -47,6 +46,8 @@ public class ReviewController {
     public ResponseEntity updateReview(@RequestBody Review review) {
         if (reviewService.updateReview(review)) {
             return ResponseEntity.noContent().build();
+        } else {
+            return  ResponseEntity.status( HttpStatus.CONFLICT).build();
         }
     }
 
