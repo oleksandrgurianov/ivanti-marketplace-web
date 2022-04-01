@@ -1,9 +1,14 @@
 package S3_GPS_Ivanti.business.Impl;
 
+<<<<<<< HEAD:GroupProjectApi/src/main/java/S3_GPS_Ivanti/business/Impl/ApplicationServiceImpl.java
 import S3_GPS_Ivanti.business.ApplicationService;
 import S3_GPS_Ivanti.model.Application;
 import S3_GPS_Ivanti.model.User;
 import S3_GPS_Ivanti.repository.ApplicationRepository;
+=======
+import com.example.S3_GPS_Ivanti.model.*;
+
+>>>>>>> 75208ff8c276fbe9838fb7b8e36d120aec7926ff:GroupProjectApi/src/main/java/com/example/S3_GPS_Ivanti/business/Impl/ApplicationServiceImpl.java
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;

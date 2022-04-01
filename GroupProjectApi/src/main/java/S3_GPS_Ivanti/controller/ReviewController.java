@@ -1,9 +1,15 @@
 package S3_GPS_Ivanti.controller;
 
+<<<<<<< HEAD:GroupProjectApi/src/main/java/S3_GPS_Ivanti/controller/ReviewController.java
 import S3_GPS_Ivanti.business.ReviewService;
 import S3_GPS_Ivanti.business.UserService;
 import S3_GPS_Ivanti.model.Review;
 import S3_GPS_Ivanti.model.User;
+=======
+import com.example.S3_GPS_Ivanti.business.ReviewService;
+
+import com.example.S3_GPS_Ivanti.model.*;
+>>>>>>> 75208ff8c276fbe9838fb7b8e36d120aec7926ff:GroupProjectApi/src/main/java/com/example/S3_GPS_Ivanti/controller/ReviewController.java
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,74 +24,46 @@ import java.util.ArrayList;
 public class ReviewController {
 
     private final ReviewService reviewService;
-    private final UserService userService;
 
-    @GetMapping("sort/{rating}/{date}")
-    public ResponseEntity<ArrayList<Review>> getReviewsSorted(@PathVariable("rating") boolean rating, @PathVariable("date") boolean date, @RequestBody String username, @RequestBody String password) {
-        User user = userService.getUser(username, password);
-        if(user != null) {
-            ArrayList<Review> reviews = reviewService.getReviewsSorted(rating, date);
+    //all
+    @GetMapping("{appName}")
+    public ResponseEntity<ArrayList<Review>> createReview(String appName) {
 
-            if(reviews != null) {
-                return ResponseEntity.ok().body(reviews);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
+        ArrayList<Review> reviews = reviewService.getReviews(appName);
+
+        if(reviews.size() > 0) {
+            return ResponseEntity.ok().body(reviews);
         }
-        return new ResponseEntity("Please make sure your username and password are correct", HttpStatus.BAD_REQUEST);
+        else {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
     }
 
-    @GetMapping("filter/{rating}/{date}")
-    public ResponseEntity<ArrayList<Review>> getReviews(@PathVariable("rating") boolean rating, @PathVariable("date") boolean date, @RequestBody String username, @RequestBody String password) {
-        User user = userService.getUser(username, password);
-        if(user != null) {
-            ArrayList<Review> reviews = reviewService.getReviews(rating, date);
-
-            if(reviews != null) {
-                return ResponseEntity.ok().body(reviews);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        }
-        return new ResponseEntity("Please make sure your username and password are correct", HttpStatus.BAD_REQUEST);
-    }
-
+    //Customer
     @PostMapping()
-    public ResponseEntity createReview(@RequestBody String username, @RequestBody String password, @RequestBody Review review) {
-        User user = userService.getUser(username, password);
-        if(user != null) {
-            if(reviewService.createReview(review)) {
-                return ResponseEntity.ok().build();
-            }
-            else {
-                return new ResponseEntity("Error", HttpStatus.CONFLICT);
-            }
+    public ResponseEntity createReview(@RequestBody Review review) {
+
+        if (reviewService.createReview(review)) {
+            return ResponseEntity.ok().build();
+        } else {
+            return new ResponseEntity("Error", HttpStatus.CONFLICT);
         }
-        return new ResponseEntity("Please make sure your username and password are correct", HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping()
-    public ResponseEntity updateReview(@RequestBody String username, @RequestBody String password, @RequestBody Review review) {
-        User user = userService.getUser(username, password);
-        if(user != null) {
-            if (reviewService.updateReview(review, user)) {
-                return ResponseEntity.noContent().build();
-            }
+    public ResponseEntity updateReview(@RequestBody Review review) {
+        if (reviewService.updateReview(review)) {
+            return ResponseEntity.noContent().build();
         }
-        return new ResponseEntity("Please make sure your username and password are correct", HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping({"reviewID"})
-    public ResponseEntity deleteReview(@PathVariable("reviewID")int reviewID, String username, String password) {
-        User user = userService.getUser(username, password);
-        if(user != null) {
-            boolean result = reviewService.deleteReview(reviewID, user);
+    public ResponseEntity deleteReview(@PathVariable("reviewID")int reviewID) {
 
-            if (result == true) {
-                return ResponseEntity.ok().build();
-            }
-            return ResponseEntity.notFound().build();
+        boolean result = reviewService.deleteReview(reviewID);
+        if (result == true) {
+            return ResponseEntity.ok().build();
         }
-        return new ResponseEntity("Please make sure your username and password are correct", HttpStatus.BAD_REQUEST);
+        return ResponseEntity.notFound().build();
     }
 }
