@@ -21,7 +21,7 @@ public class ResponseController {
     private final UserService userService;
 
     @GetMapping("{reviewID}")
-    public ResponseEntity<ArrayList<Response>> getResponse(@PathVariable("reviewID")int reviewID, @RequestBody  String username, @RequestBody  String password) {
+    public ResponseEntity<ArrayList<Response>> getResponse(@PathVariable("reviewID")int reviewID, @RequestBody  String username,  String password) {
         User user = userService.getUser(username, password);
 
         if(user != null) {
