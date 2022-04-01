@@ -84,23 +84,6 @@ public class ApplicationController {
         return new ResponseEntity("Please make sure your username and password are correct", HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping("/details/{appName}")
-    public ResponseEntity<Application> getApplicationDetails(@PathVariable("appName") String appName) {
-        User user = userService.getUser(username, password);
-
-        if(user != null) {
-            Application application = applicationService.getApplicationDetails(appName);
-
-            if(application != null) {
-                return ResponseEntity.ok().body(application);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        }
-
-        return new ResponseEntity("Please make sure your username and password are correct", HttpStatus.BAD_REQUEST);
-    }
-
     @PostMapping()
     public ResponseEntity createApplications(@RequestBody String username, String password,  Application app) {
         User user = userService.getUser(username, password);

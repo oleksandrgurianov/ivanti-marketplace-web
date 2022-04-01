@@ -16,8 +16,6 @@ public interface ApplicationService {
 
     ArrayList<Application> getApplications();
 
-   Application getApplicationDetails(String appName);
-
     boolean createApplications( Application app);
 
     boolean updateApplications(Application app, User user);
