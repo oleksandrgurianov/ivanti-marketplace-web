@@ -13,16 +13,11 @@ import java.util.ArrayList;
 @Service
 public class ReviewRepositoryImpl implements ReviewRepository {
     private DataBaseForNow database;
-    @Override
-    public ArrayList<Review> getReviewsSorted(boolean rating, boolean date) {
-        return null;
-    }
 
     @Override
-    public ArrayList<Review> getReviews(boolean rating, boolean date) {
+    public ArrayList<Review> getReviews(String appName) {
         return null;
     }
-
     @Override
     public boolean createReview(Review review) {
         return false;
