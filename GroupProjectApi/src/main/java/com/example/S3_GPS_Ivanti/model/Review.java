@@ -10,7 +10,6 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class Review {
-
     private int id;
     private ArrayList<Response> responses;
     private Customer customer;
