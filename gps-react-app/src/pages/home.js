@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Home = () => {
+function Home (){
   return (
       <h1>Welcome to Ivanti App Market!</h1>
   );

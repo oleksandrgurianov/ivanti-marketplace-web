@@ -19,4 +19,10 @@ public class Customer extends User {
         this.myReviews = myReviews;
         this.downloadedApplications = downloadedApplications;
     }
+
+    public Customer(String username, String password){
+        super(username, password);
+        this.username= username;
+        this.password = password;
+    }
 }
