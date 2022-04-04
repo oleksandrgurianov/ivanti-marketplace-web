@@ -52,7 +52,7 @@ public class ResponseController {
     }
 
     @DeleteMapping({"{responseID}"})
-    public ResponseEntity<Object> deleteResponse(int responseID) {
+    public ResponseEntity<Object> deleteResponse(@PathVariable int responseID) {
         if (responseService.deleteResponse(responseID)) {
                return ResponseEntity.ok().build();
         }else {
