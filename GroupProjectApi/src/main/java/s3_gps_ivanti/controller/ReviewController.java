@@ -19,7 +19,7 @@ public class ReviewController {
 
     //all
     @GetMapping("{appName}")
-    public ResponseEntity<ArrayList<Review>> getReview(String appName) {
+    public ResponseEntity<ArrayList<Review>> getReview(@PathVariable String appName) {
 
         ArrayList<Review> reviews = reviewService.getReviews(appName);
 

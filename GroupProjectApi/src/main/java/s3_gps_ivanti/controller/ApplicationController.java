@@ -65,8 +65,8 @@ public class ApplicationController {
     }
 
     //Creator
-    @GetMapping()
-    public ResponseEntity<ArrayList<Application>>getApplicationsByCreator() {
+    @GetMapping("creator/{ID}")
+    public ResponseEntity<ArrayList<Application>>getApplicationsByCreator(@PathVariable String ID) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
     @PostMapping()
@@ -111,8 +111,8 @@ public class ApplicationController {
             return ResponseEntity.notFound().build();
         }
     }
-    @GetMapping()
-    public ResponseEntity<ArrayList<Application>>getApplicationsByCustomer() {
+    @GetMapping("customer/{ID}")
+    public ResponseEntity<ArrayList<Application>>getApplicationsByCustomer(@PathVariable String ID) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 }
