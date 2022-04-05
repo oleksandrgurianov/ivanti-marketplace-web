@@ -1,6 +1,7 @@
 package s3_gps_ivanti.repository.impl;
 
 
+import s3_gps_ivanti.DTO.AddApplicationDTO;
 import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.model.User;
 import s3_gps_ivanti.repository.ApplicationRepository;
@@ -16,50 +17,44 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
 
     private DataBaseForNow database = new DataBaseForNow();
 
+    //all
     @Override
-    public ArrayList<Application> getApplicationsSorted(boolean rating, boolean date) {
-        return null;
-    }
+    public ArrayList<Application> getApplicationsSorted(boolean rating, boolean date){ return null; }
+    @Override
+    public ArrayList<Application> getApplicationsBySearch(String search){ return null; }
+    @Override
+    public  Application getApplicationsByID(long id){ return null; }
+    @Override
+    public  ArrayList<Application> getApplicationDetails(String appName){ return null; }
 
+    //Creator
     @Override
-    public ArrayList<Application> getApplicationsBySearch(String search) {
-        return null;
+    public  ArrayList<Application> getApplicationsByCreator(String ID){ return null; }
+    @Override
+    public    boolean createApplications(Application app){
+        database.applications.add(app);
+        return true; }
+    @Override
+    public  boolean updateApplications(Application app){
+        return true;
     }
-
     @Override
-    public Application getApplicationsByID(long ID) {
-        for(Application p : database.applications) {
-            if (p.getId() == ID) {
-                return p;
+    public boolean deleteApplications(int appID){ return true; }
+    @Override
+    public  boolean FindAppWithSameName(String appName){
+        for(Application a : database.applications)
+        {
+            if(a.getName().equals(appName))
+            {
+                return true;
             }
         }
-        return null;
-    }
-
-    @Override
-    public ArrayList<Application> getApplications() {
-        return null;
-    }
-
-    @Override
-    public boolean createApplications(Application app) {
         return false;
     }
 
+    //Customers
     @Override
-    public boolean updateApplications(Application app) {
-        return false;
-    }
-
+    public ArrayList<Application> getApplicationsByCustomer(String ID){ return null; }
     @Override
-    public boolean deleteApplications(int appID) {
-        return false;
-    }
-
-    @Override
-    public File downloadApplications(int appID) {
-        return null;
-    }
-
-    public ArrayList<Application> getAllOfAUsersAppointments(User user) {return null;}
+   public File downloadApplications(int appID){ return null; }
 }
