@@ -16,4 +16,9 @@ public class Creator extends User {
         this.MyApplications = myApplications;
        this.MyResponses = myResponses;
     }
+    public Creator(String username, String password){
+        super(username, password);
+        this.username= username;
+        this.password = password;
+    }
 }

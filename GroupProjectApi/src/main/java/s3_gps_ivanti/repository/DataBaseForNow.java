@@ -24,6 +24,7 @@ DataBaseForNow {
         Creator user1 = new Creator("Lars1", "Lars1",null,null);
         Creator user2 = new Creator("Lars2", "Lars2",null,null);
         Customer user3 = new Customer("Lars3", "Lars3", null, null);
+        Customer user4 = new Customer ("Customer", "Customer");
         users.add(user1);
         users.add(user2);
         users.add(user3);
