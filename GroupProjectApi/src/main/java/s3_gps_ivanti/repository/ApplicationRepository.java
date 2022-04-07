@@ -12,6 +12,7 @@ public interface ApplicationRepository {
     ArrayList<Application> getApplicationsBySearch(String search);
 
     ArrayList<Application> getApplications();
+    ArrayList<Application> getApplicationsByCreator(int id);
 
     Application getApplicationsByID(long ID);
 

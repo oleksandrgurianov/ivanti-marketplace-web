@@ -10,9 +10,9 @@ public class Creator extends User {
     private ArrayList<Application> MyApplications;
     private ArrayList<Response> MyResponses;
 
-    public Creator(String username, String password, ArrayList<Application> myApplications, ArrayList<Response> myResponses)
+    public Creator(int id, String username, String password, ArrayList<Application> myApplications, ArrayList<Response> myResponses)
     {
-        super(username, password);
+        super(id, username, password);
         this.MyApplications = myApplications;
        this.MyResponses = myResponses;
     }
