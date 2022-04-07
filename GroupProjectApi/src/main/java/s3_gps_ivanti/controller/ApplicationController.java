@@ -1,5 +1,6 @@
 package s3_gps_ivanti.controller;
 
+import s3_gps_ivanti.DTO.AddApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,8 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/application")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "*")/*@CrossOrigin(origins = "http://localhost:3000/")*/
+
 public class ApplicationController {
 
     private final ApplicationService applicationService;
@@ -42,7 +44,7 @@ public class ApplicationController {
         }
     }
     @GetMapping("{id}")
-    public ResponseEntity<Application> getApplicationsBySearch(@PathVariable("id") long id) {
+    public ResponseEntity<Application> getApplicationsById(@PathVariable("id") long id) {
 
             Application application = applicationService.getApplicationsByID(id);
 
@@ -70,8 +72,7 @@ public class ApplicationController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
     @PostMapping()
-    public ResponseEntity<Object> createApplications( @RequestBody Application app) {
-
+    public ResponseEntity<AddApplicationDTO> createApplications(@RequestBody AddApplicationDTO app) {
         if(applicationService.createApplications(app)) {
             return ResponseEntity.ok().build();
         }
