@@ -1,5 +1,6 @@
 package s3_gps_ivanti.business.impl;
 
+import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.repository.ApplicationRepository;
@@ -27,7 +28,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public Application getApplicationsByID(long id)
+    public Application getApplicationsByID(String id)
     {
        return applicationRepository.getApplicationsByID(id);
     }
@@ -43,18 +44,44 @@ public class ApplicationServiceImpl implements ApplicationService {
         return applicationRepository.createApplications(app);
     }
 
+
     @Override
-    public boolean updateApplications(Application app ) {
-        return applicationRepository.updateApplications(app);
+    public UpdateApplicationDTO getApplicationToUpdate(String appname){
+
+        Application a = applicationRepository.getApplicationToUpdate(appname);
+
+        if(a != null) {
+            return new UpdateApplicationDTO(a);
+        }
+        else {
+            return null;
+        }
+    }
+    @Override
+    public boolean updateApplications(UpdateApplicationDTO app ) {
+
+        //Check input
+        if(app.getId() == null || app.getId().equals("") ||
+                app.getName() == null || app.getName().equals("") ||
+                app.getDescription() == null || app.getDescription().equals("") ||
+                app.getIcon() == null || app.getIcon().equals("") ||
+                app.getImages().size() ==0 || app.getImages().size() > 10)
+        {
+            return  false;
+        }
+
+        Application model = new Application(app);
+
+        return applicationRepository.updateApplications(model);
     }
 
     @Override
-    public boolean deleteApplications(int appID ){
+    public boolean deleteApplications(String appID ){
         return applicationRepository.deleteApplications(appID);
     }
 
     @Override
-    public File downloadApplications(int appID) {
+    public File downloadApplications(String appID) {
         return applicationRepository.downloadApplications(appID);
     }
 }

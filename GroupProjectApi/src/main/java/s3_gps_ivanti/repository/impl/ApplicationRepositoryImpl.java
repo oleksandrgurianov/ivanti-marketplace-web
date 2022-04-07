@@ -1,7 +1,9 @@
 package s3_gps_ivanti.repository.impl;
 
 
+import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.model.Application;
+import s3_gps_ivanti.model.Review;
 import s3_gps_ivanti.model.User;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.DataBaseForNow;
@@ -18,18 +20,18 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
 
     @Override
     public ArrayList<Application> getApplicationsSorted(boolean rating, boolean date) {
-        return null;
+        return new ArrayList<Application>();
     }
 
     @Override
     public ArrayList<Application> getApplicationsBySearch(String search) {
-        return null;
+        return new ArrayList<Application>();
     }
 
     @Override
-    public Application getApplicationsByID(long ID) {
+    public Application getApplicationsByID(String ID) {
         for(Application p : database.applications) {
-            if (p.getId() == ID) {
+            if (p.getId().equals(ID)) {
                 return p;
             }
         }
@@ -38,7 +40,7 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
 
     @Override
     public ArrayList<Application> getApplications() {
-        return null;
+        return new ArrayList<Application>();
     }
 
     @Override
@@ -48,18 +50,45 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
 
     @Override
     public boolean updateApplications(Application app) {
+        for(Application a : database.applications)
+        {
+            if(a.getId().equals(app.getId())){
+                a.setName(app.getName());
+                a.setDescription(app.getDescription());
+                a.setScreenshots(app.getScreenshots());
+                a.setIcon(app.getIcon());
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
-    public boolean deleteApplications(int appID) {
+    public boolean deleteApplications(String appID) {
         return false;
     }
 
     @Override
-    public File downloadApplications(int appID) {
+    public Application getApplicationToUpdate(String appname){
+        for(Application a: database.applications)
+        {
+            if(a.getName().equals(appname)){
+                return a;
+            }
+        }
         return null;
     }
 
-    public ArrayList<Application> getAllOfAUsersAppointments(User user) {return null;}
+    @Override
+    public File downloadApplications(String appID) {
+        return null;
+    }
+
+    public ArrayList<Application> getAllOfAUsersAppointments(User user) {
+        if(user != null){
+            return null;
+        }else{
+            return new ArrayList<Application>();
+        }
+    }
 }

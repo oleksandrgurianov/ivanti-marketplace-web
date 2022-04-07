@@ -4,7 +4,8 @@ import lombok.*;
 
 import java.util.ArrayList;
 
-@Data
+@Getter
+@Setter
 public class Creator extends User {
 
     private ArrayList<Application> MyApplications;
