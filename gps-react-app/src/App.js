@@ -10,8 +10,7 @@ import Login from "./pages/Login"
 import Contact from "./pages/Contact"
 import Home from "./pages/Home"
 import About from "./pages/About"
-import Add_Application from "./Product/Add_Application";
-
+import Add_Application from "./pages/Product/Add_Application"
 
 //Css
 import './App.css';

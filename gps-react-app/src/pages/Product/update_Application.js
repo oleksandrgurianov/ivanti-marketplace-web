@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import axios from "axios";
 
-function Add_Application() {
+function update_Application() {
 
     useEffect(() => {
         GetProductByName();
@@ -40,4 +40,4 @@ function Add_Application() {
     );
 }
 
-export default Add_Application;
+export default update_Application;

@@ -62,7 +62,7 @@ function Add_Application() {
     }
 
     const SaveApp = () =>{
-        var checkInput = CheckInput();
+        let checkInput = CheckInput();
 
         if(checkInput != ""){
             alert(checkInput);}
