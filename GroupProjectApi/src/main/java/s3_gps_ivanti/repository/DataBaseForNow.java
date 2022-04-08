@@ -21,9 +21,9 @@ DataBaseForNow {
         responses = new ArrayList<>();
 
        //Create users
-        Creator user1 = new Creator("Lars1", "Lars1",null,null);
-        Creator user2 = new Creator("Lars2", "Lars2",null,null);
-        Customer user3 = new Customer("Lars3", "Lars3", null, null);
+        Creator user1 = new Creator(1,"Lars1", "Lars1",null,null);
+        Creator user2 = new Creator(2, "Lars2", "Lars2",null,null);
+        Customer user3 = new Customer(3, "Lars3", "Lars3", null, null);
         users.add(user1);
         users.add(user2);
         users.add(user3);
@@ -53,12 +53,12 @@ DataBaseForNow {
         //Giving applications to users
         ArrayList<Application> applications1 = new ArrayList<Application>();
         applications1.add(application1);
-        user1.setMyApplications(applications1);
+//        user1.setMyApplications(applications1);
 
         ArrayList<Application> applications2 = new ArrayList<Application>();
         applications2.add(application2);
         applications2.add(application3);
-        user2.setMyApplications(applications2);
+//        user2.setMyApplications(applications2);
 
         applications.add(application1);
         applications.add(application2);

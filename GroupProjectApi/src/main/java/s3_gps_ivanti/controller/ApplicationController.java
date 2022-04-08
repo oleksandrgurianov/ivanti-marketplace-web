@@ -55,7 +55,7 @@ public class ApplicationController {
     @GetMapping("/details/{appName}")
     public ResponseEntity<Application> getApplicationDetails(@PathVariable("appName") String appName) {
 
-        Application application = applicationService.getApplicationsByID(1);
+        Application application = applicationService.getApplicationsByID(2);
 
         if(application != null) {
             return ResponseEntity.ok().body(application);
@@ -65,9 +65,16 @@ public class ApplicationController {
     }
 
     //Creator
-    @GetMapping("creator/{ID}")
-    public ResponseEntity<ArrayList<Application>>getApplicationsByCreator(@PathVariable String ID) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    @GetMapping("creator/{id}")
+    public ResponseEntity<ArrayList<Application>>getApplicationsByCreator(@PathVariable int id) {
+
+        ArrayList<Application> creatorApps = applicationService.getApplicationsByCreator(id);
+
+        if (creatorApps != null){
+            return ResponseEntity.ok().body(creatorApps);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
     @PostMapping()
     public ResponseEntity<Object> createApplications( @RequestBody Application app) {

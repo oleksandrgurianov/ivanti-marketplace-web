@@ -23,4 +23,6 @@ public interface ApplicationService {
 
     File downloadApplications(int appID);
 
+    ArrayList<Application> getApplicationsByCreator(int id);
+
 }

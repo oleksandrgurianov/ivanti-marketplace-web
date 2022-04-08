@@ -7,13 +7,21 @@ import java.util.ArrayList;
 @Data
 public class Creator extends User {
 
+    private String apps;
     private ArrayList<Application> MyApplications;
     private ArrayList<Response> MyResponses;
+
+    public Creator(int id, String username, String password){
+        super(id, username, password);
+        MyApplications = new ArrayList<>();
+        MyResponses = new ArrayList<>();
+        apps = "Test";
+    }
 
     public Creator(int id, String username, String password, ArrayList<Application> myApplications, ArrayList<Response> myResponses)
     {
         super(id, username, password);
         this.MyApplications = myApplications;
-       this.MyResponses = myResponses;
+        this.MyResponses = myResponses;
     }
 }

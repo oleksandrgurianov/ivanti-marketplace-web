@@ -2,6 +2,8 @@ package s3_gps_ivanti.repository.impl;
 
 
 import s3_gps_ivanti.model.Application;
+import s3_gps_ivanti.model.Creator;
+import s3_gps_ivanti.model.Review;
 import s3_gps_ivanti.model.User;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.DataBaseForNow;
@@ -39,6 +41,30 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
     @Override
     public ArrayList<Application> getApplications() {
         return null;
+    }
+
+    @Override
+    public ArrayList<Application> getApplicationsByCreator(int id) {
+        ArrayList<Application> creatorApps = new ArrayList<>();
+
+        for (Application app : database.applications){
+            if (app.getCreator().getId() == id){
+                creatorApps.add(app);
+            }
+        }
+
+        return creatorApps;
+
+//            for (User creator : database.users){
+//                if (creator.getId() == id){
+//                    if (creator instanceof Creator){
+//                        return ((Creator)creator).getMyApplications();
+//                    }
+//                }
+//            }
+//
+//            return null;
+
     }
 
     @Override

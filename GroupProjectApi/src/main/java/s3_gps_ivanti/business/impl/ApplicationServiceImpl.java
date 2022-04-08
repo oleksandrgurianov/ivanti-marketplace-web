@@ -57,4 +57,9 @@ public class ApplicationServiceImpl implements ApplicationService {
     public File downloadApplications(int appID) {
         return applicationRepository.downloadApplications(appID);
     }
+
+    @Override
+    public ArrayList<Application> getApplicationsByCreator(int id) {
+        return applicationRepository.getApplicationsByCreator(id);
+    }
 }
