@@ -13,5 +13,4 @@ public class Application {
     private int id;
     private Creator creator;
     private ArrayList<Review> reviews;
-
 }

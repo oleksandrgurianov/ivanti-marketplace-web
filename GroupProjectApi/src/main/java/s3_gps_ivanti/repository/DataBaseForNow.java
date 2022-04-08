@@ -53,12 +53,12 @@ DataBaseForNow {
         //Giving applications to users
         ArrayList<Application> applications1 = new ArrayList<Application>();
         applications1.add(application1);
-//        user1.setMyApplications(applications1);
+        user1.setMyApplications(applications1);
 
         ArrayList<Application> applications2 = new ArrayList<Application>();
         applications2.add(application2);
         applications2.add(application3);
-//        user2.setMyApplications(applications2);
+        user2.setMyApplications(applications2);
 
         applications.add(application1);
         applications.add(application2);

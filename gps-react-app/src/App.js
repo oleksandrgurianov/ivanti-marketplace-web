@@ -4,6 +4,7 @@ function App() {
   return (
     <div>
         <Add_Application/>
+        <h1>test</h1>
     </div>
   );
 }

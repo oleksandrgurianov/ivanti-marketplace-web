@@ -3,18 +3,20 @@ import axios from "axios";
 
 function Add_Application() {
 
-    useEffect(() => {
-        GetProductByName();
-    },[]);
+    // const [application, setApplication] = useState([]);
+
+    // useEffect(() => {
+    //     GetProductByName();
+    // },[]);
 
 
-    const GetProductByName =() => {
-        setApplication(null);
-        axios.post(`http://localhost:8080/App/`)
-            .then(res => {
-                setApplication(res.data);
-            })
-    }
+    // const GetProductByName =() => {
+    //     setApplication(null);
+    //     axios.post(`http://localhost:8080/App/`)
+    //         .then(res => {
+    //             setApplication(res.data);
+    //         })
+    // }
 
     return(
         <div className="container">
@@ -22,9 +24,9 @@ function Add_Application() {
 
             </div>
             <div className="images">
-                {Application.images.map(image => (
+                {/* {application.images.map(image => (
                     <img className={"image"} src={image}/>
-                    ))}
+                    ))} */}
             </div>
             <div className="reviews">
 
