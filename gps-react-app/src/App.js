@@ -11,6 +11,8 @@ import Contact from "./pages/Contact"
 import Home from "./pages/Home"
 import About from "./pages/About"
 import Add_Application from "./pages/Product/Add_Application"
+import CreatorMyApps from './pages/CreatorMyApps'
+import Error from './pages/Error'
 
 //Css
 import './App.css';
@@ -30,6 +32,8 @@ function App() {
        <Route path="/Contact" element={<Contact/>} />
        <Route path="/Home" element={<Home/>} />
        <Route path="/Creator/AddApp" element={<Add_Application/>}/>
+       <Route path="/Creator/MyApps" element={<CreatorMyApps />} />
+       <Route path="*" element={<Error />} />
       </Routes>
       <Footer/>
      </>
