@@ -19,6 +19,8 @@ import Error from './pages/Error'
 //Css
 import './App.css';
 import Statistics from "./pages/Statistics";
+import DownloadStatistics from "./pages/DownloadStatistics";
+import Rating from "./pages/Rating";
 
 
 //APP STRUCTURE
@@ -39,6 +41,8 @@ function App() {
                 <Route path="/Statistics" element={<Statistics/>}/>
                 <Route path="/Creator/MyApps" element={<CreatorMyApps />} />
                 <Route path="/*" element={<Error />} />
+                <Route path="/DownloadStatistics" element={<DownloadStatistics/>}/>
+                <Route path="/Applications" element={<Rating/>}/>
             </Routes>
             <Footer/>
         </>
