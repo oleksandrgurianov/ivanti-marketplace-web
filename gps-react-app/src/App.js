@@ -1,12 +1,17 @@
-import Add_Application from "./Product/Add_Application";
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+
+// pages
+import CreatorMyApps from './pages/CreatorMyApps'
 
 function App() {
   return (
-    <div>
-        <Add_Application/>
-        <h1>test</h1>
-    </div>
-  );
+    <>
+      <Routes>
+        <Route path='/creator/myapps/:id' element={<CreatorMyApps />} />
+      </Routes>
+    </>
+  )
 }
 
-export default App;
+export default App
