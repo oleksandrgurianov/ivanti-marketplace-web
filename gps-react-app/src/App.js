@@ -11,7 +11,9 @@ import Contact from "./pages/Contact"
 import Home from "./pages/Home"
 import About from "./pages/About"
 import Add_Application from "./pages/Product/Add_Application"
-import Update_Application from "./pages/Product/update_Application"
+import CreatorMyApps from './pages/CreatorMyApps'
+import Error from './pages/Error'
+
 //Css
 import './App.css';
 import Statistics from "./pages/Statistics";
@@ -26,12 +28,14 @@ function App() {
       <Header/>
       <Container/>
       <Routes>
-          <Route path="/Login" element={<Login/>} />
-          <Route path="/About" element={<About/>} />
-          <Route path="/Contact" element={<Contact/>} />
-          <Route path="/Home" element={<Home/>} />
-          <Route path="/Creator/AddApp" element={<Add_Application/>}/>
-          <Route path="/Statistics" element={<Statistics/>}/>
+       <Route path="/Login" element={<Login/>} />
+       <Route path="/About" element={<About/>} />
+       <Route path="/Contact" element={<Contact/>} />
+       <Route path="/" element={<Home/>} />
+       <Route path="/Creator/AddApp" element={<Add_Application/>}/>
+       <Route path="/Statistics" element={<Statistics/>}/>
+       <Route path="/Creator/MyApps" element={<CreatorMyApps />} />
+       <Route path="/*" element={<Error />} />
       </Routes>
       <Footer/>
      </>
