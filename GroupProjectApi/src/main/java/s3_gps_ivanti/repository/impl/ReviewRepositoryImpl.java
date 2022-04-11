@@ -1,9 +1,10 @@
-package S3_GPS_Ivanti.repository.Impl;
+package s3_gps_ivanti.repository.impl;
 
-import S3_GPS_Ivanti.model.Review;
-import S3_GPS_Ivanti.model.User;
-import S3_GPS_Ivanti.repository.DataBaseForNow;
-import S3_GPS_Ivanti.repository.ReviewRepository;
+import s3_gps_ivanti.model.Response;
+import s3_gps_ivanti.model.Review;
+import s3_gps_ivanti.model.User;
+import s3_gps_ivanti.repository.DataBaseForNow;
+import s3_gps_ivanti.repository.ReviewRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +13,10 @@ import java.util.ArrayList;
 @Primary
 @Service
 public class ReviewRepositoryImpl implements ReviewRepository {
-    private DataBaseForNow database;
 
     @Override
     public ArrayList<Review> getReviews(String appName) {
-        return null;
+        return new ArrayList<Review>();
     }
     @Override
     public boolean createReview(Review review) {
@@ -34,6 +34,10 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     }
 
     public ArrayList<Review> getAllOfAUsersReviews(User user) {
-        return null;
+        if(user != null) {
+            return null;
+        } else{
+            return new ArrayList<Review>();
+        }
     };
 }

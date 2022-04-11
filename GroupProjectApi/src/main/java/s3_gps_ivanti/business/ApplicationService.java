@@ -1,28 +1,29 @@
-package S3_GPS_Ivanti.business;
+package s3_gps_ivanti.business;
 
+import s3_gps_ivanti.DTO.AddApplicationDTO;
+import s3_gps_ivanti.DTO.UpdateApplicationDTO;
+import s3_gps_ivanti.model.Application;
 
-import S3_GPS_Ivanti.model.Application;
-import S3_GPS_Ivanti.model.User;
 import java.io.File;
 import java.util.ArrayList;
 
 public interface ApplicationService {
 
-    ArrayList<Application> getApplicationsSorted( boolean rating, boolean date);
-
+    //all
+    ArrayList<Application> getApplicationsSorted(boolean rating, boolean date);
     ArrayList<Application> getApplicationsBySearch(String search);
-
-    Application getApplicationsByID(long ID);
-
+    Application getApplicationsByID(String id);
+    ArrayList<Application> getApplicationDetails(String appName);
     ArrayList<Application> getApplications();
 
-    boolean createApplications( Application app);
+    //Creator
+    ArrayList<Application> getApplicationsByCreator(String ID);
+    UpdateApplicationDTO getApplicationToUpdate(String appname);
+    boolean createApplications( AddApplicationDTO app);
+    boolean updateApplications(UpdateApplicationDTO app);
+    boolean deleteApplications( String appID);
 
-    boolean updateApplications(Application app, User user);
+    ArrayList<Application> getApplicationsByCustomer(String ID);
+    File downloadApplications(String appID);
 
-    boolean deleteApplications( int appID, User user);
-
-    File downloadApplications(String username, String password, int appID);
-
-    public ArrayList<Application> getAllOfAUsersAppointments(User user);
 }

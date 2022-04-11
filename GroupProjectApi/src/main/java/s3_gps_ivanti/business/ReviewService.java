@@ -1,7 +1,8 @@
-package S3_GPS_Ivanti.business;
+package s3_gps_ivanti.business;
 
-import S3_GPS_Ivanti.model.Review;
-import S3_GPS_Ivanti.model.User;
+import s3_gps_ivanti.model.Review;
+
+
 
 import java.util.ArrayList;
 
