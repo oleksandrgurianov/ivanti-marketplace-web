@@ -1,6 +1,6 @@
 package s3_gps_ivanti.business.impl;
 
-import s3_gps_ivanti.DTO.AddApplicationDTO;
+import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.repository.ApplicationRepository;
@@ -27,8 +27,9 @@ public class ApplicationServiceImpl implements ApplicationService {
         return applicationRepository.getApplicationsBySearch(search);
     }
     @Override
-    public  Application getApplicationsByID(long id){
-        return applicationRepository.getApplicationsByID(id);
+    public Application getApplicationsByID(String id)
+    {
+       return applicationRepository.getApplicationsByID(id);
     }
     @Override
     public ArrayList<Application> getApplicationDetails(String appName){
@@ -43,34 +44,38 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public boolean createApplications( AddApplicationDTO app){
 
-        if(app.getTitle() == "" || app.getTitle() == null) {
-            return false;
+
+    @Override
+    public UpdateApplicationDTO getApplicationToUpdate(String appname){
+
+        Application a = applicationRepository.getApplicationToUpdate(appname);
+
+        if(a != null) {
+            return new UpdateApplicationDTO(a);
         }
-        else if(app.getDescription() == "" || app.getDescription() == null) {
-            return false;
+        else {
+            return null;
         }
-        else if(app.getIcon() == "" || app.getIcon() == null) {
-            return false;
-        }
-        else if(app.getImages() == null ) {
-            return false;
-        }
-        else if(app.getImages().size() == 0 || app.getImages().size() > 10) {
-            return false;
-        }
-        else if(applicationRepository.FindAppWithSameName(app.getTitle())) {
-            return false;
+    }
+    @Override
+    public boolean updateApplications(UpdateApplicationDTO app ) {
+
+        //Check input
+        if(app.getId() == null || app.getId().equals("") ||
+                app.getName() == null || app.getName().equals("") ||
+                app.getDescription() == null || app.getDescription().equals("") ||
+                app.getIcon() == null || app.getIcon().equals("") ||
+                app.getImages().size() ==0 || app.getImages().size() > 10)
+        {
+            return  false;
         }
 
-        Application modle = new Application(app.getTitle(), app.getDescription(), app.getImages(), app.getIcon(), app.getAppLocation());
-        return applicationRepository.createApplications(modle);
+        Application model = new Application(app);
+
+        return applicationRepository.updateApplications(model);
     }
     @Override
-    public boolean updateApplications(Application app){
-        return applicationRepository.updateApplications(app);
-    }
-    @Override
-    public   boolean deleteApplications( int appID){
+    public boolean deleteApplications(String appID ){
         return applicationRepository.deleteApplications(appID);
     }
 
@@ -80,7 +85,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         return applicationRepository.getApplicationsByCustomer(ID);
     }
     @Override
-    public File downloadApplications(int appID){
+    public File downloadApplications(String appID) {
         return applicationRepository.downloadApplications(appID);
     }
 }

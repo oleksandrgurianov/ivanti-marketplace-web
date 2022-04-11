@@ -1,167 +1,67 @@
 import React, {useState} from "react";
 import "./ApplicationCss.css";
 import axios from 'axios';
-import ReactDOM from "react-dom";
 
 function Add_Application() {
 
-    // google api requests
-    function SaveArchiveIcon(e) {
-        let file = e.target.files[0] //the file
-        let reader = new FileReader() //this for convert to Base64
-        reader.readAsDataURL(e.target.files[0]) //start conversion...
-        reader.onload = function (e) { //.. once finished..
-            let rawLog = reader.result.split(',')[1]; //extract only the file data part
-
-            setLoadingIcon("Loading...");
-
-            let dataSend = {
-                dataReq: {data: rawLog, name: file.name, type: file.type},
-                fname: "uploadFilesToGoogleDrive"
-            }; //preapre info to send to API
-            fetch('https://script.google.com/macros/s/AKfycby3Ey1lmmyX9CAsRlanTAU4FveEyfKqnjrYQPTaaBHUEN6Z3OrF/exec', //your AppsScript URL
-                {method: "POST", body: JSON.stringify(dataSend)}) //send to Api
-                .then(res => res.json()).then((a) => {
-                changeIcon(a.url);
-                setLoadingIcon("");
-            }).catch((e) => {
-                setLoadingIcon("Something went wrong please try again later.\n" + e);
-            })
-        }
-    }
-    function SaveArchiveImage(e) {
-        let file = e.target.files[0] //the file
-        let reader = new FileReader() //this for convert to Base64
-        reader.readAsDataURL(e.target.files[0]) //start conversion...
-        reader.onload = function (e) { //.. once finished..
-            let rawLog = reader.result.split(',')[1]; //extract only the file data part
-
-            setLoadingImage("Loading...");
-
-            let dataSend = {
-                dataReq: {data: rawLog, name: file.name, type: file.type},
-                fname: "uploadFilesToGoogleDrive"
-            }; //preapre info to send to API
-            fetch('https://script.google.com/macros/s/AKfycby3Ey1lmmyX9CAsRlanTAU4FveEyfKqnjrYQPTaaBHUEN6Z3OrF/exec', //your AppsScript URL
-                {method: "POST", body: JSON.stringify(dataSend)}) //send to Api
-                .then(res => res.json()).then((a) => {
-                AddImage(a.url);
-                setLoadingImage("");
-            }).catch((e) => {
-                setLoadingImage("Something went wrong please try again later.\n" + e);
-            })
-        }
-    }
-    function SaveArchiveApp(e){
-        let file = e.target.files[0] //the file
-        let reader = new FileReader() //this for convert to Base64
-        reader.readAsDataURL(e.target.files[0]) //start conversion...
-        reader.onload = function (e) { //.. once finished..
-            let rawLog = reader.result.split(',')[1]; //extract only the file data part
-
-            setLoadingApp("Loading...");
-
-            let dataSend = {
-                dataReq: {data: rawLog, name: file.name, type: file.type},
-                fname: "uploadFilesToGoogleDrive"
-            }; //preapre info to send to API
-            fetch('https://script.google.com/macros/s/AKfycby3Ey1lmmyX9CAsRlanTAU4FveEyfKqnjrYQPTaaBHUEN6Z3OrF/exec', //your AppsScript URL
-                {method: "POST", body: JSON.stringify(dataSend)}) //send to Api
-                .then(res => res.json()).then((a) => {
-                changeApp(a.url);
-                setLoadingApp("");
-            }).catch((e) => {
-                setLoadingApp("Something went wrong please try again later.\n" + e);
-            })
-        }
-    }
-
-    //Variables
     const [icon, setIcon] = useState("");
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
+    const [finalIcon, setFinalIcon] = useState("https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350");
+    const [title, setTitle] = useState("");
+    const [image, setImage] = useState("");
     const [arrayImages, setArrayImages] = useState([])
+    const [description, setDescription] = useState("");
     const [app, setApp] = useState("");
+    const [finalApp, setfinalApp] = useState("");
 
-    //Loading screens
-    const [loadingImage, setLoadingImage] = useState("");
-    const [loadingIcon, setLoadingIcon] = useState("");
-    const [loadingApp, setLoadingApp] = useState("");
-
-    //Save changes
-    function changeIcon(url) {
-
-        let includeID = url.replace("file/d/", "uc?export=view?&id=");
-        let ChangeView = includeID.replace("/view?usp=drivesdk", "");
-
-        setIcon(ChangeView);
+    const changeIcon = (e) => {
+        setIcon(e.target.value);
     };
-    const changeName = (e) => {
-        setName(e.target.value);
+    const AddIcon = () =>{
+        setFinalIcon(icon);
+    }
+    const changeTitle = (e) => {
+        setTitle(e.target.value);
     };
-    const changeDescription = (e) => {
+    const changeImage = (e) => {
+        setImage(e.target.value);
+    };
+    const AddImage = () =>{
+        if(arrayImages.length < 10) {
+            arrayImages.push(image);
+            console.log(arrayImages);
+        }
+        else {
+            console.log("error");
+        }
+    }
+    const changeDescription = (e) =>{
         setDescription(e.target.value);
     }
-    function AddImage(url) {
-
-        let includeID = url.replace("file/d/", "uc?export=view?&id=");
-        let ChangeView = includeID.replace("/view?usp=drivesdk", "");
-
-        if (arrayImages === null) {
-            setArrayImages(ChangeView);
-        } else if (arrayImages.length < 10) {
-            arrayImages.push(ChangeView);
-            setArrayImages(arrayImages);
-        }
-        //ReactDOM.render( <div id="images"><LoadImages/></div>, document.getElementById('images'));
-        setArrayImages(arrayImages);
+    const changeApp=(e)=>{
+        setApp(e.target.value)
     }
-    const RemoveImage = (e) => {
-        for (let i = 0; i < arrayImages.length; i++) {
-            if (arrayImages[i] === e.target.value) {
-                arrayImages.splice(i, 1);
-                ReactDOM.render( <LoadImages/>, document.getElementById('images'));
-                return;
-            }
-        }
-    }
-    function changeApp(url) {
-
-        let includeID = url.replace("file/d/", "uc?export=view?&id=");
-        let ChangeView = includeID.replace("/view?usp=drivesdk", "");
-
-        setApp(ChangeView);
-    };
-
-    //Display images
-    function LoadImages() {
-        return (
-            <div id="images">
-                {arrayImages.map(image => (
-                    <div className={"image"}>
-                        <img src={image}  height="333"/>
-                        <button className={"RemoveImage"} value={image} onClick={RemoveImage}>Delete</button>
-                    </div>
-                ))}
-            </div>
-        );
+    const changeFinalApp=()=>{
+        setfinalApp(app)
     }
 
-    //Save app
     const SendRequest = () =>{
         axios.post(`http://localhost:8080/application`,
-        {
-            'title': name,
-            'description': description,
-            'images': arrayImages,
-            'icon':icon,
-            'appUrl': app
-        })
-        .then(function () {})
-        .catch(function (){});
+            {
+                'title': title,
+                'description': description,
+                'images': arrayImages,
+                'icon':finalIcon,
+                'appUrl': finalApp
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
     const SaveApp = () =>{
-        let checkInput = CheckInput();
+        var checkInput = CheckInput();
 
         if(checkInput != ""){
             alert(checkInput);}
@@ -173,19 +73,19 @@ function Add_Application() {
 
         let result = "";
 
-        if(icon == ""){
+        if(finalIcon == ""){
             result += "Please add a icon. \n";
         }
         if(description == ""){
-            result +="Please add a description. \n";
+            result +="Please add a discription. \n";
         }
-        if(name == "" ){
+        if(title == "" ){
             result += "Please add a title. \n";
         }
         if(arrayImages == null || arrayImages.length == 0) {
             result += "Please add at least 1 image. \n";
         }
-        if(app == "") {
+        if(finalApp == "") {
             result += "Please make sure to include the url to the application. \n";
         }
         return result;
@@ -196,34 +96,35 @@ function Add_Application() {
         <div className="container">
             <span id={"error"}></span>
             <div className="basic_Info">
-                <input type="file" accept="image/jpeg, image/png" text={"Add icon"} onChange={(e) => SaveArchiveIcon(e)}/>
-                <p> {loadingIcon} </p>
+                <input type="text" placeholder="icon url" name="Icon" value={icon} onChange={changeIcon}/>
+                <button onClick={AddIcon}>Add icon</button>
+
+                <br/>
 
                 <div className={"title_div"}>
-                    <img className={"icon"}   src={icon}/>
-                    <input className={"InputTitle"} type="text" placeholder="Title" name="Title" value={name} onChange={changeName}/>
+                    <img className={"icon"}   src={finalIcon}/>
+                    <input className={"InputTitle"} type="text" placeholder="Title" name="Title" value={title} onChange={changeTitle}/>
                 </div>
 
                 <hr className={"line"}/>
             </div>
 
             <div className="images">
-                <div className={"AddImage"} >
-                    <input className={"AddImageButton"} type="file" accept="image/jpeg, image/png" onChange={(e) => SaveArchiveImage(e)}/>
-                    <p> {loadingImage} </p>
-                </div>
-
-                <LoadImages/>
+                <input type="text" placeholder="image url" name="Image" value={image} onChange={changeImage}/>
+                <button onClick={AddImage}>Add image</button>
+                <br/>
+                {arrayImages.map(image => (
+                    <img className={"image"} src={image}/>
+                ))}
             </div>
 
             <div className="other_Info">
-                <input type="file" accept="application/pdf, application/json" onChange={(e) => SaveArchiveApp(e)}/>
-                <p> {loadingApp} </p>
-                <br/>
+                <input type="text" placeholder="app url" name="app" value={app} onChange={changeApp}/>
+                <button onClick={changeFinalApp}>Conform application url</button>
                 <p className={"DescriptionText"}>Description</p>
-                <textarea className={"description"} type="textarea" placeholder="Description" name="description" value={description} onChange={changeDescription}/>
-                <button className={"SaveButton"} onClick={SaveApp} >Save</button>
+                <textarea   className={"description"} type="textarea" placeholder="Description" name="description" value={description} onChange={changeDescription}/>
             </div>
+            <button onClick={SaveApp} >Save</button>
         </div>
     );
 }
