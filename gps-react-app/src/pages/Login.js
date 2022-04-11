@@ -44,6 +44,6 @@ setWelcome(response.data.value);
         </div>
     );
    }
-   }
+
 export default Login;
 
