@@ -20,7 +20,7 @@ DataBaseForNow {
         applications = new ArrayList<>();
         responses = new ArrayList<>();
 
-       //Create users
+   /*    //Create users
         Creator user1 = new Creator("Lars1", "Lars1",null,null);
         Creator user2 = new Creator("Lars2", "Lars2",null,null);
         Customer user3 = new Customer("Lars3", "Lars3", null, null);
@@ -56,7 +56,6 @@ DataBaseForNow {
         Review review1 = new Review(1,null, user3);
         Review review2 = new Review(2,null, user3);
 
-
         //Adding the reviews to the applications
 
 
@@ -81,6 +80,6 @@ DataBaseForNow {
 
         applications.add(application1);
         applications.add(application2);
-        applications.add(application3);
+        applications.add(application3);*/
     }
 }

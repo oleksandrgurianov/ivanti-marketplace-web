@@ -94,6 +94,7 @@ function Add_Application() {
 
     return(
         <div className="container">
+            <span id={"error"}></span>
             <div className="basic_Info">
                 <input type="text" placeholder="icon url" name="Icon" value={icon} onChange={changeIcon}/>
                 <button onClick={AddIcon}>Add icon</button>

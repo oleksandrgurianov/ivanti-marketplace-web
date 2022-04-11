@@ -18,6 +18,7 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
 
     private DataBaseForNow database = new DataBaseForNow();
 
+    //all
     @Override
     public ArrayList<Application> getApplicationsSorted(boolean rating, boolean date) {
         return new ArrayList<Application>();
@@ -43,11 +44,9 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         return new ArrayList<Application>();
     }
 
+    //Creator
     @Override
-    public boolean createApplications(Application app) {
-        return false;
-    }
-
+    public  ArrayList<Application> getApplicationsByCreator(String ID){ return null; }
     @Override
     public boolean updateApplications(Application app) {
         for(Application a : database.applications)
@@ -62,12 +61,12 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         }
         return false;
     }
-
     @Override
     public boolean deleteApplications(String appID) {
         return false;
     }
 
+    //Customers
     @Override
     public Application getApplicationToUpdate(String appname){
         for(Application a: database.applications)

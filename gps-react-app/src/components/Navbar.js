@@ -7,13 +7,14 @@ function Navbar(){
     return (
         <>
            <Nav>
-            <NavLogo to="/Home">
+            <NavLogo to="/">
                 Ivanti AppMarket :P
             </NavLogo>
             <Bars />
 
             <NavMenu>
                 <NavLink to="/" activeStyle={{ color:'black' }}> Home </NavLink>
+                <NavLink to="/statistics" activeStyle={{ color:'black' }}> Statistics </NavLink>
                 <NavLink to="/about"activeStyle={{ color: 'black' }}> About</NavLink>
                 <NavLink to="/contact" activeStyle={{ color: 'black' }}>Contact</NavLink>
                 <NavLink to="/Login"activeStyle={{ color: 'black' }}>Log In</NavLink>

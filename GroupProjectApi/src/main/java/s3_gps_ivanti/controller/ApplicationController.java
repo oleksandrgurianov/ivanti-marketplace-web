@@ -14,7 +14,8 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/application")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "*")/*@CrossOrigin(origins = "http://localhost:3000/")*/
+
 public class ApplicationController {
 
     private final ApplicationService applicationService;
@@ -80,8 +81,7 @@ public class ApplicationController {
         }
     }
     @PostMapping()
-    public ResponseEntity<Object> createApplications( @RequestBody Application app) {
-
+    public ResponseEntity<AddApplicationDTO> createApplications(@RequestBody AddApplicationDTO app) {
         if(applicationService.createApplications(app)) {
             return ResponseEntity.ok().build();
         }

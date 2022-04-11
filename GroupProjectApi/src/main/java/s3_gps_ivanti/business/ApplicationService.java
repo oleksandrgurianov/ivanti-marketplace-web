@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public interface ApplicationService {
 
+    //all
     ArrayList<Application> getApplicationsSorted(boolean rating, boolean date);
-
     ArrayList<Application> getApplicationsBySearch(String search);
 
     Application getApplicationsByID(String id);

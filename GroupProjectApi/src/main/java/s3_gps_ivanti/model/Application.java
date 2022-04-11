@@ -19,6 +19,17 @@ public class Application {
     private String icon;
     private Creator creator;
     private ArrayList<Review> reviews;
+    private String appLocation;
+
+
+    public Application(String name, String description, ArrayList<String> screenshots, String icon, String appLocation) {
+        this.name = name;
+        this.description = description;
+        this.screenshots = screenshots;
+        this.icon = icon;
+        this.appLocation = appLocation;
+        screenshots = new ArrayList<String>();
+    }
 
     public Application(UpdateApplicationDTO updateDTO) {
         this.id = updateDTO.getId();

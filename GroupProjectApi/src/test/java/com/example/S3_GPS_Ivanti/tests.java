@@ -1,6 +1,7 @@
 package com.example.S3_GPS_Ivanti;
 
 
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;

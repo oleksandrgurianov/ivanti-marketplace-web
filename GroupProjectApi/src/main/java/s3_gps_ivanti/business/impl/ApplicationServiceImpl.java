@@ -17,32 +17,32 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     private final ApplicationRepository applicationRepository;
 
+    //all
     @Override
-    public ArrayList<Application> getApplicationsSorted(boolean rating, boolean date) {
+    public  ArrayList<Application> getApplicationsSorted(boolean rating, boolean date){
         return applicationRepository.getApplicationsSorted(rating, date);
     }
-
     @Override
-    public ArrayList<Application> getApplicationsBySearch(String search) {
+    public ArrayList<Application> getApplicationsBySearch(String search){
         return applicationRepository.getApplicationsBySearch(search);
     }
-
     @Override
     public Application getApplicationsByID(String id)
     {
        return applicationRepository.getApplicationsByID(id);
     }
-
-
     @Override
-    public ArrayList<Application> getApplications() {
-        return applicationRepository.getApplications();
+    public ArrayList<Application> getApplicationDetails(String appName){
+        return applicationRepository.getApplicationDetails(appName);
     }
 
+    //Creator
     @Override
-    public boolean createApplications( Application app) {
-        return applicationRepository.createApplications(app);
+    public  ArrayList<Application> getApplicationsByCreator(String ID){
+        return applicationRepository.getApplicationsByCreator(ID);
     }
+    @Override
+    public boolean createApplications( AddApplicationDTO app){
 
 
     @Override
@@ -74,12 +74,16 @@ public class ApplicationServiceImpl implements ApplicationService {
 
         return applicationRepository.updateApplications(model);
     }
-
     @Override
     public boolean deleteApplications(String appID ){
         return applicationRepository.deleteApplications(appID);
     }
 
+    //Customers
+    @Override
+    public  ArrayList<Application> getApplicationsByCustomer(String ID){
+        return applicationRepository.getApplicationsByCustomer(ID);
+    }
     @Override
     public File downloadApplications(String appID) {
         return applicationRepository.downloadApplications(appID);
