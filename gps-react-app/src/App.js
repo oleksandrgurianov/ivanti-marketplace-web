@@ -16,6 +16,7 @@ import Error from './pages/Error'
 
 //Css
 import './App.css';
+import Statistics from "./pages/Statistics";
 
 
 //APP STRUCTURE
@@ -32,6 +33,7 @@ function App() {
        <Route path="/Contact" element={<Contact/>} />
        <Route path="/Home" element={<Home/>} />
        <Route path="/Creator/AddApp" element={<Add_Application/>}/>
+       <Route path="/Statistics" element={<Statistics/>}/>
        <Route path="/Creator/MyApps" element={<CreatorMyApps />} />
        <Route path="*" element={<Error />} />
       </Routes>

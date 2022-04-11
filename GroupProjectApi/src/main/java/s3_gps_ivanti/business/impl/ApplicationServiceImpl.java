@@ -62,7 +62,7 @@ public class ApplicationServiceImpl implements ApplicationService {
             return false;
         }
 
-        Application modle = new Application(app.getTitle(), app.getDescription(), app.getImages(), app.getIcon());
+        Application modle = new Application(app.getTitle(), app.getDescription(), app.getImages(), app.getIcon(), app.getAppLocation());
         return applicationRepository.createApplications(modle);
     }
     @Override

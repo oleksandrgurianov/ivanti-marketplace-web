@@ -16,12 +16,15 @@ public class AddApplicationDTO {
     private ArrayList<String> images;
     @NonNull
     private String icon;
+    @NonNull
+    private String appLocation;
 
-    public AddApplicationDTO(String title, String description, ArrayList<String> images, String icon)
+    public AddApplicationDTO(String title, String description, ArrayList<String> images, String icon, String appLocation)
     {
         this.title = title;
         this.description = description;
         this.images = images;
         this.icon = icon;
+        this.appLocation = appLocation;
     }
 }
