@@ -1,5 +1,6 @@
-package s3_gps_ivanti.controller;
+package s3_gps_ivanti.model.controller;
 
+import s3_gps_ivanti.DTO.AddApplicationDTO;
 import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;

@@ -12,7 +12,6 @@ import Home from "./pages/Home"
 import About from "./pages/About"
 import Add_Application from "./pages/Product/Add_Application";
 import Update_Application from "./pages/Product/Update_Application";
-import Add_Application from "./pages/Product/Add_Application"
 import CreatorMyApps from './pages/CreatorMyApps'
 import Error from './pages/Error'
 

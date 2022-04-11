@@ -185,7 +185,7 @@ function Update_Application() {
         );
     }
 
-    if(id !== null){
+    if(name !== null){
         return(
             <div className="container">
                 <div className="basic_Info">

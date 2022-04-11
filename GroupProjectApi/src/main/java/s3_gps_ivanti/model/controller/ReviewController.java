@@ -1,4 +1,4 @@
-package s3_gps_ivanti.controller;
+package s3_gps_ivanti.model.controller;
 
 import s3_gps_ivanti.business.ReviewService;
 import s3_gps_ivanti.model.Review;

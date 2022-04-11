@@ -1,5 +1,6 @@
 package s3_gps_ivanti.business.impl;
 
+import s3_gps_ivanti.DTO.AddApplicationDTO;
 import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
@@ -35,6 +36,10 @@ public class ApplicationServiceImpl implements ApplicationService {
     public ArrayList<Application> getApplicationDetails(String appName){
         return applicationRepository.getApplicationDetails(appName);
     }
+    @Override
+    public ArrayList<Application> getApplications() {
+        return applicationRepository.getApplications();
+    }
 
     //Creator
     @Override
@@ -44,6 +49,30 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public boolean createApplications( AddApplicationDTO app){
 
+        if(app.getTitle() == "" || app.getTitle() == null) {
+            return false;
+        }
+        else if(app.getDescription() == "" || app.getDescription() == null) {
+            return false;
+        }
+        else if(app.getIcon() == "" || app.getIcon() == null) {
+            return false;
+        }
+        else if(app.getImages() == null ) {
+            return false;
+        }
+        else if(app.getImages().size() == 0 || app.getImages().size() > 10) {
+            return false;
+        }
+        else if(applicationRepository.FindAppWithSameName(app.getTitle())) {
+            return false;
+        }
+        else if(app.getAppLocation() == null) {
+            return false;
+        }
+        Application modle = new Application(app);
+        return applicationRepository.createApplications(modle);
+    }
 
     @Override
     public UpdateApplicationDTO getApplicationToUpdate(String appname){
