@@ -29,10 +29,28 @@ DataBaseForNow {
         users.add(user2);
         users.add(user3);
 
+        ArrayList<String> images = new ArrayList<>();
+        images.add("https://drive.google.com/uc?export=view?&id=1tFkazCdwZids6CqOHPWMVxq-DQwZ2sJW/");
+        images.add("https://drive.google.com/uc?export=view?&id=12lGO68ekH92R_uMS7NyZ1-ZAZ8jJA7fD/");
+
         //Create applications
-        Application application1 = new Application(1, user1, null);
-        Application application2 = new Application(2, user2, null);
-        Application application3 = new Application(3, user2, null);
+        Application application1 = new Application();
+        application1.setName("aaa");
+        application1.setId("1");
+        application1.setIcon("Icon here");
+        application1.setDescription("description here");
+        application1.setScreenshots(images);
+
+        Application application2 = new Application();
+        application2.setName("ccc");
+        application2.setId("2");
+        application2.setScreenshots(images);
+
+
+        Application application3 = new Application();
+        application3.setName("bbb");
+        application3.setId("3");
+        application3.setScreenshots(images);
 
         //Create reviews
         Review review1 = new Review(1,null, user3);

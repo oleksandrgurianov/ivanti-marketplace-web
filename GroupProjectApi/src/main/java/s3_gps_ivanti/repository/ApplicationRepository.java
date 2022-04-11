@@ -1,6 +1,6 @@
 package s3_gps_ivanti.repository;
 
-import s3_gps_ivanti.DTO.AddApplicationDTO;
+import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.model.Application;
 
 import java.io.File;
@@ -14,14 +14,16 @@ public interface ApplicationRepository {
     Application getApplicationsByID(long id);
     ArrayList<Application> getApplicationDetails(String appName);
 
-    //Creator
-    ArrayList<Application> getApplicationsByCreator(String ID);
+    ArrayList<Application> getApplications();
+
+    Application getApplicationsByID(String ID);
+
     boolean createApplications(Application app);
     boolean updateApplications(Application app);
-    boolean deleteApplications(int appID);
-    boolean FindAppWithSameName(String appName);
 
-    //Customers
-    ArrayList<Application> getApplicationsByCustomer(String ID);
-    File downloadApplications(int appID);
+    boolean deleteApplications(String appID);
+
+    public Application getApplicationToUpdate(String appname);
+
+    File downloadApplications(String appID);
 }

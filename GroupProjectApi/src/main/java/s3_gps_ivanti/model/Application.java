@@ -1,6 +1,7 @@
 package s3_gps_ivanti.model;
 
 import lombok.*;
+import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 
 import java.util.ArrayList;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class Application {
 
-    private int id;
+    private String id;
     private String name;
     private String description;
     private int totalDownloads;
@@ -30,4 +31,11 @@ public class Application {
         screenshots = new ArrayList<String>();
     }
 
+    public Application(UpdateApplicationDTO updateDTO) {
+        this.id = updateDTO.getId();
+        this.name = updateDTO.getName();
+        this.description = updateDTO.getDescription();
+        this.screenshots = updateDTO.getImages();
+        this.icon = updateDTO.getIcon();
+    }
 }
