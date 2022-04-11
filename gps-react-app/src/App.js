@@ -15,6 +15,8 @@ import Add_Application from "./pages/Product/Add_Application"
 //Css
 import './App.css';
 import Statistics from "./pages/Statistics";
+import DownloadStatistics from "./pages/DownloadStatistics";
+import Rating from "./pages/Rating";
 
 
 //APP STRUCTURE
@@ -31,7 +33,8 @@ function App() {
        <Route path="/Contact" element={<Contact/>} />
        <Route path="/Home" element={<Home/>} />
        <Route path="/Creator/AddApp" element={<Add_Application/>}/>
-       <Route path="/Statistics" element={<Statistics/>}/>
+       <Route path="/DownloadStatistics" element={<DownloadStatistics/>}/>
+       <Route path="/Applications" element={<Rating/>}/>
       </Routes>
       <Footer/>
      </>
