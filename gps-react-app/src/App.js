@@ -23,27 +23,7 @@ import Statistics from "./pages/Statistics";
 
 //APP STRUCTURE
 function App() {
-<<<<<<< HEAD
   return (
-  <>
-  {/*Include multiple elements with <>*/}
-   <Header/>
-   <Container/>
-        <Routes>
-           <Route path="/Login" element={<Login/>} />
-           <Route path="/Logout" element={<Logout/>} />
-           <Route path="/About" element={<About/>} />
-           <Route path="/Contact" element={<Contact/>} />
-           <Route path="/Home" element={<Home/>} />
-        </Routes>
-
-   <Footer/>
-  </>
-  );
-}
-export default App;
-=======
-    return (
         <>
             {/*Include multiple elements with <>*/}
 
@@ -55,14 +35,15 @@ export default App;
                 <Route path="/Contact" element={<Contact/>} />
                 <Route path="/Home" element={<Home/>} />
                 <Route path="/Creator/update/:Name" element={<Update_Application />}/>
-                 <Route path="/Creator/AddApp" element={<Add_Application/>}/>
-                 <Route path="/Statistics" element={<Statistics/>}/>
-                  <Route path="/Creator/MyApps" element={<CreatorMyApps />} />
-                    <Route path="/*" element={<Error />} />
+                <Route path="/Creator/AddApp" element={<Add_Application/>}/>
+                <Route path="/Statistics" element={<Statistics/>}/>
+                <Route path="/Creator/MyApps" element={<CreatorMyApps />} />
+                <Route path="/*" element={<Error />} />
             </Routes>
             <Footer/>
         </>
     );
+export default App;
 }
 
 export default App;
