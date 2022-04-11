@@ -29,9 +29,9 @@ DataBaseForNow {
         users.add(user3);
 
         //Create applications
-        Application application1 = new Application("App 1", "amazing app",  null, "icon");
-        Application application2 = new Application("App 2", "better app",  null, "icon");
-        Application application3 = new Application("App 3", "this app sucks",  null, "icon");
+        Application application1 = new Application(1, "App 1", "amazing app",  null, "icon", user1);
+        Application application2 = new Application(2, "App 2", "better app",  null, "icon", user1);
+        Application application3 = new Application(3, "App 3", "this app sucks",  null, "icon", user2);
 
         //Create reviews
         Review review1 = new Review(1,null, user3);

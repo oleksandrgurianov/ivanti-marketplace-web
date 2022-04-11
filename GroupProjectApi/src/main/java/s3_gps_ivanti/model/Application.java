@@ -19,10 +19,12 @@ public class Application {
     private Creator creator;
     private ArrayList<Review> reviews;
 
-    public Application(String name, String description, ArrayList<String> screenshots, String icon){
+    public Application(int id, String name, String description, ArrayList<String> screenshots, String icon, Creator creator){
+        this.id = id;
         this.name = name;
         this.description = description;
         this.screenshots = screenshots;
         this.icon = icon;
+        this.creator = creator;
     }
 }

@@ -1,5 +1,7 @@
 package s3_gps_ivanti.controller;
 
+import s3_gps_ivanti.DTO.ApplicationBasicInfoDTO;
+import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
 import lombok.RequiredArgsConstructor;
@@ -66,15 +68,21 @@ public class ApplicationController {
 
     //Creator
     @GetMapping("creator/{id}")
-    public ResponseEntity<ArrayList<Application>>getApplicationsByCreator(@PathVariable int id) {
+    public ResponseEntity<ArrayList<ApplicationBasicInfoDTO>>getApplicationsByCreator(@PathVariable int id) {
 
         ArrayList<Application> creatorApps = applicationService.getApplicationsByCreator(id);
+        ArrayList<ApplicationBasicInfoDTO> dtos = new ArrayList<>();
 
+        // convert to dto
         if (creatorApps != null){
-            return ResponseEntity.ok().body(creatorApps);
-        } else {
-            return ResponseEntity.notFound().build();
+            for (Application app : creatorApps){
+                ApplicationBasicInfoDTO dto = new ApplicationBasicInfoDTO(app);
+                dtos.add(dto);
+            }
+            return ResponseEntity.ok().body(dtos);
         }
+
+        return ResponseEntity.notFound().build();
     }
     @PostMapping()
     public ResponseEntity<Object> createApplications( @RequestBody Application app) {
