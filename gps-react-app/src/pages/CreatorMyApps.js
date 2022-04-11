@@ -1,10 +1,10 @@
 import React from 'react'
+import MyApps from '../components/Creator/MyApps'
 
 function CreatorMyApps() {
   return (
     <>
-        <h1>Creator</h1>
-        <p>List of apps</p>
+        <MyApps />
     </>
   )
 }
