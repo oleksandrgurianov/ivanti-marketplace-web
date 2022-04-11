@@ -59,6 +59,35 @@ import React from 'react'
 
 
                       export default Navbar;
+<<<<<<< HEAD
 
 
 
+=======
+=======
+    return (
+        <>
+           <Nav>
+            <NavLogo to="/">
+                Ivanti AppMarket :P
+            </NavLogo>
+            <Bars />
+
+            <NavMenu>
+                <NavLink to="/" activeStyle={{ color:'black' }}> Home </NavLink>
+                <NavLink to="/Applications" activeStyle={{ color:'black' }}> Applications </NavLink>
+                <NavLink to="/DownloadStatistics" activeStyle={{ color:'black' }}> Download Statistics </NavLink>
+                <NavLink to="/about"activeStyle={{ color: 'black' }}> About</NavLink>
+                <NavLink to="/contact" activeStyle={{ color: 'black' }}>Contact</NavLink>
+                <NavLink to="/Login"activeStyle={{ color: 'black' }}>Log In</NavLink>
+
+                <NavBtn><NavBtnLink to="/Login">Log In</NavBtnLink></NavBtn>
+            </NavMenu>
+           </Nav>
+        </>
+    );
+
+};
+export default Navbar;
+>>>>>>> 817cd64131b25c6084116f86022aef786fef3539
+>>>>>>> fbd7a418e94f6d71298b2ae14a77d0d5058cad78

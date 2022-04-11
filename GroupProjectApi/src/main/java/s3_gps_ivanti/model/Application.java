@@ -5,6 +5,7 @@ import s3_gps_ivanti.DTO.AddApplicationDTO;
 import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,6 +22,8 @@ public class Application {
     private Creator creator;
     private ArrayList<Review> reviews;
     private String appLocation;
+    private Rating rating;
+    private List<DownloadsPerMonth> downloads;
 
 
     public Application(String name, String description, ArrayList<String> screenshots, String icon, String appLocation) {
@@ -29,6 +32,25 @@ public class Application {
         this.screenshots = screenshots;
         this.icon = icon;
         this.appLocation = appLocation;
+        screenshots = new ArrayList<String>();
+        downloads = new ArrayList<>();
+    }
+
+    public int totalDownloads(){
+        int total=0;
+        for(DownloadsPerMonth download : downloads){
+            total+=download.getAmount();
+        }
+        return total;
+    }
+    public double totalDownloadsForYear(int year){
+        int total=0;
+        for(DownloadsPerMonth download : downloads){
+            if(download.getYear()==year){
+                total+=download.getAmount();
+            }
+        }
+        return total;
     }
 
     public Application(UpdateApplicationDTO updateDTO) {

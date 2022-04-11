@@ -18,12 +18,18 @@ import Error from './pages/Error'
 //Css
 import './App.css';
 import Statistics from "./pages/Statistics";
+import DownloadStatistics from "./pages/DownloadStatistics";
+import Rating from "./pages/Rating";
 
 
 //APP STRUCTURE
 function App() {
+<<<<<<< HEAD
 
     return (
+=======
+  return (
+>>>>>>> fbd7a418e94f6d71298b2ae14a77d0d5058cad78
         <>
             {/*Include multiple elements with <>*/}
             <Header/>
@@ -37,14 +43,22 @@ function App() {
                 <Route path="/Creator/AddApp" element={<Add_Application/>}/>
                 <Route path="/Statistics" element={<Statistics/>}/>
                 <Route path="/Creator/MyApps" element={<CreatorMyApps />} />
+<<<<<<< HEAD
                 <Route path="/Logout" element={<Logout/>} />
                 <Route path="/*" element={<Error />} />
+=======
+                <Route path="/*" element={<Error />} />
+                <Route path="/DownloadStatistics" element={<DownloadStatistics/>}/>
+                <Route path="/Applications" element={<Rating/>}/>
+>>>>>>> fbd7a418e94f6d71298b2ae14a77d0d5058cad78
             </Routes>
             <Footer/>
         </>
     );
 }
-
 export default App;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fbd7a418e94f6d71298b2ae14a77d0d5058cad78
