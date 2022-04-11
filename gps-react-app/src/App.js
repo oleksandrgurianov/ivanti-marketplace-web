@@ -31,11 +31,11 @@ function App() {
        <Route path="/Login" element={<Login/>} />
        <Route path="/About" element={<About/>} />
        <Route path="/Contact" element={<Contact/>} />
-       <Route path="/Home" element={<Home/>} />
+       <Route path="/" element={<Home/>} />
        <Route path="/Creator/AddApp" element={<Add_Application/>}/>
        <Route path="/Statistics" element={<Statistics/>}/>
        <Route path="/Creator/MyApps" element={<CreatorMyApps />} />
-       <Route path="*" element={<Error />} />
+       <Route path="/*" element={<Error />} />
       </Routes>
       <Footer/>
      </>

@@ -7,7 +7,7 @@ function Navbar(){
     return (
         <>
            <Nav>
-            <NavLogo to="/Home">
+            <NavLogo to="/">
                 Ivanti AppMarket :P
             </NavLogo>
             <Bars />
