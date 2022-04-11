@@ -43,10 +43,6 @@ function App() {
             <Footer/>
         </>
     );
-export default App;
 }
-
 export default App;
 
-
->>>>>>> 817cd64131b25c6084116f86022aef786fef3539
