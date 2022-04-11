@@ -1,10 +1,9 @@
-package s3_gps_ivanti.repository.impl;
+package com.example.S3_GPS_Ivanti.repository.Impl;
 
-
-import s3_gps_ivanti.model.Application;
-import s3_gps_ivanti.model.User;
-import s3_gps_ivanti.repository.ApplicationRepository;
-import s3_gps_ivanti.repository.DataBaseForNow;
+import S3_GPS_Ivanti.model.Application;
+import S3_GPS_Ivanti.model.User;
+import S3_GPS_Ivanti.repository.ApplicationRepository;
+import S3_GPS_Ivanti.repository.DataBaseForNow;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import java.io.File;

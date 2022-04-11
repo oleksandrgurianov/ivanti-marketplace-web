@@ -1,6 +1,7 @@
-package s3_gps_ivanti.repository;
+package S3_GPS_Ivanti.repository;
 
-import s3_gps_ivanti.model.Application;
+import S3_GPS_Ivanti.model.Application;
+import S3_GPS_Ivanti.model.User;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,4 +23,6 @@ public interface ApplicationRepository {
     boolean deleteApplications(int appID);
 
     File downloadApplications(int appID);
+
+    public ArrayList<Application> getAllOfAUsersAppointments(User user);
 }

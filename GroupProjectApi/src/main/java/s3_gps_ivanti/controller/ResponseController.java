@@ -1,7 +1,9 @@
-package s3_gps_ivanti.controller;
+package S3_GPS_Ivanti.controller;
 
-import s3_gps_ivanti.business.ResponseService;
-import s3_gps_ivanti.model.Response;
+import S3_GPS_Ivanti.business.ResponseService;
+import S3_GPS_Ivanti.business.UserService;
+import S3_GPS_Ivanti.model.Response;
+import S3_GPS_Ivanti.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,51 +14,73 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/response")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ResponseController {
 
     private final ResponseService responseService;
+    private final UserService userService;
 
     //Creator
     @GetMapping("{reviewID}")
-    public ResponseEntity<ArrayList<Response>> getResponse(@PathVariable("reviewID")int reviewID) {
+    public ResponseEntity<ArrayList<Response>> getResponse(@PathVariable("reviewID")int reviewID, @RequestBody  String username, @RequestBody  String password) {
+        User user = userService.getUser(username, password);
 
-        ArrayList<Response> responses = responseService.getResponse(reviewID);
+        if(user != null) {
+            ArrayList<Response> responses = responseService.getResponse(reviewID);
 
-        if(responses != null) {
-            return ResponseEntity.ok().body(responses);
-        } else {
-            return ResponseEntity.notFound().build();
+            if(responses != null) {
+                return ResponseEntity.ok().body(responses);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
         }
+
+        return new ResponseEntity("Please make sure your username and password are correct", HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("{reviewID}")
-    public ResponseEntity<Object>  createResponse(@PathVariable("reviewID")int reviewID, @RequestBody Response response) {
+    public ResponseEntity createResponse(@PathVariable("reviewID")int reviewID, @RequestBody  Response response, @RequestBody  String username, String password) {
+        User user = userService.getUser(username, password);
 
-        if(responseService.createResponse(reviewID, response)) {
-            return ResponseEntity.ok().build();
-        }
-        else {
-            return ResponseEntity.status( HttpStatus.CONFLICT).build();
+        if(user != null) {
+            boolean result = responseService.createResponse(reviewID, response, user);
+
+            if(result == true) {
+                return ResponseEntity.ok().build();
+            }
+            else {
+                return new ResponseEntity("Error", HttpStatus.CONFLICT);
+            }
         }
 
+        return new ResponseEntity("Please make sure your username and password are correct", HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping()
-    public ResponseEntity<Object>  updateResponse(@RequestBody Response response) {
-        if(responseService.updateResponse(response)) {
+    public ResponseEntity updateResponse( @RequestBody Response response, @RequestBody  String username, String password) {
+        User user = userService.getUser(username, password);
+
+        if(user != null) {
+            responseService.updateResponse(response, user);
             return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+
+        return new ResponseEntity("Please make sure your username and password are correct", HttpStatus.BAD_REQUEST);
     }
 
-    @DeleteMapping({"{responseID}"})
-    public ResponseEntity<Object> deleteResponse(@PathVariable int responseID) {
-        if (responseService.deleteResponse(responseID)) {
-               return ResponseEntity.ok().build();
-        }else {
+    @DeleteMapping({"{appID}"})
+    public ResponseEntity deleteResponse( @PathVariable("appID") int responseID, @RequestBody  String username, String password) {
+        User user = userService.getUser(username, password);
+
+        if(user != null) {
+            boolean result = responseService.deleteResponse(responseID, user);
+
+            if (result == true) {
+                return ResponseEntity.ok().build();
+            }
             return ResponseEntity.notFound().build();
         }
+
+        return new ResponseEntity("Please make sure your username and password are correct", HttpStatus.BAD_REQUEST);
     }
 }

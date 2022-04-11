@@ -1,6 +1,6 @@
-package s3_gps_ivanti.repository;
+package S3_GPS_Ivanti.repository;
 
-import s3_gps_ivanti.model.*;
+import S3_GPS_Ivanti.model.*;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,6 @@ DataBaseForNow {
         Creator user1 = new Creator("Lars1", "Lars1",null,null);
         Creator user2 = new Creator("Lars2", "Lars2",null,null);
         Customer user3 = new Customer("Lars3", "Lars3", null, null);
-        Customer user4 = new Customer ("Customer", "Customer");
         users.add(user1);
         users.add(user2);
         users.add(user3);
@@ -43,13 +42,16 @@ DataBaseForNow {
 
 
 
-       ArrayList<Review> reviews1 = new ArrayList<Review>();
+       /* ArrayList<Review> reviews1 = new ArrayList<Review>();
         reviews1.add(review1);
         ArrayList<Review> reviews2 = new ArrayList<Review>();
         reviews2.add(review2);
 
         application1.setReviews(reviews1);
-        application2.setReviews(reviews2);
+        application2.setReviews(reviews2);*/
+
+
+
 
         //Giving applications to users
         ArrayList<Application> applications1 = new ArrayList<Application>();

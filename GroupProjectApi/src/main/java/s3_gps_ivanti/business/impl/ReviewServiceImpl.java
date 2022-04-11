@@ -1,8 +1,9 @@
-package s3_gps_ivanti.business.impl;
+package S3_GPS_Ivanti.business.Impl;
 
-import s3_gps_ivanti.business.ReviewService;
-import s3_gps_ivanti.model.Review;
-import s3_gps_ivanti.repository.ReviewRepository;
+import S3_GPS_Ivanti.business.ReviewService;
+import S3_GPS_Ivanti.model.Review;
+import S3_GPS_Ivanti.model.User;
+import S3_GPS_Ivanti.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;

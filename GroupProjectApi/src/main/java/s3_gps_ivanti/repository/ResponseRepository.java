@@ -1,6 +1,7 @@
-package s3_gps_ivanti.repository;
+package S3_GPS_Ivanti.repository;
 
-import s3_gps_ivanti.model.Response;
+import S3_GPS_Ivanti.model.Response;
+import S3_GPS_Ivanti.model.User;
 
 import java.util.ArrayList;
 
@@ -14,4 +15,5 @@ public interface ResponseRepository {
 
     boolean deleteResponse(int responseID);
 
+    public ArrayList<Response> getAllOfAUsersResponses(User user);
 }

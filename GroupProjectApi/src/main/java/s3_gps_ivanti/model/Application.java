@@ -1,4 +1,4 @@
-package s3_gps_ivanti.model;
+package S3_GPS_Ivanti.model;
 
 import lombok.*;
 

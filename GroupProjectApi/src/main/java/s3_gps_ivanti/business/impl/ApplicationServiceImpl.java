@@ -1,11 +1,13 @@
-package s3_gps_ivanti.business.impl;
+package S3_GPS_Ivanti.business.Impl;
 
-import s3_gps_ivanti.business.ApplicationService;
-import s3_gps_ivanti.model.Application;
-import s3_gps_ivanti.repository.ApplicationRepository;
+import S3_GPS_Ivanti.business.ApplicationService;
+import S3_GPS_Ivanti.model.Application;
+import S3_GPS_Ivanti.model.User;
+import S3_GPS_Ivanti.repository.ApplicationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -27,9 +29,9 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public Application getApplicationsByID(long id)
+    public Application getApplicationsByID(long ID)
     {
-       return applicationRepository.getApplicationsByID(id);
+       return applicationRepository.getApplicationsByID(ID);
     }
 
 
@@ -44,17 +46,33 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public boolean updateApplications(Application app ) {
-        return applicationRepository.updateApplications(app);
+    public boolean updateApplications(Application app, User user) {
+
+        for(Application a : getAllOfAUsersAppointments(user)) {
+            if(a.getId() == app.getId()) {
+                return applicationRepository.updateApplications(app);
+            }
+        }
+        return false;
     }
 
     @Override
-    public boolean deleteApplications(int appID ){
-        return applicationRepository.deleteApplications(appID);
+    public boolean deleteApplications(int appID, User user) {
+        for(Application a : getAllOfAUsersAppointments(user)) {
+            if(a.getId() == appID) {
+                return applicationRepository.deleteApplications(appID);
+            }
+        }
+        return false;
     }
 
     @Override
-    public File downloadApplications(int appID) {
-        return applicationRepository.downloadApplications(appID);
+    public File downloadApplications(String username, String password, int appID) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Application> getAllOfAUsersAppointments(User user) {
+        return applicationRepository.getAllOfAUsersAppointments(user);
     }
 }
