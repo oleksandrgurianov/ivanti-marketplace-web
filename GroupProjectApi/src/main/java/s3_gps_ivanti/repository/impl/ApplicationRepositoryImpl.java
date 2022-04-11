@@ -1,9 +1,6 @@
 package s3_gps_ivanti.repository.impl;
 
-
-import s3_gps_ivanti.DTO.AddApplicationDTO;
 import s3_gps_ivanti.model.Application;
-import s3_gps_ivanti.model.User;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.DataBaseForNow;
 import org.springframework.context.annotation.Primary;
@@ -19,27 +16,64 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
 
     //all
     @Override
-    public ArrayList<Application> getApplicationsSorted(boolean rating, boolean date){ return null; }
+    public ArrayList<Application> getApplicationsSorted(boolean rating, boolean date) {
+        return new ArrayList<Application>();
+    }
     @Override
-    public ArrayList<Application> getApplicationsBySearch(String search){ return null; }
+    public ArrayList<Application> getApplicationsBySearch(String search) {
+        return new ArrayList<Application>();
+    }
     @Override
-    public  Application getApplicationsByID(long id){ return null; }
+    public Application getApplicationsByID(String ID) {
+        for(Application p : database.applications) {
+            if (p.getId().equals(ID)) {
+                return p;
+            }
+        }
+        return null;
+    }
     @Override
-    public  ArrayList<Application> getApplicationDetails(String appName){ return null; }
+    public ArrayList<Application> getApplications() {
+        return new ArrayList<Application>();
+    }
 
     //Creator
     @Override
-    public  ArrayList<Application> getApplicationsByCreator(String ID){ return null; }
+    public ArrayList<Application> getApplicationDetails(String appName){
+        ArrayList<Application> apps = new ArrayList<>();
+
+        for (Application a : database.applications) {
+            if(a.getName().equals(appName)) {
+                apps.add(a);
+            }
+        }
+        return apps;
+    }
     @Override
-    public    boolean createApplications(Application app){
+    public boolean createApplications(Application app){
         database.applications.add(app);
-        return true; }
-    @Override
-    public  boolean updateApplications(Application app){
         return true;
     }
     @Override
-    public boolean deleteApplications(int appID){ return true; }
+    public  ArrayList<Application> getApplicationsByCreator(String ID){ return null; }
+    @Override
+    public boolean updateApplications(Application app) {
+        for(Application a : database.applications)
+        {
+            if(a.getId().equals(app.getId())){
+                a.setName(app.getName());
+                a.setDescription(app.getDescription());
+                a.setScreenshots(app.getScreenshots());
+                a.setIcon(app.getIcon());
+                return true;
+            }
+        }
+        return false;
+    }
+    @Override
+    public boolean deleteApplications(String appID) {
+        return false;
+    }
     @Override
     public  boolean FindAppWithSameName(String appName){
         for(Application a : database.applications)
@@ -51,10 +85,28 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         }
         return false;
     }
-
     //Customers
     @Override
-    public ArrayList<Application> getApplicationsByCustomer(String ID){ return null; }
+    public Application getApplicationToUpdate(String appname){
+        for(Application a: database.applications)
+        {
+            if(a.getName().equals(appname)){
+                return a;
+            }
+        }
+        return null;
+    }
     @Override
-   public File downloadApplications(int appID){ return null; }
+    public File downloadApplications(String appID) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Application> getApplicationsByCustomer(String ID) {
+        if(ID != null){
+            return null;
+        }else{
+            return new ArrayList<Application>();
+        }
+    }
 }

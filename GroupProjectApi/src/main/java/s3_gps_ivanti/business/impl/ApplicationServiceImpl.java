@@ -1,6 +1,7 @@
 package s3_gps_ivanti.business.impl;
 
 import s3_gps_ivanti.DTO.AddApplicationDTO;
+import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.repository.ApplicationRepository;
@@ -27,12 +28,17 @@ public class ApplicationServiceImpl implements ApplicationService {
         return applicationRepository.getApplicationsBySearch(search);
     }
     @Override
-    public  Application getApplicationsByID(long id){
-        return applicationRepository.getApplicationsByID(id);
+    public Application getApplicationsByID(String id)
+    {
+       return applicationRepository.getApplicationsByID(id);
     }
     @Override
     public ArrayList<Application> getApplicationDetails(String appName){
         return applicationRepository.getApplicationDetails(appName);
+    }
+    @Override
+    public ArrayList<Application> getApplications() {
+        return applicationRepository.getApplications();
     }
 
     //Creator
@@ -61,16 +67,44 @@ public class ApplicationServiceImpl implements ApplicationService {
         else if(applicationRepository.FindAppWithSameName(app.getTitle())) {
             return false;
         }
-
-        Application modle = new Application(app.getTitle(), app.getDescription(), app.getImages(), app.getIcon(), app.getAppLocation());
+        else if(app.getAppLocation() == null) {
+            return false;
+        }
+        Application modle = new Application(app);
         return applicationRepository.createApplications(modle);
     }
+
     @Override
-    public boolean updateApplications(Application app){
-        return applicationRepository.updateApplications(app);
+    public UpdateApplicationDTO getApplicationToUpdate(String appname){
+
+        Application a = applicationRepository.getApplicationToUpdate(appname);
+
+        if(a != null) {
+            return new UpdateApplicationDTO(a);
+        }
+        else {
+            return null;
+        }
     }
     @Override
-    public   boolean deleteApplications( int appID){
+    public boolean updateApplications(UpdateApplicationDTO app ) {
+
+        //Check input
+        if(app.getId() == null || app.getId().equals("") ||
+                app.getName() == null || app.getName().equals("") ||
+                app.getDescription() == null || app.getDescription().equals("") ||
+                app.getIcon() == null || app.getIcon().equals("") ||
+                app.getImages().size() ==0 || app.getImages().size() > 10)
+        {
+            return  false;
+        }
+
+        Application model = new Application(app);
+
+        return applicationRepository.updateApplications(model);
+    }
+    @Override
+    public boolean deleteApplications(String appID ){
         return applicationRepository.deleteApplications(appID);
     }
 
@@ -80,7 +114,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         return applicationRepository.getApplicationsByCustomer(ID);
     }
     @Override
-    public File downloadApplications(int appID){
+    public File downloadApplications(String appID) {
         return applicationRepository.downloadApplications(appID);
     }
 }

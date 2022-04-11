@@ -1,6 +1,7 @@
-package s3_gps_ivanti.controller;
+package s3_gps_ivanti.model.controller;
 
 import s3_gps_ivanti.DTO.AddApplicationDTO;
+import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +45,7 @@ public class ApplicationController {
         }
     }
     @GetMapping("{id}")
-    public ResponseEntity<Application> getApplicationsById(@PathVariable("id") long id) {
+    public ResponseEntity<Application> getApplicationsByID(@PathVariable("id") String id) {
 
             Application application = applicationService.getApplicationsByID(id);
 
@@ -57,19 +58,28 @@ public class ApplicationController {
     @GetMapping("/details/{appName}")
     public ResponseEntity<Application> getApplicationDetails(@PathVariable("appName") String appName) {
 
-        Application application = applicationService.getApplicationsByID(1);
+        Application application = applicationService.getApplicationsByID(appName);
 
         if(application != null) {
             return ResponseEntity.ok().body(application);
-        } else {
-            return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.notFound().build();
     }
 
     //Creator
     @GetMapping("creator/{ID}")
     public ResponseEntity<ArrayList<Application>>getApplicationsByCreator(@PathVariable String ID) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+    @GetMapping("/creator/appToUpdate/{appName}")
+    public ResponseEntity<UpdateApplicationDTO>getApplicationToUpdate(@PathVariable("appName") String appName) {
+        UpdateApplicationDTO application = applicationService.getApplicationToUpdate(appName);
+
+        if(application != null) {
+            return ResponseEntity.ok().body(application);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
     @PostMapping()
     public ResponseEntity<AddApplicationDTO> createApplications(@RequestBody AddApplicationDTO app) {
@@ -81,7 +91,7 @@ public class ApplicationController {
         }
     }
     @PutMapping()
-    public ResponseEntity<Object> updateApplications(@RequestBody Application app) {
+    public ResponseEntity<Object> updateApplications(@RequestBody UpdateApplicationDTO app) {
 
         if (applicationService.updateApplications(app)) {
             return ResponseEntity.noContent().build();
@@ -89,8 +99,8 @@ public class ApplicationController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
-    @DeleteMapping({"appID"})
-    public ResponseEntity<Object> deleteApplications(@PathVariable("appID") int appID) {
+    @DeleteMapping({"{appID}"})
+    public ResponseEntity<Object> deleteApplications(@PathVariable("appID") String appID) {
 
         if (applicationService.deleteApplications(appID)) {
             return ResponseEntity.ok().build();
@@ -102,7 +112,7 @@ public class ApplicationController {
 
     //Customer
     @GetMapping("download/{appID}")
-    public ResponseEntity<File> downloadApplications(@PathVariable("appID") int appID) {
+    public ResponseEntity<File> downloadApplications(@PathVariable("appID") String appID) {
 
         File app = applicationService.downloadApplications(appID);
 

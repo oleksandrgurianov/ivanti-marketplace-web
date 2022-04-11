@@ -1,7 +1,7 @@
 package s3_gps_ivanti.business;
 
-import org.springframework.web.bind.annotation.PathVariable;
 import s3_gps_ivanti.DTO.AddApplicationDTO;
+import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.model.Application;
 
 import java.io.File;
@@ -12,17 +12,18 @@ public interface ApplicationService {
     //all
     ArrayList<Application> getApplicationsSorted(boolean rating, boolean date);
     ArrayList<Application> getApplicationsBySearch(String search);
-    Application getApplicationsByID(long id);
+    Application getApplicationsByID(String id);
     ArrayList<Application> getApplicationDetails(String appName);
+    ArrayList<Application> getApplications();
 
     //Creator
     ArrayList<Application> getApplicationsByCreator(String ID);
+    UpdateApplicationDTO getApplicationToUpdate(String appname);
     boolean createApplications( AddApplicationDTO app);
-    boolean updateApplications(Application app);
-    boolean deleteApplications( int appID);
+    boolean updateApplications(UpdateApplicationDTO app);
+    boolean deleteApplications( String appID);
 
-    //Customers
     ArrayList<Application> getApplicationsByCustomer(String ID);
-    File downloadApplications(int appID);
+    File downloadApplications(String appID);
 
 }

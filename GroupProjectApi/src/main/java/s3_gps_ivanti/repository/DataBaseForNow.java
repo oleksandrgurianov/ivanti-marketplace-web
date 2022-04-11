@@ -20,7 +20,7 @@ DataBaseForNow {
         applications = new ArrayList<>();
         responses = new ArrayList<>();
 
-   /*    //Create users
+     //Create users
         Creator user1 = new Creator("Lars1", "Lars1",null,null);
         Creator user2 = new Creator("Lars2", "Lars2",null,null);
         Customer user3 = new Customer("Lars3", "Lars3", null, null);
@@ -29,26 +29,28 @@ DataBaseForNow {
         users.add(user2);
         users.add(user3);
 
+        ArrayList<String> images = new ArrayList<>();
+        images.add("https://drive.google.com/uc?export=view?&id=1tFkazCdwZids6CqOHPWMVxq-DQwZ2sJW/");
+        images.add("https://drive.google.com/uc?export=view?&id=12lGO68ekH92R_uMS7NyZ1-ZAZ8jJA7fD/");
+
         //Create applications
-        Application application1 = new Application(1, user1, null);
-        Application application2 = new Application(2, user2, null);
-        Application application3 = new Application(3, user2, null);
+        Application application1 = new Application();
+        application1.setName("aaa");
+        application1.setId("1");
+        application1.setIcon("Icon here");
+        application1.setDescription("description here");
+        application1.setScreenshots(images);
 
-        //Create reviews
-        Review review1 = new Review(1,null, user3);
-        Review review2 = new Review(2,null, user3);
-
-        //Adding the reviews to the applications
-
+        Application application2 = new Application();
+        application2.setName("ccc");
+        application2.setId("2");
+        application2.setScreenshots(images);
 
 
-       ArrayList<Review> reviews1 = new ArrayList<Review>();
-        reviews1.add(review1);
-        ArrayList<Review> reviews2 = new ArrayList<Review>();
-        reviews2.add(review2);
-
-        application1.setReviews(reviews1);
-        application2.setReviews(reviews2);
+        Application application3 = new Application();
+        application3.setName("bbb");
+        application3.setId("3");
+        application3.setScreenshots(images);
 
         //Giving applications to users
         ArrayList<Application> applications1 = new ArrayList<Application>();
@@ -62,6 +64,6 @@ DataBaseForNow {
 
         applications.add(application1);
         applications.add(application2);
-        applications.add(application3);*/
+        applications.add(application3);
     }
 }

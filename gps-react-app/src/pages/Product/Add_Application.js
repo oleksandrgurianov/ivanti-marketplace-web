@@ -150,15 +150,15 @@ function Add_Application() {
     //Save app
     const SendRequest = () =>{
         axios.post(`http://localhost:8080/application`,
-        {
-            'title': name,
-            'description': description,
-            'images': arrayImages,
-            'icon':icon,
-            'appUrl': app
-        })
-        .then(function () {})
-        .catch(function (){});
+            {
+                'title': name,
+                'description': description,
+                'images': arrayImages,
+                'icon':icon,
+                'appLocation': app
+            })
+            .then(function () {})
+            .catch(function (){});
     }
     const SaveApp = () =>{
         let checkInput = CheckInput();
