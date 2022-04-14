@@ -1,9 +1,25 @@
 import { Line } from "react-chartjs-2";
-import {Applications} from "../components/Charts/DownloadData";
+
 import {registerables, Chart} from 'chart.js';
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 function DownloadStatistics() {
     Chart.register(...registerables)
+    const [Applications, setApplications] = useState([]);
+    useEffect(() => {
+        GetAllApplications();
+    },[Applications]);
+
+    const GetAllApplications =() => {
+        axios.get(`http://localhost:8080/application/creator/1/statistics`)
+            .then(res => {
+                setApplications(res.data);
+            })
+            .catch(err => {
+                console.log(err.message);
+            });
+    }
 
     return (
         <div>
