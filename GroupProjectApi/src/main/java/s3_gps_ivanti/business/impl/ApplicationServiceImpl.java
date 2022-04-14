@@ -105,7 +105,11 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
     @Override
     public boolean deleteApplications(String appID ){
-        return applicationRepository.deleteApplications(appID);
+        boolean result = false;
+        if(getApplicationsByID(appID)!=null){
+            result = applicationRepository.deleteApplications(appID);
+        }
+        return result;
     }
 
     //Customers
