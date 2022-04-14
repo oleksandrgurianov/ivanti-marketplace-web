@@ -31,7 +31,6 @@ const ApplicationList = () => {
         <>
             {applications.length > 0 ? (
                 <>
-                    <h1>{applications.length}</h1>
                     {applications.map((app) => (
                         // <p key={app.name}>test</p>
                         <Application key={app.name} name={app.name} icon={app.icon} />

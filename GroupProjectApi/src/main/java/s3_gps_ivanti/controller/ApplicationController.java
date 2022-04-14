@@ -66,6 +66,21 @@ public class ApplicationController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<ArrayList<ApplicationBasicInfoDTO>> getAllApplications(){
+        ArrayList<Application> allApplications = applicationService.getApplications();
+        ArrayList<ApplicationBasicInfoDTO> dtos = new ArrayList<>();
+
+        if (allApplications != null){
+            for (Application app : allApplications){
+                ApplicationBasicInfoDTO dto = new ApplicationBasicInfoDTO(app);
+                dtos.add(dto);
+            }
+            return ResponseEntity.ok().body(dtos);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     //Creator
     @GetMapping("creator/{id}")
     public ResponseEntity<ArrayList<ApplicationBasicInfoDTO>>getApplicationsByCreator(@PathVariable int id) {
