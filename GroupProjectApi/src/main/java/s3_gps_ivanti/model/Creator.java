@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Creator extends User {
 
     private ArrayList<Application> MyApplications;

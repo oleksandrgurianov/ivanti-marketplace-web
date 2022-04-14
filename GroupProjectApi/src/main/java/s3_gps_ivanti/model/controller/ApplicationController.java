@@ -26,8 +26,7 @@ import java.util.ArrayList;
 public class ApplicationController {
 
     private final ApplicationService applicationService;
-    private CreatorService creatorService;
-    private CreatorRepository creatorRepository;
+    private final CreatorService creatorService;
 
     //All
     @GetMapping("/filter/{rating}/{date}")
@@ -77,9 +76,6 @@ public class ApplicationController {
     //Creator
     @GetMapping("creator/{id}")
     public ResponseEntity<Creator>getApplicationsByCreator(@PathVariable(value = "id") int id) {
-        creatorRepository = new CreatorRepositoryImpl();
-        creatorService = new CreatorServiceImpl(creatorRepository);
-
         Creator creator = creatorService.getCreator(id);
         if(creator!=null){
             return ResponseEntity.ok().body(creator);
@@ -88,10 +84,6 @@ public class ApplicationController {
     }
     @GetMapping("creator/{id}/statistics")
     public ResponseEntity<ArrayList<Application>>getApplicationsStatistics(@PathVariable(value = "id") int id) {
-
-        creatorRepository = new CreatorRepositoryImpl();
-        creatorService = new CreatorServiceImpl(creatorRepository);
-
         Creator creator = creatorService.getCreator(id);
 
         if(creator!=null){
