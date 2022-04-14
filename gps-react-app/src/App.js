@@ -14,13 +14,11 @@ import Add_Application from "./pages/Product/Add_Application";
 import Update_Application from "./pages/Product/Update_Application";
 import CreatorMyApps from './pages/Creator/MyApps'
 import Error from './pages/Error'
-
-//Css
-import './App.css';
-import Statistics from "./pages/Statistics";
 import DownloadStatistics from "./pages/DownloadStatistics";
 import Rating from "./pages/Rating";
 
+//Css
+import './App.css';
 
 //APP STRUCTURE
 function App() {
@@ -37,14 +35,12 @@ function App() {
                 <Route path="/Home" element={<Home/>} />
                 <Route path="/Creator/update/:Name" element={<Update_Application />}/>
                 <Route path="/Creator/AddApp" element={<Add_Application/>}/>
-                <Route path="/Statistics" element={<Statistics/>}/>
                 <Route path="/Creator/MyApps" element={<CreatorMyApps />} />
 
                 <Route path="/Logout" element={<Logout/>} />
                 <Route path="/*" element={<Error />} />
 
-                <Route path="/DownloadStatistics" element={<DownloadStatistics/>}/>
-                <Route path="/Applications" element={<Rating/>}/>
+                <Route path="/Statistics" element={<DownloadStatistics/>}/>
 
             </Routes>
             <Footer/>

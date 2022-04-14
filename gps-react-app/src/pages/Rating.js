@@ -1,5 +1,5 @@
 import {registerables, Chart} from 'chart.js';
-import BarChart from "../components/Charts/BarChart";
+import { Bar} from "react-chartjs-2";
 import {Application} from "../components/Charts/RatingData";
 
 function Rating() {
@@ -29,11 +29,32 @@ function Rating() {
             },
         ]
     };
+    const options = {
+        indexAxis: 'y',
+        plugins: {
+            legend: {
+                display: false,
+            },
+
+        },
+        scales: {
+            x: [{
+                grid: {
+                    display: false
+                }
+            }],
+            y: [{
+                grid: {
+                    display: false
+                }
+            }]
+        }
+    }
     return (
         <div>
             <h2>{Application.rating.averageStar}</h2>
             <div style={{ width: 300 }}>
-                <BarChart chartData={graphData} />
+                <Bar data={graphData} options={options}/>
             </div>
         </div>
     )

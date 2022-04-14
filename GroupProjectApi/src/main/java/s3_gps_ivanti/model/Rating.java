@@ -7,7 +7,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class Rating {
     private int id;
@@ -17,6 +16,13 @@ public class Rating {
     private int fourStarAmount;
     private int fiveStarAmount;
 
+    public Rating(){
+        this.oneStarAmount = 0;
+        this.twoStarAmount = 0;
+        this.threeStarAmount = 0;
+        this.fourStarAmount = 0;
+        this.fiveStarAmount = 0;
+    }
     public int totalAmount(){
        return oneStarAmount+twoStarAmount+threeStarAmount+fourStarAmount+fiveStarAmount;
     }
