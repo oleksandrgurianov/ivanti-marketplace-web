@@ -33,15 +33,9 @@ public class Application {
         this.icon = icon;
         this.appLocation = appLocation;
         screenshots = new ArrayList<String>();
-        downloads = new ArrayList<>();
-    }
-
-    public int totalDownloads(){
-        int total=0;
-        for(DownloadsPerMonth download : downloads){
-            total+=download.getAmount();
-        }
-        return total;
+        this.downloads = new ArrayList<>();
+        this.totalDownloads = 0;
+        this.rating = new Rating();
     }
     public double totalDownloadsForYear(int year){
         int total=0;
