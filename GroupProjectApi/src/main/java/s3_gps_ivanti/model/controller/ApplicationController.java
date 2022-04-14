@@ -1,13 +1,19 @@
 package s3_gps_ivanti.model.controller;
 
 import s3_gps_ivanti.DTO.AddApplicationDTO;
+import s3_gps_ivanti.DTO.ApplicationStatisticsDTO;
 import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
+import s3_gps_ivanti.business.CreatorService;
+import s3_gps_ivanti.business.impl.CreatorServiceImpl;
 import s3_gps_ivanti.model.Application;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import s3_gps_ivanti.model.Creator;
+import s3_gps_ivanti.repository.CreatorRepository;
+import s3_gps_ivanti.repository.impl.CreatorRepositoryImpl;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -20,6 +26,8 @@ import java.util.ArrayList;
 public class ApplicationController {
 
     private final ApplicationService applicationService;
+    private CreatorService creatorService;
+    private CreatorRepository creatorRepository;
 
     //All
     @GetMapping("/filter/{rating}/{date}")
@@ -67,9 +75,29 @@ public class ApplicationController {
     }
 
     //Creator
-    @GetMapping("creator/{ID}")
-    public ResponseEntity<ArrayList<Application>>getApplicationsByCreator(@PathVariable String ID) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    @GetMapping("creator/{id}")
+    public ResponseEntity<Creator>getApplicationsByCreator(@PathVariable(value = "id") int id) {
+        creatorRepository = new CreatorRepositoryImpl();
+        creatorService = new CreatorServiceImpl(creatorRepository);
+
+        Creator creator = creatorService.getCreator(id);
+        if(creator!=null){
+            return ResponseEntity.ok().body(creator);
+        }
+        return ResponseEntity.notFound().build();
+    }
+    @GetMapping("creator/{id}/statistics")
+    public ResponseEntity<ArrayList<Application>>getApplicationsStatistics(@PathVariable(value = "id") int id) {
+
+        creatorRepository = new CreatorRepositoryImpl();
+        creatorService = new CreatorServiceImpl(creatorRepository);
+
+        Creator creator = creatorService.getCreator(id);
+
+        if(creator!=null){
+            return ResponseEntity.ok().body(creator.getMyApplications());
+        }
+        return ResponseEntity.notFound().build();
     }
     @GetMapping("/creator/appToUpdate/{appName}")
     public ResponseEntity<UpdateApplicationDTO>getApplicationToUpdate(@PathVariable("appName") String appName) {

@@ -5,12 +5,16 @@ import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
+import s3_gps_ivanti.business.CreatorService;
 import s3_gps_ivanti.business.impl.ApplicationServiceImpl;
+import s3_gps_ivanti.business.impl.CreatorServiceImpl;
+import s3_gps_ivanti.repository.CreatorRepository;
 import s3_gps_ivanti.repository.impl.ApplicationRepositoryImpl;
+import s3_gps_ivanti.repository.impl.CreatorRepositoryImpl;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class tests {
 
@@ -145,5 +149,12 @@ class tests {
         app = new UpdateApplicationDTO("1","a", "a",images,"a");
         assertEquals(true, applicationService.updateApplications(app));
 
+    }
+    @Test
+    void getCreatorTest(){
+        CreatorRepository creatorRepository = new CreatorRepositoryImpl();
+        CreatorService creatorService = new CreatorServiceImpl(creatorRepository);
+
+        assertNotEquals(null,creatorService.getCreator(1));
     }
 }

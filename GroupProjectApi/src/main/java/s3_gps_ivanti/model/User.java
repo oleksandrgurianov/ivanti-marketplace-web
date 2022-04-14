@@ -14,18 +14,10 @@ public class User {
     protected String username;
     protected String password;
 
-    public User(String username, String password){
+    public User(int id, String username, String password){
         super();
+        this.id = id;
         this.username= username;
         this.password=password;
     }
-
-    public long getId(){
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
 }
