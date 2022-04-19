@@ -43,6 +43,15 @@ function App() {
                 <Route path="/Statistics" element={<DownloadStatistics/>}/>
 
             </Routes>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <Footer/>
         </>
     );

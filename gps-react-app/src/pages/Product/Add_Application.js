@@ -87,6 +87,7 @@ function Add_Application() {
     const [loadingImage, setLoadingImage] = useState("");
     const [loadingIcon, setLoadingIcon] = useState("");
     const [loadingApp, setLoadingApp] = useState("");
+    const [loadingSavingApp, setLoadingSavingApp] = useState("");
 
     //Save changes
     function changeIcon(url) {
@@ -166,7 +167,9 @@ function Add_Application() {
         if(checkInput != ""){
             alert(checkInput);}
         else{
+            setLoadingSavingApp("Saving...")
             SendRequest();
+            setLoadingSavingApp("Saved!")
         }
     }
     const CheckInput = () =>{
@@ -191,25 +194,28 @@ function Add_Application() {
         return result;
     }
 
-
-    return(
+if(loadingSavingApp === "") {
+    return (
         <div className="container">
             <span id={"error"}></span>
             <div className="basic_Info">
-                <input type="file" accept="image/jpeg, image/png" text={"Add icon"} onChange={(e) => SaveArchiveIcon(e)}/>
+                <input type="file" accept="image/jpeg, image/png" text={"Add icon"}
+                       onChange={(e) => SaveArchiveIcon(e)}/>
                 <p> {loadingIcon} </p>
 
                 <div className={"title_div"}>
-                    <img className={"icon"}   src={icon}/>
-                    <input className={"InputTitle"} type="text" placeholder="Title" name="Title" value={name} onChange={changeName}/>
+                    <img className={"icon"} src={icon}/>
+                    <input className={"InputTitle"} type="text" placeholder="Title" name="Title" value={name}
+                           onChange={changeName}/>
                 </div>
 
                 <hr className={"line"}/>
             </div>
 
             <div className="images">
-                <div className={"AddImage"} >
-                    <input className={"AddImageButton"} type="file" accept="image/jpeg, image/png" onChange={(e) => SaveArchiveImage(e)}/>
+                <div className={"AddImage"}>
+                    <input className={"AddImageButton"} type="file" accept="image/jpeg, image/png"
+                           onChange={(e) => SaveArchiveImage(e)}/>
                     <p> {loadingImage} </p>
                 </div>
 
@@ -221,11 +227,21 @@ function Add_Application() {
                 <p> {loadingApp} </p>
                 <br/>
                 <p className={"DescriptionText"}>Description</p>
-                <textarea className={"description"} type="textarea" placeholder="Description" name="description" value={description} onChange={changeDescription}/>
-                <button className={"SaveButton"} onClick={SaveApp} >Save</button>
+                <textarea className={"description"} type="textarea" placeholder="Description" name="description"
+                          value={description} onChange={changeDescription}/>
+                <button className={"SaveButton"} onClick={SaveApp}>Save</button>
             </div>
         </div>
     );
+    }
+    else{
+        return(
+            <div className="container">
+                <h1>Saved</h1>
+                <button className={"SaveButton"} onClick={setLoadingSavingApp("")}>Back</button>
+            </div>
+        );
+    }
 }
 
 export default Add_Application;

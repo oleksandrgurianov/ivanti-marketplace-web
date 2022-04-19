@@ -214,7 +214,8 @@ function Update_Application() {
                 <Link className={"button"}  onClick={SaveApp} to={"/Creator/update/" + name}>Save changes</Link>
             </div>
         );
-    } else {
+    }
+    else {
         return(
             <div className="container">
                 <p> Not found!! </p>
