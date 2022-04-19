@@ -15,16 +15,16 @@ public interface ApplicationRepository {
 
     //Creator
     ArrayList<Application> getApplications();
-    Application getApplicationsByID(String ID);
+    Application getApplicationsByID(int id);
     ArrayList<Application> getApplicationDetails(String appName);
     boolean createApplications(Application app);
-    ArrayList<Application> getApplicationsByCreator(String ID);
+    ArrayList<Application> getApplicationsByCreator(int ID);
     boolean updateApplications(Application app);
-    boolean deleteApplications(String appID);
+    boolean deleteApplications(int appID);
     boolean FindAppWithSameName(String appName);
 
     //Customer
     Application getApplicationToUpdate(String appname);
-    File downloadApplications(String appID);
-    ArrayList<Application> getApplicationsByCustomer(String ID);
+    File downloadApplications(int appID);
+    ArrayList<Application> getApplicationsByCustomer(int ID);
 }

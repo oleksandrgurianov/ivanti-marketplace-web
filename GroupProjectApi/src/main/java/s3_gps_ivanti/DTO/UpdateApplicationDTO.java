@@ -8,13 +8,13 @@ import java.util.ArrayList;
 @Data
 public class UpdateApplicationDTO {
 
-    private String id;
+    private int id;
     private String name;
     private String description;
     private ArrayList<String> images;
     private String icon;
 
-    public UpdateApplicationDTO(String id, String name, String description, ArrayList<String> images, String icon)
+    public UpdateApplicationDTO(int id, String name, String description, ArrayList<String> images, String icon)
     {
         this.id = id;
         this.name = name;

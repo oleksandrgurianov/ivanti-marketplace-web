@@ -40,14 +40,14 @@ DataBaseForNow {
         //Create applications
         Application application1 = new Application();
         application1.setName("aaa");
-        application1.setId("1");
+        application1.setId(1);
         application1.setIcon("Icon here");
         application1.setDescription("description here");
         application1.setScreenshots(images);
 
         Application application2 = new Application();
         application2.setName("ccc");
-        application2.setId("2");
+        application2.setId(2);
         application1.setIcon("Icon here");
         application1.setDescription("description here");
         application2.setScreenshots(images);
@@ -55,7 +55,7 @@ DataBaseForNow {
 
         Application application3 = new Application();
         application3.setName("bbb");
-        application3.setId("3");
+        application3.setId(3);
         application1.setIcon("Icon here");
         application1.setDescription("description here");
         application3.setScreenshots(images);

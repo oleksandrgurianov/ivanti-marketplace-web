@@ -1,6 +1,7 @@
 package s3_gps_ivanti.model.controller;
 
 import s3_gps_ivanti.DTO.AddApplicationDTO;
+import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
 import s3_gps_ivanti.DTO.ApplicationStatisticsDTO;
 import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
@@ -52,9 +53,9 @@ public class ApplicationController {
         }
     }
     @GetMapping("{id}")
-    public ResponseEntity<Application> getApplicationsByID(@PathVariable("id") String id) {
+    public ResponseEntity<ApplicationDetailedInfoDTO> getApplicationsByID(@PathVariable("id") int id) {
 
-            Application application = applicationService.getApplicationsByID(id);
+            ApplicationDetailedInfoDTO application = applicationService.getApplicationInfoByID(id);
 
             if(application != null) {
                 return ResponseEntity.ok().body(application);
@@ -62,10 +63,10 @@ public class ApplicationController {
                 return ResponseEntity.notFound().build();
             }
     }
-    @GetMapping("/details/{appName}")
-    public ResponseEntity<Application> getApplicationDetails(@PathVariable("appName") String appName) {
+    @GetMapping("/details/{id}")
+    public ResponseEntity<ApplicationDetailedInfoDTO> getApplicationDetails(@PathVariable("id") int id) {
 
-        Application application = applicationService.getApplicationsByID(appName);
+        ApplicationDetailedInfoDTO application = applicationService.getApplicationInfoByID(id);
 
         if(application != null) {
             return ResponseEntity.ok().body(application);
@@ -119,10 +120,10 @@ public class ApplicationController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
-    @DeleteMapping({"{appID}"})
-    public ResponseEntity<Object> deleteApplications(@PathVariable("appID") String appID) {
+    @DeleteMapping({"{id}"})
+    public ResponseEntity<Object> deleteApplications(@PathVariable("id") int id) {
 
-        if (applicationService.deleteApplications(appID)) {
+        if (applicationService.deleteApplications(id)) {
             return ResponseEntity.ok().build();
         } else {
                return ResponseEntity.notFound().build();
@@ -131,10 +132,10 @@ public class ApplicationController {
 
 
     //Customer
-    @GetMapping("download/{appID}")
-    public ResponseEntity<File> downloadApplications(@PathVariable("appID") String appID) {
+    @GetMapping("download/{id}")
+    public ResponseEntity<File> downloadApplications(@PathVariable("id") int id) {
 
-        File app = applicationService.downloadApplications(appID);
+        File app = applicationService.downloadApplications(id);
 
         if (app != null) {
             return ResponseEntity.ok().body(app);

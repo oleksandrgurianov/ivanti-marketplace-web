@@ -24,10 +24,10 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         return new ArrayList<Application>();
     }
     @Override
-    public Application getApplicationsByID(String ID) {
-        for(Application p : database.applications) {
-            if (p.getId().equals(ID)) {
-                return p;
+    public Application getApplicationsByID(int id) {
+        for(Application app : database.applications) {
+            if (app.getId() == id) {
+                return app;
             }
         }
         return null;
@@ -55,12 +55,12 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         return true;
     }
     @Override
-    public  ArrayList<Application> getApplicationsByCreator(String ID){ return null; }
+    public  ArrayList<Application> getApplicationsByCreator(int id){ return null; }
     @Override
     public boolean updateApplications(Application app) {
         for(Application a : database.applications)
         {
-            if(a.getId().equals(app.getId())){
+            if(a.getId() == app.getId()){
                 a.setName(app.getName());
                 a.setDescription(app.getDescription());
                 a.setScreenshots(app.getScreenshots());
@@ -71,7 +71,7 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         return false;
     }
     @Override
-    public boolean deleteApplications(String appID) {
+    public boolean deleteApplications(int id) {
         return false;
     }
     @Override
@@ -97,13 +97,13 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         return null;
     }
     @Override
-    public File downloadApplications(String appID) {
+    public File downloadApplications(int id) {
         return null;
     }
 
     @Override
-    public ArrayList<Application> getApplicationsByCustomer(String ID) {
-        if(ID != null){
+    public ArrayList<Application> getApplicationsByCustomer(int id) {
+        if(id != 0){
             return null;
         }else{
             return new ArrayList<Application>();

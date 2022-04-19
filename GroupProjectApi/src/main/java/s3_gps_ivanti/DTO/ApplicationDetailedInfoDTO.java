@@ -1,6 +1,7 @@
 package s3_gps_ivanti.DTO;
 
 import lombok.Data;
+import s3_gps_ivanti.model.Application;
 //import s3_gps_ivanti.model.Review;
 
 import java.util.ArrayList;
@@ -16,14 +17,14 @@ public class ApplicationDetailedInfoDTO {
 //    private ArrayList<Review> reviews;
     private ArrayList<VersionDownloadDTO> versions;
 
-    public ApplicationDetailedInfoDTO(String name, String description, ArrayList<String> images, int totalDownloads, int avgRating,ArrayList<VersionDownloadDTO> versions)
+    public ApplicationDetailedInfoDTO(Application app)
     {
-        this.name = name;
-        this.description = description;
-        this.images = images;
-        this.totalDownloads = totalDownloads;
-        this.avgRating = avgRating;
+        this.name = app.getName();
+        this.description = app.getDescription();
+        this.images = null;
+        this.totalDownloads = app.getTotalDownloads();
+        this.avgRating = 0;
 //        this.reviews = reviews;
-        this.versions = versions;
+        this.versions = null;
     }
 }

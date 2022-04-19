@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Application {
 
-    private String id;
+    private int id;
     private String name;
     private String description;
     private int totalDownloads;
@@ -32,7 +32,7 @@ public class Application {
         this.screenshots = screenshots;
         this.icon = icon;
         this.appLocation = appLocation;
-        screenshots = new ArrayList<String>();
+//        this.screenshots = new ArrayList<String>();
         this.downloads = new ArrayList<>();
         this.totalDownloads = 0;
         this.rating = new Rating();
