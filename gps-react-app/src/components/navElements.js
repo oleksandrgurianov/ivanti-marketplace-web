@@ -28,6 +28,7 @@ align-items: center;
 text-decoration: none;
 padding: 0 1rem;
 padding-left: 60px;
+margin-right: 30px;
 height: 100%;
 cursor: pointer;
 &:hover {
@@ -78,7 +79,7 @@ export const NavBtnLink = styled(Link)`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-  margin-left: 24px;
+  margin-left: 300px;
   &:hover {
     transition: all 0.2s ease-in-out;
     background: black;

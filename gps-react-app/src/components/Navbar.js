@@ -14,12 +14,9 @@ import React from 'react'
                                      <Bars />
 
                                      <NavMenu>
-                                         <NavLink to="/Creator/update/aaa" activeStyle={{ color: 'black' }}>Update Application</NavLink>
-                                         <NavLink to="/Creator/AddApp" activeStyle={{ color: 'black' }}>Add App</NavLink>
                                          <NavLink to="/Creator/MyApps" activeStyle={{ color: 'black' }}>My Apps</NavLink>
                                          <NavLink to="/Statistics" activeStyle={{ color: 'black' }}>Statistics</NavLink>
                                          <NavLink to="/Download" activeStyle={{ color: 'black' }}>Downloads</NavLink>
-
                                          <NavBtn><NavBtnLink to="/Login">Logout</NavBtnLink></NavBtn>
 
                                      </NavMenu>
