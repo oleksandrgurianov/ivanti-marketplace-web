@@ -27,10 +27,12 @@ function App() {
         <>
             {/*Include multiple elements with <>*/}
             <Header/>
+
             <br/>
             <br/>
             <br/>
             <br/>
+
             <Container/>
             <Routes>
                 <Route path="/Login" element={<Login/>} />
@@ -47,6 +49,7 @@ function App() {
                 <Route path="/Statistics" element={<DownloadStatistics/>}/>
 
             </Routes>
+
             <br/>
             <br/>
             <br/>
@@ -56,6 +59,7 @@ function App() {
             <br/>
             <br/>
             <br/>
+
             <Footer/>
         </>
     );
