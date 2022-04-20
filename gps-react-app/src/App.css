@@ -1,4 +1,4 @@
-
+/*Footer*/
 .footer{
     position: fixed;
     bottom: 0;
@@ -10,7 +10,8 @@
 .footerLeft{
     margin-left:15%;
     margin-right: auto;
-    margin-bottom: -70px;
+    padding-top: 30px;
+    margin-bottom: -80px;
 }
 .footerRight{
     margin-left: auto;
@@ -24,4 +25,13 @@
 .block{
     display: block;
     text-align: right;
+}
+
+/*Header*/
+.Header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
 }
