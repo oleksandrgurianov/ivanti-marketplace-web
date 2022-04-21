@@ -39,14 +39,14 @@ DataBaseForNow {
 
         //Create applications
         Application application1 = new Application();
-        application1.setName("aaa");
+        application1.setName("Ad Blocker");
         application1.setId(1);
         application1.setIcon("Icon here");
         application1.setDescription("description here");
         application1.setScreenshots(images);
 
         Application application2 = new Application();
-        application2.setName("ccc");
+        application2.setName("Another Ad Blocker");
         application2.setId(2);
         application1.setIcon("Icon here");
         application1.setDescription("description here");
@@ -54,7 +54,14 @@ DataBaseForNow {
 
 
         Application application3 = new Application();
-        application3.setName("bbb");
+        application3.setName("Probably Ad Blocker");
+        application3.setId(3);
+        application1.setIcon("Icon here");
+        application1.setDescription("description here");
+        application3.setScreenshots(images);
+
+        Application application4 = new Application();
+        application3.setName("Probably Ad Blocker");
         application3.setId(3);
         application1.setIcon("Icon here");
         application1.setDescription("description here");
@@ -80,11 +87,13 @@ DataBaseForNow {
         ArrayList<Application> applications1 = new ArrayList<>();
         applications1.add(application1);
         applications1.add(application2);
+        applications1.add(application3);
         user1.setMyApplications(applications1);
 
         ArrayList<Application> applications2 = new ArrayList<>();
         applications2.add(application2);
         applications2.add(application3);
+        applications2.add(application4);
         user2.setMyApplications(applications2);
 
         applications.add(application1);

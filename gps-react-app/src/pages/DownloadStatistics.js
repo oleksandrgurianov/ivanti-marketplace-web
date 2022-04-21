@@ -22,7 +22,7 @@ function DownloadStatistics() {
     }
 
     return (
-        <div>
+        <div className={"AppDownloads"}>
             {Applications.map(graphs =>
                 <div className="Graph">
                     <h2>{graphs.name}</h2>

@@ -35,3 +35,8 @@
     right: 0;
     background-color: black;
 }
+
+.AppDownloads{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
