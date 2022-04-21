@@ -19,21 +19,21 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
 
     private DataBaseForNow database = new DataBaseForNow();
 
+    //all
     @Override
     public ArrayList<Application> getApplicationsSorted(boolean rating, boolean date) {
-        return null;
+        return new ArrayList<Application>();
     }
-
     @Override
     public ArrayList<Application> getApplicationsBySearch(String search) {
-        return null;
+        return new ArrayList<Application>();
     }
 
     @Override
-    public Application getApplicationsByID(long ID) {
-        for(Application p : database.applications) {
-            if (p.getId() == ID) {
-                return p;
+    public Application getApplicationsByID(int id) {
+        for(Application app : database.applications) {
+            if (app.getId() == id) {
+                return app;
             }
         }
         return null;
@@ -41,50 +41,70 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
 
     @Override
     public ArrayList<Application> getApplications() {
-        return database.applications;
+        return null;
     }
 
+    //Creator
     @Override
-    public ArrayList<Application> getApplicationsByCreator(int id) {
-        ArrayList<Application> creatorApps = new ArrayList<>();
+    public ArrayList<Application> getApplicationDetails(String appName){
+        ArrayList<Application> apps = new ArrayList<>();
 
-        for (Application app : database.applications){
-            if (app.getCreator().getId() == id){
-                creatorApps.add(app);
+        for (Application a : database.applications) {
+            if(a.getName().equals(appName)) {
+                apps.add(a);
             }
         }
-
-        return creatorApps;
-
-//            for (User creator : database.users){
-//                if (creator.getId() == id){
-//                    if (creator instanceof Creator){
-//                        return ((Creator)creator).getMyApplications();
-//                    }
-//                }
-//            }
-//
-//            return null;
-
+        return apps;
     }
-
     @Override
-    public boolean createApplications(Application app) {
-        return false;
+    public boolean createApplications(Application app){
+        database.applications.add(app);
+        return true;
     }
-
+    @Override
+    public  ArrayList<Application> getApplicationsByCreator(int id){ return null; }
     @Override
     public boolean updateApplications(Application app) {
+        for(Application a : database.applications)
+        {
+            if(a.getId() == app.getId()){
+                a.setName(app.getName());
+                a.setDescription(app.getDescription());
+                a.setScreenshots(app.getScreenshots());
+                a.setIcon(app.getIcon());
+                return true;
+            }
+        }
         return false;
     }
-
     @Override
-    public boolean deleteApplications(int appID) {
+    public boolean deleteApplications(int id) {
         return false;
     }
-
     @Override
-    public File downloadApplications(int appID) {
+    public  boolean FindAppWithSameName(String appName){
+        for(Application a : database.applications)
+        {
+            if(a.getName().equals(appName))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    //Customers
+    @Override
+    public Application getApplicationToUpdate(String appname){
+        for(Application a: database.applications)
+        {
+            if(a.getName().equals(appname)){
+                return a;
+            }
+        }
+        return null;
+    }
+    @Override
+    public File downloadApplications(int id) {
         return null;
     }
 
@@ -99,5 +119,12 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         return null;
     }
 
-    public ArrayList<Application> getAllOfAUsersAppointments(User user) {return null;}
+    @Override
+    public ArrayList<Application> getApplicationsByCustomer(int id) {
+        if(id != 0){
+            return null;
+        }else{
+            return new ArrayList<Application>();
+        }
+    }
 }

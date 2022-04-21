@@ -1,4 +1,50 @@
 * {
-    font-family: 'Poppins', Arial, Helvetica, sans-serif;
-    background-color: #fafafa;
+    font-family: "SF Pro Text","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;    
+}
+
+/*Footer*/
+.footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+
+}
+.footerLeft{
+    margin-left:15%;
+    margin-right: auto;
+    padding-top: 30px;
+    margin-bottom: -70px;
+}
+.footerRight{
+    margin-left: auto;
+    margin-right: 15%;
+    color: darkgrey;
+}
+.inline-block{
+    display: inline-block;
+    padding-left: 50px;
+}
+.block{
+    display: block;
+    text-align: right;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+/*Header*/
+.Header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+}
+
+
+/*Statistics*/
+.AppDownloads{
+    display: grid;
+    grid-template-columns: 25% 25% 25%;
 }

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Application from './Application'
-import ApplicationService from '../../../services/ApplicationService'
-import Title from '../../Title';
 import axios from 'axios';
 import {useParams} from "react-router-dom";
 import { Section, List } from './ApplicationListStyled';

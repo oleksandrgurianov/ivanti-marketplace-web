@@ -1,6 +1,8 @@
 package s3_gps_ivanti.business.impl;
 
+import s3_gps_ivanti.DTO.AddApplicationDTO;
 import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
+import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.repository.ApplicationRepository;
@@ -17,20 +19,28 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     private final ApplicationRepository applicationRepository;
 
+    //all
     @Override
-    public ArrayList<Application> getApplicationsSorted(boolean rating, boolean date) {
+    public  ArrayList<Application> getApplicationsSorted(boolean rating, boolean date){
         return applicationRepository.getApplicationsSorted(rating, date);
     }
-
     @Override
-    public ArrayList<Application> getApplicationsBySearch(String search) {
+    public ArrayList<Application> getApplicationsBySearch(String search){
         return applicationRepository.getApplicationsBySearch(search);
     }
-
     @Override
-    public Application getApplicationsByID(long id)
+    public ApplicationDetailedInfoDTO getApplicationInfoByID(int id)
     {
-       return applicationRepository.getApplicationsByID(id);
+        Application app = applicationRepository.getApplicationsByID(id);
+
+        if (app != null){
+            return new ApplicationDetailedInfoDTO(app);
+        }
+        return null;
+    }
+    @Override
+    public ArrayList<Application> getApplicationDetails(String appName){
+        return applicationRepository.getApplicationDetails(appName);
     }
 
 
@@ -39,24 +49,85 @@ public class ApplicationServiceImpl implements ApplicationService {
         return applicationRepository.getApplications();
     }
 
+    //Creator
     @Override
-    public boolean createApplications( Application app) {
-        return applicationRepository.createApplications(app);
+    public  ArrayList<Application> getApplicationsByCreator(int id){
+        return applicationRepository.getApplicationsByCreator(id);
+    }
+    @Override
+    public boolean createApplications( AddApplicationDTO app){
+
+        if(app.getTitle() == "" || app.getTitle() == null) {
+            return false;
+        }
+        else if(app.getDescription() == "" || app.getDescription() == null) {
+            return false;
+        }
+        else if(app.getIcon() == "" || app.getIcon() == null) {
+            return false;
+        }
+        else if(app.getImages() == null ) {
+            return false;
+        }
+        else if(app.getImages().size() == 0 || app.getImages().size() > 10) {
+            return false;
+        }
+        else if(applicationRepository.FindAppWithSameName(app.getTitle())) {
+            return false;
+        }
+        else if(app.getAppLocation() == null) {
+            return false;
+        }
+        Application modle = new Application(app);
+        return applicationRepository.createApplications(modle);
     }
 
     @Override
-    public boolean updateApplications(Application app ) {
-        return applicationRepository.updateApplications(app);
+    public UpdateApplicationDTO getApplicationToUpdate(String appname){
+
+        Application a = applicationRepository.getApplicationToUpdate(appname);
+
+        if(a != null) {
+            return new UpdateApplicationDTO(a);
+        }
+        else {
+            return null;
+        }
+    }
+    @Override
+    public boolean updateApplications(UpdateApplicationDTO app ) {
+
+        //Check input
+        if(app.getId() == 0 ||
+                app.getName() == null || app.getName().equals("") ||
+                app.getDescription() == null || app.getDescription().equals("") ||
+                app.getIcon() == null || app.getIcon().equals("") ||
+                app.getImages().size() ==0 || app.getImages().size() > 10)
+        {
+            return  false;
+        }
+
+        Application model = new Application(app);
+
+        return applicationRepository.updateApplications(model);
+    }
+    @Override
+    public boolean deleteApplications(int id){
+        boolean result = false;
+        if(getApplicationInfoByID(id)!=null){
+            result = applicationRepository.deleteApplications(id);
+        }
+        return result;
     }
 
+    //Customers
     @Override
-    public boolean deleteApplications(int appID ){
-        return applicationRepository.deleteApplications(appID);
+    public  ArrayList<Application> getApplicationsByCustomer(int id){
+        return applicationRepository.getApplicationsByCustomer(id);
     }
-
     @Override
-    public File downloadApplications(int appID) {
-        return applicationRepository.downloadApplications(appID);
+    public File downloadApplications(int id) {
+        return applicationRepository.downloadApplications(id);
     }
 
     @Override

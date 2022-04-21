@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 @Data
 public class ApplicationDetailedInfoDTO {
+
     private String name;
     private String description;
     private ArrayList<String> images;
     private int totalDownloads;
     private int avgRating;
-    //    private ArrayList<Review> reviews;
     private ArrayList<VersionDownloadDTO> versions;
 
     public ApplicationDetailedInfoDTO(Application app)

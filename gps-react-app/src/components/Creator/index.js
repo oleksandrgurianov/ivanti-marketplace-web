@@ -66,13 +66,3 @@ const Creator = () => {
 
 export default Creator
 
-// {applications.length > 0 ? (
-//     <>
-//         {applications.map((app) => (
-//             <Application key={app.name} name={app.name} icon={app.icon} />
-//         ))}
-//     </>
-//     ) : (
-//         <p>Loading applications</p>
-//     )
-// }
