@@ -5,9 +5,7 @@ function Footer() {
   return (
     <div className={"footer"}>
         <div className={"footerLeft"}>
-            <div className={"imgBlock"}>
                 <img src={"https://drive.google.com/uc?export=view?&id=1kwJ2YBnpj9YgaHTn3_ku1duQSr7b8ZzV\n"} height={"50px"}  alt={"ivanty logo"}/>
-            </div>
         </div>
         <div className={"footerRight"}>
             <div className={"block"}>
