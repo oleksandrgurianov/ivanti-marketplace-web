@@ -17,7 +17,6 @@ import React from 'react'
                                          <NavLink to="/Creator/MyApps" activeStyle={{ color: 'black' }}>My Apps</NavLink>
                                          <NavLink to="/Statistics" activeStyle={{ color: 'black' }}>Statistics</NavLink>
                                          <NavBtn><NavBtnLink to="/Login">Logout</NavBtnLink></NavBtn>
-
                                      </NavMenu>
                                  </Nav>
                               </div>

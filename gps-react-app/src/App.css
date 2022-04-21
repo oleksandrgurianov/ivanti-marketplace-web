@@ -38,9 +38,11 @@
     background-color: black;
 }
 
+
+/*Statistics*/
 .AppDownloads{
     display: grid;
     grid-template-columns: 25% 25% 25%;
-    font-family: 'Brush Script MT', cursive;
+    font-family: 'Brush Script MT';
 
 }
