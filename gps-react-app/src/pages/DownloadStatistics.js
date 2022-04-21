@@ -24,7 +24,7 @@ function DownloadStatistics() {
     return (
         <div className={"AppDownloads"}>
             {Applications.map(graphs =>
-                <div className="Graph">
+                <div>
                     <h2>{graphs.name}</h2>
                     <div style={{width: 300}}>
                         <Line  data={ {
