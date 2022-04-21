@@ -2,6 +2,7 @@ package s3_gps_ivanti.business.impl;
 
 import s3_gps_ivanti.DTO.AddApplicationDTO;
 import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
+import s3_gps_ivanti.DTO.ApplicationStatisticsDTO;
 import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
@@ -139,5 +140,15 @@ public class ApplicationServiceImpl implements ApplicationService {
             return new ApplicationDetailedInfoDTO(app);
         }
         return null;
+    }
+
+    public ArrayList<ApplicationStatisticsDTO> getApplicationStatisticsDTO(ArrayList<Application> applications){
+        ArrayList<ApplicationStatisticsDTO> applicationStatisticsDTOList = new ArrayList<>();
+
+        for (Application app: applications){
+            ApplicationStatisticsDTO dto = new ApplicationStatisticsDTO(app);
+            applicationStatisticsDTOList.add(dto);
+        }
+        return applicationStatisticsDTOList;
     }
 }

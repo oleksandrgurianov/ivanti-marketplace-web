@@ -1,9 +1,6 @@
 package s3_gps_ivanti.controller;
 
-import s3_gps_ivanti.DTO.ApplicationBasicInfoDTO;
-import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
-import s3_gps_ivanti.DTO.AddApplicationDTO;
-import s3_gps_ivanti.DTO.UpdateApplicationDTO;
+import s3_gps_ivanti.DTO.*;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.business.CreatorService;
 import s3_gps_ivanti.model.Application;
@@ -106,11 +103,11 @@ public class ApplicationController {
     }
 
     @GetMapping("creator/{id}/statistics")
-    public ResponseEntity<ArrayList<Application>>getApplicationsStatistics(@PathVariable(value = "id") int id) {
+    public ResponseEntity<ArrayList<ApplicationStatisticsDTO>>getApplicationsStatistics(@PathVariable int id) {
         Creator creator = creatorService.getCreator(id);
-
+        ArrayList<ApplicationStatisticsDTO> statisticsDTOS = applicationService.getApplicationStatisticsDTO(creator.getMyApplications());
         if(creator!=null){
-            return ResponseEntity.ok().body(creator.getMyApplications());
+            return ResponseEntity.ok().body(statisticsDTOS);
         }
         return ResponseEntity.notFound().build();
     }

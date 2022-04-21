@@ -67,7 +67,7 @@ public class Application {
         this.downloads = new ArrayList<>();
     }
 
-    public double totalDownloadsForYear(int year){
+    public long totalDownloadsForYear(int year){
         int total=0;
         for(DownloadsPerMonth download : downloads){
             if(download.getYear()==year){

@@ -65,9 +65,9 @@ DataBaseForNow {
         downloads.add(download3);
         downloads.add(download4);
         downloads.add(download5);
-        application7.setDownloads(downloads);
-        application8.setDownloads(downloads);
-        application9.setDownloads(downloads);
+        application1.setDownloads(downloads);
+        application2.setDownloads(downloads);
+        application3.setDownloads(downloads);
 
 
         //Giving applications to users
