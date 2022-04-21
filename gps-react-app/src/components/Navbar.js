@@ -6,19 +6,17 @@ import React from 'react'
                           return (
     //IF CUSTOMER IS LOGED IN:
                               <div className="Header">
-                                 <Nav>
-                                     <NavLogo to="/Home">
+                                 <div  className="Nav">
+                                     <Link className="NavLogo" to="/Home">
                                          <img src={"https://marketplace.ivanticloud.com/Content/Logos/marketplace-product-logo-243x50.png"} height={"50px"}  alt={"ivanty logo"}/>
-                                     </NavLogo>
+                                     </Link>
 
-                                     <Bars />
-
-                                     <NavMenu>
+                                     <div className="NavMenu">
                                          <NavLink to="/creator/1" activeStyle={{ color: 'black' }}>My Apps</NavLink>
                                          <NavLink to="/Statistics" activeStyle={{ color: 'black' }}>Statistics</NavLink>
-                                         <NavBtn><NavBtnLink to="/Login">Logout</NavBtnLink></NavBtn>
-                                     </NavMenu>
-                                 </Nav>
+                                         <div className="NavBtn"><Link className="NavBtnLink" to="/Login">Logout</Link></div>
+                                     </div>
+                                 </div>
                               </div>
 
                               /*//IF CREATOR IS LOGGED IN

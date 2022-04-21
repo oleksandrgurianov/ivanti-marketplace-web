@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Application = ({ name, icon }) => {
+
   return (
     <>
       <div className='column'>

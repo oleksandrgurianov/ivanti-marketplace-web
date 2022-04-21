@@ -11,14 +11,14 @@ const ApplicationList = () => {
     }, []);
 
     const retrieveApps = () => {
-        // axios.get.getApplicationsByCreator()
-        // .then(response => {
-        //     setApplications(response.data);
-        //     console.log(response.data);
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        // })
+         axios.get.getApplicationsByCreator()
+        .then(response => {
+            setApplications(response.data);
+             console.log(response.data);
+         })
+         .catch(err => {
+             console.log(err);
+         })
     }
 
     return (

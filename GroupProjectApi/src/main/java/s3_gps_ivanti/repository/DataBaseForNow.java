@@ -35,8 +35,8 @@ DataBaseForNow {
         creators.add(user2);
 
         ArrayList<String> images = new ArrayList<>();
-        images.add("https://drive.google.com/uc?export=view?&id=1tFkazCdwZids6CqOHPWMVxq-DQwZ2sJW/");
-        images.add("https://drive.google.com/uc?export=view?&id=12lGO68ekH92R_uMS7NyZ1-ZAZ8jJA7fD/");
+        images.add("https://drive.google.com/uc?export=view?&id=17_X2XpvUdGWe9DfK42MLL2sdrC1ZxOhF");
+        images.add("https://drive.google.com/uc?export=view?&id=17_X2XpvUdGWe9DfK42MLL2sdrC1ZxOhF");
 
         //int id, String name, String description, ArrayList<String> screenshots, String icon, Creator creator, ArrayList<Review> reviews, String appLocation, Rating rating) {
 

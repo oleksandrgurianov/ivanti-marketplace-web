@@ -6,7 +6,6 @@ import './App.css';
 
 //Components
 import Header from './components/Header'
-import Container from './components/Container';
 import Footer from './components/Footer';
 
 //Pages
@@ -38,7 +37,6 @@ function App() {
             <br/>
             <br/>
 
-            <Container/>
             <Routes>
                 <Route path="/Login" element={<Login/>} />
                 <Route path="/About" element={<About/>} />
@@ -46,8 +44,8 @@ function App() {
                 <Route path="/Home" element={<Home/>} />
                 <Route path="/Creator/update/:Name" element={<Update_Application />}/>
                 <Route path="/Creator/AddApp" element={<Add_Application/>}/>
-                {/* <Route path="/Creator/MyApps" element={<CreatorMyApps />} />
-                <Route path='/creator/myapps/:id' element={<CreatorMyApps />} /> */}
+                <Route path="/Creator/MyApps" element={<CreatorMyApps />} />
+                <Route path='/creator/myapps/:id' element={<CreatorMyApps />} />
                 <Route path='/creator/:id' element={<CreatorPage />} />
 
                 <Route path="/Logout" element={<Logout/>} />

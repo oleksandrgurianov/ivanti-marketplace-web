@@ -1,5 +1,5 @@
 * {
-    font-family: "SF Pro Text","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;    
+    font-family: "SF Pro Text","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
 }
 
 /*Footer*/
@@ -41,7 +41,61 @@
     right: 0;
     background-color: black;
 }
-
+.Nav {
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 12;
+}
+.NavLogo {
+    margin-left: 15%;
+    cursor: pointer;
+    color: #fff;
+    font-size: 2rem;
+    text-decoration: none;
+    margin-top: 8px;
+}
+.NavLink {
+    color: darkgrey;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    height: 100%;
+    cursor: pointer;
+}
+.NavLink:hover {
+    color: white;
+}
+.NavMenu {
+    display: flex;
+    align-items: center;
+    margin-right: 10%;
+}
+.NavBtn {
+    display: flex;
+    align-items: center;
+}
+.NavBtnLink {
+    border-radius: 4px;
+    background: transparent;
+    padding: 10px 22px;
+    color: darkgrey;
+    outline: none;
+    border: 1px solid darkgrey;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+.NavBtnLink:hover {
+     transition: all 0.2s ease-in-out;
+     background: black;
+     color: white;
+ }
 
 /*Statistics*/
 .AppDownloads{
