@@ -2,7 +2,7 @@ package s3_gps_ivanti.DTO;
 
 import lombok.Data;
 import s3_gps_ivanti.model.Application;
-//import s3_gps_ivanti.model.Review;
+import s3_gps_ivanti.model.Review;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,6 @@ public class ApplicationDetailedInfoDTO {
     private ArrayList<String> images;
     private int totalDownloads;
     private int avgRating;
-//    private ArrayList<Review> reviews;
     private ArrayList<VersionDownloadDTO> versions;
 
     public ApplicationDetailedInfoDTO(Application app)

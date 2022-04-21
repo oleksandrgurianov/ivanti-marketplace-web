@@ -1,3 +1,7 @@
+* {
+    font-family: "SF Pro Text","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;    
+}
+
 /*Footer*/
 .footer{
     position: fixed;
@@ -43,6 +47,4 @@
 .AppDownloads{
     display: grid;
     grid-template-columns: 25% 25% 25%;
-    font-family: 'Brush Script MT';
-
 }

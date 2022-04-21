@@ -1,6 +1,6 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Application from './Application'
-import ApplicationService from '../../../services/ApplicationService';
 
 const ApplicationList = () => {
 
@@ -11,14 +11,14 @@ const ApplicationList = () => {
     }, []);
 
     const retrieveApps = () => {
-        ApplicationService.getApplicationsByCreator()
-        .then(response => {
-            setApplications(response.data);
-            console.log(response.data);
-        })
-        .catch(err => {
-            console.log(err);
-        })
+        // axios.get.getApplicationsByCreator()
+        // .then(response => {
+        //     setApplications(response.data);
+        //     console.log(response.data);
+        // })
+        // .catch(err => {
+        //     console.log(err);
+        // })
     }
 
     return (

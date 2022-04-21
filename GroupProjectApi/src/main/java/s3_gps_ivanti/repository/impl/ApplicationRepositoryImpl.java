@@ -1,6 +1,11 @@
 package s3_gps_ivanti.repository.impl;
 
+
+import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
 import s3_gps_ivanti.model.Application;
+import s3_gps_ivanti.model.Creator;
+import s3_gps_ivanti.model.Review;
+import s3_gps_ivanti.model.User;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.DataBaseForNow;
 import org.springframework.context.annotation.Primary;
@@ -23,6 +28,7 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
     public ArrayList<Application> getApplicationsBySearch(String search) {
         return new ArrayList<Application>();
     }
+
     @Override
     public Application getApplicationsByID(int id) {
         for(Application app : database.applications) {
@@ -32,9 +38,15 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         }
         return null;
     }
+
     @Override
     public ArrayList<Application> getApplications() {
-        return new ArrayList<Application>();
+        return null;
+    }
+
+    @Override
+    public Application getApplicationsByID(long ID) {
+        return null;
     }
 
     //Creator
@@ -55,7 +67,18 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         return true;
     }
     @Override
-    public  ArrayList<Application> getApplicationsByCreator(int id){ return null; }
+    public ArrayList<Application> getApplicationsByCreator(int id) {
+        ArrayList<Application> creatorApps = new ArrayList<>();
+
+        for (Application app : database.applications){
+            if (app.getCreator() != null && app.getCreator().getId() == id){
+                creatorApps.add(app);
+            }
+        }
+
+        return creatorApps;
+    }
+
     @Override
     public boolean updateApplications(Application app) {
         for(Application a : database.applications)
@@ -98,6 +121,17 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
     }
     @Override
     public File downloadApplications(int id) {
+        return null;
+    }
+
+    @Override
+    public Application getApplicationInfoByName(String name) {
+        for (Application app : database.applications){
+            if (app.getName().equals(name)){
+                return app;
+            }
+        }
+
         return null;
     }
 

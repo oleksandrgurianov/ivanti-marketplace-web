@@ -13,9 +13,9 @@ public class Customer extends User {
     private ArrayList<Review> myReviews;
     private ArrayList<Application> downloadedApplications;
 
-    public Customer(int id, String username, String password, ArrayList<Review> myReviews, ArrayList<Application> downloadedApplications)
+    public Customer(int id, String username, String password, ArrayList<Review> myReviews, ArrayList<Application> downloadedApplications, String firstName, String lastName)
     {
-        super(id, username, password);
+        super(id, username, password, firstName, lastName);
         this.myReviews = myReviews;
         this.downloadedApplications = downloadedApplications;
     }

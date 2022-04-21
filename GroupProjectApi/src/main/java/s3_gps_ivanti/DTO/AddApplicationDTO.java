@@ -2,6 +2,7 @@ package s3_gps_ivanti.DTO;
 
 import lombok.Data;
 import lombok.NonNull;
+import s3_gps_ivanti.model.Application;
 
 import java.util.ArrayList;
 
@@ -26,5 +27,13 @@ public class AddApplicationDTO {
         this.images = images;
         this.icon = icon;
         this.appLocation = appLocation;
+    }
+    public AddApplicationDTO(Application app)
+    {
+        this.title = app.getName();
+        this.description = app.getDescription();
+        this.images = app.getScreenshots();
+        this.icon = app.getIcon();
+        this.appLocation = app.getAppLocation();
     }
 }

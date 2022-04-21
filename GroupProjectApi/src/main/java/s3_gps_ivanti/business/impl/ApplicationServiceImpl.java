@@ -42,6 +42,8 @@ public class ApplicationServiceImpl implements ApplicationService {
     public ArrayList<Application> getApplicationDetails(String appName){
         return applicationRepository.getApplicationDetails(appName);
     }
+
+
     @Override
     public ArrayList<Application> getApplications() {
         return applicationRepository.getApplications();
@@ -126,5 +128,16 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public File downloadApplications(int id) {
         return applicationRepository.downloadApplications(id);
+    }
+
+    @Override
+    public ApplicationDetailedInfoDTO getApplicationInfoByName(String name)
+    {
+        Application app = applicationRepository.getApplicationInfoByName(name);
+
+        if (app != null){
+            return new ApplicationDetailedInfoDTO(app);
+        }
+        return null;
     }
 }

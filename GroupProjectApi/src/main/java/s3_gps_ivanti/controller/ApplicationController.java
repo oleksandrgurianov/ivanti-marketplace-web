@@ -1,20 +1,17 @@
 package s3_gps_ivanti.controller;
 
-import s3_gps_ivanti.DTO.AddApplicationDTO;
+import s3_gps_ivanti.DTO.ApplicationBasicInfoDTO;
 import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
-import s3_gps_ivanti.DTO.ApplicationStatisticsDTO;
+import s3_gps_ivanti.DTO.AddApplicationDTO;
 import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.business.CreatorService;
-import s3_gps_ivanti.business.impl.CreatorServiceImpl;
 import s3_gps_ivanti.model.Application;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import s3_gps_ivanti.model.Creator;
-import s3_gps_ivanti.repository.CreatorRepository;
-import s3_gps_ivanti.repository.impl.CreatorRepositoryImpl;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,8 +19,7 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/application")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")/*@CrossOrigin(origins = "http://localhost:3000/")*/
-
+@CrossOrigin(origins = "http://localhost:3000/")
 public class ApplicationController {
 
     private final ApplicationService applicationService;
@@ -63,26 +59,52 @@ public class ApplicationController {
                 return ResponseEntity.notFound().build();
             }
     }
-    @GetMapping("/details/{id}")
-    public ResponseEntity<ApplicationDetailedInfoDTO> getApplicationDetails(@PathVariable("id") int id) {
+    @GetMapping("/details/{appName}")
+    public ResponseEntity<ApplicationDetailedInfoDTO> getApplicationDetails(@PathVariable("appName") String appName) {
 
-        ApplicationDetailedInfoDTO application = applicationService.getApplicationInfoByID(id);
+        ApplicationDetailedInfoDTO dto = applicationService.getApplicationInfoByName(appName);
 
-        if(application != null) {
-            return ResponseEntity.ok().body(application);
+        if(dto != null) {
+            return ResponseEntity.ok().body(dto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<ArrayList<ApplicationBasicInfoDTO>> getAllApplications(){
+        ArrayList<Application> allApplications = applicationService.getApplications();
+        ArrayList<ApplicationBasicInfoDTO> dtos = new ArrayList<>();
+
+        if (allApplications != null){
+            for (Application app : allApplications){
+                ApplicationBasicInfoDTO dto = new ApplicationBasicInfoDTO(app);
+                dtos.add(dto);
+            }
+            return ResponseEntity.ok().body(dtos);
         }
         return ResponseEntity.notFound().build();
     }
 
     //Creator
     @GetMapping("creator/{id}")
-    public ResponseEntity<Creator>getApplicationsByCreator(@PathVariable(value = "id") int id) {
-        Creator creator = creatorService.getCreator(id);
-        if(creator!=null){
-            return ResponseEntity.ok().body(creator);
+    public ResponseEntity<ArrayList<ApplicationBasicInfoDTO>>getApplicationsByCreator(@PathVariable int id) {
+
+        ArrayList<Application> creatorApps = applicationService.getApplicationsByCreator(id);
+        ArrayList<ApplicationBasicInfoDTO> dtos = new ArrayList<>();
+
+        // convert to dto
+        if (creatorApps != null){
+            for (Application app : creatorApps){
+                ApplicationBasicInfoDTO dto = new ApplicationBasicInfoDTO(app);
+                dtos.add(dto);
+            }
+            return ResponseEntity.ok().body(dtos);
         }
+
         return ResponseEntity.notFound().build();
     }
+
     @GetMapping("creator/{id}/statistics")
     public ResponseEntity<ArrayList<Application>>getApplicationsStatistics(@PathVariable(value = "id") int id) {
         Creator creator = creatorService.getCreator(id);
