@@ -1,6 +1,7 @@
 package s3_gps_ivanti.repository.impl;
 
 
+import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
 import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.model.Creator;
 import s3_gps_ivanti.model.Review;
@@ -84,6 +85,17 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
 
     @Override
     public File downloadApplications(int appID) {
+        return null;
+    }
+
+    @Override
+    public Application getApplicationInfoByName(String name) {
+        for (Application app : database.applications){
+            if (app.getName().equals(name)){
+                return app;
+            }
+        }
+
         return null;
     }
 

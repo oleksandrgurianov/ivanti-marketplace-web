@@ -14,7 +14,9 @@ const Application = ({ name, icon }) => {
             </div>
         </div> */}
         <article className='application'>
-          <img src={icon} />
+          <Link to={`/app/${name}`}>
+            <img src={icon} />
+          </Link>
           <p className='application-info'>{name}</p> 
         </article> 
     </>

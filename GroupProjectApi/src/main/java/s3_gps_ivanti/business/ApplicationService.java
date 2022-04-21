@@ -1,5 +1,6 @@
 package s3_gps_ivanti.business;
 
+import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
 import s3_gps_ivanti.model.Application;
 
 import java.io.File;
@@ -24,5 +25,7 @@ public interface ApplicationService {
     File downloadApplications(int appID);
 
     ArrayList<Application> getApplicationsByCreator(int id);
+
+    ApplicationDetailedInfoDTO getApplicationInfoByName(String name);
 
 }

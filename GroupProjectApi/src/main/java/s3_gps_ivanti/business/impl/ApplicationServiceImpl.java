@@ -1,5 +1,6 @@
 package s3_gps_ivanti.business.impl;
 
+import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.repository.ApplicationRepository;
@@ -61,5 +62,16 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public ArrayList<Application> getApplicationsByCreator(int id) {
         return applicationRepository.getApplicationsByCreator(id);
+    }
+
+    @Override
+    public ApplicationDetailedInfoDTO getApplicationInfoByName(String name)
+    {
+        Application app = applicationRepository.getApplicationInfoByName(name);
+
+        if (app != null){
+            return new ApplicationDetailedInfoDTO(app);
+        }
+        return null;
     }
 }

@@ -1,5 +1,6 @@
 package s3_gps_ivanti.repository;
 
+import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
 import s3_gps_ivanti.model.Application;
 
 import java.io.File;
@@ -23,4 +24,7 @@ public interface ApplicationRepository {
     boolean deleteApplications(int appID);
 
     File downloadApplications(int appID);
+
+    Application getApplicationInfoByName(String name);
+
 }

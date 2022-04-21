@@ -10,19 +10,20 @@ import java.util.ArrayList;
 public class ApplicationDetailedInfoDTO {
     private String name;
     private String description;
-    private ArrayList<String> screenshots;
+    private ArrayList<String> images;
     private int totalDownloads;
     private int avgRating;
-    private ArrayList<Review> reviews;
+    //    private ArrayList<Review> reviews;
     private ArrayList<VersionDownloadDTO> versions;
 
-    public ApplicationDetailedInfoDTO(Application application){
-     this.name = application.getName();
-     this.description = application.getDescription();
-     this.totalDownloads = application.getTotalDownloads();
-     this.avgRating = 0;
-     this.screenshots = application.getScreenshots();
-     this.reviews = application.getReviews();
-     this.versions = new ArrayList<>();
+    public ApplicationDetailedInfoDTO(Application app)
+    {
+        this.name = app.getName();
+        this.description = app.getDescription();
+        this.images = null;
+        this.totalDownloads = app.getTotalDownloads();
+        this.avgRating = 0;
+//        this.reviews = reviews;
+        this.versions = null;
     }
 }

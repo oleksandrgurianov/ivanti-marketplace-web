@@ -55,12 +55,12 @@ public class ApplicationController {
             }
     }
     @GetMapping("/details/{appName}")
-    public ResponseEntity<Application> getApplicationDetails(@PathVariable("appName") String appName) {
+    public ResponseEntity<ApplicationDetailedInfoDTO> getApplicationDetails(@PathVariable("appName") String appName) {
 
-        Application application = applicationService.getApplicationsByID(2);
+        ApplicationDetailedInfoDTO dto = applicationService.getApplicationInfoByName(appName);
 
-        if(application != null) {
-            return ResponseEntity.ok().body(application);
+        if(dto != null) {
+            return ResponseEntity.ok().body(dto);
         } else {
             return ResponseEntity.notFound().build();
         }
