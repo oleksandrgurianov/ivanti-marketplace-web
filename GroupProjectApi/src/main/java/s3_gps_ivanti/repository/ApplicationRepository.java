@@ -17,8 +17,6 @@ public interface ApplicationRepository {
 
     //Creator
     ArrayList<Application> getApplications();
-    ArrayList<Application> getApplicationsByCreator(int id);
-
     Application getApplicationsByID(long ID);
 
     Application getApplicationsByID(int id);

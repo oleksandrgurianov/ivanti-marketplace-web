@@ -44,6 +44,11 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         return null;
     }
 
+    @Override
+    public Application getApplicationsByID(long ID) {
+        return null;
+    }
+
     //Creator
     @Override
     public ArrayList<Application> getApplicationDetails(String appName){
@@ -62,7 +67,18 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         return true;
     }
     @Override
-    public  ArrayList<Application> getApplicationsByCreator(int id){ return null; }
+    public ArrayList<Application> getApplicationsByCreator(int id) {
+        ArrayList<Application> creatorApps = new ArrayList<>();
+
+        for (Application app : database.applications){
+            if (app.getCreator() != null && app.getCreator().getId() == id){
+                creatorApps.add(app);
+            }
+        }
+
+        return creatorApps;
+    }
+
     @Override
     public boolean updateApplications(Application app) {
         for(Application a : database.applications)

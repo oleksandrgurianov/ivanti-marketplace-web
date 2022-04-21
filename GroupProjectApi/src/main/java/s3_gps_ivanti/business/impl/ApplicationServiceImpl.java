@@ -131,11 +131,6 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public ArrayList<Application> getApplicationsByCreator(int id) {
-        return applicationRepository.getApplicationsByCreator(id);
-    }
-
-    @Override
     public ApplicationDetailedInfoDTO getApplicationInfoByName(String name)
     {
         Application app = applicationRepository.getApplicationInfoByName(name);

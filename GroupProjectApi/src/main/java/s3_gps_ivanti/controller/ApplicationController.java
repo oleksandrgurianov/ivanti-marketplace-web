@@ -3,20 +3,15 @@ package s3_gps_ivanti.controller;
 import s3_gps_ivanti.DTO.ApplicationBasicInfoDTO;
 import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
 import s3_gps_ivanti.DTO.AddApplicationDTO;
-import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
-import s3_gps_ivanti.DTO.ApplicationStatisticsDTO;
 import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.business.CreatorService;
-import s3_gps_ivanti.business.impl.CreatorServiceImpl;
 import s3_gps_ivanti.model.Application;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import s3_gps_ivanti.model.Creator;
-import s3_gps_ivanti.repository.CreatorRepository;
-import s3_gps_ivanti.repository.impl.CreatorRepositoryImpl;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -93,13 +88,23 @@ public class ApplicationController {
 
     //Creator
     @GetMapping("creator/{id}")
-    public ResponseEntity<Creator>getApplicationsByCreator(@PathVariable(value = "id") int id) {
-        Creator creator = creatorService.getCreator(id);
-        if(creator!=null){
-            return ResponseEntity.ok().body(creator);
+    public ResponseEntity<ArrayList<ApplicationBasicInfoDTO>>getApplicationsByCreator(@PathVariable int id) {
+
+        ArrayList<Application> creatorApps = applicationService.getApplicationsByCreator(id);
+        ArrayList<ApplicationBasicInfoDTO> dtos = new ArrayList<>();
+
+        // convert to dto
+        if (creatorApps != null){
+            for (Application app : creatorApps){
+                ApplicationBasicInfoDTO dto = new ApplicationBasicInfoDTO(app);
+                dtos.add(dto);
+            }
+            return ResponseEntity.ok().body(dtos);
         }
+
         return ResponseEntity.notFound().build();
     }
+
     @GetMapping("creator/{id}/statistics")
     public ResponseEntity<ArrayList<Application>>getApplicationsStatistics(@PathVariable(value = "id") int id) {
         Creator creator = creatorService.getCreator(id);

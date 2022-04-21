@@ -18,7 +18,6 @@ public interface ApplicationService {
     ArrayList<Application> getApplications();
 
     //Creator
-    ArrayList<Application> getApplicationsByCreator(int id);
     UpdateApplicationDTO getApplicationToUpdate(String appname);
     boolean createApplications( AddApplicationDTO app);
     boolean updateApplications(UpdateApplicationDTO app);
