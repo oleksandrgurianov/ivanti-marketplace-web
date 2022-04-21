@@ -37,3 +37,10 @@
     right: 0;
     background-color: black;
 }
+
+.AppDownloads{
+    display: grid;
+    grid-template-columns: 25% 25% 25%;
+    font-family: 'Brush Script MT', cursive;
+
+}

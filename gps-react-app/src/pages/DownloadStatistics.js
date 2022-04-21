@@ -22,9 +22,9 @@ function DownloadStatistics() {
     }
 
     return (
-        <div>
+        <div className={"AppDownloads"}>
             {Applications.map(graphs =>
-                <div className="Graph">
+                <div>
                     <h2>{graphs.name}</h2>
                     <div style={{width: 300}}>
                         <Line  data={ {
@@ -41,7 +41,7 @@ function DownloadStatistics() {
                                 }]}}
                                options={ {
                                    maintainAspectRatio: true,
-                                   tension: 0.4
+                                   tension: 0.4,
                                }}
                         />
                     </div>
