@@ -23,6 +23,7 @@ function DownloadStatistics() {
 
     return (
         <div>
+            <h2>Analytics</h2>
             {Applications.map(graphs =>
                 <div>
                     <hr/>
