@@ -41,7 +41,7 @@ function DownloadStatistics() {
                                 }]}}
                                options={ {
                                    maintainAspectRatio: true,
-                                   tension: 0.4
+                                   tension: 0.4,
                                }}
                         />
                     </div>

@@ -38,5 +38,6 @@
 
 .AppDownloads{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 25% 25% 25%;
+    font-family: 'Brush Script MT', cursive;
 }
