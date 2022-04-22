@@ -2,8 +2,11 @@ import React, {useState} from "react";
 import "./ApplicationCss.css";
 import axios from 'axios';
 import ReactDOM from "react-dom";
+import {useParams,useNavigate} from "react-router-dom";
 
 function Add_Application() {
+
+    let navigate = useNavigate();
 
     // google api requests
     function SaveArchiveIcon(e) {
@@ -75,6 +78,8 @@ function Add_Application() {
             })
         }
     }
+
+    const {id} = useParams();
 
     //Variables
     const [icon, setIcon] = useState("");
@@ -156,21 +161,11 @@ function Add_Application() {
                 'description': description,
                 'images': arrayImages,
                 'icon':icon,
-                'appLocation': app
+                'appLocation': app,
+                'CreatorId':id
             })
             .then(function () {})
             .catch(function (){});
-    }
-    const SaveApp = () =>{
-        let checkInput = CheckInput();
-
-        if(checkInput != ""){
-            alert(checkInput);}
-        else{
-            setLoadingSavingApp("Saving...")
-            SendRequest();
-            setLoadingSavingApp("Saved!")
-        }
     }
     const CheckInput = () =>{
 
@@ -193,6 +188,18 @@ function Add_Application() {
         }
         return result;
     }
+    const SaveApp = () =>{
+        let checkInput = CheckInput();
+
+        if(checkInput != ""){
+            alert(checkInput);}
+        else{
+            SendRequest();
+            let path = `/creator/` + id;
+            navigate(path);
+        }
+    }
+
 
 if(loadingSavingApp === "") {
     return (

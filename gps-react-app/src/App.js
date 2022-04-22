@@ -43,7 +43,7 @@ function App() {
                 <Route path="/Contact" element={<Contact/>} />
                 <Route path="/Home" element={<Home/>} />
                 <Route path="/Creator/update/:Name" element={<Update_Application />}/>
-                <Route path="/Creator/AddApp" element={<Add_Application/>}/>
+                <Route path="/Creator/AddApp/:id" element={<Add_Application/>}/>
                 <Route path="/Creator/MyApps" element={<CreatorMyApps />} />
                 <Route path='/creator/myapps/:id' element={<CreatorMyApps />} />
                 <Route path='/creator/:id' element={<CreatorPage />} />

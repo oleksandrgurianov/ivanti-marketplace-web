@@ -6,6 +6,7 @@ import s3_gps_ivanti.DTO.ApplicationStatisticsDTO;
 import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
+import s3_gps_ivanti.model.Creator;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -79,7 +80,11 @@ public class ApplicationServiceImpl implements ApplicationService {
         else if(app.getAppLocation() == null) {
             return false;
         }
-        Application modle = new Application(app);
+
+        Creator creator =  new Creator();
+        creator.setId(app.getCreatorId());
+
+        Application modle = new Application(app, creator);
         return applicationRepository.createApplications(modle);
     }
 

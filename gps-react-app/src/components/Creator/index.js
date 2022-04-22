@@ -46,8 +46,7 @@ const Creator = () => {
             <>
                 <h1>Hello, {creator.firstName} {creator.lastName}</h1>
                 <div className='my-apps'>
-                    <h1>My Apps</h1>
-                    <Link to='/Creator/AddApp'>
+                    <Link to={'/Creator/AddApp/' + id}>
                         <AiOutlinePlusCircle color='red'/>
                     </Link>
                     <AiOutlineSearch />

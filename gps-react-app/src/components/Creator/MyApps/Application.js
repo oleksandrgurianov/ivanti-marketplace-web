@@ -13,7 +13,7 @@ const Application = ({ name, icon }) => {
         </div> */}
         <article className='application'>
           <Link to={`/app/${name}`}>
-            <img src={icon} />
+            <img height={"50"} src={icon} />
           </Link>
           <p className='application-info'>{name}</p> 
         </article> 

@@ -19,14 +19,18 @@ public class AddApplicationDTO {
     private String icon;
     @NonNull
     private String appLocation;
+    @NonNull
+    private int CreatorId;
 
-    public AddApplicationDTO(String title, String description, ArrayList<String> images, String icon, String appLocation)
+
+    public AddApplicationDTO(String title, String description, ArrayList<String> images, String icon, String appLocation, int CreatorId)
     {
         this.title = title;
         this.description = description;
         this.images = images;
         this.icon = icon;
         this.appLocation = appLocation;
+        this.CreatorId = CreatorId;
     }
     public AddApplicationDTO(Application app)
     {
@@ -35,5 +39,6 @@ public class AddApplicationDTO {
         this.images = app.getScreenshots();
         this.icon = app.getIcon();
         this.appLocation = app.getAppLocation();
+        this.CreatorId = app.getCreator().getId();
     }
 }

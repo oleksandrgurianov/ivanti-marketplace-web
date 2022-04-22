@@ -85,11 +85,12 @@ public class Application {
         this.icon = updateDTO.getIcon();
     }
 
-    public Application(AddApplicationDTO addDTO) {
+    public Application(AddApplicationDTO addDTO, Creator creator) {
         this.name = addDTO.getTitle();
         this.description = addDTO.getDescription();
         this.screenshots = addDTO.getImages();
         this.icon = addDTO.getIcon();
         this.appLocation = addDTO.getAppLocation();
+        this.creator = creator;
     }
 }
