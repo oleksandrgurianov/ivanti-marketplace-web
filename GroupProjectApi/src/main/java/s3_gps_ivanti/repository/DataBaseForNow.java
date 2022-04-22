@@ -68,20 +68,44 @@ DataBaseForNow {
         applications.add(application10);
 
 
-        ArrayList<DownloadsPerMonth> downloads = new ArrayList<>();
+        ArrayList<DownloadsPerMonth> downloads1 = new ArrayList<>();
+        DownloadsPerMonth download11 = new DownloadsPerMonth(1, 2022, "January", 100);
+        DownloadsPerMonth download21 = new DownloadsPerMonth(2, 2022, "February", 300);
+        DownloadsPerMonth download31 = new DownloadsPerMonth(3, 2022, "March", 520);
+        DownloadsPerMonth download41 = new DownloadsPerMonth(4, 2022, "April", 400);
+        DownloadsPerMonth download51 = new DownloadsPerMonth(5, 2022, "May", 100);
+        downloads1.add(download11);
+        downloads1.add(download21);
+        downloads1.add(download31);
+        downloads1.add(download41);
+        downloads1.add(download51);
+        application1.setDownloads(downloads1);
+
+        ArrayList<DownloadsPerMonth> downloads2 = new ArrayList<>();
         DownloadsPerMonth download1 = new DownloadsPerMonth(1, 2022, "January", 200);
         DownloadsPerMonth download2 = new DownloadsPerMonth(2, 2022, "February", 225);
         DownloadsPerMonth download3 = new DownloadsPerMonth(3, 2022, "March", 220);
         DownloadsPerMonth download4 = new DownloadsPerMonth(4, 2022, "April", 230);
         DownloadsPerMonth download5 = new DownloadsPerMonth(5, 2022, "May", 200);
-        downloads.add(download1);
-        downloads.add(download2);
-        downloads.add(download3);
-        downloads.add(download4);
-        downloads.add(download5);
-        application1.setDownloads(downloads);
-        application2.setDownloads(downloads);
-        application3.setDownloads(downloads);
+        downloads2.add(download1);
+        downloads2.add(download2);
+        downloads2.add(download3);
+        downloads2.add(download4);
+        downloads2.add(download5);
+        application2.setDownloads(downloads2);
+
+        ArrayList<DownloadsPerMonth> downloads3 = new ArrayList<>();
+        DownloadsPerMonth download13 = new DownloadsPerMonth(1, 2022, "January", 50);
+        DownloadsPerMonth download23 = new DownloadsPerMonth(2, 2022, "February", 500);
+        DownloadsPerMonth download33 = new DownloadsPerMonth(3, 2022, "March", 120);
+        DownloadsPerMonth download43 = new DownloadsPerMonth(4, 2022, "April", 370);
+        DownloadsPerMonth download53 = new DownloadsPerMonth(5, 2022, "May", 800);
+        downloads3.add(download13);
+        downloads3.add(download23);
+        downloads3.add(download33);
+        downloads3.add(download43);
+        downloads3.add(download53);
+        application3.setDownloads(downloads3);
 
 
         //Giving applications to users
