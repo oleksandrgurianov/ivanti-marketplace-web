@@ -7,7 +7,7 @@ import React from 'react'
     //IF CUSTOMER IS LOGED IN:
                               <div className="Header">
                                  <div  className="Nav">
-                                     <Link className="NavLogo" to="/Home">
+                                     <Link className="NavLogo" to="/">
                                          <img src={"https://marketplace.ivanticloud.com/Content/Logos/marketplace-product-logo-243x50.png"} height={"50px"}  alt={"ivanty logo"}/>
                                      </Link>
 
