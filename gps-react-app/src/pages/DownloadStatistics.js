@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import {registerables, Chart} from 'chart.js';
 import {useEffect, useState} from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom'
 
 function DownloadStatistics() {
     Chart.register(...registerables)
@@ -28,7 +29,12 @@ function DownloadStatistics() {
                 <div>
                     <hr/>
                     <div className={"AppDownloads"}>
-                        <img src={graphs.icon}/>
+                    {/* <Link to={`/app/${name}`}>
+            <img height={"50"} src={icon} />
+          </Link>                    */}
+                        <Link to={`/app/${graphs.name}`}>
+                            <img src={graphs.icon}/>
+                        </Link>
                         <h4>{graphs.name}</h4>
                         <p></p>
                         <div>
