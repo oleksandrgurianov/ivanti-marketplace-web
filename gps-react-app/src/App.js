@@ -23,7 +23,8 @@ import Rating from "./pages/Rating";
 import CreatorMyApps from './pages/CreatorMyApps'
 import CreatorPage from './pages/CreatorPage'
 
-
+// test page 
+import TestPage from './pages/TestPage'
 
 //APP STRUCTURE
 function App() {
