@@ -2,6 +2,7 @@ package s3_gps_ivanti.business;
 
 import s3_gps_ivanti.DTO.AddApplicationDTO;
 import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
+import s3_gps_ivanti.DTO.ApplicationStatisticsDTO;
 import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.model.Application;
 
@@ -16,6 +17,7 @@ public interface ApplicationService {
     ApplicationDetailedInfoDTO getApplicationInfoByID(int id);
     ArrayList<Application> getApplicationDetails(String appName);
     ArrayList<Application> getApplications();
+    ArrayList<ApplicationStatisticsDTO> getApplicationStatisticsDTO(ArrayList<Application> applications);
 
     //Creator
     UpdateApplicationDTO getApplicationToUpdate(String appname);
