@@ -37,6 +37,7 @@ function DownloadStatistics() {
                         </Link>
                         <h4>{graphs.name}</h4>
                         <p></p>
+                        
                         <div>
                             <h5>Total Downloads for 2021: {graphs.totalDownloads}</h5>
                             <div style={{width: 300}}>

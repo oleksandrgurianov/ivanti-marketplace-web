@@ -206,11 +206,13 @@ if(loadingSavingApp === "") {
         <div className="container">
             <span id={"error"}></span>
             <div className="basic_Info">
+                <h1>Select icon:</h1>
                 <input type="file" accept="image/jpeg, image/png" text={"Add icon"}
                        onChange={(e) => SaveArchiveIcon(e)}/>
                 <p> {loadingIcon} </p>
 
                 <div className={"title_div"}>
+                    <h1>Add a title:</h1>
                     <img className={"icon"} src={icon}/>
                     <input className={"InputTitle"} type="text" placeholder="Title" name="Title" value={name}
                            onChange={changeName}/>
@@ -220,6 +222,7 @@ if(loadingSavingApp === "") {
             </div>
 
             <div className="images">
+                <h1>Add images:</h1>
                 <div className={"AddImage"}>
                     <input className={"AddImageButton"} type="file" accept="image/jpeg, image/png"
                            onChange={(e) => SaveArchiveImage(e)}/>
@@ -230,10 +233,11 @@ if(loadingSavingApp === "") {
             </div>
 
             <div className="other_Info">
+                <h1>Upload the app:</h1>
                 <input type="file" accept="application/pdf, application/json" onChange={(e) => SaveArchiveApp(e)}/>
                 <p> {loadingApp} </p>
                 <br/>
-                <p className={"DescriptionText"}>Description</p>
+                <p className={"DescriptionText"}>Add a Description:</p>
                 <textarea className={"description"} type="textarea" placeholder="Description" name="description"
                           value={description} onChange={changeDescription}/>
                 <button className={"SaveButton"} onClick={SaveApp}>Save</button>
