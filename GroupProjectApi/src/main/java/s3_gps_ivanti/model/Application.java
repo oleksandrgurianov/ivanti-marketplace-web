@@ -25,34 +25,6 @@ public class Application {
     private Rating rating;
     private List<DownloadsPerMonth> downloads;
 
-
-//    public Application(String name, String description, ArrayList<String> screenshots, String icon, String appLocation, Creator creator) {
-//        this.name = name;
-//        this.description = description;
-//        this.screenshots = screenshots;
-//        this.icon = icon;
-//        this.appLocation = appLocation;
-////        this.screenshots = new ArrayList<String>();
-//        this.downloads = new ArrayList<>();
-//        this.totalDownloads = 0;
-//        this.rating = new Rating();
-//        this.creator = creator;
-//    }
-//
-//    public Application(int id, String name, String description, ArrayList<String> screenshots, String icon, Creator creator) {
-//        this.id = id;
-//        this.name = name;
-//        this.description = description;
-//        this.screenshots = screenshots;
-//        this.icon = icon;
-//        this.screenshots = new ArrayList<String>();
-//        this.downloads = new ArrayList<>();
-//        this.totalDownloads = 0;
-//        this.rating = new Rating();
-//        this.creator = creator;
-//    }
-
-
     public Application(int id, String name, String description, ArrayList<String> screenshots, String icon, Creator creator, ArrayList<Review> reviews, String appLocation, Rating rating) {
         this.id = id;
         this.name = name;
