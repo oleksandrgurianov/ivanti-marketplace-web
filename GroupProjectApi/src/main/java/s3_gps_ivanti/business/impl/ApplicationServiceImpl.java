@@ -84,8 +84,8 @@ public class ApplicationServiceImpl implements ApplicationService {
         Creator creator =  new Creator();
         creator.setId(app.getCreatorId());
 
-        Application modle = new Application(app, creator);
-        return applicationRepository.createApplications(modle);
+        Application model = new Application(app, creator);
+        return applicationRepository.createApplications(model);
     }
 
     @Override
