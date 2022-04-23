@@ -23,5 +23,5 @@ public class Creator extends User {
         super(id, username, password);
         this.MyApplications = new ArrayList<>();
         this.MyResponses = new ArrayList<>();
-    }
+        }
 }
