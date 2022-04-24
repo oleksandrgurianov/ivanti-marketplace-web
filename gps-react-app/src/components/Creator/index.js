@@ -46,15 +46,20 @@ const Creator = () => {
             <>
                 <h1>Hello, {creator.firstName} {creator.lastName}</h1>
                 <div className='my-apps'>
-                    <Link to={'/Creator/AddApp/' + id}>
-                        <AiOutlinePlusCircle color='red'/>
-                    </Link>
-                    <AiOutlineSearch />
-                    <div>
-                        <p>Sort <AiFillCaretDown /></p>
+                    <div className='title'>
+                        <h1>My Apps:</h1>
                     </div>
-                    <MyApps />
+                    <div className='title-buttons'>
+                        <div className='add-button'>
+                            <Link to={`/Creator/AddApp/${id}`}>
+                                Add App <AiOutlinePlusCircle />
+                            </Link>
+                        </div>
+                        {/* <AiOutlineSearch />
+                        <p>Sort <AiFillCaretDown /></p> */}
+                    </div>
                 </div>
+                <MyApps />
             </>
         ) : (
             <p>Access denied</p>
