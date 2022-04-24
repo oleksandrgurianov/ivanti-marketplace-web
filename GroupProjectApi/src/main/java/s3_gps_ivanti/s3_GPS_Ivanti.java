@@ -51,7 +51,7 @@ public class s3_GPS_Ivanti implements CommandLineRunner {
 
 		System.out.println("\n-----------UPDATE PERMISSION NAME OF ALL USERS----------------\n");
 
-		updatePermissionName("admin");
+		updatePermissionName("creator");
 
 		System.out.println("\n-----------UPDATE CODE OF AN USER------------------------\n");
 
@@ -99,7 +99,7 @@ public class s3_GPS_Ivanti implements CommandLineRunner {
 
 	// 2. Get user by name
 	public void getUsersByUsername(String username) {
-		System.out.println("Getting item by name: " + username);
+		System.out.println("Getting user by name: " + username);
 		User user = userRepo.findUserByUsername(username);
 		System.out.println(getUserDetails(user));
 	}
@@ -156,8 +156,8 @@ public class s3_GPS_Ivanti implements CommandLineRunner {
 
 		System.out.println(
 				"Username: " + user.getUsername() +
-						", \nItem Code: " + user.getUserCode() +
-						", \nItem Permission: " + user.getPermission()
+						", \nUser Code: " + user.getUserCode() +
+						", \nUser Permission: " + user.getPermission()
 		);
 		return "";
 	}
