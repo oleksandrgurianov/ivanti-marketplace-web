@@ -44,26 +44,26 @@ DataBaseForNow {
         // https://drive.google.com/uc?export=view?&id=1ZODotP7B6XRPyTqxBc_pFO7vbE5iXWei/view?usp=sharing
 
         // list of screenshots
-        ArrayList<String> screenshots7 = new ArrayList<>();
-        String image71 = "https://drive.google.com/uc?export=view?&id=1rIr1Tcdjs2yRiUAhP0g81cQT7ILiaV-j";
-        String image72 = "https://drive.google.com/uc?export=view?&id=14UK4dsvwMNOeRk5rQ6LtRGLnHPe72ToV";
-        String image73 = "https://drive.google.com/uc?export=view?&id=1EzEOklCWRhiDu7cPSVv9qAqulTgHJbxz";
-        screenshots7.add(image71);
-        screenshots7.add(image72);
-        screenshots7.add(image73);
+        ArrayList<String> screenshots = new ArrayList<>();
+        String image1 = "https://drive.google.com/uc?export=view?&id=1rIr1Tcdjs2yRiUAhP0g81cQT7ILiaV-j";
+        String image2 = "https://drive.google.com/uc?export=view?&id=14UK4dsvwMNOeRk5rQ6LtRGLnHPe72ToV";
+        String image3 = "https://drive.google.com/uc?export=view?&id=1EzEOklCWRhiDu7cPSVv9qAqulTgHJbxz";
+        screenshots.add(image1);
+        screenshots.add(image2);
+        screenshots.add(image3);
 
 
         //Create applications
-        Application application1 = new Application(1, "Ivanti Asset Manager", "app to manage your Ivanti assets",  null, "https://drive.google.com/uc?export=view?&id=1ZODotP7B6XRPyTqxBc_pFO7vbE5iXWei", user1, null, "", null);
-        Application application2 = new Application(2, "Ivanti Service Manager Utility Connector", "Connector for utilities",  null, "https://drive.google.com/uc?export=view?&id=1Vlk31koCI9f99V9RkOjw0e37W5OnQ3GZ", user1, null, "", null);
-        Application application3 = new Application(3, "Microsoft Office365 Connector", "Connect to Office365",  null, "https://drive.google.com/uc?export=view?&id=1TpiX-cQCYKTl89Aepxo2KMuBVWRraS5f", user2, null, "", null);
-        Application application4 = new Application(4, "Windows 10 Accelerator", "Connector for utilities",  null, "https://drive.google.com/uc?export=view?&id=1c3sJgzDf5DVWnF3EXd0YZdFxOjAg0R0L", user1, null, "", null);
-        Application application5 = new Application(5, "RES.Workspace.Delete.Windows.Profile", "Connector for utilities",  null, "https://drive.google.com/uc?export=view?&id=18LlRkzXZthIqQlaxip-Xrb3qMo-HExMq", user1, null, "", null);
-        Application application6 = new Application(6, "Windows 11 Accelerator", "Connector for utilities",  null, "https://drive.google.com/uc?export=view?&id=1c3sJgzDf5DVWnF3EXd0YZdFxOjAg0R0L", user2, null, "", null);
-        Application application7 = new Application(7, "Microsoft Excel", "This is microsoft excel, you can do a lot of things here like make a nice spreadsheet to keep track of your finances or other things you like to keep track of. It is very interesting.", screenshots7, "https://drive.google.com/uc?export=view?&id=1TpiX-cQCYKTl89Aepxo2KMuBVWRraS5f", user1, null, "", null);
-        Application application8 = new Application(8, "Another Ad Blocker", "Description", null, "icon", user2, null, "", null);
-        Application application9 = new Application(9, "Probably Ad Blocker", "Description", null, "icon", user2, null, "", null);
-        Application application10 = new Application(10, "One More Ad Blocker", "Description", null, "icon", user2, null, "", null);
+        Application application1 = new Application(1, "Ivanti Asset Manager", "app to manage your Ivanti assets",  screenshots, "https://drive.google.com/uc?export=view?&id=1ZODotP7B6XRPyTqxBc_pFO7vbE5iXWei", user1, null, "", null);
+        Application application2 = new Application(2, "Ivanti Service Manager Utility Connector", "Connector for utilities",  screenshots, "https://drive.google.com/uc?export=view?&id=1Vlk31koCI9f99V9RkOjw0e37W5OnQ3GZ", user1, null, "", null);
+        Application application3 = new Application(3, "Microsoft Office365 Connector", "Connect to Office365",  screenshots, "https://drive.google.com/uc?export=view?&id=1TpiX-cQCYKTl89Aepxo2KMuBVWRraS5f", user2, null, "", null);
+        Application application4 = new Application(4, "Windows 10 Accelerator", "Connector for utilities",  screenshots, "https://drive.google.com/uc?export=view?&id=1c3sJgzDf5DVWnF3EXd0YZdFxOjAg0R0L", user1, null, "", null);
+        Application application5 = new Application(5, "RES.Workspace.Delete.Windows.Profile", "Connector for utilities",  screenshots, "https://drive.google.com/uc?export=view?&id=18LlRkzXZthIqQlaxip-Xrb3qMo-HExMq", user1, null, "", null);
+        Application application6 = new Application(6, "Windows 11 Accelerator", "Connector for utilities",  screenshots, "https://drive.google.com/uc?export=view?&id=1c3sJgzDf5DVWnF3EXd0YZdFxOjAg0R0L", user2, null, "", null);
+        Application application7 = new Application(7, "Microsoft Excel", "This is microsoft excel, you can do a lot of things here like make a nice spreadsheet to keep track of your finances or other things you like to keep track of. It is very interesting.", screenshots, "https://drive.google.com/uc?export=view?&id=1TpiX-cQCYKTl89Aepxo2KMuBVWRraS5f", user1, null, "", null);
+        Application application8 = new Application(8, "Another Ad Blocker", "Description", screenshots, "icon", user2, null, "", null);
+        Application application9 = new Application(9, "Probably Ad Blocker", "Description", screenshots, "icon", user2, null, "", null);
+        Application application10 = new Application(10, "One More Ad Blocker", "Description", screenshots, "icon", user2, null, "", null);
 
         // add applications to list
         applications.add(application1);

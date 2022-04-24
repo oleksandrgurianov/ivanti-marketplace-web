@@ -209,7 +209,7 @@ function Update_Application() {
                     <textarea className={"description"} type="textarea" placeholder="Description" name="description" value={description} onChange={changeDescription}/>
                 </div>
 
-                <Link className={"button"}  onClick={SaveApp} to={"/Creator/update/" + name}>Save changes</Link>
+                <Link className={"button"}  onClick={SaveApp} to={`/app/${name}`}>Save changes</Link>
             </div>
         );
     }
