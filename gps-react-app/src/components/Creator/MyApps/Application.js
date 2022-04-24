@@ -5,12 +5,6 @@ import { Link } from 'react-router-dom'
 const Application = ({ name, icon }) => {
   return (
     <>
-        {/* <div className='column'>
-            <div className='card'>
-                <h2>{name}</h2>
-                <p>{icon}</p>
-            </div>
-        </div> */}
         <article className='application'>
           <Link to={`/app/${name}`}>
             <img height={"50"} src={icon} />

@@ -24,7 +24,7 @@ import CreatorMyApps from './pages/CreatorMyApps'
 import CreatorPage from './pages/CreatorPage'
 
 // test page 
-import TestPage from './pages/TestPage'
+import AppPage from "./pages/AppPage";
 
 //APP STRUCTURE
 function App() {
@@ -39,15 +39,17 @@ function App() {
             <br/>
 
             <Routes>
+                <Route path="/" element={<Home/>} />
                 <Route path="/Login" element={<Login/>} />
                 <Route path="/About" element={<About/>} />
                 <Route path="/Contact" element={<Contact/>} />
-                <Route path="/" element={<Home/>} />
                 <Route path="/Creator/update/:Name" element={<Update_Application />}/>
                 <Route path="/Creator/AddApp/:id" element={<Add_Application/>}/>
                 <Route path="/Creator/MyApps" element={<CreatorMyApps />} />
                 <Route path='/creator/myapps/:id' element={<CreatorMyApps />} />
                 <Route path='/creator/:id' element={<CreatorPage />} />
+
+                <Route path="/app/:appName" element={<AppPage />} /> 
 
                 <Route path="/Logout" element={<Logout/>} />
                 <Route path="/*" element={<Error />} />

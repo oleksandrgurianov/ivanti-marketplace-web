@@ -102,3 +102,33 @@
     display: grid;
     grid-template-columns: 7% 10% 30% auto;
 }
+
+/* my apps */
+
+.title {
+    float: left;
+    width: 50%;
+    margin: 0 25px;
+}
+.title-buttons {
+    float: right;
+    margin: 0 25px;
+}
+.add-button a, .add-button a:visited{
+    text-decoration: none;
+    color: #fafafa;
+    outline: none;
+    cursor: pointer;
+    background: #444;
+    border: 1px solid #444;
+    border-radius: 20px;
+    padding: 10px;
+    transition: 0.5s;
+}
+
+.add-button a:hover{
+    color: #444;
+    background: #fafafa;
+    transition: 0.5s;
+}
+/* end my apps */

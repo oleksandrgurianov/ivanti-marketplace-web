@@ -1,10 +1,11 @@
 import React from 'react'
-import { TitleContainer, TitleHeading } from './TitleStyled'
+import { TitleContainer, TitleHeading, Icon, Line } from './TitleStyled'
 
-const Title = ({title}) => {
+const Title = ({title, icon}) => {
   return (
     <TitleContainer>
       <TitleHeading>{title}</TitleHeading>
+      <hr />
     </TitleContainer>
   )
 }
