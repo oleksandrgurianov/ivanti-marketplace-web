@@ -8,7 +8,7 @@ import React from 'react'
                               <div className="Header">
                                  <div  className="Nav">
                                      <Link className="NavLogo" to="/">
-                                         <img src={"https://marketplace.ivanticloud.com/Content/Logos/marketplace-product-logo-243x50.png"} height={"50px"}  alt={"ivanty logo"}/>
+                                         <img src={"https://drive.google.com/uc?export=view?&id=1DmHraUB7mskryi5aH9hpnlDqnkHuzJI7"} height={"50px"}  alt={"ivanti logo"}/>
                                      </Link>
 
                                      <div className="NavMenu">

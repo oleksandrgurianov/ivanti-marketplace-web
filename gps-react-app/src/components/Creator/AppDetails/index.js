@@ -21,6 +21,7 @@ const AppDetails = () => {
       console.log(err);
     })
   }
+
   const deleteApplication = () => {
     axios.delete(`http://localhost:8080/application/${params.appName}`)
         .then(response => {
@@ -59,7 +60,7 @@ const AppDetails = () => {
         <div className='app'>
           <h1>{application.name}</h1>
           <div className='buttons'>
-            <Link to={`/creator/update/${application.name}`}>Update App</Link> | <Link to={`/application`} onClick={deleteApplication}>Delete App</Link>
+            <Link to={`/creator/update/${application.name}`}>Update App</Link> | <Link to={`/creator/1`} onClick={deleteApplication}>Delete App</Link>
           </div>
           <hr />
           <div className='description-details'>
