@@ -17,6 +17,7 @@ public class ApplicationDetailedInfoDTO {
     private int totalDownloads;
     private int avgRating;
     private ArrayList<VersionDownloadDTO> versions;
+    private ArrayList<String> screenshots;
     //private Creator creator;
 
     public ApplicationDetailedInfoDTO(Application app)
@@ -29,6 +30,7 @@ public class ApplicationDetailedInfoDTO {
         this.avgRating = 0;
 //        this.reviews = reviews;
         this.versions = null;
+        this.screenshots = app.getScreenshots();
        //this.creator = app.getCreator();
     }
 }
