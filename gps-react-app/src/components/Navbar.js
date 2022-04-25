@@ -13,7 +13,7 @@ import React from 'react'
 
                                      <div className="NavMenu">
                                          <NavLink to="/creator/1" activeStyle={{ color: 'black' }}>My Apps</NavLink>
-                                         <NavLink to="/Statistics" activeStyle={{ color: 'black' }}>Statistics</NavLink>
+                                         <NavLink to="/Statistics" activeStyle={{ color: 'black' }}>Analytics</NavLink>
                                          <div className="NavBtn"><Link className="NavBtnLink" to="/Login">Logout</Link></div>
                                      </div>
                                  </div>
