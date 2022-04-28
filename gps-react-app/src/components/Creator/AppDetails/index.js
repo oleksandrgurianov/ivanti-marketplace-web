@@ -38,7 +38,6 @@ const AppDetails = () => {
     getApplication();
   }, []);
 
-  // const screenshots = [...application.images]
 
   return (
     <div className='app-container'>
@@ -71,12 +70,10 @@ const AppDetails = () => {
           <div className='screenshots'>
             <h2>Screenshots:</h2>
               <ul className='screenshot-list'>
-                {/* {application.screenshots.map((image) => (
+                {application.images != null &&
+                application.images.map((image) => (
                   <p key={image}><img src={image} /></p>
-                ))} */}
-                <li><img src='https://drive.google.com/uc?export=view?&id=1rIr1Tcdjs2yRiUAhP0g81cQT7ILiaV-j' /></li>
-                <li><img src='https://drive.google.com/uc?export=view?&id=14UK4dsvwMNOeRk5rQ6LtRGLnHPe72ToV' /></li>
-                <li><img src='https://drive.google.com/uc?export=view?&id=1EzEOklCWRhiDu7cPSVv9qAqulTgHJbxz' /></li>
+                ))}
               </ul>
             <hr />
           </div>
