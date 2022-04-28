@@ -121,10 +121,11 @@ public class ApplicationServiceImpl implements ApplicationService {
         return applicationRepository.updateApplications(model);
     }
     @Override
-    public boolean deleteApplications(int id){
+    public boolean deleteApplications(String name){
         boolean result = false;
-        if(getApplicationInfoByID(id)!=null){
-            result = applicationRepository.deleteApplications(id);
+        if(getApplicationInfoByName(name)!=null){
+            applicationRepository.deleteApplications(name);
+
         }
         return result;
     }

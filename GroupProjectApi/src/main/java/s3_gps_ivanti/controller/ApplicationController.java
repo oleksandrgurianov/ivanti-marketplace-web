@@ -145,10 +145,10 @@ public class ApplicationController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
-    @DeleteMapping({"{id}"})
-    public ResponseEntity<Object> deleteApplications(@PathVariable("id") int id) {
+    @DeleteMapping({"{name}"})
+    public ResponseEntity<Object> deleteApplications(@PathVariable("name") String name) {
 
-        if (applicationService.deleteApplications(id)) {
+        if (applicationService.deleteApplications(name)) {
             return ResponseEntity.ok().build();
         } else {
                return ResponseEntity.notFound().build();

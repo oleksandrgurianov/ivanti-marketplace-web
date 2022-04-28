@@ -20,7 +20,7 @@ public interface ApplicationService {
     UpdateApplicationDTO getApplicationToUpdate(String appname);
     CreateApplicationResponseDTO createApplications(CreateApplicationRequestDTO app);
     boolean updateApplications(UpdateApplicationDTO app);
-    boolean deleteApplications(int id);
+    boolean deleteApplications(String name);
 
     ArrayList<Application> getApplicationsByCustomer(int id);
     File downloadApplications(int id);

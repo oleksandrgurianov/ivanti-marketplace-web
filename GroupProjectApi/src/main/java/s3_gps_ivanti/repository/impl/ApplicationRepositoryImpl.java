@@ -94,8 +94,9 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
         return false;
     }
     @Override
-    public boolean deleteApplications(int id) {
-        return false;
+    public boolean deleteApplications(String name) {
+        database.applications.remove(getApplicationInfoByName(name));
+        return true;
     }
     @Override
     public  boolean FindAppWithSameName(String appName){

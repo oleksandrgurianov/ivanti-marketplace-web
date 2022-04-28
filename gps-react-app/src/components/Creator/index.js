@@ -8,7 +8,6 @@ import MyApps from './MyApps';
 
 const Creator = () => { 
 
-    // get creator by id
     const [creator, setCreator] = useState({});
 
     const {id} = useParams();
@@ -29,7 +28,6 @@ const Creator = () => {
         // fakeCreator();
     }, []);
 
-    // load apps for creator by id
 
     const fakeCreator = () => {
         setCreator({
@@ -37,8 +35,6 @@ const Creator = () => {
             lastName: "lastName"
         })
     }
-
-
 
   return (
     <>

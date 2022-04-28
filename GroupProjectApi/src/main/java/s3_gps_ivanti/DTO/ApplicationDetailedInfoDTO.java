@@ -1,8 +1,6 @@
 package s3_gps_ivanti.DTO;
 
-import lombok.Builder;
 import lombok.Data;
-import lombok.experimental.WithBy;
 import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.model.Creator;
 import s3_gps_ivanti.model.Review;

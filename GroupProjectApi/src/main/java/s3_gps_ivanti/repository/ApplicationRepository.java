@@ -25,7 +25,7 @@ public interface ApplicationRepository  {
     ArrayList<Application> getApplicationsByCreator(int ID);
     boolean updateApplications(Application app);
 
-    boolean deleteApplications(int appID);
+    boolean deleteApplications(String name);
     boolean FindAppWithSameName(String appName);
 
     //Customer
