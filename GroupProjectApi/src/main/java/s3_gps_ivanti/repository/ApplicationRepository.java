@@ -8,7 +8,7 @@ import s3_gps_ivanti.model.User;
 import java.io.File;
 import java.util.ArrayList;
 
-public interface ApplicationRepository {
+public interface ApplicationRepository  {
 
     //all
     ArrayList<Application> getApplicationsSorted(boolean rating, boolean date);

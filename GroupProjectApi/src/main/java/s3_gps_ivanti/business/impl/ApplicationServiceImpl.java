@@ -1,9 +1,6 @@
 package s3_gps_ivanti.business.impl;
 
-import s3_gps_ivanti.DTO.AddApplicationDTO;
-import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
-import s3_gps_ivanti.DTO.ApplicationStatisticsDTO;
-import s3_gps_ivanti.DTO.UpdateApplicationDTO;
+import s3_gps_ivanti.DTO.*;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.model.Creator;
@@ -56,36 +53,42 @@ public class ApplicationServiceImpl implements ApplicationService {
     public  ArrayList<Application> getApplicationsByCreator(int id){
         return applicationRepository.getApplicationsByCreator(id);
     }
-    @Override
-    public boolean createApplications( AddApplicationDTO app){
 
-        if(app.getTitle() == "" || app.getTitle() == null) {
-            return false;
+    @Override
+    public CreateApplicationResponseDTO createApplications(CreateApplicationRequestDTO app){
+
+        if(app.getName() == "" || app.getName() == null) {
+            return null;
         }
         else if(app.getDescription() == "" || app.getDescription() == null) {
-            return false;
+            return null;
         }
         else if(app.getIcon() == "" || app.getIcon() == null) {
-            return false;
+            return null;
         }
-        else if(app.getImages() == null ) {
-            return false;
+        else if(app.getScreenshots() == null ) {
+            return null;
         }
-        else if(app.getImages().size() == 0 || app.getImages().size() > 10) {
-            return false;
+        else if(app.getScreenshots().size() == 0 || app.getScreenshots().size() > 10) {
+            return null;
         }
-        else if(applicationRepository.FindAppWithSameName(app.getTitle())) {
-            return false;
+        else if(applicationRepository.FindAppWithSameName(app.getName())) {
+            return null;
         }
-        else if(app.getAppLocation() == null) {
-            return false;
+        else if(app.getAppLocation() == null  || app.getAppLocation() == "") {
+            return null;
         }
 
         Creator creator =  new Creator();
         creator.setId(app.getCreatorId());
 
         Application model = new Application(app, creator);
-        return applicationRepository.createApplications(model);
+        Boolean result = applicationRepository.createApplications(model);
+
+        if(result) {
+           return new CreateApplicationResponseDTO(applicationRepository.getApplicationInfoByName(model.getName()).getId());
+        }
+        return null;
     }
 
     @Override

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import s3_gps_ivanti.model.Creator;
 
 import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
 
 @RestController
@@ -122,12 +123,17 @@ public class ApplicationController {
         }
     }
     @PostMapping()
-    public ResponseEntity<AddApplicationDTO> createApplications(@RequestBody AddApplicationDTO app) {
-        if(applicationService.createApplications(app)) {
-            return ResponseEntity.ok().build();
+    public ResponseEntity<CreateApplicationResponseDTO> createApplications(@RequestBody CreateApplicationRequestDTO app) {
+
+        CreateApplicationResponseDTO responseDTO = applicationService.createApplications(app);
+
+        if(responseDTO == null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
         else {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            String url = "application/" + responseDTO.getId();
+            URI uri = URI.create(url);
+            return ResponseEntity.created(uri).build();
         }
     }
     @PutMapping()

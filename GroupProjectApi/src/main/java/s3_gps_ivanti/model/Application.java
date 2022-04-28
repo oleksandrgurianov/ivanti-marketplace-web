@@ -1,7 +1,7 @@
 package s3_gps_ivanti.model;
 
 import lombok.*;
-import s3_gps_ivanti.DTO.AddApplicationDTO;
+import s3_gps_ivanti.DTO.CreateApplicationRequestDTO;
 import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 
 import java.util.ArrayList;
@@ -9,6 +9,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Application {
@@ -16,16 +17,19 @@ public class Application {
     private int id;
     private String name;
     private String description;
-    private int totalDownloads;
-    private ArrayList<String> screenshots;
     private String icon;
     private Creator creator;
-    private ArrayList<Review> reviews;
+    private List<String> screenshots;
+
+
     private String appLocation;
+
+    private int totalDownloads;
+    private List<Review> reviews;
     private Rating rating;
     private List<DownloadsPerMonth> downloads;
 
-    public Application(int id, String name, String description, ArrayList<String> screenshots, String icon, Creator creator, ArrayList<Review> reviews, String appLocation, Rating rating) {
+    public Application(int id, String name, String description, List<String> screenshots, String icon, Creator creator, List<Review> reviews, String appLocation, Rating rating) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -57,10 +61,10 @@ public class Application {
         this.icon = updateDTO.getIcon();
     }
 
-    public Application(AddApplicationDTO addDTO, Creator creator) {
-        this.name = addDTO.getTitle();
+    public Application(CreateApplicationRequestDTO addDTO, Creator creator) {
+        this.name = addDTO.getName();
         this.description = addDTO.getDescription();
-        this.screenshots = addDTO.getImages();
+        this.screenshots = addDTO.getScreenshots();
         this.icon = addDTO.getIcon();
         this.appLocation = addDTO.getAppLocation();
         this.creator = creator;
