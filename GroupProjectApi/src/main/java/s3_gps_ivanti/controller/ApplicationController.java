@@ -1,6 +1,6 @@
 package s3_gps_ivanti.controller;
 
-import s3_gps_ivanti.DTO.*;
+import s3_gps_ivanti.dto.*;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.business.CreatorService;
 import s3_gps_ivanti.model.Application;
@@ -13,6 +13,7 @@ import s3_gps_ivanti.model.Creator;
 import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/application")
@@ -86,7 +87,7 @@ public class ApplicationController {
 
     //Creator
     @GetMapping("creator/{id}")
-    public ResponseEntity<ArrayList<ApplicationBasicInfoDTO>>getApplicationsByCreator(@PathVariable int id) {
+    public ResponseEntity<List<ApplicationBasicInfoDTO>>getApplicationsByCreator(@PathVariable int id) {
 
         ArrayList<Application> creatorApps = applicationService.getApplicationsByCreator(id);
         ArrayList<ApplicationBasicInfoDTO> dtos = new ArrayList<>();
@@ -104,9 +105,9 @@ public class ApplicationController {
     }
 
     @GetMapping("creator/{id}/statistics")
-    public ResponseEntity<ArrayList<ApplicationStatisticsDTO>>getApplicationsStatistics(@PathVariable int id) {
+    public ResponseEntity<List<ApplicationStatisticsDTO>>getApplicationsStatistics(@PathVariable int id) {
         Creator creator = creatorService.getCreator(id);
-        ArrayList<ApplicationStatisticsDTO> statisticsDTOS = applicationService.getApplicationStatisticsDTO(creator.getMyApplications());
+        List<ApplicationStatisticsDTO> statisticsDTOS = applicationService.getApplicationStatisticsDTO((ArrayList<Application>) creator.getMyApplications());
         if(creator!=null){
             return ResponseEntity.ok().body(statisticsDTOS);
         }
@@ -168,8 +169,8 @@ public class ApplicationController {
             return ResponseEntity.notFound().build();
         }
     }
-    @GetMapping("customer/{ID}")
-    public ResponseEntity<ArrayList<Application>>getApplicationsByCustomer(@PathVariable String ID) {
+    @GetMapping("customer/{id}")
+    public ResponseEntity<ArrayList<Application>>getApplicationsByCustomer(@PathVariable String id) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 }

@@ -1,4 +1,4 @@
-package s3_gps_ivanti.DTO;
+package s3_gps_ivanti.dto;
 
 import org.junit.jupiter.api.Test;
 import s3_gps_ivanti.model.Application;

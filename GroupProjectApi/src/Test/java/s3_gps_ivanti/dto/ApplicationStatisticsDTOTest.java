@@ -1,4 +1,4 @@
-package s3_gps_ivanti.DTO;
+package s3_gps_ivanti.dto;
 
 import org.junit.jupiter.api.Test;
 import s3_gps_ivanti.model.Application;
@@ -8,7 +8,7 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ApplicationBasicInfoDTOTest {
+class ApplicationStatisticsDTOTest {
 
     @Test
     void ConstructorBasedOnApplication() {
@@ -20,27 +20,17 @@ class ApplicationBasicInfoDTOTest {
                 .description("description")
                 .screenshots(Collections.emptyList())
                 .appLocation("appLocation")
-                .creator(new Creator(1, "", ""))
+                .creator(new Creator(1,"",""))
                 .totalDownloads(1)
+                .downloads(Collections.emptyList())
                 .build();
 
-        ApplicationBasicInfoDTO result = new ApplicationBasicInfoDTO(application);
+
+        ApplicationStatisticsDTO result = new ApplicationStatisticsDTO(application);
 
         assertEquals("name", result.getName());
         assertEquals("icon", result.getIcon());
-    }
-
-    @Test
-    void ConstructorBasedOn2String() {
-
-        String name = "Name";
-        String icon = "Icon";
-
-        ApplicationBasicInfoDTO result = new ApplicationBasicInfoDTO(name, icon);
-
-        assertEquals(name, result.getName());
-        assertEquals(icon, result.getIcon());
-
-
+        assertEquals(Collections.emptyList(), result.getDownloads());
+        assertEquals(0, result.getTotalDownloads());
     }
 }

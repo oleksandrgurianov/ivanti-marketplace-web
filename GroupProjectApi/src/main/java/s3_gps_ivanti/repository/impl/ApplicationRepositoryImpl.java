@@ -1,11 +1,7 @@
 package s3_gps_ivanti.repository.impl;
 
 
-import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
 import s3_gps_ivanti.model.Application;
-import s3_gps_ivanti.model.Creator;
-import s3_gps_ivanti.model.Review;
-import s3_gps_ivanti.model.User;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.DataBaseForNow;
 import org.springframework.context.annotation.Primary;

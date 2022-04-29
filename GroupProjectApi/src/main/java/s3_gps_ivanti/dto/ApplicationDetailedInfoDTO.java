@@ -1,11 +1,8 @@
-package s3_gps_ivanti.DTO;
+package s3_gps_ivanti.dto;
 
 import lombok.Data;
 import s3_gps_ivanti.model.Application;
-import s3_gps_ivanti.model.Creator;
-import s3_gps_ivanti.model.Review;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -18,7 +15,6 @@ public class ApplicationDetailedInfoDTO {
     private int totalDownloads;
     private int avgRating;
     private List<VersionDownloadDTO> versions;
-    //private Creator creator;
 
     public ApplicationDetailedInfoDTO(Application app)
     {
@@ -28,8 +24,6 @@ public class ApplicationDetailedInfoDTO {
         this.images = app.getScreenshots();
         this.totalDownloads = app.getTotalDownloads();
         this.avgRating = 0;
-//        this.reviews = reviews;
         this.versions = null;
-       //this.creator = app.getCreator();
     }
 }

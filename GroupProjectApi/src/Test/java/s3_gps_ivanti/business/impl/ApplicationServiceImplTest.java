@@ -1,10 +1,10 @@
 package s3_gps_ivanti.business.impl;
 
 import org.junit.jupiter.api.Test;
-import s3_gps_ivanti.DTO.CreateApplicationRequestDTO;
-import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
-import s3_gps_ivanti.DTO.CreateApplicationResponseDTO;
-import s3_gps_ivanti.DTO.UpdateApplicationDTO;
+import s3_gps_ivanti.dto.CreateApplicationRequestDTO;
+import s3_gps_ivanti.dto.ApplicationDetailedInfoDTO;
+import s3_gps_ivanti.dto.CreateApplicationResponseDTO;
+import s3_gps_ivanti.dto.UpdateApplicationDTO;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.model.Creator;

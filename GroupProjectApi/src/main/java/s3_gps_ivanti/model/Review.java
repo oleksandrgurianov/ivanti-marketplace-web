@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 public class Review {
 
     private Long id;
-    private Long application_ID;
-    private Long user_ID;
+    private Long application_id;
+    private Long user_id;
     private int rating;
     private String description;
     private String title;

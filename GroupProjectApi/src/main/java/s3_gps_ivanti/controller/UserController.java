@@ -3,9 +3,8 @@ package s3_gps_ivanti.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import s3_gps_ivanti.DTO.UserBasicInfoDTO;
+import s3_gps_ivanti.dto.UserBasicInfoDTO;
 import s3_gps_ivanti.business.UserService;
-import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.model.Creator;
 import s3_gps_ivanti.model.Customer;
 import s3_gps_ivanti.model.User;
@@ -34,7 +33,7 @@ public class UserController {
     public ResponseEntity<UserBasicInfoDTO> getCreatorByID(@PathVariable("id") int id){
         User user = userService.getUserByID(id);
 
-        if (user != null && user instanceof Creator){
+        if (user instanceof Creator){
             UserBasicInfoDTO dto = new UserBasicInfoDTO(user);
             return ResponseEntity.ok().body(dto);
         } else {
@@ -46,7 +45,7 @@ public class UserController {
     public ResponseEntity<UserBasicInfoDTO> getCustomerByID(@PathVariable("id") int id){
         User user = userService.getUserByID(id);
 
-        if (user != null && user instanceof Customer){
+        if (user instanceof Customer){
             UserBasicInfoDTO dto = new UserBasicInfoDTO(user);
             return ResponseEntity.ok().body(dto);
         } else {

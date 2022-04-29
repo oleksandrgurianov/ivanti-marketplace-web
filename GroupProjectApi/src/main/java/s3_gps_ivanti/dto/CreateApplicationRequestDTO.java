@@ -1,4 +1,4 @@
-package s3_gps_ivanti.DTO;
+package s3_gps_ivanti.dto;
 
 import lombok.Builder;
 import lombok.Data;

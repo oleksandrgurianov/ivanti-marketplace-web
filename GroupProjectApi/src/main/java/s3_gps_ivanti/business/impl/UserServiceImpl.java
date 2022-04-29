@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import s3_gps_ivanti.business.UserService;
 import s3_gps_ivanti.model.User;
-import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.UserRepository;
 
 @Service

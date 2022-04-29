@@ -1,9 +1,6 @@
 package s3_gps_ivanti.repository;
 
-import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
-import s3_gps_ivanti.DTO.UpdateApplicationDTO;
 import s3_gps_ivanti.model.Application;
-import s3_gps_ivanti.model.User;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package s3_gps_ivanti.business.impl;
 
-import s3_gps_ivanti.DTO.*;
+import s3_gps_ivanti.dto.*;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.model.Creator;
@@ -57,25 +57,20 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public CreateApplicationResponseDTO createApplications(CreateApplicationRequestDTO app){
 
-        if(app.getName() == "" || app.getName() == null) {
+        if(app.getName() == null ||
+                app.getDescription() == null ||
+                app.getIcon() == null ||
+                app.getScreenshots() == null||
+                app.getAppLocation() == null||
+                app.getScreenshots().isEmpty() ||
+                app.getScreenshots().size() > 10 ||
+                applicationRepository.FindAppWithSameName(app.getName())) {
             return null;
         }
-        else if(app.getDescription() == "" || app.getDescription() == null) {
-            return null;
-        }
-        else if(app.getIcon() == "" || app.getIcon() == null) {
-            return null;
-        }
-        else if(app.getScreenshots() == null ) {
-            return null;
-        }
-        else if(app.getScreenshots().size() == 0 || app.getScreenshots().size() > 10) {
-            return null;
-        }
-        else if(applicationRepository.FindAppWithSameName(app.getName())) {
-            return null;
-        }
-        else if(app.getAppLocation() == null  || app.getAppLocation() == "") {
+        else if(app.getName().equals("") ||
+                app.getDescription().equals("") ||
+                app.getIcon().equals("")  ||
+                app.getAppLocation().equals("") ) {
             return null;
         }
 
@@ -83,9 +78,8 @@ public class ApplicationServiceImpl implements ApplicationService {
         creator.setId(app.getCreatorId());
 
         Application model = new Application(app, creator);
-        Boolean result = applicationRepository.createApplications(model);
 
-        if(result) {
+        if( applicationRepository.createApplications(model)) {
            return new CreateApplicationResponseDTO(applicationRepository.getApplicationInfoByName(model.getName()).getId());
         }
         return null;
@@ -108,14 +102,18 @@ public class ApplicationServiceImpl implements ApplicationService {
 
         //Check input
         if(app.getId() == 0 ||
-                app.getName() == null || app.getName().equals("") ||
-                app.getDescription() == null || app.getDescription().equals("") ||
-                app.getIcon() == null || app.getIcon().equals("") ||
-                app.getImages().size() ==0 || app.getImages().size() > 10)
-        {
+                app.getName() == null ||
+                app.getDescription() == null ||
+                app.getIcon() == null ||
+                app.getImages().isEmpty() ||
+                app.getImages().size() > 10) {
             return  false;
         }
-
+        if(app.getName().equals("") ||
+                app.getDescription().equals("") ||
+                app.getIcon().equals("")) {
+            return  false;
+        }
         Application model = new Application(app);
 
         return applicationRepository.updateApplications(model);

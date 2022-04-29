@@ -1,7 +1,7 @@
 package s3_gps_ivanti.model;
 
 import org.junit.jupiter.api.Test;
-import s3_gps_ivanti.DTO.UpdateApplicationDTO;
+import s3_gps_ivanti.dto.UpdateApplicationDTO;
 
 import java.util.Collections;
 import java.util.List;
