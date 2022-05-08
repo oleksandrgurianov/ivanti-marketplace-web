@@ -3,6 +3,7 @@ package s3_gps_ivanti.model;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -10,12 +11,12 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class Customer extends User {
 
-    private ArrayList<Review> myReviews;
-    private ArrayList<Application> downloadedApplications;
+    private List<Review> myReviews;
+    private List<Application> downloadedApplications;
 
-    public Customer(int id, String username, String password, ArrayList<Review> myReviews, ArrayList<Application> downloadedApplications)
+    public Customer(int id, String username, String password, List<Review> myReviews, List<Application> downloadedApplications, String firstName, String lastName)
     {
-        super(id, username, password);
+        super(id, username, password, firstName, lastName);
         this.myReviews = myReviews;
         this.downloadedApplications = downloadedApplications;
     }

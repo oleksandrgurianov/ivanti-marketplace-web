@@ -1,6 +1,7 @@
-package s3_gps_ivanti.DTO;
+package s3_gps_ivanti.dto;
 
 import lombok.Data;
+import s3_gps_ivanti.model.Application;
 
 @Data
 public class ApplicationBasicInfoDTO {
@@ -12,5 +13,9 @@ public class ApplicationBasicInfoDTO {
     {
         this.name = name;
         this.icon = icon;
+    }
+    public ApplicationBasicInfoDTO(Application application){
+        this.name = application.getName();
+        this.icon = application.getIcon();
     }
 }

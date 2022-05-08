@@ -103,7 +103,6 @@ function Update_Application() {
             setDescription(e.target.value);
     }
     function AddImage(url) {
-
         let includeID = url.replace("file/d/", "uc?export=view?&id=");
         let ChangeView = includeID.replace("/view?usp=drivesdk", "");
 
@@ -113,7 +112,6 @@ function Update_Application() {
             arrayImages.push(ChangeView);
             setArrayImages(arrayImages);
         }
-        //ReactDOM.render( <div id="images"><LoadImages/></div>, document.getElementById('images'));
         setArrayImages(arrayImages);
     }
     const RemoveImage = (e) => {
@@ -211,7 +209,7 @@ function Update_Application() {
                     <textarea className={"description"} type="textarea" placeholder="Description" name="description" value={description} onChange={changeDescription}/>
                 </div>
 
-                <Link className={"button"}  onClick={SaveApp} to={"/Creator/update/" + name}>Save changes</Link>
+                <Link className={"button"}  onClick={SaveApp} to={`/app/${name}`}>Save changes</Link>
             </div>
         );
     }

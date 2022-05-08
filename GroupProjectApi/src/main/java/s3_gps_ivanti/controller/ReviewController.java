@@ -23,7 +23,7 @@ public class ReviewController {
 
         ArrayList<Review> reviews = reviewService.getReviews(appName);
 
-        if(reviews.size() > 0) {
+        if(reviews.isEmpty()) {
             return ResponseEntity.ok().body(reviews);
         }
         else {
@@ -52,9 +52,7 @@ public class ReviewController {
     }
     @DeleteMapping({"reviewID"})
     public ResponseEntity<Object>  deleteReview(@PathVariable("reviewID")int reviewID) {
-
-        boolean result = reviewService.deleteReview(reviewID);
-        if (result == true) {
+        if (reviewService.deleteReview(reviewID)) {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();

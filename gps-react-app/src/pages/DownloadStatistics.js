@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import {registerables, Chart} from 'chart.js';
 import {useEffect, useState} from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom'
 
 function DownloadStatistics() {
     Chart.register(...registerables)
@@ -22,28 +23,43 @@ function DownloadStatistics() {
     }
 
     return (
-        <div className={"AppDownloads"}>
+        <div>
+            <h2>Analytics</h2>
             {Applications.map(graphs =>
                 <div>
-                    <h2>{graphs.name}</h2>
-                    <div style={{width: 300}}>
-                        <Line  data={ {
-                            labels: graphs.downloads.map((data) => data.month),
-                            datasets: [
-                                {
-                                    fill: {
-                                        target: 'origin',
-                                        above: '#ddddff',
-                                        below: 'rgb(0, 0, 255)'
-                                    },
-                                    label: "Downloads",
-                                    data: graphs.downloads.map((data1) => data1.amount),
-                                }]}}
-                               options={ {
-                                   maintainAspectRatio: true,
-                                   tension: 0.4,
-                               }}
-                        />
+                    <hr/>
+                    <div className={"AppDownloads"}>
+                    {/* <Link to={`/app/${name}`}>
+            <img height={"50"} src={icon} />
+          </Link>                    */}
+                        <Link to={`/app/${graphs.name}`}>
+                            <img src={graphs.icon}/>
+                        </Link>
+                        <h4>{graphs.name}</h4>
+                        <p></p>
+                        
+                        <div>
+                            <h5>Total Downloads for 2021: {graphs.totalDownloads}</h5>
+                            <div style={{width: 300}}>
+                                <Line  data={ {
+                                    labels: graphs.downloads.map((data) => data.month),
+                                    datasets: [
+                                        {
+                                            fill: {
+                                                target: 'origin',
+                                                above: '#ddddff',
+                                                below: 'rgb(0, 0, 255)'
+                                            },
+                                            label: "Downloads",
+                                            data: graphs.downloads.map((data1) => data1.amount),
+                                        }]}}
+                                       options={ {
+                                           maintainAspectRatio: true,
+                                           tension: 0.4,
+                                       }}
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>)}
         </div>

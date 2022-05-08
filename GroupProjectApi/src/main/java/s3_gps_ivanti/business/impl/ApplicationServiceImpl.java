@@ -1,10 +1,9 @@
 package s3_gps_ivanti.business.impl;
 
-import s3_gps_ivanti.DTO.AddApplicationDTO;
-import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
-import s3_gps_ivanti.DTO.UpdateApplicationDTO;
+import s3_gps_ivanti.dto.*;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
+import s3_gps_ivanti.model.Creator;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -42,6 +41,8 @@ public class ApplicationServiceImpl implements ApplicationService {
     public ArrayList<Application> getApplicationDetails(String appName){
         return applicationRepository.getApplicationDetails(appName);
     }
+
+
     @Override
     public ArrayList<Application> getApplications() {
         return applicationRepository.getApplications();
@@ -52,32 +53,36 @@ public class ApplicationServiceImpl implements ApplicationService {
     public  ArrayList<Application> getApplicationsByCreator(int id){
         return applicationRepository.getApplicationsByCreator(id);
     }
-    @Override
-    public boolean createApplications( AddApplicationDTO app){
 
-        if(app.getTitle() == "" || app.getTitle() == null) {
-            return false;
+    @Override
+    public CreateApplicationResponseDTO createApplications(CreateApplicationRequestDTO app){
+
+        if(app.getName() == null ||
+                app.getDescription() == null ||
+                app.getIcon() == null ||
+                app.getScreenshots() == null||
+                app.getAppLocation() == null||
+                app.getScreenshots().isEmpty() ||
+                app.getScreenshots().size() > 10 ||
+                applicationRepository.FindAppWithSameName(app.getName())) {
+            return null;
         }
-        else if(app.getDescription() == "" || app.getDescription() == null) {
-            return false;
+        else if(app.getName().equals("") ||
+                app.getDescription().equals("") ||
+                app.getIcon().equals("")  ||
+                app.getAppLocation().equals("") ) {
+            return null;
         }
-        else if(app.getIcon() == "" || app.getIcon() == null) {
-            return false;
+
+        Creator creator =  new Creator();
+        creator.setId(app.getCreatorId());
+
+        Application model = new Application(app, creator);
+
+        if( applicationRepository.createApplications(model)) {
+           return new CreateApplicationResponseDTO(applicationRepository.getApplicationInfoByName(model.getName()).getId());
         }
-        else if(app.getImages() == null ) {
-            return false;
-        }
-        else if(app.getImages().size() == 0 || app.getImages().size() > 10) {
-            return false;
-        }
-        else if(applicationRepository.FindAppWithSameName(app.getTitle())) {
-            return false;
-        }
-        else if(app.getAppLocation() == null) {
-            return false;
-        }
-        Application modle = new Application(app);
-        return applicationRepository.createApplications(modle);
+        return null;
     }
 
     @Override
@@ -97,23 +102,28 @@ public class ApplicationServiceImpl implements ApplicationService {
 
         //Check input
         if(app.getId() == 0 ||
-                app.getName() == null || app.getName().equals("") ||
-                app.getDescription() == null || app.getDescription().equals("") ||
-                app.getIcon() == null || app.getIcon().equals("") ||
-                app.getImages().size() ==0 || app.getImages().size() > 10)
-        {
+                app.getName() == null ||
+                app.getDescription() == null ||
+                app.getIcon() == null ||
+                app.getImages().isEmpty() ||
+                app.getImages().size() > 10) {
             return  false;
         }
-
+        if(app.getName().equals("") ||
+                app.getDescription().equals("") ||
+                app.getIcon().equals("")) {
+            return  false;
+        }
         Application model = new Application(app);
 
         return applicationRepository.updateApplications(model);
     }
     @Override
-    public boolean deleteApplications(int id){
+    public boolean deleteApplications(String name){
         boolean result = false;
-        if(getApplicationInfoByID(id)!=null){
-            result = applicationRepository.deleteApplications(id);
+        if(getApplicationInfoByName(name)!=null){
+            applicationRepository.deleteApplications(name);
+
         }
         return result;
     }
@@ -126,5 +136,26 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public File downloadApplications(int id) {
         return applicationRepository.downloadApplications(id);
+    }
+
+    @Override
+    public ApplicationDetailedInfoDTO getApplicationInfoByName(String name)
+    {
+        Application app = applicationRepository.getApplicationInfoByName(name);
+
+        if (app != null){
+            return new ApplicationDetailedInfoDTO(app);
+        }
+        return null;
+    }
+
+    public ArrayList<ApplicationStatisticsDTO> getApplicationStatisticsDTO(ArrayList<Application> applications){
+        ArrayList<ApplicationStatisticsDTO> applicationStatisticsDTOList = new ArrayList<>();
+
+        for (Application app: applications){
+            ApplicationStatisticsDTO dto = new ApplicationStatisticsDTO(app);
+            applicationStatisticsDTOList.add(dto);
+        }
+        return applicationStatisticsDTOList;
     }
 }

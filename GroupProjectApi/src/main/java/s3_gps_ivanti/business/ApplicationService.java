@@ -1,8 +1,6 @@
 package s3_gps_ivanti.business;
 
-import s3_gps_ivanti.DTO.AddApplicationDTO;
-import s3_gps_ivanti.DTO.ApplicationDetailedInfoDTO;
-import s3_gps_ivanti.DTO.UpdateApplicationDTO;
+import s3_gps_ivanti.dto.*;
 import s3_gps_ivanti.model.Application;
 
 import java.io.File;
@@ -16,15 +14,19 @@ public interface ApplicationService {
     ApplicationDetailedInfoDTO getApplicationInfoByID(int id);
     ArrayList<Application> getApplicationDetails(String appName);
     ArrayList<Application> getApplications();
+    ArrayList<ApplicationStatisticsDTO> getApplicationStatisticsDTO(ArrayList<Application> applications);
 
     //Creator
-    ArrayList<Application> getApplicationsByCreator(int id);
     UpdateApplicationDTO getApplicationToUpdate(String appname);
-    boolean createApplications( AddApplicationDTO app);
+    CreateApplicationResponseDTO createApplications(CreateApplicationRequestDTO app);
     boolean updateApplications(UpdateApplicationDTO app);
-    boolean deleteApplications(int id);
+    boolean deleteApplications(String name);
 
     ArrayList<Application> getApplicationsByCustomer(int id);
     File downloadApplications(int id);
+
+    ArrayList<Application> getApplicationsByCreator(int id);
+
+    ApplicationDetailedInfoDTO getApplicationInfoByName(String name);
 
 }
