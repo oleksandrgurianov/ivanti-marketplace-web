@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -18,15 +19,14 @@ public class User {
     protected String username;
     protected String password;
     protected String permission;
-    protected int code;
 
-    public User(int id, String username, String password, String permission, int code) {
+
+    public User(int id, String username, String password, String permission) {
         super();
         this.id = id;
         this.username = username;
         this.password = password;
         this.permission = permission;
-        this.code = code;
     }
 
     public User(int id, String username, String password){
@@ -53,20 +53,11 @@ public class User {
     }
 
 
-    public int getUserCode() {
-        return code;
-    }
-    public void setUserCode(int code) {
-        this.code = code;
-    }
-    public void incrementCode(int code) {
-        this.code = code++;
-    }
-
     public String getPermission() {
         return permission;
     }
     public void setPermission(String permission) {
         this.permission = permission;
     }
+
 }

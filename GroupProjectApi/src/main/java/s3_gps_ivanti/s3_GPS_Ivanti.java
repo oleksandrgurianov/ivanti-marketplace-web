@@ -12,7 +12,6 @@ import s3_gps_ivanti.repository.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @SpringBootApplication
 @EnableMongoRepositories
 public class s3_GPS_Ivanti implements CommandLineRunner {
@@ -79,13 +78,13 @@ public class s3_GPS_Ivanti implements CommandLineRunner {
 	private void createUsers() {
 		System.out.println("Data creation started...");
 
-		userRepo.save(new User(1,"Noelia", "noelia", "creator", 100));
-		userRepo.save(new User(2,"Esther", "esther", "creator", 100));
-		userRepo.save(new User(3,"Lars", "lars", "creator", 100));
-		userRepo.save(new User(4,"Aleksy", "noelia", "customer", 100));
-		userRepo.save(new User(5,"Mohammad", "mohammad", "customer", 100));
-		userRepo.save(new User(6,"Oleksander", "oleksander", "customer", 100));
-		userRepo.save(new User(7,"Fabian", "fabian", "customer", 100));
+		userRepo.save(new User(1,"Noelia", "noelia", "creator"));
+		userRepo.save(new User(2,"Esther", "esther", "creator"));
+		userRepo.save(new User(3,"Lars", "lars", "creator"));
+		userRepo.save(new User(4,"Aleksy", "aleksy", "customer"));
+		userRepo.save(new User(5,"Mohammad", "mohammad", "customer"));
+		userRepo.save(new User(6,"Oleksander", "oleksander", "customer"));
+		userRepo.save(new User(7,"Fabian", "fabian", "customer"));
 
 		System.out.println("Data creation complete...");
 	}
@@ -109,7 +108,7 @@ public class s3_GPS_Ivanti implements CommandLineRunner {
 		System.out.println("Getting users with permission: " + permission);
 		List<User> list = userRepo.findAll(permission);
 
-		list.forEach(user -> System.out.println("Username: " + user.getUsername() + ", Code: " + user.getUserCode()));
+		list.forEach(user -> System.out.println("Username: " + user.getUsername()));
 	}
 
 	// 4. Get count of documents in the collection
@@ -155,9 +154,7 @@ public class s3_GPS_Ivanti implements CommandLineRunner {
 	public String getUserDetails(User user) {
 
 		System.out.println(
-				"Username: " + user.getUsername() +
-						", \nUser Code: " + user.getUserCode() +
-						", \nUser Permission: " + user.getPermission()
+				"Username: " + user.getUsername() +	", \nUser Permission: " + user.getPermission()
 		);
 		return "";
 	}

@@ -62,4 +62,6 @@ public class Application {
         this.icon = addDTO.getIcon();
         this.appLocation = addDTO.getAppLocation();
     }
+
+
 }

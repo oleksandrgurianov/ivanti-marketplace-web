@@ -10,9 +10,8 @@ public interface UserRepository extends MongoRepository<User, String> {
     @Query("{username:'?0'}")
     User findUserByUsername(String username);
 
-    @Query(value="{permission:'?0'}", fields="{'username' : 1, 'code' : 1}")
+   @Query(value="{permission:'?0'}", fields="{'username' : 1}")
     List<User> findAll(String permission);
 
     public long count();
-
 }
