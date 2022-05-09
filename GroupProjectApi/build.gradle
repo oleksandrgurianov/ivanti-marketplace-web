@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-<<<<<<< HEAD
+
 	implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.projectlombok:lombok:1.18.24'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -41,7 +41,7 @@ dependencies {
 	testImplementation 'com.h2database:h2'
 	testCompileOnly("junit:junit")
 
-=======
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'mysql:mysql-connector-java:8.0.28'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -59,7 +59,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'com.h2database:h2'
->>>>>>> 7bc270fc16b87b024207014898503027e46b34d0
+
 }
 
 tasks.named('test') {

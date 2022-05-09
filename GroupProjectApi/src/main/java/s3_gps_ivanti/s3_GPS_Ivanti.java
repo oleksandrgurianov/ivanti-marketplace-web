@@ -4,24 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-<<<<<<< HEAD
+
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import s3_gps_ivanti.model.User;
 import s3_gps_ivanti.repository.UpdateCodeRepository;
 import s3_gps_ivanti.repository.UserRepository;
-=======
+
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
->>>>>>> 7bc270fc16b87b024207014898503027e46b34d0
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
-@SpringBootApplication
+
+
 @EnableMongoRepositories
-=======
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
->>>>>>> 7bc270fc16b87b024207014898503027e46b34d0
+
 public class s3_GPS_Ivanti implements CommandLineRunner {
 
 	@Autowired
@@ -59,10 +58,6 @@ public class s3_GPS_Ivanti implements CommandLineRunner {
 		System.out.println("\n-----------UPDATE PERMISSION NAME OF ALL USERS----------------\n");
 
 		updatePermissionName("creator");
-
-		System.out.println("\n-----------UPDATE CODE OF AN USER------------------------\n");
-
-		updateCode("Noelia", 111);
 
 		System.out.println("\n----------DELETE AN USER---------------------------------\n");
 

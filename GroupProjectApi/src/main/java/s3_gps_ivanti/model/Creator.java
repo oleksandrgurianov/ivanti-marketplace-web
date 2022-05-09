@@ -15,11 +15,7 @@ public class Creator extends User {
 
     public Creator(int id, String username, String password){
         super(id, username, password);
-<<<<<<< HEAD
-        this.MyApplications = new ArrayList<>();
-        this.MyResponses = new ArrayList<>();
-        }
-=======
+
         this.myApplications = new ArrayList<>();
         this.myResponses = new ArrayList<>();
     }
@@ -36,5 +32,5 @@ public class Creator extends User {
         this.myApplications = myApplications;
         this.myResponses = myResponses;
     }
->>>>>>> 7bc270fc16b87b024207014898503027e46b34d0
+
 }
