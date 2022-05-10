@@ -26,7 +26,6 @@ class ApplicationTest {
         assertEquals("creatorName", application.getCreator().getUsername());
         assertEquals("creatorPassword", application.getCreator().getPassword());
         assertEquals(Collections.emptyList(), application.getReviews());
-        assertEquals("appLocation", application.getAppLocation());
         assertEquals(rating, application.getRating());
     }
     @Test
@@ -56,7 +55,6 @@ class ApplicationTest {
                 .icon("icon")
                 .description("description")
                 .screenshots(Collections.emptyList())
-                .appLocation("appLocation")
                 .creator(new Creator(1,"",""))
                 .totalDownloads(1)
                 .downloads(List.of(downloads1,downloads2,downloads3,downloads4))

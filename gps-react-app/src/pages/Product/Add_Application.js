@@ -157,12 +157,12 @@ function Add_Application() {
     const SendRequest = () =>{
         axios.post(`http://localhost:8080/application`,
             {
-                'title': name,
+                'name': name,
                 'description': description,
-                'images': arrayImages,
+                'screenshots': arrayImages,
                 'icon':icon,
                 'appLocation': app,
-                'CreatorId':id
+                'creatorId':id
             })
             .then(function () {})
             .catch(function (){});
@@ -201,7 +201,7 @@ function Add_Application() {
     }
 
 
-if(loadingSavingApp === "") {
+    if(loadingSavingApp === "") {
     return (
         <div className="container">
             <span id={"error"}></span>

@@ -19,7 +19,6 @@ class ApplicationBasicInfoDTOTest {
                 .icon("icon")
                 .description("description")
                 .screenshots(Collections.emptyList())
-                .appLocation("appLocation")
                 .creator(new Creator(1, "", ""))
                 .totalDownloads(1)
                 .build();

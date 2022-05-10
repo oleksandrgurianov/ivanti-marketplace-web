@@ -3,14 +3,15 @@ import { Link, useParams } from 'react-router-dom'
 import './AppDetails.css'
 
 // components
-import Title from '../../Title'
 import axios from 'axios'
+
 
 const AppDetails = () => {
   let params = useParams();
 
   const [application, setApplication] = useState({});
-  
+  const [version, setVersion] = useState("1.0");
+
   const getApplication = () => {
     axios.get(`http://localhost:8080/application/details/${params.appName}`)
     .then(response => {
@@ -21,7 +22,6 @@ const AppDetails = () => {
       console.log(err);
     })
   }
-
   const deleteApplication = () => {
     axios.delete(`http://localhost:8080/application/${params.appName}`)
         .then(response => {
@@ -32,7 +32,6 @@ const AppDetails = () => {
           console.log(err);
         })
   }
-
 
   useEffect(() => {
     getApplication();
@@ -46,7 +45,18 @@ const AppDetails = () => {
         <h4>Created By:</h4>
         <h5>Lars Kluijtmans</h5>
         <h4>Version:</h4>
-        <h5>v2.3</h5>
+
+        <select className={"versions"} value={version} onChange={e=>setVersion(e.target.value)}>
+          {application.versions != null &&
+              application.versions.map((version) => (
+                  <option>{parseFloat(version.number).toFixed(1)}</option>
+              ))}
+        </select>
+
+        <Link to={`/addVersion/minor/${application.name}`}>Add minor version</Link>
+        | <Link to={`/addVersion/major/${application.name}`} >Add major version</Link>
+        | <Link to={`/updateVersion/${application.name}/${version}`} >Update version</Link>
+
         <h4>Categories:</h4>
         <div className='categories'>
           <a href=''>category </a>

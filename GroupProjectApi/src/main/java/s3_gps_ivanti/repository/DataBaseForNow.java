@@ -3,6 +3,7 @@ package s3_gps_ivanti.repository;
 import s3_gps_ivanti.model.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class
 DataBaseForNow {
@@ -68,6 +69,18 @@ DataBaseForNow {
         Application application9 = new Application(9, "Probably Ad Blocker", Description, screenshots, "icon", user2, null, "", null);
         Application application10 = new Application(10, "One More Ad Blocker", Description, screenshots, "icon", user2, null, "", null);
 
+        DownloadsPerMonth download11 = new DownloadsPerMonth(1, 2022, "January", 100);
+        DownloadsPerMonth download21 = new DownloadsPerMonth(2, 2022, "February", 300);
+        DownloadsPerMonth download31 = new DownloadsPerMonth(3, 2022, "March", 520);
+        DownloadsPerMonth download41 = new DownloadsPerMonth(4, 2022, "April", 400);
+        DownloadsPerMonth download51 = new DownloadsPerMonth(5, 2022, "May", 100);
+
+        Version version1 = new Version(1l,1.0,1320,"here",List.of(download11,download21,download31,download41,download51));
+        Version version2 = new Version(2l,2.0,1320,"here",List.of(download11,download21,download31,download41,download51));
+        Version version3 = new Version(3l,2.1,1320,"here",List.of(download11,download21,download31,download41,download51));
+        Version version4 = new Version(4l,2.2,1320,"here",List.of(download11,download21,download31,download41,download51));
+        application1.setVersions(List.of(version1,version2,version3,version4));
+
         // add applications to list
         applications.add(application1);
         applications.add(application2);
@@ -88,11 +101,6 @@ DataBaseForNow {
         String May = "May";
 
         ArrayList<DownloadsPerMonth> downloads1 = new ArrayList<>();
-        DownloadsPerMonth download11 = new DownloadsPerMonth(1, 2022, "January", 100);
-        DownloadsPerMonth download21 = new DownloadsPerMonth(2, 2022, "February", 300);
-        DownloadsPerMonth download31 = new DownloadsPerMonth(3, 2022, "March", 520);
-        DownloadsPerMonth download41 = new DownloadsPerMonth(4, 2022, "April", 400);
-        DownloadsPerMonth download51 = new DownloadsPerMonth(5, 2022, "May", 100);
         downloads1.add(download11);
         downloads1.add(download21);
         downloads1.add(download31);

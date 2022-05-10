@@ -3,8 +3,10 @@ package s3_gps_ivanti.dto;
 import org.junit.jupiter.api.Test;
 import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.model.Creator;
+import s3_gps_ivanti.model.Version;
 
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,9 +21,9 @@ class AddApplicationDTOTest {
                 .icon("icon")
                 .description("description")
                 .screenshots(Collections.emptyList())
-                .appLocation("appLocation")
                 .creator(new Creator(1,"",""))
                 .totalDownloads(1)
+                .versions(List.of(new Version(1,0,"",Collections.emptyList())))
                 .build();
 
 
@@ -31,7 +33,6 @@ class AddApplicationDTOTest {
         assertEquals("icon", result.getIcon());
         assertEquals(Collections.emptyList(), result.getScreenshots());
         assertEquals("description", result.getDescription());
-        assertEquals("appLocation", result.getAppLocation());
         assertEquals(1, result.getCreatorId());
 
     }
