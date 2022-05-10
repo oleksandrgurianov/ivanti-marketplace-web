@@ -169,7 +169,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     public boolean deleteVersion(DeleteVersionDTO versionDTO) {
-        return applicationRepository.deleteVerison(versionDTO.getAppId(), versionDTO.getNumber());
+        Application app = applicationRepository.getApplicationInfoByName(versionDTO.getAppName());
+        return applicationRepository.deleteVerison(app.getId(), versionDTO.getNumber());
     }
 
     @Override

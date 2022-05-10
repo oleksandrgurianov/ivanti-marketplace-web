@@ -1,7 +1,3 @@
-* {
-    font-family: "SF Pro Text","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
-}
-
 @media {
     .container {
         display: grid;
@@ -19,17 +15,20 @@
 .basic_Info {
     display: table-row;
 }
-.InputIcon {
-    font-size: 20px;
-    font-weight: bold;
-}
-.AddIcon {
-    font-size: 20px;
-    font-weight: bold;
+.addIconButton{
+    display: inline-block;
+    transition: 0.5s;
+    margin-left: 20px;
+    background-color: rgba(68, 68, 68, 0.70);
+    text-align: center;
+;
 }
 .icon{
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    float: left;
+    margin-left: 30px;
 }
 
 .InputTitle {
@@ -45,6 +44,7 @@ hr.line {
     border-left: transparent;
     border-right: transparent;
 }
+
 /*layer 2*/
 .images {
     display: table-row;
@@ -52,10 +52,7 @@ hr.line {
 .image {
     float: left;
     width: auto;
-}
-.AddImage {
-    font-size: 20px;
-    font-weight: bold;
+    margin-left: 15px;
 }
 .InputImage {
     font-size: 15px;
@@ -71,7 +68,7 @@ hr.line {
     display: table;
 }
 .DescriptionText{
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
     margin-block-end: 0px;
     margin-block-start: 10px;
@@ -79,7 +76,19 @@ hr.line {
 .description {
     width: 100%;
     padding-bottom: 100px ;
-    font-size: 10px;
+    font-size: 20px;
+}
+
+.deleteButton{
+    transition: 0.5s;
+    background-color: rgba(68, 68, 68, 0.70);
+    margin-left: -70px;
+
+}
+.deleteButton:hover{
+    color: #444;
+    background: #fafafa;
+    transition: 0.5s;
 }
 
 .button{appearance: auto;
@@ -100,3 +109,36 @@ hr.line {
     border-width: 2px;
     border-style: outset;
     border-image: initial;}
+
+.addImageButton{
+    height: 305px;
+    width: 450px;
+    align-items: center;
+    display: inline-block;
+    float: left;
+    margin-left: 15px;
+    transition: 0.5s;
+    background-color: rgba(68, 68, 68, 0.70);
+    margin-top: 38px;
+    text-align: center;
+}
+
+.addAppButton{
+    display: inline-block;
+    float: left;
+    margin-left: 15px;
+    transition: 0.5s;
+    background-color: rgba(68, 68, 68, 0.70);
+}
+
+.deleteButton , .deleteButton:visited, .addImageButton , .addImageButton:visited, .addIconButton , .addIconButton:visited, .addAppButton, .addAppButton:visited{
+    text-decoration: none;
+    color: #fafafa;
+    outline: none;
+    cursor: pointer;
+    background-color: rgba(68, 68, 68, 0.50);
+    border: 1px solid #444;
+    border-radius: 20px;
+    padding: 10px;
+    transition: 0.5s;
+}

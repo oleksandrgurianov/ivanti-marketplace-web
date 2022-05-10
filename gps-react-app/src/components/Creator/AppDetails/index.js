@@ -32,11 +32,22 @@ const AppDetails = () => {
           console.log(err);
         })
   }
+  const deleteVersion = () => {
+    axios.post(`http://localhost:8080/application/version/delete`, {
+          'appName': params.appName,
+          'number': version
+        })
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+  }
 
   useEffect(() => {
     getApplication();
   }, []);
-
 
   return (
     <div className='app-container'>
@@ -44,18 +55,23 @@ const AppDetails = () => {
         <img className='icon' alt='' src={application.icon}/>
         <h4>Created By:</h4>
         <h5>Lars Kluijtmans</h5>
-        <h4>Version:</h4>
 
+
+        <h4>Version:</h4>
         <select className={"versions"} value={version} onChange={e=>setVersion(e.target.value)}>
           {application.versions != null &&
               application.versions.map((version) => (
                   <option>{parseFloat(version.number).toFixed(1)}</option>
               ))}
         </select>
+        <div className='buttons-left' >
+          <div className="button-left">
+            <Link  to={`/addVersion/minor/${application.name}`}>Add minor version</Link> | <Link to={`/addVersion/major/${application.name}`}>Add major version</Link>
+          </div>
 
-        <Link to={`/addVersion/minor/${application.name}`}>Add minor version</Link>
-        | <Link to={`/addVersion/major/${application.name}`} >Add major version</Link>
-        | <Link to={`/updateVersion/${application.name}/${version}`} >Update version</Link>
+          <Link  to={`/updateVersion/${application.name}/${version}`}>Update</Link> | <Link to= {`/app/${application.name}`} onClick={deleteVersion}>Delete</Link>
+        </div>
+
 
         <h4>Categories:</h4>
         <div className='categories'>
@@ -64,6 +80,8 @@ const AppDetails = () => {
           <a href=''>category </a>
           <a href=''>category</a>
         </div>
+
+
       </div>
       <div className='main'>
         <div className='app'>
@@ -82,7 +100,7 @@ const AppDetails = () => {
               <ul className='screenshot-list'>
                 {application.images != null &&
                 application.images.map((image) => (
-                  <p key={image}><img src={image} /></p>
+                  <li key={image}><img src={image} /></li>
                 ))}
               </ul>
             <hr />

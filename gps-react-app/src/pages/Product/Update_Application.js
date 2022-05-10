@@ -176,7 +176,7 @@ function Update_Application() {
                 {arrayImages.map(image => (
                     <div className={"image"}>
                         <img src={image}  height="333"/>
-                        <button value={image} onClick={RemoveImage}>Delete</button>
+                        <button className={"deleteButton"} value={image} onClick={RemoveImage}>Delete</button>
                     </div>
                 ))}
             </div>
@@ -187,25 +187,26 @@ function Update_Application() {
         return(
             <div className="container">
                 <div className="basic_Info">
-                    <input type="file" accept="image/jpeg, image/png" id="customFile" onChange={(e) => SaveArchiveIcon(e)}/>
-                    <p> {loadingIcon} </p>
-                    <br/>
-                    <div className={"title_div"}>
+                    <div>
                         <img className={"icon"} src={icon}/>
-                        <input className={"InputTitle"} type="text" placeholder="Title" name="Title" value={name} onChange={changeTitle}/>
+                        <input className={"addIconButton"} type="file" accept="image/jpeg, image/png" id="customFile" onChange={(e) => SaveArchiveIcon(e)}/>
+                        <p> {loadingIcon} </p>
                     </div>
-                    <hr className={"line"}/>
+                    <div>
+                        <input className={"InputTitle"} type="text" placeholder="Title" name="Title" value={name} onChange={changeTitle}/>
+                        <hr className={"line"}/>
+                    </div>
                 </div>
 
                 <div className="images">
-                    <input type="file" accept="image/jpeg, image/png" id="customFile" onChange={(e) => SaveArchiveImage(e)}/>
+                    <input className={"addImageButton"} type="file" accept="image/jpeg, image/png" id="customFile" onChange={(e) => SaveArchiveImage(e)}/>
                     <p> {loadingImage} </p>
                     <br/>
                     <LoadImages/>
                 </div>
 
                 <div className="other_Info">
-                    <p className={"DescriptionText"}>Description</p>
+                    <p className={"DescriptionText"}>Description:</p>
                     <textarea className={"description"} type="textarea" placeholder="Description" name="description" value={description} onChange={changeDescription}/>
                 </div>
 

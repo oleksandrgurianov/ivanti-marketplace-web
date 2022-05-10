@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./ApplicationCss.css";
 import axios from 'axios';
 import ReactDOM from "react-dom";
-import {useParams,useNavigate} from "react-router-dom";
+import {useParams, useNavigate, Link} from "react-router-dom";
 
 function Add_Application() {
 
@@ -206,16 +206,15 @@ function Add_Application() {
         <div className="container">
             <span id={"error"}></span>
             <div className="basic_Info">
-                <h1>Select icon:</h1>
-                <input type="file" accept="image/jpeg, image/png" text={"Add icon"}
-                       onChange={(e) => SaveArchiveIcon(e)}/>
-                <p> {loadingIcon} </p>
-
-                <div className={"title_div"}>
-                    <h1>Add a title:</h1>
+                <div>
+                    <h1>Select icon:</h1>
                     <img className={"icon"} src={icon}/>
-                    <input className={"InputTitle"} type="text" placeholder="Title" name="Title" value={name}
-                           onChange={changeName}/>
+                    <input className={"addIconButton"} type="file" accept="image/jpeg, image/png" text={"Add icon"} onChange={(e) => SaveArchiveIcon(e)}/>
+                    <p> {loadingIcon} </p>
+                </div>
+                <div>
+                    <h1>Add a title:</h1>
+                    <input className={"InputTitle"} type="text" placeholder="Title" name="Title" value={name} onChange={changeName}/>
                 </div>
 
                 <hr className={"line"}/>
@@ -223,25 +222,22 @@ function Add_Application() {
 
             <div className="images">
                 <h1>Add images:</h1>
-                <div className={"AddImage"}>
-                    <input className={"AddImageButton"} type="file" accept="image/jpeg, image/png"
-                           onChange={(e) => SaveArchiveImage(e)}/>
-                    <p> {loadingImage} </p>
-                </div>
-
+                <input className={"addImageButton"} type="file" accept="image/jpeg, image/png" onChange={(e) => SaveArchiveImage(e)}/>
+                <p> {loadingImage} </p>
                 <LoadImages/>
             </div>
 
-            <div className="other_Info">
+            <div>
                 <h1>Upload the app:</h1>
-                <input type="file" accept="application/pdf, application/json" onChange={(e) => SaveArchiveApp(e)}/>
+                <input className={"addAppButton"} type="file" accept="application/pdf, application/json" onChange={(e) => SaveArchiveApp(e)}/>
                 <p> {loadingApp} </p>
-                <br/>
-                <p className={"DescriptionText"}>Add a Description:</p>
-                <textarea className={"description"} type="textarea" placeholder="Description" name="description"
-                          value={description} onChange={changeDescription}/>
-                <button className={"SaveButton"} onClick={SaveApp}>Save</button>
             </div>
+
+            <div className="other_Info">
+                <p className={"DescriptionText"}>Add a Description:</p>
+                <textarea className={"description"} type="textarea" placeholder="Description" name="description" value={description} onChange={changeDescription}/>
+            </div>
+            <Link className={"button"} onClick={SaveApp} to={`/app/${name}`}>Save</Link>
         </div>
     );
     }

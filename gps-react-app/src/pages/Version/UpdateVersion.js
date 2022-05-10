@@ -49,7 +49,7 @@ function UpdateVersion() {
             {
                 'appName': Name,
                 'number': version,
-                'appLocation': app,
+                'appLocation': app
             })
             .then(function () {})
             .catch(function (){});

@@ -201,7 +201,7 @@ public class ApplicationController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
-    @DeleteMapping({"/version"})
+    @PostMapping({"/version/delete"})
     public ResponseEntity<Object> deleteVersion(@RequestBody DeleteVersionDTO deleteVersionDTO) {
 
         if (applicationService.deleteVersion(deleteVersionDTO)) {

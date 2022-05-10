@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class DeleteVersionDTO {
-    private int appId;
+    private String appName;
     private double number;
 }

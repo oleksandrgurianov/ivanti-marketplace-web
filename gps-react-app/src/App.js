@@ -16,10 +16,8 @@ import Home from "./pages/Home"
 import About from "./pages/About"
 import Add_Application from "./pages/Product/Add_Application";
 import Update_Application from "./pages/Product/Update_Application";
-import MyApps from './pages/Creator/MyApps'
 import Error from './pages/Error'
 import DownloadStatistics from "./pages/DownloadStatistics";
-import Rating from "./pages/Rating";
 import CreatorMyApps from './pages/CreatorMyApps'
 import CreatorPage from './pages/CreatorPage'
 

@@ -91,6 +91,32 @@
     font-weight: normal;
     color: #444;
 }
+.button-left{
+    margin-bottom: 30px;
+}
+.buttons-left{
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    margin-left: -10px;
+}
+.buttons-left a, .buttons a:visited{
+    text-decoration: none;
+    color: #fafafa;
+    outline: none;
+    cursor: pointer;
+    background: #444;
+    border: 1px solid #444;
+    border-radius: 20px;
+    padding: 10px;
+    transition: 0.5s;
+}
+
+.buttons-left a:hover {
+    color: #444;
+    background: #fafafa;
+    transition: 0.5s;
+}
 .buttons{
     float: right;
     margin-top: 20px;
@@ -136,8 +162,8 @@
     display: block;
 }
 .versions{
+    margin-top: -15px;
     font-size: 18px;
     width: 280px;
-    margin: 0;
     display: block;
 }
