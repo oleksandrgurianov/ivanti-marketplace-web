@@ -69,7 +69,9 @@ const AppDetails = () => {
             <Link  to={`/addVersion/minor/${application.name}`}>Add minor version</Link> | <Link to={`/addVersion/major/${application.name}`}>Add major version</Link>
           </div>
 
-          <Link  to={`/updateVersion/${application.name}/${version}`}>Update</Link> | <Link to= {`/app/${application.name}`} onClick={deleteVersion}>Delete</Link>
+          {/*
+          Updating and deleting versions
+          <Link  to={`/updateVersion/${application.name}/${version}`}>Update</Link> | <Link to= {`/app/${application.name}`} onClick={deleteVersion}>Delete</Link>*/}
         </div>
 
 

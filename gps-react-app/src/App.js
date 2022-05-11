@@ -30,15 +30,14 @@ import UpdateVersion from "./pages/Version/UpdateVersion";
 //APP STRUCTURE
 function App() {
   return (
-        <>
+        <div>
             {/*Include multiple elements with <>*/}
             <Header/>
-
             <br/>
             <br/>
             <br/>
             <br/>
-
+            <br/>
             <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path="/Login" element={<Login/>} />
@@ -65,7 +64,6 @@ function App() {
                 <Route path="/Statistics" element={<DownloadStatistics/>}/>
 
             </Routes>
-
             <br/>
             <br/>
             <br/>
@@ -73,11 +71,8 @@ function App() {
             <br/>
             <br/>
             <br/>
-            <br/>
-            <br/>
-
             <Footer/>
-        </>
+        </div>
     );
 }
 

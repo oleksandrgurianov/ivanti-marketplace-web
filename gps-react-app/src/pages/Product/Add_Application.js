@@ -144,8 +144,8 @@ function Add_Application() {
         return (
             <div id="images">
                 {arrayImages.map(image => (
-                    <div className={"image"}>
-                        <img src={image}  height="333"/>
+                    <div >
+                        <img className={"image"} src={image}/>
                         <button className={"RemoveImage"} value={image} onClick={RemoveImage}>Delete</button>
                     </div>
                 ))}
@@ -201,54 +201,74 @@ function Add_Application() {
     }
 
 
-    if(loadingSavingApp === "") {
     return (
         <div className="container">
             <span id={"error"}></span>
-            <div className="basic_Info">
-                <div>
-                    <h1>Select icon:</h1>
-                    <img className={"icon"} src={icon}/>
-                    <input className={"addIconButton"} type="file" accept="image/jpeg, image/png" text={"Add icon"} onChange={(e) => SaveArchiveIcon(e)}/>
-                    <p> {loadingIcon} </p>
+
+            <div>
+                <img className={"icon"} src={icon}/>
+                <h1 className={"name"}>{name}</h1>
+                <div className={"buttonsLeft"}>
+                    <button className={"PreviewButton"}>Preview</button>
+                    <button className={"DoneButton"} onClick={SaveApp}>Done</button>
                 </div>
-                <div>
-                    <h1>Add a title:</h1>
-                    <input className={"InputTitle"} type="text" placeholder="Title" name="Title" value={name} onChange={changeName}/>
+            </div>
+            <div>
+                <hr className={"topLine"}/>
+            </div>
+            <div>
+                <div className={"basic_Info"}>
+                    <h3 className={"IconLabel"}>Icon:</h3>
+                    <img className={"BigIcon"} src={icon}/>
+                    <label htmlFor="Add-icon" className="Add-Icon">
+                        <i></i> Add Icon
+                    </label>
+                    <input id="Add-icon"  className={"addIconButton"} type="file" accept="image/jpeg, image/png" text={"Add icon"} onChange={(e) => SaveArchiveIcon(e)}/>
+                    <p className={"IconLoading"}> {loadingIcon} </p>
+                </div>
+                <hr className={"line"}/>
+                <div className={"basic_Info"}>
+                    <h3 className={"nameLabel"}>Name: </h3>
+                    <input className={"InputTitle"} type="text" value={name} onChange={changeName}/>
                 </div>
 
                 <hr className={"line"}/>
             </div>
 
-            <div className="images">
-                <h1>Add images:</h1>
-                <input className={"addImageButton"} type="file" accept="image/jpeg, image/png" onChange={(e) => SaveArchiveImage(e)}/>
-                <p> {loadingImage} </p>
-                <LoadImages/>
+            <div className="add-Screenshots">
+                <h3 className={"screenshotLabel"}>Screenshots:</h3>
+                <label htmlFor="Add-screenshot" className="Add-screenshot">
+                    <i></i> Add new
+                </label>
+                <input id={"Add-screenshot"} type="file" accept="image/jpeg, image/png" onChange={(e) => SaveArchiveImage(e)}/>
+                <p className={"ScreenshotLoading"}> {loadingImage} </p>
+            </div>
+
+            <LoadImages/>
+
+            <div>
+                <hr className={"line"}/>
             </div>
 
             <div>
-                <h1>Upload the app:</h1>
-                <input className={"addAppButton"} type="file" accept="application/pdf, application/json" onChange={(e) => SaveArchiveApp(e)}/>
-                <p> {loadingApp} </p>
+                <h3 className={"AppLabel"} >App:</h3>
+                <label htmlFor="Add-app" className="Add-app">
+                    <i></i> Add app
+                </label>
+                <input id={"Add-app"} className={"addAppButton"} type="file" accept="application/zip" onChange={(e) => SaveArchiveApp(e)}/>
+                <p className={"AppLoading"}> {loadingApp} </p>
             </div>
 
-            <div className="other_Info">
-                <p className={"DescriptionText"}>Add a Description:</p>
-                <textarea className={"description"} type="textarea" placeholder="Description" name="description" value={description} onChange={changeDescription}/>
+            <div>
+                <hr className={"line"}/>
             </div>
-            <Link className={"button"} onClick={SaveApp} to={`/app/${name}`}>Save</Link>
+
+            <div>
+                <h3 className={"DescriptionText"}>Details:</h3>
+                <textarea className={"Description"} type="textarea" value={description} onChange={changeDescription}/>
+            </div>
         </div>
     );
-    }
-    else{
-        return(
-            <div className="container">
-                <h1>Saved</h1>
-                <button className={"SaveButton"} onClick={setLoadingSavingApp("")}>Back</button>
-            </div>
-        );
-    }
 }
 
 export default Add_Application;
