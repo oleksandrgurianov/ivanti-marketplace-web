@@ -94,12 +94,6 @@ DataBaseForNow {
         applications.add(application10);
 
 
-        String January = "January";
-        String February = "February";
-        String March = "March";
-        String April = "April";
-        String May = "May";
-
         ArrayList<DownloadsPerMonth> downloads1 = new ArrayList<>();
         downloads1.add(download11);
         downloads1.add(download21);
@@ -173,7 +167,7 @@ DataBaseForNow {
         ArrayList<Application> applications2 = new ArrayList<>();
         for (Application app : applications){
             if (app.getCreator().getId() == 2){
-                applications1.add(app);
+                applications2.add(app);
             }
         }
         user2.setMyApplications(applications2);

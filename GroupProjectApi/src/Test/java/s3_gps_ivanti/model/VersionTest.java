@@ -38,7 +38,7 @@ class VersionTest {
     @Test
     void ConstructorBasedOnCreateVersionDTO() {
 
-        Version version = new Version(new CreateVersionDTO("thing",1.0,"thing"));
+        Version version = new Version(new CreateVersionDTO("app",1.0,"thing"));
 
         assertEquals(1.0, version.getNumber());
         assertEquals(0,  version.getTotalDownloads());

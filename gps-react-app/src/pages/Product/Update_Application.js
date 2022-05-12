@@ -7,6 +7,8 @@ import ReactDOM from "react-dom";
 
 function Update_Application() {
 
+    let navigate = useNavigate();
+
     function SaveArchiveIcon(e) {
         let file = e.target.files[0] //the file
         let reader = new FileReader() //this for convert to Base64
@@ -144,6 +146,8 @@ function Update_Application() {
             alert(checkInput);
         } else {
             SaveChanges();
+            let path = `/` ;
+            navigate(path);
         }
     }
     const CheckInput = () => {

@@ -544,6 +544,8 @@ class ApplicationServiceImplTest {
 
         verify(applicationRepositoryMock).getApplicationToUpdate("ivanty");
     }
+
+    //getApplicationsSorted
     @Test
     void getApplicationsSorted_NotFound() {
         ApplicationRepository applicationRepositoryMock = mock(ApplicationRepository.class);
