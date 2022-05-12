@@ -1,6 +1,7 @@
 package s3_gps_ivanti.dto;
 
 import lombok.Data;
+import s3_gps_ivanti.business.impl.dtoconverter.ReviewDTOConverter;
 import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.model.Version;
 
@@ -18,6 +19,7 @@ public class ApplicationDetailedInfoDTO {
     private int avgRating;
     private List<GetVersionDTO> versions;
     private List<VersionDownloadDTO> versionsDownloads;
+    private List<ViewReviewDTO> reviews;
 
     public ApplicationDetailedInfoDTO(Application app)
     {
@@ -36,5 +38,7 @@ public class ApplicationDetailedInfoDTO {
         }
 
         this.versions = versionsDTO;
+
+        this.reviews = ReviewDTOConverter.convertToDTOList(app.getReviews());
     }
 }

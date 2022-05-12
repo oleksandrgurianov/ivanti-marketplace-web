@@ -1,13 +1,14 @@
 package s3_gps_ivanti.business.impl;
 
 import s3_gps_ivanti.business.ReviewService;
+import s3_gps_ivanti.business.impl.dtoconverter.ReviewDTOConverter;
+import s3_gps_ivanti.dto.CreateReviewRequestDTO;
+import s3_gps_ivanti.dto.UpdateReviewRequestDTO;
 import s3_gps_ivanti.model.Review;
 import s3_gps_ivanti.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 
 @Service
 @Primary
@@ -17,16 +18,12 @@ public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository reviewRepository;
 
     @Override
-    public ArrayList<Review> getReviews(String appName){
-        return reviewRepository.getReviews(appName);
+    public boolean createReview(CreateReviewRequestDTO review){
+        return reviewRepository.createReview(ReviewDTOConverter.convertToModelForCreate(review));
     }
     @Override
-    public boolean createReview(Review review){
-        return reviewRepository.createReview(review);
-    }
-    @Override
-    public boolean updateReview(Review review){
-        return reviewRepository.updateReview(review);
+    public boolean updateReview(UpdateReviewRequestDTO review){
+        return reviewRepository.updateReview(ReviewDTOConverter.convertToModelForUpdate(review));
     }
     @Override
     public boolean deleteReview(int reviewID){

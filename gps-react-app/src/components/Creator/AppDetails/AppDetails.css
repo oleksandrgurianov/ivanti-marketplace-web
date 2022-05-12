@@ -167,3 +167,57 @@
     width: 280px;
     display: block;
 }
+.app .reviews{
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20%;
+    grid-gap: 30px;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+.reviews .card{
+    padding-top: 20px;
+    width: 100%;
+    max-width: 400px;
+    min-width: 200px;
+    height: 100px;
+    background-color: darkgray;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.24);
+    border: 2px solid rgba(7,7,7,0.12);
+    font-size: 17px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    cursor: pointer;
+}
+.card .description{
+    width: 80%;
+    margin: 0 auto;
+    font-size: 13px;
+    text-align: left;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+.card .text{
+    width: 80%;
+    margin: 0 auto;
+    font-size: 15px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.card:hover{
+    height: 200px;
+}
+.card:hover{
+    opacity: 1;
+}
+.card .description:hover{
+    max-height: 0px;
+    opacity: 1;
+}
+
