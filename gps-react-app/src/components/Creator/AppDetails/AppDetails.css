@@ -213,9 +213,6 @@
 .card:hover{
     height: 200px;
 }
-.card:hover{
-    opacity: 1;
-}
 .card .description:hover{
     max-height: 0px;
     opacity: 1;

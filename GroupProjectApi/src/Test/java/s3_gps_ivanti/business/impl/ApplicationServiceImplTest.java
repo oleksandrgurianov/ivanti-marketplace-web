@@ -544,35 +544,6 @@ class ApplicationServiceImplTest {
 
         verify(applicationRepositoryMock).getApplicationToUpdate("ivanty");
     }
-
-    //getApplicationsSorted
-    @Test
-    void getApplicationsSorted() {
-        ApplicationRepository applicationRepositoryMock = mock(ApplicationRepository.class);
-
-        Application application = Application.builder()
-                .id(1)
-                .name("ivanty")
-                .icon("ivanty")
-                .description("ivanty")
-                .screenshots(Collections.emptyList())
-                .totalDownloads(1)
-                .build();
-
-
-        when(applicationRepositoryMock.getApplicationsByID(1))
-                .thenReturn(application);
-
-        ApplicationService applicationServiceMock = new ApplicationServiceImpl(applicationRepositoryMock);
-
-        ApplicationDetailedInfoDTO expectedResult = new ApplicationDetailedInfoDTO(application);
-
-        ApplicationDetailedInfoDTO actualResult = applicationServiceMock.getApplicationInfoByID(1);
-
-        assertEquals(expectedResult, actualResult);
-
-        verify(applicationRepositoryMock).getApplicationsByID(1);
-    }
     @Test
     void getApplicationsSorted_NotFound() {
         ApplicationRepository applicationRepositoryMock = mock(ApplicationRepository.class);
