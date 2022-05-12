@@ -25,7 +25,7 @@ class VersionTest {
     void ConstructorBasedOnUpdateVersionDTO() {
 
         Version version = new Version(
-                new UpdateVersionDTO(1,1L,1.0,1,"location",Collections.emptyList()),
+                new UpdateVersionDTO("thing",1.0,"location"),
                 new Version(1l,10,0,"here",Collections.emptyList()));
 
         assertEquals(1l, version.getId());
@@ -38,7 +38,7 @@ class VersionTest {
     @Test
     void ConstructorBasedOnCreateVersionDTO() {
 
-        Version version = new Version(new CreateVersionDTO(1,1.0,"thing"));
+        Version version = new Version(new CreateVersionDTO("app",1.0,"thing"));
 
         assertEquals(1.0, version.getNumber());
         assertEquals(0,  version.getTotalDownloads());
