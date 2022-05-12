@@ -128,6 +128,32 @@ DataBaseForNow {
         downloads3.add(download53);
         application3.setDownloads(downloads3);
 
+        //reviews
+        Review review1 = new Review(1, user3, 1, "This app sucks", "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going ....", null);
+        Review review2 = new Review(1, user3, 2, "This content creator sucks", "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going ....", null);
+        Review review3 = new Review(1, user3, 1, "Ban this guy", "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going ....", null);
+        Review review4 = new Review(1, user4, 4, "Great app loved it", "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going ....", null);
+        Review review5 = new Review(1, user4, 5, "Top tier", "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going ....", null);
+
+
+        List<Review> reviews = new ArrayList<>();
+        reviews.add(review1);
+        reviews.add(review2);
+        reviews.add(review3);
+        reviews.add(review4);
+        reviews.add(review5);
+
+        application1.setReviews(reviews);
+        application2.setReviews(reviews);
+        application3.setReviews(reviews);
+        application4.setReviews(reviews);
+        application5.setReviews(reviews);
+        application6.setReviews(reviews);
+        application7.setReviews(reviews);
+        application8.setReviews(reviews);
+        application9.setReviews(reviews);
+        application10.setReviews(reviews);
+
 
         //Giving applications to users
         ArrayList<Application> applications1 = new ArrayList<>();

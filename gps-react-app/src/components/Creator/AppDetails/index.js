@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { FaStar } from 'react-icons/fa'
 import './AppDetails.css'
 
 // components
@@ -92,21 +93,49 @@ const AppDetails = () => {
             <Link to={`/creator/update/${application.name}`}>Update App</Link> | <Link to={`/creator/1`} onClick={deleteApplication}>Delete App</Link>
           </div>
           <hr />
+          <div className='screenshots'>
+            <h2>Screenshots:</h2>
+            <ul className='screenshot-list'>
+              {application.images != null &&
+                  application.images.map((image) => (
+                      <li key={image}><img src={image} /></li>
+                  ))}
+            </ul>
+            <hr />
+          </div>
+          <div>
+            <h2>Reviews:</h2>
+            <div className={"reviews"}>
+              {application.reviews != null &&
+                  application.reviews.map(review =>
+                      <div className={"card"}>
+                        <p className={"text"}><b>{review.title}</b></p>
+                        <p className={"text"}>
+                          {[...Array(5)].map((star, i) => {
+                            const ratingValue = i + 1;
+                            return(
+                                <label>
+                                  <FaStar
+                                      className={"star"}
+                                      color={ratingValue<=review.rating ? "#4F4746": "#e4e5e9" }
+                                      size={15}
+                                  />
+                                </label>
+                            )
+                          })}
+                        </p>
+                        <p className={"description"}>{review.description}</p>
+                      </div>
+                  )}
+            </div>
+            <hr />
+          </div>
           <div className='description-details'>
             <h2>Description:</h2>
             <p>{application.description}</p>
             <hr />
           </div>
-          <div className='screenshots'>
-            <h2>Screenshots:</h2>
-              <ul className='screenshot-list'>
-                {application.images != null &&
-                application.images.map((image) => (
-                  <li key={image}><img src={image} /></li>
-                ))}
-              </ul>
-            <hr />
-          </div>
+
           <div className='rating-section'>
             <h2>Ratings & Reviews:</h2>
             <p></p>
