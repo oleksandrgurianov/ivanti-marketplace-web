@@ -37,7 +37,6 @@ function App() {
             <br/>
             <br/>
             <br/>
-
             <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path="/Login" element={<Login/>} />
@@ -57,18 +56,7 @@ function App() {
                 <Route path="/Statistics" element={<DownloadStatistics/>}/>
 
             </Routes>
-
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-
-            <Footer/>
+            <Footer />
         </>
     );
 }
