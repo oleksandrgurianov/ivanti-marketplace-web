@@ -1,5 +1,6 @@
 package s3_gps_ivanti.controller;
 
+import org.springframework.util.StringUtils;
 import s3_gps_ivanti.dto.*;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.business.CreatorService;
@@ -20,33 +21,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000/")
 public class ApplicationController {
-
     private final ApplicationService applicationService;
     private final CreatorService creatorService;
 
     //All
-    @GetMapping("/filter/{rating}/{date}")
-    public ResponseEntity<ArrayList<Application>> getApplicationsSorted(@PathVariable("rating") boolean rating, @PathVariable("date") boolean date ) {
-
-        ArrayList<Application> applications = applicationService.getApplicationsSorted(rating, date);
-
-        if(applications != null) {
-            return ResponseEntity.ok().body(applications);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-    @GetMapping("search/{search}")
-    public ResponseEntity<ArrayList<Application>> getApplicationsBySearch(@PathVariable("search") String search) {
-
-        ArrayList<Application> applications = applicationService.getApplicationsBySearch(search);
-
-        if(applications != null) {
-            return ResponseEntity.ok().body(applications);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
     @GetMapping("{id}")
     public ResponseEntity<ApplicationDetailedInfoDTO> getApplicationsByID(@PathVariable("id") int id) {
 
@@ -58,6 +36,7 @@ public class ApplicationController {
                 return ResponseEntity.notFound().build();
             }
     }
+
     @GetMapping("/details/{appName}")
     public ResponseEntity<ApplicationDetailedInfoDTO> getApplicationDetails(@PathVariable("appName") String appName) {
 
@@ -85,20 +64,38 @@ public class ApplicationController {
         return ResponseEntity.notFound().build();
     }
 
-    //Creator
+
+    //Content Creator
     @GetMapping("creator/{id}")
-    public ResponseEntity<List<ApplicationBasicInfoDTO>>getApplicationsByCreator(@PathVariable int id) {
+    public ResponseEntity<List<ApplicationBasicInfoDTO>> getApplicationsByCreator(@PathVariable int id, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "sort", required = false) String sort) {
+        ArrayList<Application> applications;
 
-        ArrayList<Application> creatorApps = applicationService.getApplicationsByCreator(id);
-        ArrayList<ApplicationBasicInfoDTO> dtos = new ArrayList<>();
+        if (StringUtils.hasText(name)) {
+            applications = applicationService.getApplicationsByCreatorIdAndName(id, name);
+        } else {
+            applications = applicationService.getApplicationsByCreatorId(id);
+        }
 
-        // convert to dto
-        if (creatorApps != null){
-            for (Application app : creatorApps){
-                ApplicationBasicInfoDTO dto = new ApplicationBasicInfoDTO(app);
-                dtos.add(dto);
+        ArrayList<ApplicationBasicInfoDTO> applicationsDTO  = new ArrayList<>();
+
+        if (!applications.isEmpty()) {
+            if (StringUtils.hasText(sort)) {
+                switch (sort) {
+                    case "nameDesc" -> applicationService.sortApplicationsByName(applications, false);
+                    case "ratingAsc" -> applicationService.sortApplicationsByRating(applications, true);
+                    case "ratingDesc" -> applicationService.sortApplicationsByRating(applications, false);
+                    default -> applicationService.sortApplicationsByName(applications, true);
+                }
+            } else {
+                applicationService.sortApplicationsByName(applications, true);
             }
-            return ResponseEntity.ok().body(dtos);
+
+            for (Application a : applications) {
+                ApplicationBasicInfoDTO applicationDTO = new ApplicationBasicInfoDTO(a);
+                applicationsDTO.add(applicationDTO);
+            }
+
+            return ResponseEntity.ok().body(applicationsDTO);
         }
 
         return ResponseEntity.notFound().build();
@@ -113,6 +110,7 @@ public class ApplicationController {
         }
         return ResponseEntity.notFound().build();
     }
+
     @GetMapping("/creator/appToUpdate/{appName}")
     public ResponseEntity<UpdateApplicationDTO>getApplicationToUpdate(@PathVariable("appName") String appName) {
         UpdateApplicationDTO application = applicationService.getApplicationToUpdate(appName);
@@ -123,6 +121,7 @@ public class ApplicationController {
             return ResponseEntity.notFound().build();
         }
     }
+
     @PostMapping()
     public ResponseEntity<CreateApplicationResponseDTO> createApplications(@RequestBody CreateApplicationRequestDTO app) {
 
@@ -137,6 +136,7 @@ public class ApplicationController {
             return ResponseEntity.created(uri).build();
         }
     }
+
     @PutMapping()
     public ResponseEntity<Object> updateApplications(@RequestBody UpdateApplicationDTO app) {
 
@@ -146,6 +146,7 @@ public class ApplicationController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+
     @DeleteMapping({"{name}"})
     public ResponseEntity<Object> deleteApplications(@PathVariable("name") String name) {
 
@@ -169,6 +170,7 @@ public class ApplicationController {
             return ResponseEntity.notFound().build();
         }
     }
+
     @GetMapping("customer/{id}")
     public ResponseEntity<ArrayList<Application>>getApplicationsByCustomer(@PathVariable String id) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

@@ -706,7 +706,7 @@ class ApplicationServiceImplTest {
 
         ArrayList<Application> expectedResult = apps;
 
-        ArrayList<Application> actualResult = applicationServiceMock.getApplicationsByCreator(1);
+        ArrayList<Application> actualResult = applicationServiceMock.getApplicationsByCreatorId(1);
 
         assertEquals(expectedResult, actualResult);
 
