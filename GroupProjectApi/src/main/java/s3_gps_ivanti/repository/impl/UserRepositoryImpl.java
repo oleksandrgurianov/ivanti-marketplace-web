@@ -21,7 +21,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
     @Override
     public long count() {
-
+        return count();
     }
-
-}*/
+}
+*/
