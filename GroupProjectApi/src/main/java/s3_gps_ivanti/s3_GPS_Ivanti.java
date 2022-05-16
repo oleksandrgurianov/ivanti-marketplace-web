@@ -4,19 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import s3_gps_ivanti.model.User;
 import s3_gps_ivanti.repository.UpdateCodeRepository;
 import s3_gps_ivanti.repository.UserRepository;
-
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-
-
 import java.util.ArrayList;
 import java.util.List;
-
-
 
 @EnableMongoRepositories
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
@@ -35,12 +29,12 @@ public class s3_GPS_Ivanti implements CommandLineRunner {
 	}
 
 	//@Override
-	public void run(String... args) throws Exception {
-
+		public void run(String... args) throws Exception {}
+/*
 // Clean up any previous data
 		//userRepo.deleteAll(); // Doesn't delete the collection
 
-		System.out.println("-------------CREATE USERS-------------------------------\n");
+	System.out.println("-------------CREATE USERS-------------------------------\n");
 		createUsers();
 
 		System.out.println("\n----------------SHOW ALL USERS---------------------------\n");
@@ -72,19 +66,19 @@ public class s3_GPS_Ivanti implements CommandLineRunner {
 		System.out.println("\n--------------GET USER BY NAME-----------------------------------\n");
 
 		getUsersByUsername("Noelia");
-	}
+	}*/
 
 
 	// CRUD operations
 
 	//CREATE
-	private void createUsers() {
+/*	private void createUsers() {
 		System.out.println("Data creation started...");
 
 		userRepo.save(new User(1,"Noelia", "noelia", "creator"));
 		userRepo.save(new User(2,"Esther", "esther", "creator"));
 		userRepo.save(new User(3,"Lars", "lars", "creator"));
-		userRepo.save(new User(4,"Aleksy", "aleksy", "customer"));
+		userRepo.save(new User(4,"Aleksej", "aleksej", "customer"));
 		userRepo.save(new User(5,"Mohammad", "mohammad", "customer"));
 		userRepo.save(new User(6,"Oleksander", "oleksander", "customer"));
 		userRepo.save(new User(7,"Fabian", "fabian", "customer"));
@@ -160,6 +154,6 @@ public class s3_GPS_Ivanti implements CommandLineRunner {
 				"Username: " + user.getUsername() +	", \nUser Permission: " + user.getPermission()
 		);
 		return "";
-	}
+	}*/
 }
 

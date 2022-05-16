@@ -54,7 +54,6 @@ private boolean userExists(final String id) {
         }
 
 
-
 //    @GetMapping("{id}")
 //    public ResponseEntity<Application> getApplicationsBySearch(@PathVariable("id") long id) {
 //
