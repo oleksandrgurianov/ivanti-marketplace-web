@@ -2,12 +2,14 @@ package s3_gps_ivanti.repository.impl;
 
 
 import s3_gps_ivanti.model.Application;
+import s3_gps_ivanti.model.Version;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.DataBaseForNow;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 @Primary
 @Service
@@ -174,4 +176,83 @@ public class ApplicationRepositoryImpl implements ApplicationRepository {
             return new ArrayList<Application>();
         }
     }
+
+    //Version // creator only
+    @Override
+    public Version getVersion(int applicationId, Double number) {
+        for (Application a : database.applications) {
+            if(a.getId() == applicationId)
+            {
+                for (Version v: a.getVersions()) {
+                    if(v.getNumber() == number) {
+                        return v;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean createVersion(int applicationId, Version version) {
+        for (Application a : database.applications) {
+            if(a.getId() == applicationId){
+
+                List<Version> ver =  a.getVersions();
+                ver.add(version);
+                a.setVersions(ver);
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteVerison(int applicationId, Double number) {
+        for (Application a : database.applications) {
+
+            if(a.getId() == applicationId)
+            {
+                for (Version v: a.getVersions()) {
+                    if(v.getNumber() == number) {
+
+                        List<Version> ver =  a.getVersions();
+                        ver.remove(v);
+                        a.setVersions(ver);
+
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Version updateVersion(int applicationId, Version version) {
+        for (Application a : database.applications) {
+            if(a.getId() == applicationId)
+            {
+                for (Version v: a.getVersions()) {
+                    v = version;
+                    return version;
+
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Version> getVersionsByApplication(String appname) {
+        for(Application a: database.applications)
+        {
+            if(a.getName().equals(appname)){
+                return a.getVersions();
+            }
+        }
+        return null;
+    }
+
 }

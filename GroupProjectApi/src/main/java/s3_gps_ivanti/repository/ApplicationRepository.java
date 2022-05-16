@@ -1,9 +1,11 @@
 package s3_gps_ivanti.repository;
 
 import s3_gps_ivanti.model.Application;
+import s3_gps_ivanti.model.Version;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface ApplicationRepository  {
 
@@ -41,4 +43,12 @@ public interface ApplicationRepository  {
     Application getApplicationInfoByName(String name);
 
     ArrayList<Application> getApplicationsByCustomer(int ID);
+
+    //Versions
+    Version getVersion(int applicationId, Double number);
+    boolean createVersion(int applicationId, Version version);
+    boolean deleteVerison(int applicationId, Double number);
+    Version updateVersion(int applicationId, Version version);
+     List<Version> getVersionsByApplication(String appname);
+
 }

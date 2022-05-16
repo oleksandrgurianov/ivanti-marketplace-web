@@ -44,4 +44,14 @@ public interface ApplicationService {
     ApplicationDetailedInfoDTO getApplicationInfoByName(String name);
 
     ArrayList<ApplicationStatisticsDTO> getApplicationStatisticsDTO(ArrayList<Application> applications);
+
+
+    //Versions
+    GetVersionDTO getVersion(int applicationId, Double number);
+    GetVersionDTO getVersionsByApplication(String appname);
+    double createVersion(CreateVersionDTO versionDTO);
+    boolean deleteVersion(DeleteVersionDTO versionDTO);
+    GetVersionDTO updateVersion(UpdateVersionDTO versionDTO);
+
+
 }

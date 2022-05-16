@@ -4,6 +4,7 @@ import s3_gps_ivanti.dto.*;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.model.Creator;
+import s3_gps_ivanti.model.Version;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -185,4 +186,72 @@ public class ApplicationServiceImpl implements ApplicationService {
         }
         return applicationStatisticsDTOList;
     }
+
+
+    //Version
+    @Override
+    public GetVersionDTO getVersion(int applicationId, Double number) {
+        Version version = applicationRepository.getVersion(applicationId, number);
+
+        if(version == null) {
+            return null;
+        }
+
+        return new GetVersionDTO(version);
+    }
+
+    @Override
+    public GetVersionDTO getVersionsByApplication(String appname) {
+
+        Version Latest = Version.builder()
+                .number(0.0)
+                .build();
+
+        for (Version v:applicationRepository.getVersionsByApplication(appname)) {
+            if(v.getNumber() > Latest.getNumber()){
+                Latest = v;
+            }
+        }
+        return new GetVersionDTO(Latest);
+    }
+
+    @Override
+    public double createVersion(CreateVersionDTO versionDTO) {
+        Application app = applicationRepository.getApplicationInfoByName(versionDTO.getAppName());
+
+        Version newVersion = new Version(versionDTO);
+        if( applicationRepository.createVersion(app.getId(), newVersion))
+        {
+            return getVersion(app.getId(),versionDTO.getNumber()).getNumber();
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean deleteVersion(DeleteVersionDTO versionDTO) {
+        Application app = applicationRepository.getApplicationInfoByName(versionDTO.getAppName());
+        return applicationRepository.deleteVerison(app.getId(), versionDTO.getNumber());
+    }
+
+    @Override
+    public GetVersionDTO updateVersion(UpdateVersionDTO versionDTO) {
+
+        Application app = applicationRepository.getApplicationInfoByName(versionDTO.getAppName());
+
+        Version oldVersion = applicationRepository.getVersion(app.getId(), versionDTO.getNumber());
+
+        if(oldVersion == null) {
+            return null;
+        }
+
+        Version newVersion = applicationRepository.updateVersion(app.getId(), new Version(versionDTO,oldVersion));
+
+        if(newVersion == null) {
+            return null;
+        }
+
+        return new GetVersionDTO(newVersion);
+    }
+
+
 }

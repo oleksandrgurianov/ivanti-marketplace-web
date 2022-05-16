@@ -54,7 +54,6 @@ DataBaseForNow {
         screenshots.add(image2);
         screenshots.add(image3);
 
-
         String Description = "Description";
 
         //Create applications
