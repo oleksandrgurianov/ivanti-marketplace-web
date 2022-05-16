@@ -11,7 +11,7 @@ public interface ApplicationService {
     //All
     ArrayList<Application> getApplications();
 
-    ArrayList<Application> getApplicationsByName(int creatorId, String name);
+    ArrayList<Application> getApplicationsByName(String name);
 
     void sortApplicationsByName(ArrayList<Application> applications, boolean ascending);
 

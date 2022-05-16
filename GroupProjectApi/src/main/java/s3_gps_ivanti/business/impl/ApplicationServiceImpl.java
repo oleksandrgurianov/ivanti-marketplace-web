@@ -23,7 +23,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     public ArrayList<Application> getApplications() { return applicationRepository.getApplications(); }
 
     @Override
-    public ArrayList<Application> getApplicationsByName(int creatorId, String name) { return applicationRepository.getApplicationsByName(name); }
+    public ArrayList<Application> getApplicationsByName(String name) { return applicationRepository.getApplicationsByName(name); }
 
     @Override
     public void sortApplicationsByName(ArrayList<Application> applications, boolean ascending) {
