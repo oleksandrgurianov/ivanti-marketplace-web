@@ -1,23 +1,23 @@
 package s3_gps_ivanti.repository.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.management.relation.Role;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document("User")
-public class user {
+@Document("Creator")
+public class creator {
 
     @Id
     protected int id;
-    private String email;
-    protected String password;
-    protected List<Role> roles;
+    private user user;
+    private List<String> myApps;
 }
