@@ -3,6 +3,7 @@ package s3_gps_ivanti.repository;
 import s3_gps_ivanti.model.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class
 DataBaseForNow {
@@ -68,6 +69,18 @@ DataBaseForNow {
         Application application9 = new Application(9, "Probably Ad Blocker", Description, screenshots, "icon", user2, null, "", null);
         Application application10 = new Application(10, "One More Ad Blocker", Description, screenshots, "icon", user2, null, "", null);
 
+        DownloadsPerMonth download11 = new DownloadsPerMonth(1, 2022, "January", 100);
+        DownloadsPerMonth download21 = new DownloadsPerMonth(2, 2022, "February", 300);
+        DownloadsPerMonth download31 = new DownloadsPerMonth(3, 2022, "March", 520);
+        DownloadsPerMonth download41 = new DownloadsPerMonth(4, 2022, "April", 400);
+        DownloadsPerMonth download51 = new DownloadsPerMonth(5, 2022, "May", 100);
+
+        Version version1 = new Version(1l,1.0,1320,"here",List.of(download11,download21,download31,download41,download51));
+        Version version2 = new Version(2l,2.0,1320,"here",List.of(download11,download21,download31,download41,download51));
+        Version version3 = new Version(3l,2.1,1320,"here",List.of(download11,download21,download31,download41,download51));
+        Version version4 = new Version(4l,2.2,1320,"here",List.of(download11,download21,download31,download41,download51));
+        application1.setVersions(List.of(version1,version2,version3,version4));
+
         // add applications to list
         applications.add(application1);
         applications.add(application2);
@@ -81,18 +94,7 @@ DataBaseForNow {
         applications.add(application10);
 
 
-        String January = "January";
-        String February = "February";
-        String March = "March";
-        String April = "April";
-        String May = "May";
-
         ArrayList<DownloadsPerMonth> downloads1 = new ArrayList<>();
-        DownloadsPerMonth download11 = new DownloadsPerMonth(1, 2022, "January", 100);
-        DownloadsPerMonth download21 = new DownloadsPerMonth(2, 2022, "February", 300);
-        DownloadsPerMonth download31 = new DownloadsPerMonth(3, 2022, "March", 520);
-        DownloadsPerMonth download41 = new DownloadsPerMonth(4, 2022, "April", 400);
-        DownloadsPerMonth download51 = new DownloadsPerMonth(5, 2022, "May", 100);
         downloads1.add(download11);
         downloads1.add(download21);
         downloads1.add(download31);
@@ -126,6 +128,32 @@ DataBaseForNow {
         downloads3.add(download53);
         application3.setDownloads(downloads3);
 
+        //reviews
+        Review review1 = new Review(1, user3, 1, "This app sucks", "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going ....", null);
+        Review review2 = new Review(1, user3, 2, "This content creator sucks", "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going ....", null);
+        Review review3 = new Review(1, user3, 1, "Ban this guy", "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going ....", null);
+        Review review4 = new Review(1, user4, 4, "Great app loved it", "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going ....", null);
+        Review review5 = new Review(1, user4, 5, "Top tier", "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going ....", null);
+
+
+        List<Review> reviews = new ArrayList<>();
+        reviews.add(review1);
+        reviews.add(review2);
+        reviews.add(review3);
+        reviews.add(review4);
+        reviews.add(review5);
+
+        application1.setReviews(reviews);
+        application2.setReviews(reviews);
+        application3.setReviews(reviews);
+        application4.setReviews(reviews);
+        application5.setReviews(reviews);
+        application6.setReviews(reviews);
+        application7.setReviews(reviews);
+        application8.setReviews(reviews);
+        application9.setReviews(reviews);
+        application10.setReviews(reviews);
+
 
         //Giving applications to users
         ArrayList<Application> applications1 = new ArrayList<>();
@@ -139,7 +167,7 @@ DataBaseForNow {
         ArrayList<Application> applications2 = new ArrayList<>();
         for (Application app : applications){
             if (app.getCreator().getId() == 2){
-                applications1.add(app);
+                applications2.add(app);
             }
         }
         user2.setMyApplications(applications2);

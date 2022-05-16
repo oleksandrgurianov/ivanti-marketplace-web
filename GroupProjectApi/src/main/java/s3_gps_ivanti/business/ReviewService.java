@@ -1,5 +1,7 @@
 package s3_gps_ivanti.business;
 
+import s3_gps_ivanti.dto.CreateReviewRequestDTO;
+import s3_gps_ivanti.dto.UpdateReviewRequestDTO;
 import s3_gps_ivanti.model.Review;
 
 
@@ -7,12 +9,9 @@ import s3_gps_ivanti.model.Review;
 import java.util.ArrayList;
 
 public interface ReviewService {
+    boolean createReview(CreateReviewRequestDTO review);
 
-    ArrayList<Review> getReviews(String appName);
-
-    boolean createReview(Review review);
-
-    boolean updateReview(Review review);
+    boolean updateReview(UpdateReviewRequestDTO review);
 
     boolean deleteReview(int reviewID);
 }
