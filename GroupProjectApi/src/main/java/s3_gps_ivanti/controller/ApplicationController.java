@@ -28,13 +28,13 @@ public class ApplicationController {
     @GetMapping("{id}")
     public ResponseEntity<ApplicationDetailedInfoDTO> getApplicationsByID(@PathVariable("id") int id) {
 
-            ApplicationDetailedInfoDTO application = applicationService.getApplicationInfoByID(id);
+        ApplicationDetailedInfoDTO application = applicationService.getApplicationInfoByID(id);
 
-            if(application != null) {
-                return ResponseEntity.ok().body(application);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
+        if(application != null) {
+            return ResponseEntity.ok().body(application);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/details/{appName}")
@@ -153,64 +153,10 @@ public class ApplicationController {
         if (applicationService.deleteApplications(name)) {
             return ResponseEntity.ok().build();
         } else {
-               return ResponseEntity.notFound().build();
-        }
-    }
-
-    @GetMapping("/version/{appId}/{versionId}")
-    public ResponseEntity<GetVersionDTO>getVersion(@PathVariable("appId")  int appId,@PathVariable("versionId")  double versionId) {
-        GetVersionDTO versionDTO = applicationService.getVersion(appId, versionId);
-
-        if(versionDTO != null) {
-            return ResponseEntity.ok().body(versionDTO);
-        } else {
             return ResponseEntity.notFound().build();
         }
     }
-    @GetMapping("/version/{appname}")
-    public ResponseEntity<Double>getLatestVersion(@PathVariable("appname")  String appname) {
-        GetVersionDTO versionDTO = applicationService.getVersionsByApplication(appname);
 
-        if(versionDTO != null) {
-            return ResponseEntity.ok().body(versionDTO.getNumber());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-    @PostMapping("/version")
-    public ResponseEntity<Object> createVersion(@RequestBody CreateVersionDTO createVersionDTO) {
-
-        double id = applicationService.createVersion(createVersionDTO);
-
-        if(id > 0) {
-            String url = "version/" + id;
-            URI uri = URI.create(url);
-            return ResponseEntity.created(uri).build();
-        }
-        else {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-        }
-    }
-    @PutMapping("/version")
-    public ResponseEntity<GetVersionDTO> updateVersion(@RequestBody UpdateVersionDTO updateVersionDTO) {
-
-        GetVersionDTO versionDTO = applicationService.updateVersion(updateVersionDTO);
-
-        if (versionDTO != null) {
-            return ResponseEntity.ok().body(versionDTO);
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-    }
-    @PostMapping({"/version/delete"})
-    public ResponseEntity<Object> deleteVersion(@RequestBody DeleteVersionDTO deleteVersionDTO) {
-
-        if (applicationService.deleteVersion(deleteVersionDTO)) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
 
     //Customer
     @GetMapping("download/{id}")

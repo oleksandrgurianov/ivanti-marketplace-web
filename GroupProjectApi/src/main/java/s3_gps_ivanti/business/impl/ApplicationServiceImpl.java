@@ -102,7 +102,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         Application model = new Application(app, creator);
 
         if( applicationRepository.createApplications(model)) {
-           return new CreateApplicationResponseDTO(applicationRepository.getApplicationInfoByName(model.getName()).getId());
+            return new CreateApplicationResponseDTO(applicationRepository.getApplicationInfoByName(model.getName()).getId());
         }
         return null;
     }
@@ -172,31 +172,6 @@ public class ApplicationServiceImpl implements ApplicationService {
         if (app != null){
             return new ApplicationDetailedInfoDTO(app);
         }
-        return null;
-    }
-
-    @Override
-    public GetVersionDTO getVersion(int applicationId, Double number) {
-        return null;
-    }
-
-    @Override
-    public GetVersionDTO getVersionsByApplication(String appname) {
-        return null;
-    }
-
-    @Override
-    public double createVersion(CreateVersionDTO versionDTO) {
-        return 0;
-    }
-
-    @Override
-    public boolean deleteVersion(DeleteVersionDTO versionDTO) {
-        return false;
-    }
-
-    @Override
-    public GetVersionDTO updateVersion(UpdateVersionDTO versionDTO) {
         return null;
     }
 
