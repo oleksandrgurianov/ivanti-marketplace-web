@@ -9,8 +9,11 @@ import s3_gps_ivanti.repository.ApplicationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import s3_gps_ivanti.repository.CreatorRepository;
+
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -19,7 +22,6 @@ import java.util.List;
 public class ApplicationServiceImpl implements ApplicationService {
 
     private final ApplicationRepository applicationRepository;
-
     //all
     @Override
     public  ArrayList<Application> getApplicationsSorted(boolean rating, boolean date){
@@ -80,6 +82,8 @@ public class ApplicationServiceImpl implements ApplicationService {
         }
 
         Application model = new Application(app, creator);
+
+        model.setReviews(Collections.emptyList());
 
         if( applicationRepository.createApplications(model)) {
            return new CreateApplicationResponseDTO(applicationRepository.getApplicationInfoByName(model.getName()).getId());
