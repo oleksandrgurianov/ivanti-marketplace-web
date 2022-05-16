@@ -14,5 +14,4 @@ const Application = ({ name, icon }) => {
     </>
   )
 }
-
 export default Application

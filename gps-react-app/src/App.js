@@ -9,20 +9,20 @@ import Header from './components/Header'
 import Footer from './components/Footer';
 
 //Pages
-import Login from "./pages/Login"
-import Logout from "./pages/Logout"
-import Contact from "./pages/Contact"
+import Login from "./pages/Login/Login"
+import Logout from "./pages/Login/Logout"
+import Contact from "./pages/Miscellaneous/Contact"
 import Home from "./pages/Home"
-import About from "./pages/About"
+import About from "./pages/Miscellaneous/About"
 import Add_Application from "./pages/Product/Add_Application";
 import Update_Application from "./pages/Product/Update_Application";
-import Error from './pages/Error'
-import DownloadStatistics from "./pages/DownloadStatistics";
-import CreatorMyApps from './pages/CreatorMyApps'
-import CreatorPage from './pages/CreatorPage'
+import Error from './pages/Miscellaneous/Error'
+import DownloadStatistics from "./pages/Analytics/DownloadStatistics";
+import CreatorMyApps from './pages/Customer/CreatorMyApps'
+import CreatorPage from './pages/Creator/CreatorPage'
 
 // test page 
-import AppPage from "./pages/AppPage";
+import AppPage from "./pages/MyApps/AppPage";
 import AddMinorVersion from "./pages/Version/AddMinorVersion";
 import AddMajorVersion from "./pages/Version/AddMajorVersion";
 import UpdateVersion from "./pages/Version/UpdateVersion";
@@ -44,10 +44,10 @@ function App() {
                 <Route path="/About" element={<About/>} />
                 <Route path="/Contact" element={<Contact/>} />
 
-                <Route path="/Creator/update/:Name" element={<Update_Application />}/>
-                <Route path="/Creator/AddApp/:id" element={<Add_Application/>}/>
+                <Route path="/CreatorPage/update/:Name" element={<Update_Application />}/>
+                <Route path="/CreatorPage/AddApp/:id" element={<Add_Application/>}/>
 
-                <Route path="/Creator/MyApps" element={<CreatorMyApps />} />
+                <Route path="/CreatorPage/MyApps" element={<CreatorMyApps />} />
                 <Route path='/creator/myapps/:id' element={<CreatorMyApps />} />
 
                 <Route path='/creator/:id' element={<CreatorPage />} />

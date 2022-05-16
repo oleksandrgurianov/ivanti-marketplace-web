@@ -6,7 +6,7 @@ import { useParams, Link } from 'react-router-dom'
 import { AiOutlinePlusCircle, AiOutlineSearch, AiFillCaretDown } from 'react-icons/ai'
 import MyApps from './MyApps';
 
-const Creator = () => {
+const CreatorPage = () => {
     const [creator, setCreator] = useState({});
 
     const getCreator = () => {
@@ -62,4 +62,4 @@ const Creator = () => {
     )
 }
 
-export default Creator
+export default CreatorPage
