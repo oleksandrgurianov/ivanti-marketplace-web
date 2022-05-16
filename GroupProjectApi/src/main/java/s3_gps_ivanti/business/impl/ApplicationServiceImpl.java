@@ -176,6 +176,31 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
+    public GetVersionDTO getVersion(int applicationId, Double number) {
+        return null;
+    }
+
+    @Override
+    public GetVersionDTO getVersionsByApplication(String appname) {
+        return null;
+    }
+
+    @Override
+    public double createVersion(CreateVersionDTO versionDTO) {
+        return 0;
+    }
+
+    @Override
+    public boolean deleteVersion(DeleteVersionDTO versionDTO) {
+        return false;
+    }
+
+    @Override
+    public GetVersionDTO updateVersion(UpdateVersionDTO versionDTO) {
+        return null;
+    }
+
+    @Override
     public ArrayList<ApplicationStatisticsDTO> getApplicationStatisticsDTO(ArrayList<Application> applications){
         ArrayList<ApplicationStatisticsDTO> applicationStatisticsDTOList = new ArrayList<>();
 

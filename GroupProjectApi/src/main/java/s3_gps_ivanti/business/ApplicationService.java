@@ -1,11 +1,7 @@
 package s3_gps_ivanti.business;
 
 
-import s3_gps_ivanti.dto.ApplicationDetailedInfoDTO;
-import s3_gps_ivanti.dto.ApplicationStatisticsDTO;
-import s3_gps_ivanti.dto.CreateApplicationRequestDTO;
-import s3_gps_ivanti.dto.CreateApplicationResponseDTO;
-import s3_gps_ivanti.dto.UpdateApplicationDTO;
+import s3_gps_ivanti.dto.*;
 import s3_gps_ivanti.model.Application;
 
 import java.io.File;
