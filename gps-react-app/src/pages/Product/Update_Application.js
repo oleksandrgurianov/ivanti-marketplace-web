@@ -7,6 +7,8 @@ import ReactDOM from "react-dom";
 
 function Update_Application() {
 
+    let navigate = useNavigate();
+
     function SaveArchiveIcon(e) {
         let file = e.target.files[0] //the file
         let reader = new FileReader() //this for convert to Base64
@@ -144,6 +146,8 @@ function Update_Application() {
             alert(checkInput);
         } else {
             SaveChanges();
+            let path = `/` ;
+            navigate(path);
         }
     }
     const CheckInput = () => {
@@ -175,8 +179,8 @@ function Update_Application() {
             <div id="images">
                 {arrayImages.map(image => (
                     <div className={"image"}>
-                        <img src={image}  height="333"/>
-                        <button value={image} onClick={RemoveImage}>Delete</button>
+                        <img className={"image"} src={image} />
+                        <button className={"RemoveImage"} value={image} onClick={RemoveImage}>Delete</button>
                     </div>
                 ))}
             </div>
@@ -186,30 +190,51 @@ function Update_Application() {
     if(name !== null){
         return(
             <div className="container">
-                <div className="basic_Info">
-                    <input type="file" accept="image/jpeg, image/png" id="customFile" onChange={(e) => SaveArchiveIcon(e)}/>
-                    <p> {loadingIcon} </p>
-                    <br/>
-                    <div className={"title_div"}>
+                    <div>
                         <img className={"icon"} src={icon}/>
-                        <input className={"InputTitle"} type="text" placeholder="Title" name="Title" value={name} onChange={changeTitle}/>
+                        <h1 className={"name"}>{name}</h1>
+                        <div className={"buttonsLeft"}>
+                            <button className={"PreviewButton"}>Preview</button>
+                            <button className={"DoneButton"} onClick={SaveApp}>Done</button>
+                        </div>
+                    </div>
+                    <div>
+                        <hr className={"topLine"}/>
+                    </div>
+                    <div>
+                    <div className={"basic_Info"}>
+                        <h3 className={"IconLabel"}>Icon:</h3>
+                        <img className={"BigIcon"} src={icon}/>
+                        <label htmlFor="Add-icon" className="Add-Icon">
+                            <i></i> Replace
+                        </label>
+                        <input id="Add-icon"  className={"addIconButton"} type="file" accept="image/jpeg, image/png" text={"Add icon"} onChange={(e) => SaveArchiveIcon(e)}/>
+                        <p className={"IconLoading"}> {loadingIcon} </p>
                     </div>
                     <hr className={"line"}/>
-                </div>
+                    <div className={"basic_Info"}>
+                        <h3 className={"nameLabel"}>Name: </h3>
+                        <input className={"InputTitle"} type="text" value={name} onChange={changeTitle}/>
+                    </div>
 
-                <div className="images">
-                    <input type="file" accept="image/jpeg, image/png" id="customFile" onChange={(e) => SaveArchiveImage(e)}/>
-                    <p> {loadingImage} </p>
-                    <br/>
-                    <LoadImages/>
+                    <hr className={"line"}/>
                 </div>
-
-                <div className="other_Info">
-                    <p className={"DescriptionText"}>Description</p>
-                    <textarea className={"description"} type="textarea" placeholder="Description" name="description" value={description} onChange={changeDescription}/>
+                <div className="add-Screenshots">
+                    <h3 className={"screenshotLabel"}>Screenshots:</h3>
+                    <label htmlFor="Add-screenshot" className="Add-screenshot">
+                        <i></i> Add new
+                    </label>
+                    <input id={"Add-screenshot"} type="file" accept="image/jpeg, image/png" onChange={(e) => SaveArchiveImage(e)}/>
+                    <p className={"ScreenshotLoading"}> {loadingImage} </p>
                 </div>
-
-                <Link className={"button"}  onClick={SaveApp} to={`/app/${name}`}>Save changes</Link>
+                <LoadImages/>
+                <div>
+                    <hr className={"line"}/>
+                </div>
+                <div>
+                    <h3 className={"DescriptionText"}>Details:</h3>
+                    <textarea className={"Description"} type="textarea" value={description} onChange={changeDescription}/>
+                </div>
             </div>
         );
     }

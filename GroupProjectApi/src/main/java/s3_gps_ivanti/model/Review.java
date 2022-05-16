@@ -1,16 +1,17 @@
 package s3_gps_ivanti.model;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import s3_gps_ivanti.dto.CreateReviewRequestDTO;
 
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Review {
-
-    private Long id;
-    private Long application_id;
-    private Long user_id;
-    private int rating;
-    private String description;
+    private long id;
+    private Customer customer;
+    private long rating;
     private String title;
+    private String description;
+    private Response response;
 }

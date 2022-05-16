@@ -1,14 +1,15 @@
-package s3_gps_ivanti.model;
+package s3_gps_ivanti.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Response {
-    private String reply;
+@Data
+@Builder
+public class DeleteVersionDTO {
+    private String appName;
+    private double number;
 }

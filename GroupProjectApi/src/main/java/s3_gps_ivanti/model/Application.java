@@ -5,6 +5,7 @@ import s3_gps_ivanti.dto.CreateApplicationRequestDTO;
 import s3_gps_ivanti.dto.UpdateApplicationDTO;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Getter
@@ -20,9 +21,7 @@ public class Application {
     private String icon;
     private Creator creator;
     private List<String> screenshots;
-
-
-    private String appLocation;
+    private List<Version> versions;
 
     private int totalDownloads;
     private List<Review> reviews;
@@ -38,7 +37,10 @@ public class Application {
         this.icon = icon;
         this.creator = creator;
         this.reviews = reviews;
-        this.appLocation = appLocation;
+        this.versions = new ArrayList<>();
+
+        versions.add(new Version(1.0,0,appLocation, Collections.emptyList()));
+
         this.rating = rating;
         this.downloads = new ArrayList<>();
     }
@@ -66,9 +68,9 @@ public class Application {
         this.description = addDTO.getDescription();
         this.screenshots = addDTO.getScreenshots();
         this.icon = addDTO.getIcon();
-        this.appLocation = addDTO.getAppLocation();
+        versions = new ArrayList<>();
+        versions.add(new Version(1.0,0,addDTO.getAppLocation(), Collections.emptyList()));
         this.creator = creator;
     }
-
 
 }

@@ -39,7 +39,7 @@ public class CreateApplicationRequestDTO {
         this.description = app.getDescription();
         this.screenshots = app.getScreenshots();
         this.icon = app.getIcon();
-        this.appLocation = app.getAppLocation();
+        this.appLocation = app.getVersions().get(0).getAppLocation();
         this.creatorId = app.getCreator().getId();
     }
 }

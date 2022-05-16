@@ -10,6 +10,7 @@ import s3_gps_ivanti.model.Application;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface ApplicationService {
 
@@ -33,5 +34,12 @@ public interface ApplicationService {
     ArrayList<Application> getApplicationsByCreator(int id);
 
     ApplicationDetailedInfoDTO getApplicationInfoByName(String name);
+
+             //Versions
+    GetVersionDTO getVersion(int applicationId, Double number);
+    GetVersionDTO getVersionsByApplication(String appname);
+    double createVersion(CreateVersionDTO versionDTO);
+    boolean deleteVersion(DeleteVersionDTO versionDTO);
+    GetVersionDTO updateVersion(UpdateVersionDTO versionDTO);
 
 }
