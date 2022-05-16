@@ -15,8 +15,13 @@ const ApplicationList = () => {
 
     let urlParams = new URLSearchParams(window.location.search);
 
-    function getApplicationsByCreator()  {
-        axios.get(`http://localhost:8080/application/creator/${id}`, { params: { name: urlParams.get('name'), sort: urlParams.get('sort') } })
+    function getApplicationsByCreator() {
+        axios.get(`http://localhost:8080/application/creator/${id}`, {
+            params: {
+                name: urlParams.get('name'),
+                sort: urlParams.get('sort')
+            }
+        })
             .then(response => {
                 setApplications(response.data);
                 console.log(applications);
@@ -33,13 +38,13 @@ const ApplicationList = () => {
     function searchAndSort() {
         if (name && sort) {
             let newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?name=' + name + '&sort=' + sort;
-            window.history.pushState( {path:newUrl}, '', newUrl);
+            window.history.pushState({path: newUrl}, '', newUrl);
         } else if (name) {
             let newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?name=' + name;
-            window.history.pushState( {path:newUrl}, '', newUrl);
+            window.history.pushState({path: newUrl}, '', newUrl);
         } else if (sort) {
             let newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?sort=' + sort;
-            window.history.pushState( {path:newUrl}, '', newUrl);
+            window.history.pushState({path: newUrl}, '', newUrl);
         }
 
         getApplicationsByCreator();
@@ -48,7 +53,8 @@ const ApplicationList = () => {
     return (
         <div>
             <div className='title-controls'>
-                <input type="text" id="searchInput" placeholder="Search" value={name} onChange={(e) => setName(e.target.value)}/>
+                <input type="text" id="searchInput" placeholder="Search" value={name}
+                       onChange={(e) => setName(e.target.value)}/>
                 <select id="sort" value={sort} onChange={(e) => setSort(e.target.value)}>
                     <option value="nameAsc">Name Ascending</option>
                     <option value="nameDesc">Name Descending</option>
@@ -62,7 +68,7 @@ const ApplicationList = () => {
                     {applications.length > 0 ? (
                         <>
                             {applications.map((app) => (
-                                <Application key={app.name} name={app.name} icon={app.icon} />
+                                <Application key={app.name} name={app.name} icon={app.icon}/>
                             ))}
                         </>
                     ) : (
