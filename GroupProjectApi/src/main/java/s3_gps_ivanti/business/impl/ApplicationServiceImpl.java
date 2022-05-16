@@ -4,35 +4,57 @@ import s3_gps_ivanti.dto.*;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.model.Application;
 import s3_gps_ivanti.model.Creator;
-import s3_gps_ivanti.model.Version;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-import s3_gps_ivanti.repository.CreatorRepository;
-
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Comparator;
 
 @Service
 @Primary
 @RequiredArgsConstructor
 public class ApplicationServiceImpl implements ApplicationService {
-
     private final ApplicationRepository applicationRepository;
-    //all
+
+    //All
     @Override
-    public  ArrayList<Application> getApplicationsSorted(boolean rating, boolean date){
-        return applicationRepository.getApplicationsSorted(rating, date);
+    public ArrayList<Application> getApplications() { return applicationRepository.getApplications(); }
+
+    @Override
+    public ArrayList<Application> getApplicationsByName(String name) { return applicationRepository.getApplicationsByName(name); }
+
+    @Override
+    public void sortApplicationsByName(ArrayList<Application> applications, boolean ascending) {
+        Comparator<Application> compareByName = Comparator.comparing(Application::getName);
+
+        if (!applications.isEmpty()) {
+            if (ascending) {
+                applications.sort(compareByName);
+            } else {
+                applications.sort(compareByName.reversed());
+            }
+        }
     }
+
     @Override
-    public ArrayList<Application> getApplicationsBySearch(String search){
-        return applicationRepository.getApplicationsBySearch(search);
+    public void sortApplicationsByRating(ArrayList<Application> applications, boolean ascending) {
+        ApplicationRatingComparator compareByRating = new ApplicationRatingComparator();
+
+        if (!applications.isEmpty()) {
+            if (ascending) {
+                applications.sort(compareByRating);
+            } else {
+                applications.sort(compareByRating.reversed());
+            }
+        }
+
     }
+
     @Override
-    public ApplicationDetailedInfoDTO getApplicationInfoByID(int id) {
+    public ApplicationDetailedInfoDTO getApplicationInfoByID(int id)
+    {
         Application app = applicationRepository.getApplicationsByID(id);
 
         if (app != null){
@@ -40,20 +62,20 @@ public class ApplicationServiceImpl implements ApplicationService {
         }
         return null;
     }
+
     @Override
     public ArrayList<Application> getApplicationDetails(String appName){
         return applicationRepository.getApplicationDetails(appName);
     }
-    @Override
-    public ArrayList<Application> getApplications() {
-        return applicationRepository.getApplications();
-    }
 
-    //Creator
+
+    //Content Creator
     @Override
-    public  ArrayList<Application> getApplicationsByCreator(int id){
-        return applicationRepository.getApplicationsByCreator(id);
-    }
+    public ArrayList<Application> getApplicationsByCreatorId(int creatorId) { return applicationRepository.getApplicationsByCreatorId(creatorId); }
+
+    @Override
+    public ArrayList<Application> getApplicationsByCreatorIdAndName(int creatorId, String name) { return applicationRepository.getApplicationsByCreatorIdAndName(creatorId, name); }
+
     @Override
     public CreateApplicationResponseDTO createApplications(CreateApplicationRequestDTO app){
 
@@ -77,19 +99,14 @@ public class ApplicationServiceImpl implements ApplicationService {
         Creator creator =  new Creator();
         creator.setId(app.getCreatorId());
 
-        if(creator == new Creator()) {
-            return null;
-        }
-
         Application model = new Application(app, creator);
-
-        model.setReviews(Collections.emptyList());
 
         if( applicationRepository.createApplications(model)) {
            return new CreateApplicationResponseDTO(applicationRepository.getApplicationInfoByName(model.getName()).getId());
         }
         return null;
     }
+
     @Override
     public UpdateApplicationDTO getApplicationToUpdate(String appname){
 
@@ -102,6 +119,7 @@ public class ApplicationServiceImpl implements ApplicationService {
             return null;
         }
     }
+
     @Override
     public boolean updateApplications(UpdateApplicationDTO app ) {
 
@@ -123,6 +141,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
         return applicationRepository.updateApplications(model);
     }
+
     @Override
     public boolean deleteApplications(String name){
         boolean result = false;
@@ -132,83 +151,22 @@ public class ApplicationServiceImpl implements ApplicationService {
         }
         return result;
     }
-        //Version
-    @Override
-    public GetVersionDTO getVersion(int applicationId, Double number) {
-       Version version = applicationRepository.getVersion(applicationId, number);
-
-       if(version == null) {
-           return null;
-       }
-
-       return new GetVersionDTO(version);
-    }
-
-    @Override
-    public GetVersionDTO getVersionsByApplication(String appname) {
-
-        Version Latest = Version.builder()
-                .number(0.0)
-                .build();
-
-        for (Version v:applicationRepository.getVersionsByApplication(appname)) {
-            if(v.getNumber() > Latest.getNumber()){
-                Latest = v;
-            }
-        }
-        return new GetVersionDTO(Latest);
-    }
-
-    @Override
-    public double createVersion(CreateVersionDTO versionDTO) {
-        Application app = applicationRepository.getApplicationInfoByName(versionDTO.getAppName());
-
-        Version newVersion = new Version(versionDTO);
-        if( applicationRepository.createVersion(app.getId(), newVersion))
-        {
-            return getVersion(app.getId(),versionDTO.getNumber()).getNumber();
-        }
-        return 0;
-    }
-
-    @Override
-    public boolean deleteVersion(DeleteVersionDTO versionDTO) {
-        Application app = applicationRepository.getApplicationInfoByName(versionDTO.getAppName());
-        return applicationRepository.deleteVerison(app.getId(), versionDTO.getNumber());
-    }
-
-    @Override
-    public GetVersionDTO updateVersion(UpdateVersionDTO versionDTO) {
-
-        Application app = applicationRepository.getApplicationInfoByName(versionDTO.getAppName());
-
-        Version oldVersion = applicationRepository.getVersion(app.getId(), versionDTO.getNumber());
-
-        if(oldVersion == null) {
-            return null;
-        }
-
-        Version newVersion = applicationRepository.updateVersion(app.getId(), new Version(versionDTO,oldVersion));
-
-        if(newVersion == null) {
-            return null;
-        }
-
-        return new GetVersionDTO(newVersion);
-    }
 
 
-    //Customers
+    //Customer
     @Override
     public  ArrayList<Application> getApplicationsByCustomer(int id){
         return applicationRepository.getApplicationsByCustomer(id);
     }
+
     @Override
     public File downloadApplications(int id) {
         return applicationRepository.downloadApplications(id);
     }
+
     @Override
-    public ApplicationDetailedInfoDTO getApplicationInfoByName(String name) {
+    public ApplicationDetailedInfoDTO getApplicationInfoByName(String name)
+    {
         Application app = applicationRepository.getApplicationInfoByName(name);
 
         if (app != null){
@@ -217,6 +175,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         return null;
     }
 
+    @Override
     public ArrayList<ApplicationStatisticsDTO> getApplicationStatisticsDTO(ArrayList<Application> applications){
         ArrayList<ApplicationStatisticsDTO> applicationStatisticsDTOList = new ArrayList<>();
 

@@ -9,24 +9,38 @@ import java.util.List;
 
 public interface ApplicationService {
 
-    //all
-    ArrayList<Application> getApplicationsSorted(boolean rating, boolean date);
-    ArrayList<Application> getApplicationsBySearch(String search);
-    ApplicationDetailedInfoDTO getApplicationInfoByID(int id);
-    ArrayList<Application> getApplicationDetails(String appName);
+    //All
     ArrayList<Application> getApplications();
-    ArrayList<ApplicationStatisticsDTO> getApplicationStatisticsDTO(ArrayList<Application> applications);
 
-    //Creator
-    UpdateApplicationDTO getApplicationToUpdate(String appname);
+    ArrayList<Application> getApplicationsByName(String name);
+
+    void sortApplicationsByName(ArrayList<Application> applications, boolean ascending);
+
+    void sortApplicationsByRating(ArrayList<Application> applications, boolean ascending);
+
+    ApplicationDetailedInfoDTO getApplicationInfoByID(int id);
+
+    ArrayList<Application> getApplicationDetails(String appName);
+
+
+    //Content Creator
+    ArrayList<Application> getApplicationsByCreatorId(int creatorId);
+
+    ArrayList<Application> getApplicationsByCreatorIdAndName(int creatorId, String name);
+
     CreateApplicationResponseDTO createApplications(CreateApplicationRequestDTO app);
+
+    UpdateApplicationDTO getApplicationToUpdate(String appname);
+
     boolean updateApplications(UpdateApplicationDTO app);
+
     boolean deleteApplications(String name);
 
-    ArrayList<Application> getApplicationsByCustomer(int id);
-    File downloadApplications(int id);
 
-    ArrayList<Application> getApplicationsByCreator(int id);
+    //Customer
+    ArrayList<Application> getApplicationsByCustomer(int id);
+
+    File downloadApplications(int id);
 
     ApplicationDetailedInfoDTO getApplicationInfoByName(String name);
 
@@ -36,5 +50,7 @@ public interface ApplicationService {
     double createVersion(CreateVersionDTO versionDTO);
     boolean deleteVersion(DeleteVersionDTO versionDTO);
     GetVersionDTO updateVersion(UpdateVersionDTO versionDTO);
+
+    ArrayList<ApplicationStatisticsDTO> getApplicationStatisticsDTO(ArrayList<Application> applications);
 
 }
