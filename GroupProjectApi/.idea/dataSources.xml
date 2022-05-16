@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="S3-GPS@cluster0.xi24y.mongodb.net" uuid="e4fed43c-f398-4da2-993a-ce747cdc67a2">
+    <data-source source="LOCAL" name="Ivanti AppMarket" uuid="e54ad5d1-e54b-43a0-93d8-92b0bb9c4b54">
       <driver-ref>mongo</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
-      <jdbc-url>mongodb+srv://cluster0.xi24y.mongodb.net/S3-GPS?authSource=admin&amp;replicaSet=atlas-wnlw3a-shard-0&amp;readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=true</jdbc-url>
+      <jdbc-url>mongodb://localhost:27017</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

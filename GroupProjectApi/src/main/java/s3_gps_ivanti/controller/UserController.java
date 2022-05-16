@@ -1,21 +1,59 @@
 package s3_gps_ivanti.controller;
 
+import org.springframework.web.bind.annotation.*;
+import s3_gps_ivanti.business.UserService;
+import s3_gps_ivanti.business.exceptions.UserNotFoundException;
+import s3_gps_ivanti.model.User;
+import s3_gps_ivanti.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import s3_gps_ivanti.dto.UserBasicInfoDTO;
-import s3_gps_ivanti.business.UserService;
 import s3_gps_ivanti.model.Creator;
 import s3_gps_ivanti.model.Customer;
-import s3_gps_ivanti.model.User;
 
-@RestController
+import java.util.List;
+
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000/")
+@RestController
 public class UserController {
+private final UserRepository userRepository;
+private final UserService userService;
 
-    private final UserService userService;
+@GetMapping("/users")
+public List<User> getUsers() {
+    return userRepository.findAll();
+}
+@GetMapping("/user/{id}")
+public User user(@PathVariable String id) {
+    return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+}
+@DeleteMapping("/delete/{id}")
+public void deleteUser(@PathVariable String id) {
+   if (!userExists(id)) {
+   throw new UserNotFoundException(id);
+   }
+   userRepository.deleteById(id);
+}
+@PostMapping("/users")
+public void saveUser(@RequestBody User user) {
+        userRepository.save(user);
+}
+@PutMapping("/users/{id}")
+    User replaceUser(@RequestBody User updatedUser, @PathVariable String id) {
+        if (!userExists(id)) {
+        throw new UserNotFoundException(id);
+        }
+
+        return userRepository.save(updatedUser);
+        }
+
+private boolean userExists(final String id) {
+        return userRepository.existsById(id);
+        }
+
+
 
 //    @GetMapping("{id}")
 //    public ResponseEntity<Application> getApplicationsBySearch(@PathVariable("id") long id) {
@@ -53,3 +91,4 @@ public class UserController {
         }
     }
 }
+
