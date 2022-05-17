@@ -1,13 +1,8 @@
 package s3_gps_ivanti.controller;
 
-import s3_gps_ivanti.business.ResponseService;
-import s3_gps_ivanti.model.Response;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/response")
@@ -15,9 +10,9 @@ import java.util.ArrayList;
 @CrossOrigin(origins = "http://localhost:3000/")
 public class ResponseController {
 
-    private final ResponseService responseService;
+   /*  private final ResponseService responseService;
 
-    //Creator
+   //Creator
     @GetMapping("{reviewID}")
     public ResponseEntity<ArrayList<Response>> getResponse(@PathVariable("reviewID")int reviewID) {
 
@@ -58,5 +53,5 @@ public class ResponseController {
         }else {
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
 }

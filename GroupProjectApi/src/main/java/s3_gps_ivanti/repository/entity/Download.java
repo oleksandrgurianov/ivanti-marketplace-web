@@ -1,16 +1,15 @@
-package s3_gps_ivanti.model;
+package s3_gps_ivanti.repository.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DownloadsPerMonth {
-    private int id;
+public class Download {
     private int year;
     private String month;
     private int amount;

@@ -4,7 +4,6 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.management.relation.Role;
 import java.util.List;
 
 @Getter
@@ -13,11 +12,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document("User")
-public class user {
+public class User {
 
     @Id
-    protected int id;
+    protected String id;
     private String email;
     protected String password;
-    protected List<Role> roles;
+    protected List<String> roles;
 }

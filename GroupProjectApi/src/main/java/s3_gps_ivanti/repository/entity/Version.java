@@ -1,4 +1,4 @@
-package s3_gps_ivanti.model;
+package s3_gps_ivanti.repository.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Response {
-    private String reply;
+public class Version {
+    private double number;
+    private int total_downloads;
+    private String app_location;
 }

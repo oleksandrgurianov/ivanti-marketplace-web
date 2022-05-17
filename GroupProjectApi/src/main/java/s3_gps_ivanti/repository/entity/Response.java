@@ -1,4 +1,4 @@
-package s3_gps_ivanti.dto;
+package s3_gps_ivanti.repository.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,10 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateReviewRequestDTO {
-    private CustomerDTO customer;
-    private long rating;
+public class Response {
     private String title;
     private String description;
-    private String response;
 }

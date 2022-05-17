@@ -1,24 +1,17 @@
 package s3_gps_ivanti.controller;
 
 import org.springframework.web.bind.annotation.*;
-import s3_gps_ivanti.business.UserService;
-import s3_gps_ivanti.business.exceptions.UserNotFoundException;
-import s3_gps_ivanti.model.User;
+
 import s3_gps_ivanti.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import s3_gps_ivanti.dto.UserBasicInfoDTO;
-import s3_gps_ivanti.model.Creator;
-import s3_gps_ivanti.model.Customer;
 
-import java.util.List;
 
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 public class UserController {
-private final UserRepository userRepository;
+/*private final UserRepository userRepository;
 private final UserService userService;
 
 @GetMapping("/users")
@@ -57,10 +50,10 @@ private boolean userExists(final String id) {
 //    @GetMapping("{id}")
 //    public ResponseEntity<Application> getApplicationsBySearch(@PathVariable("id") long id) {
 //
-//        Application application = applicationService.getApplicationsByID(id);
+//        Application Application = applicationService.getApplicationsByID(id);
 //
-//        if(application != null) {
-//            return ResponseEntity.ok().body(application);
+//        if(Application != null) {
+//            return ResponseEntity.ok().body(Application);
 //        } else {
 //            return ResponseEntity.notFound().build();
 //        }
@@ -88,6 +81,6 @@ private boolean userExists(final String id) {
         } else {
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
 }
 

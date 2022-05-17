@@ -11,10 +11,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document("Customer")
-public class customer extends user {
+public class Customer {
 
     @Id
-    protected int id;
-    private user user;
-    private List<String> appsDownloaded;
+    protected String id;
+    private User user;
+    private List<Application> appsDownloaded;
 }

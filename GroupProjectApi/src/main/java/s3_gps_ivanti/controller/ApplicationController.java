@@ -1,27 +1,17 @@
 package s3_gps_ivanti.controller;
 
-import org.springframework.util.StringUtils;
-import s3_gps_ivanti.dto.*;
-import s3_gps_ivanti.business.ApplicationService;
-import s3_gps_ivanti.business.CreatorService;
-import s3_gps_ivanti.model.Application;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import s3_gps_ivanti.model.Creator;
 
-import java.io.File;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/application")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000/")
 public class ApplicationController {
-    private final ApplicationService applicationService;
+  /*  private final ApplicationService applicationService;
     private final CreatorService creatorService;
 
     //All
@@ -131,7 +121,7 @@ public class ApplicationController {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
         else {
-            String url = "application/" + responseDTO.getId();
+            String url = "Application/" + responseDTO.getId();
             URI uri = URI.create(url);
             return ResponseEntity.created(uri).build();
         }
@@ -203,7 +193,7 @@ public class ApplicationController {
         double id = applicationService.createVersion(createVersionDTO);
 
         if(id > 0) {
-            String url = "version/" + id;
+            String url = "Version/" + id;
             URI uri = URI.create(url);
             return ResponseEntity.created(uri).build();
         }
@@ -230,6 +220,6 @@ public class ApplicationController {
         } else {
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
 
 }

@@ -1,9 +1,6 @@
 package s3_gps_ivanti.controller;
 
-import s3_gps_ivanti.business.ReviewService;
-import s3_gps_ivanti.dto.CreateReviewRequestDTO;
-import s3_gps_ivanti.dto.UpdateReviewRequestDTO;
-import s3_gps_ivanti.model.Review;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +14,7 @@ import java.util.ArrayList;
 @CrossOrigin(origins = "http://localhost:3000/")
 public class ReviewController {
 
-    private final ReviewService reviewService;
+   /* private final ReviewService reviewService;
 
     //Customer
     @PostMapping()
@@ -44,5 +41,5 @@ public class ReviewController {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
-    }
+    }*/
 }
