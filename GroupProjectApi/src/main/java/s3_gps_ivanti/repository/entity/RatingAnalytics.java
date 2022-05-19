@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RatingAnalytics {
-    private int one_Star;
-    private int two_Star;
-    private int three_Star;
-    private int four_Star;
-    private int five_Star;
+    private int oneStar;
+    private int twoStar;
+    private int threeStar;
+    private int fourStar;
+    private int fiveStar;
 }

@@ -1,4 +1,4 @@
-package s3_gps_ivanti.repository.entity;
+package s3_gps_ivanti.dto.version;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Download {
-    private int year;
-    private String month;
-    private int amount;
+public class CreateMajorVersionResponseDTO {
+    private double number;
 }

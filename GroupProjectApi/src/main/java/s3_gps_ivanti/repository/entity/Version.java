@@ -5,12 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Version {
     private double number;
-    private int total_downloads;
-    private String app_location;
+    private int totalDownloads;
+    private String appLocation;
+    private List<DownloadsPerMonth> downloads;
 }
