@@ -1,5 +1,4 @@
 import { Line } from "react-chartjs-2";
-
 import {registerables, Chart} from 'chart.js';
 import {useEffect, useState} from "react";
 import axios from "axios";

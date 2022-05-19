@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+/*import React, {useEffect, useState} from "react";
 import axios from 'axios';
 
 function GetApp({appName}) {
@@ -26,4 +26,4 @@ function GetApp({appName}) {
     );
 }
 
-export default GetApp;
+export default GetApp;*/

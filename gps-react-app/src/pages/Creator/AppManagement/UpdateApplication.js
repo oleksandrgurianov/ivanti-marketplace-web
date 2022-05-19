@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-import "../../design/ApplicationCss.css";
+import "../../../styles/ApplicationCss.css";
+
 import ReactDOM from "react-dom";
 
-
-function Update_Application() {
+function UpdateApplication() {
 
     let navigate = useNavigate();
 
@@ -246,4 +246,4 @@ function Update_Application() {
         );
     }
 }
-export default Update_Application;
+export default UpdateApplication;

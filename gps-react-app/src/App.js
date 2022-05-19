@@ -2,30 +2,42 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 //Css
-import './App.css';
+import './styles/App.css';
 
 //Components
 import Header from './components/Header'
 import Footer from './components/Footer';
 
 //Pages
+    //analytics
+import DownloadStatistics from "./pages/Creator/Analytics/DownloadStatistics"
+    //apps
+import Application from "./pages/AppCatalogue/Application";
+import ApplicationList from "./pages/AppCatalogue/ApplicationList";
+    //creator
+import CreatorPage from "./pages/Creator/CreatorPage";
+    //customer
+    //login
 import Login from "./pages/Login/Login"
 import Logout from "./pages/Login/Logout"
-import Contact from "./pages/Miscellaneous/Contact"
-import Home from "./pages/Home"
-import About from "./pages/Miscellaneous/About"
-import Add_Application from "./pages/Product/Add_Application";
-import Update_Application from "./pages/Product/Update_Application";
-import Error from './pages/Miscellaneous/Error'
-import DownloadStatistics from "./pages/Analytics/DownloadStatistics";
-import CreatorMyApps from './pages/Customer/CreatorMyApps'
-import CreatorPage from './pages/Creator/CreatorPage'
+    //miscelaneous
+import Error from './pages/Misc/Error'
+import Contact from "./pages/Misc/Contact"
+import Home from "./pages/Login/Home"
+import About from "./pages/Misc/About"
+    //product
+import AddApplication from "./pages/Creator/AppManagement/AddApplication";
+import UpdateApplication from "./pages/Creator/AppManagement/UpdateApplication";
+import GetApp from "./pages/Creator/AppManagement/GetApp";
+import ViewAppDefault from "./pages/Creator/AppManagement/ViewAppDefault";
+    //review
+import Rating from "./pages/Review/Rating";
+    //version
+import AddMajorVersion from "./pages/Creator/Version/AddMajorVersion";
+import AddMinorVersion from "./pages/Creator/Version/AddMinorVersion";
+import UpdateVersion from "./pages/Creator/Version/UpdateVersion";
+import AppDetails from "./pages/AppCatalogue";
 
-// test page 
-import AppPage from "./pages/MyApps/AppPage";
-import AddMinorVersion from "./pages/Version/AddMinorVersion";
-import AddMajorVersion from "./pages/Version/AddMajorVersion";
-import UpdateVersion from "./pages/Version/UpdateVersion";
 
 //APP STRUCTURE
 function App() {
@@ -43,16 +55,16 @@ function App() {
                 <Route path="/Login" element={<Login/>} />
                 <Route path="/About" element={<About/>} />
                 <Route path="/Contact" element={<Contact/>} />
+                <Route path="/CreatorPage/update/:Name" element={<UpdateApplication />}/>
+                <Route path="/CreatorPage/AddApp/:id" element={<AddApplication/>}/>
 
-                <Route path="/CreatorPage/update/:Name" element={<Update_Application />}/>
-                <Route path="/CreatorPage/AddApp/:id" element={<Add_Application/>}/>
 
-                <Route path="/CreatorPage/MyApps" element={<CreatorMyApps />} />
-                <Route path='/creator/myapps/:id' element={<CreatorMyApps />} />
+                <Route path="/CreatorPage/MyApps" element={<ApplicationList/>} />
+                <Route path='/creator/myapps/:id' element={<ApplicationList/>} />
+                <Route path="/app/:appName" element={<AppDetails />} />
+
 
                 <Route path='/creator/:id' element={<CreatorPage />} />
-
-                <Route path="/app/:appName" element={<AppPage />} />
 
                 <Route path='/addVersion/minor/:Name' element={<AddMinorVersion />} />
                 <Route path='/addVersion/major/:Name' element={<AddMajorVersion />} />
@@ -61,7 +73,7 @@ function App() {
                 <Route path="/Logout" element={<Logout/>} />
                 <Route path="/*" element={<Error />} />
 
-                <Route path="/Statistics" element={<DownloadStatistics/>}/>
+                <Route path="/Creator/Statistics" element={<DownloadStatistics/>}/>
 
             </Routes>
             <br/>

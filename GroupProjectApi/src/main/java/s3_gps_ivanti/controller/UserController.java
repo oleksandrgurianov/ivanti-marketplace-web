@@ -7,7 +7,7 @@ import s3_gps_ivanti.model.User;
 import s3_gps_ivanti.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import s3_gps_ivanti.dto.UserBasicInfoDTO;
+import s3_gps_ivanti.DTO.*;
 import s3_gps_ivanti.model.Creator;
 import s3_gps_ivanti.model.Customer;
 

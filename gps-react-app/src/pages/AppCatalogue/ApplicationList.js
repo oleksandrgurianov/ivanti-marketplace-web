@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Application from './Application'
 import axios from 'axios';
 import {useParams} from "react-router-dom";
-import { Section, List } from '../../design/ApplicationListStyled';
+import { Section, List } from '../../styles/ApplicationListStyled';
 
 const ApplicationList = () => {
     const [applications, setApplications] = useState({});

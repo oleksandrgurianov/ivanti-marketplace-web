@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import "../../design/ApplicationCss.css";
+import "../../../styles/ApplicationCss.css";
 import axios from 'axios';
 import ReactDOM from "react-dom";
 import {useParams, useNavigate, Link} from "react-router-dom";
 
-function Add_Application() {
+function AddApplication() {
 
     let navigate = useNavigate();
 
@@ -271,4 +271,4 @@ function Add_Application() {
     );
 }
 
-export default Add_Application;
+export default AddApplication;

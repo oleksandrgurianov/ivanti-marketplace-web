@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { FaStar } from 'react-icons/fa'
-import '../../design/AppDetails.css'
+import '../../styles/AppDetails.css'
 
 // components
 import axios from 'axios'
@@ -78,10 +78,10 @@ const AppDetails = () => {
 
         <h4>Categories:</h4>
         <div className='categories'>
-          <a href='src/pages/Apps/index'>category </a>
-          <a href='src/pages/Apps/index'>category </a>
-          <a href='src/pages/Apps/index'>category </a>
-          <a href='src/pages/Apps/index'>category</a>
+          <a href='src/pages/AppCatalogue/index'>category </a>
+          <a href='src/pages/AppCatalogue/index'>category </a>
+          <a href='src/pages/AppCatalogue/index'>category </a>
+          <a href='src/pages/AppCatalogue/index'>category</a>
         </div>
 
 

@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom'
 
 // icons
 import { AiOutlinePlusCircle, AiOutlineSearch, AiFillCaretDown } from 'react-icons/ai'
-import MyApps from './MyApps';
+import MyApps from '../AppCatalogue';
 
 const CreatorPage = () => {
     const [creator, setCreator] = useState({});

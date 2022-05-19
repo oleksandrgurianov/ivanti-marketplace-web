@@ -1,6 +1,6 @@
 package s3_gps_ivanti.business;
 
-import s3_gps_ivanti.dto.*;
+import s3_gps_ivanti.DTO.*;
 import s3_gps_ivanti.model.Application;
 
 import java.io.File;

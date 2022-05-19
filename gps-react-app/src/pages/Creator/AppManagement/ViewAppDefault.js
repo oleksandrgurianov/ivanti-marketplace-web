@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios';
 
-function View_App_Default({appName}) {
+function ViewAppDefault({appName}) {
 
     const [product, setProduct] = useState({});
 
@@ -38,4 +38,4 @@ function View_App_Default({appName}) {
     );
 }
 
-export default View_App_Default;
+export default ViewAppDefault;

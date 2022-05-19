@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import s3_gps_ivanti.dto.CreateVersionDTO;
-import s3_gps_ivanti.dto.UpdateVersionDTO;
+import s3_gps_ivanti.DTO.CreateVersionDTO;
+import s3_gps_ivanti.DTO.UpdateVersionDTO;
 
 import java.util.Collections;
 import java.util.List;
