@@ -17,6 +17,8 @@ public class User {
     @Id
     protected String id;
     private String email;
-    protected String password;
-    protected List<String> roles;
+    private String password;
+    private List<String> roles;
+    private String permission;
+    private List<String> application_id;
 }

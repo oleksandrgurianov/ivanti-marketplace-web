@@ -16,7 +16,7 @@ import java.util.List;
 public class Application {
 
     private String id;
-    private Creator creator;
+    private String creator_id;
     private String name;
     private String description;
     private String icon;
