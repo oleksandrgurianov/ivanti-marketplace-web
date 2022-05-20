@@ -2,13 +2,10 @@ package s3_gps_ivanti.controller;
 
 import s3_gps_ivanti.business.ReviewService;
 import s3_gps_ivanti.DTO.*;
-import s3_gps_ivanti.model.Review;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/review")

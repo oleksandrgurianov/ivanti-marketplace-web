@@ -14,32 +14,32 @@ Now we have some images being loaded from the cloud and others are stored in thi
 ____________________
 PAGES
 Only Route endpoints allowed in pages directory!
-Pages are separated in directories depending on the roles (Creator and Customer), and common elements (Login, Review, AppCatalogue and Misc).
+Pages are separated in directories depending on the roles (Creator and Customer), and common elements (LogInPage, Review, AppCatalogue and Misc).
 Only pages related to creator view should be placed inside Creator directory and only pages related to Customer should be placed inside Customer.
-If your page affects both roles, use the common folder related to the topic that your page covers (AppCatalogue, Login, Review or Misc).
+If your page affects both roles, use the common folder related to the topic that your page covers (AppCatalogue, LogInPage, Review or Misc).
 In case of doubt use Misc! (So if we need to reorganize again we know where to check ;) )
 
 -AppCatalogue:
     Application.js
     ApplicationList.js
-    index.js
+    ApplicationPage.js
 
 -Creator:
-    -Analytics:
-        DownloadStatistics.js
+    -AnalyticsPage:
+        AnalyticsPage.js
     -AppManagement:
         AddApplicatin.js
-        GetApp.js ¿?
-        UpdateApplication.js
-        ViewAppDefault.js
+        GetApplication.js ¿?
+        UpdateApplicationPage.js
+        ApplicationPreview.js
     -Version:
-        AddMajorVersion.js
-        AddMinorVersion.js
-        UpdateVersion.js
-    CreatorPage.js
+        AddMajorVersionPage.js
+        AddMinorVersionPage.js
+        UpdateVersionPage.js
+    MyAppsPage.js
 
--Login:
-    Home.js
+-LogInPage:
+    HomePage.js
     LogIn.js
     LogOut.js
 
@@ -47,9 +47,9 @@ In case of doubt use Misc! (So if we need to reorganize again we know where to c
 
 
 -Misc:
-    About.js
-    Contact.js
-    Error.js
+    AboutPage.js
+    ContactPage.js
+    ErrorPage.js
 
 ____________________
 
