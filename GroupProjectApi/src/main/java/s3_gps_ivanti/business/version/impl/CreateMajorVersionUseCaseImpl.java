@@ -25,9 +25,10 @@ public class CreateMajorVersionUseCaseImpl implements CreateMajorVersionUseCase 
     private final GetLatestVersion getLatestVersion;
 
     @Override
-    public CreateMajorVersionResponseDTO createVersion(CreateMajorVersionRequestDTO versionDTO) {
+    public CreateMajorVersionResponseDTO createVersion(CreateMajorVersionRequestDTO versionRequestDTO) {
+        //TODO check token.userid is creator that made this app
 
-        Application application = applicationRepository.findById(versionDTO.getApplicationID()).orElse(null);
+        Application application = applicationRepository.findById(versionRequestDTO.getApplicationID()).orElse(null);
 
         if(application == null) {
             throw new ApplicationNotFoundException();
@@ -35,13 +36,13 @@ public class CreateMajorVersionUseCaseImpl implements CreateMajorVersionUseCase 
 
         Version latestVersion = getLatestVersion.getLatestVersion(application);
 
-        if(latestVersion.getNumber() != versionDTO.getNumber() + 1.0){
+        if(latestVersion.getNumber() != versionRequestDTO.getNumber() + 1.0){
             throw new VersionNumberIncorrectException();
         }
 
         List<Version> newVersions = application.getVersions();
 
-        Version version = VersionDTOConverter.convertToEntityForCreate(versionDTO);
+        Version version = VersionDTOConverter.convertToEntityForCreate(versionRequestDTO);
 
         newVersions.add(version);
 

@@ -18,6 +18,7 @@ public class DeleteApplicationUseCaseImpl implements DeleteApplicationUseCase {
     @Override
     public void deleteApplications(String id) {
 
+        //TODO check token.userid
         Application application = applicationRepository.findById(id).orElse(null);
 
         if(application == null) {

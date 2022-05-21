@@ -20,16 +20,19 @@ public class UpdateVersionUseCaseImpl implements UpdateVersionUseCase {
 
 
     @Override
-    public void updateVersion(UpdateVersionRequestDTO version) {
-        Application application = applicationRepository.findById(version.getApplicationID()).orElse(null);
+    public void updateVersion(UpdateVersionRequestDTO versionRequestDTO) {
+
+        //TODO check token.userid is creator that made this app
+
+        Application application = applicationRepository.findById(versionRequestDTO.getApplicationID()).orElse(null);
 
         if(application == null) {
             throw new ApplicationNotFoundException();
         }
 
         for (Version v: application.getVersions()) {
-            if(v.getNumber() == version.getNumber()){
-                v = VersionDTOConverter.convertToEntityForUpdate(version,v);
+            if(v.getNumber() == versionRequestDTO.getNumber()){
+                v = VersionDTOConverter.convertToEntityForUpdate(versionRequestDTO,v);
             }
             break;
         }

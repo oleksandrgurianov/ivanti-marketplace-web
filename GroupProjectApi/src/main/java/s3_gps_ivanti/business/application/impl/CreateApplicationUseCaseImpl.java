@@ -20,15 +20,15 @@ public class CreateApplicationUseCaseImpl implements CreateApplicationUseCase {
     private final ApplicationRepository applicationRepository;
 
     @Override
-    public CreateApplicationResponseDTO createApplications(CreateApplicationRequestDTO application) {
+    public CreateApplicationResponseDTO createApplications(CreateApplicationRequestDTO applicationRequestDTO) {
 
-        if(applicationRepository.findByName(application.getName()) != null){
+        if(applicationRepository.findByName(applicationRequestDTO.getName()) != null){
             throw new ApplicationNameNotUnique();
         }
 
-        applicationRepository.save(ApplicationDTOConverter.ConvertToEntity(application));
+        applicationRepository.save(ApplicationDTOConverter.ConvertToEntity(applicationRequestDTO));
 
-        Application newApplication = applicationRepository.findByName(application.getName());
+        Application newApplication = applicationRepository.findByName(applicationRequestDTO.getName());
 
         return ApplicationDTOConverter.convertToDTOCreateResponse(newApplication);
     }

@@ -19,8 +19,6 @@ public class GetApplicationBasicInfoUseCaseImpl implements GetApplicationsBasicI
 
     @Override
     public List<ApplicationBasicInfoDTO> getApplications() {
-
-
      return ApplicationDTOConverter.ConvertListToDTO(applicationRepository.findByStatus());
 
     }

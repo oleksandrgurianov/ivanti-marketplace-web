@@ -18,6 +18,8 @@ public class DeleteVersionUseCaseImpl implements DeleteVersionUseCase {
 
     @Override
     public void deleteVersion(String applicationID, double number) {
+
+        //TODO check token.userid is creator that made this app or admin
         Application application = applicationRepository.findById(applicationID).orElse(null);
 
         if(application == null) {

@@ -25,9 +25,10 @@ public class CreateMinorVersionUseCaseImpl implements CreateMinorVersionUseCase 
     private final GetLatestVersion getLatestVersion;
 
     @Override
-    public CreateMinorVersionResponseDTO createVersion(CreateMinorVersionRequestDTO versionDTO) {
+    public CreateMinorVersionResponseDTO createVersion(CreateMinorVersionRequestDTO versionRequestDTO) {
+        //TODO check token.userid is creator that made this app
 
-        Application application = applicationRepository.findById(versionDTO.getApplicationID()).orElse(null);
+        Application application = applicationRepository.findById(versionRequestDTO.getApplicationID()).orElse(null);
 
         if(application == null) {
             throw new ApplicationNotFoundException();
@@ -35,13 +36,13 @@ public class CreateMinorVersionUseCaseImpl implements CreateMinorVersionUseCase 
 
         Version latestVersion = getLatestVersion.getLatestVersion(application);
 
-        if(latestVersion.getNumber() != versionDTO.getNumber() + 0.1){
+        if(latestVersion.getNumber() != versionRequestDTO.getNumber() + 0.1){
             throw new VersionNumberIncorrectException();
         }
 
         List<Version> newVersions = application.getVersions();
 
-        Version version = VersionDTOConverter.convertToEntityForCreate(versionDTO);
+        Version version = VersionDTOConverter.convertToEntityForCreate(versionRequestDTO);
 
         newVersions.add(version);
 

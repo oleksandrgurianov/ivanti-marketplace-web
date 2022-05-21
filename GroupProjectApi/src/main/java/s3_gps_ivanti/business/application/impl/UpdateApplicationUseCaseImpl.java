@@ -18,14 +18,16 @@ public class UpdateApplicationUseCaseImpl implements UpdateApplicationUseCase {
     private final ApplicationRepository applicationRepository;
 
     @Override
-    public void updateApplications(UpdateApplicationRequestDTO app) {
-        Application application = applicationRepository.findById(app.getId()).orElse(null);
+    public void updateApplications(UpdateApplicationRequestDTO applicationRequestDTO) {
+
+        //TODO check token.userid
+        Application application = applicationRepository.findById(applicationRequestDTO.getId()).orElse(null);
 
         if(application == null) {
             throw new ApplicationNotFoundException();
         }
 
-        Application newApplication = ApplicationDTOConverter.ConvertToEntityForUpdate(app, application);
+        Application newApplication = ApplicationDTOConverter.ConvertToEntityForUpdate(applicationRequestDTO, application);
 
         applicationRepository.save(newApplication);
     }

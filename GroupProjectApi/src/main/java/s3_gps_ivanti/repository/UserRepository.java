@@ -10,11 +10,15 @@ public interface UserRepository extends MongoRepository<User, String> {
     @Query("{username:'?0'}")
     User findUserByUsername(String username);
 
-    @Query(value="{permission:'?0'}", fields="{'username' : 1}")
-    List<User> findAll(String permission);
 
-    long count();
-    User getUserById(int id);
+    @Query("{username:'?0', permission:'Customer'}")
+    User findUserByUsernameAndPermission(String username);
+
+    @Query("{_id:'?0', permission:'Customer'}")
+    User findByIdAAndPermission(String id);
+
+    @Query("{email:'?0'}")
+    User findUserByEmail(String email);
 }
 
 

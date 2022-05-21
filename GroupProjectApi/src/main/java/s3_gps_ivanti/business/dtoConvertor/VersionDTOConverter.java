@@ -39,12 +39,12 @@ public class VersionDTOConverter {
                 .build();
     }
 
-    public static Version convertToEntityForUpdate(UpdateVersionRequestDTO updateVersionRequestDTO, Version oldversion){
+    public static Version convertToEntityForUpdate(UpdateVersionRequestDTO updateVersionRequestDTO, Version oldVersion){
         return Version.builder()
                 .number(updateVersionRequestDTO.getNumber())
-                .totalDownloads(oldversion.getTotalDownloads())
+                .totalDownloads(oldVersion.getTotalDownloads())
                 .appLocation(updateVersionRequestDTO.getAppLocation())
-                .downloads(oldversion.getDownloads())
+                .downloads(oldVersion.getDownloads())
                 .build();
     }
 
@@ -69,12 +69,7 @@ public class VersionDTOConverter {
 
         List<VersionDTO> result = new ArrayList<>();
         for (Version v :versions) {
-            result.add(VersionDTO.builder()
-                    .number(v.getNumber())
-                    .totalDownloads(v.getTotalDownloads())
-                    .appLocation(v.getAppLocation())
-                    .downloads(v.getDownloads())
-                    .build());
+            result.add(VersionDTOConverter.convertToDTO(v));
         }
         return result;
     }
@@ -82,12 +77,7 @@ public class VersionDTOConverter {
 
         List<Version> result = new ArrayList<>();
         for (VersionDTO v :versions) {
-            result.add(Version.builder()
-                    .number(v.getNumber())
-                    .totalDownloads(v.getTotalDownloads())
-                    .appLocation(v.getAppLocation())
-                    .downloads(v.getDownloads())
-                    .build());
+            result.add(VersionDTOConverter.convertToEntity(v));
         }
         return result;
     }

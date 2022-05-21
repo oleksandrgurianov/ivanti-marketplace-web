@@ -4,5 +4,5 @@ import s3_gps_ivanti.dto.application.CreateApplicationRequestDTO;
 import s3_gps_ivanti.dto.application.CreateApplicationResponseDTO;
 
 public interface CreateApplicationUseCase {
-    CreateApplicationResponseDTO createApplications(CreateApplicationRequestDTO application);
+    CreateApplicationResponseDTO createApplications(CreateApplicationRequestDTO applicationRequestDTO);
 }
