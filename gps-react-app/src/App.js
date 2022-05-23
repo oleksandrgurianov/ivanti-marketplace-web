@@ -1,79 +1,55 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-//Css
+//CSS
 import './styles/App.css';
 
 //Components
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 //Pages
-    //analytics
-import AnalyticsPage from "./pages/ContentCreator/Analytics/AnalyticsPage"
-    //apps
-import Application from "./pages/ContentCreator/MyApps/components/Application";
-import ApplicationList from "./pages/ContentCreator/MyApps/components/ApplicationList";
-    //creator
-import MyAppsPage from "./pages/ContentCreator/MyApps/MyAppsPage";
-    //customer
-    //login
-import LogInPage from "./pages/Authentication&Authorisation/LogIn/LogInPage"
-import LogOutPage from "./pages/Authentication&Authorisation/LogOut/LogOutPage"
-    //miscelaneous
-import ErrorPage from './pages/Authentication&Authorisation/Error/ErrorPage'
-import ContactPage from "./pages/Other/ContactPage"
-import HomePage from "./pages/ContentCreator/HomePage"
-import AboutPage from "./pages/Other/AboutPage"
-    //product
-import AddApplicationPage from "./pages/ContentCreator/AddApplication/AddApplicationPage";
-import UpdateApplicationPage from "./pages/ContentCreator/UpdateApplication/UpdateApplicationPage";
-import GetApp from "./pages/Miscellaneous/GetApplication";
-import ApplicationPreview from "./pages/ContentCreator/MyApps/components/ApplicationPreview";
-    //review
-import Rating from "./pages/ContentCreator/Application/components/Rating/Rating";
-    //version
-import AddMajorVersionPage from "./pages/ContentCreator/AddMajorVersion/AddMajorVersionPage";
-import AddMinorVersionPage from "./pages/ContentCreator/AddMinorVersion/AddMinorVersionPage";
-import UpdateVersionPage from "./pages/ContentCreator/UpdateVersion/UpdateVersionPage";
-import ApplicationPage from "./pages/ContentCreator/Application/ApplicationPage";
+    //Authentication & Authorisation
+    import ErrorPage from './pages/Authentication&Authorisation/ErrorPage'
+    import LogInPage from "./pages/Authentication&Authorisation/LogInPage"
+    import LogOutPage from "./pages/Authentication&Authorisation/LogOutPage"
+    //Content Creator
+    import AddApplicationPage from "./pages/ContentCreator/AddApplicationPage";
+    import AddMajorVersionPage from "./pages/ContentCreator/AddMajorVersionPage";
+    import AddMinorVersionPage from "./pages/ContentCreator/AddMinorVersionPage";
+    import AnalyticsPage from "./pages/ContentCreator/AnalyticsPage";
+    import ApplicationPage from "./pages/ContentCreator/ApplicationPage/ApplicationPage";
+    import MyAppsPage from "./pages/ContentCreator/MyAppsPage/MyAppsPage";
+    import UpdateApplicationPage from "./pages/ContentCreator/UpdateApplicationPage";
+    import UpdateVersionPage from "./pages/ContentCreator/UpdateVersionPage";
+    import HomePage from "./pages/ContentCreator/HomePage"
+    //Other
+    import AboutPage from "./pages/Other/AboutPage"
+    import ContactPage from "./pages/Other/ContactPage"
 
-
-//APP STRUCTURE
+//App Structure
 function App() {
-  return (
-        <div>
-            {/*Include multiple elements with <>*/}
+    return (
+        <div className="Html">
             <Header/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <Routes>
-                <Route path="/" element={<HomePage/>} />
-                <Route path="/logIn" element={<LogInPage/>} />
-                <Route path="/about" element={<AboutPage/>} />
-                <Route path="/contact" element={<ContactPage/>} />
-                <Route path="/creator/:id/myApps/:name/updateApplication" element={<UpdateApplicationPage />}/>
-                <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
-                <Route path="/creator/:id/myApps/:name" element={<ApplicationPage />} />
-                <Route path='/creator/:id/myApps' element={<MyAppsPage />} />
-                <Route path='/creator/:id/myApps/:name/addMinorVersion' element={<AddMinorVersionPage />} />
-                <Route path='/creator/:id/myApps/:name/addMajorVersion' element={<AddMajorVersionPage />} />
-                <Route path='/creator/:id/myApps/:name/updateVersion/:version' element={<UpdateVersionPage />} />
-                <Route path="/logOut" element={<LogOutPage/>} />
-                <Route path="/*" element={<ErrorPage />} />
-                <Route path="/creator/:id/analytics" element={<AnalyticsPage/>}/>
-
-            </Routes>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+            <div className="Body">
+                <Routes>
+                    <Route path="/" element={<HomePage/>} />
+                    <Route path="/logIn" element={<LogInPage/>} />
+                    <Route path="/about" element={<AboutPage/>} />
+                    <Route path="/contact" element={<ContactPage/>} />
+                    <Route path="/creator/:id/myApps/:name/updateApplication" element={<UpdateApplicationPage />}/>
+                    <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
+                    <Route path="/creator/:id/myApps/:name" element={<ApplicationPage />} />
+                    <Route path='/creator/:id/myApps' element={<MyAppsPage />} />
+                    <Route path='/creator/:id/myApps/:name/addMinorVersion' element={<AddMinorVersionPage />} />
+                    <Route path='/creator/:id/myApps/:name/addMajorVersion' element={<AddMajorVersionPage />} />
+                    <Route path='/creator/:id/myApps/:name/updateVersion/:version' element={<UpdateVersionPage />} />
+                    <Route path="/logOut" element={<LogOutPage/>} />
+                    <Route path="/*" element={<ErrorPage />} />
+                    <Route path="/creator/:id/analytics" element={<AnalyticsPage/>}/>
+                </Routes>
+            </div>
             <Footer/>
         </div>
     );

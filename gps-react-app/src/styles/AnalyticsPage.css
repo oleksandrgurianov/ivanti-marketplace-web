@@ -1,0 +1,4 @@
+.AppDownloads{
+    display: grid;
+    grid-template-columns: 7% 10% 30% auto;
+}

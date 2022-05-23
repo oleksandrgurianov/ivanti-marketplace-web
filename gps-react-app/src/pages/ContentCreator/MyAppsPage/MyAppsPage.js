@@ -1,10 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-
-// icons
-import { AiOutlinePlusCircle, AiOutlineSearch, AiFillCaretDown } from 'react-icons/ai'
-import MyApps from '../Application/ApplicationPage';
+import "../../../styles/MyAppsPage.css"
+import { AiOutlinePlusCircle } from 'react-icons/ai'
 import ApplicationList from "./components/ApplicationList";
 
 const MyAppsPage = () => {
@@ -23,16 +21,8 @@ const MyAppsPage = () => {
 
     const {id} = useParams();
 
-    const fakeCreator = () => {
-        setCreator({
-            firstName: "firstName",
-            lastName: "lastName"
-        })
-    }
-
     useEffect(() => {
         getCreator();
-        // fakeCreator();
     }, []);
 
     return (
@@ -50,8 +40,6 @@ const MyAppsPage = () => {
                                     Add App <AiOutlinePlusCircle />
                                 </Link>
                             </div>
-                            {/* <AiOutlineSearch />
-                            <p>Sort <AiFillCaretDown /></p> */}
                         </div>
                     </div>
                     <ApplicationList />

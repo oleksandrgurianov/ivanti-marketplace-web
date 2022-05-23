@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-import "../../../styles/ApplicationCss.css";
+import "../../styles/ApplicationCss.css";
 
 import ReactDOM from "react-dom";
 
