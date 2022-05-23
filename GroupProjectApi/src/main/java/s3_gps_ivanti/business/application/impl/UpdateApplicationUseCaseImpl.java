@@ -10,9 +10,12 @@ import s3_gps_ivanti.dto.application.UpdateApplicationRequestDTO;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.entity.Application;
 
+import javax.transaction.Transactional;
+
 @Service
 @Primary
 @RequiredArgsConstructor
+@Transactional
 public class UpdateApplicationUseCaseImpl implements UpdateApplicationUseCase {
 
     private final ApplicationRepository applicationRepository;
@@ -27,7 +30,7 @@ public class UpdateApplicationUseCaseImpl implements UpdateApplicationUseCase {
             throw new ApplicationNotFoundException();
         }
 
-        Application newApplication = ApplicationDTOConverter.ConvertToEntityForUpdate(applicationRequestDTO, application);
+        Application newApplication = ApplicationDTOConverter.convertToEntityForUpdate(applicationRequestDTO, application);
 
         applicationRepository.save(newApplication);
     }

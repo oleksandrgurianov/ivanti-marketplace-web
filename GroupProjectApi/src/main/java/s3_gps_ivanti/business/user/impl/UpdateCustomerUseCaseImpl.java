@@ -12,9 +12,12 @@ import s3_gps_ivanti.dto.user.UpdateCustomerRequestDTO;
 import s3_gps_ivanti.repository.UserRepository;
 import s3_gps_ivanti.repository.entity.User;
 
+import javax.transaction.Transactional;
+
 @Service
 @Primary
 @RequiredArgsConstructor
+@Transactional
 public class UpdateCustomerUseCaseImpl implements UpdateCustomerUseCase {
 
     private final UserRepository userRepository;
@@ -41,7 +44,7 @@ public class UpdateCustomerUseCaseImpl implements UpdateCustomerUseCase {
             throw new CustomerNotFoundException();
         }
 
-        User user = CustomerDTOConverter.ConvertToEntity(customerRequestDTO,oldCustomer);
+        User user = CustomerDTOConverter.convertToEntity(customerRequestDTO,oldCustomer);
 
         userRepository.save(user);
     }

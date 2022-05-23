@@ -10,9 +10,12 @@ import s3_gps_ivanti.dto.application.ApplicationDetailedInfoDTO;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.entity.Application;
 
+import javax.transaction.Transactional;
+
 @Service
 @Primary
 @RequiredArgsConstructor
+@Transactional
 public class GetApplicationDetailedInfoUseCaseImpl implements GetApplicationDetailedInfoUseCase {
 
     private final ApplicationRepository applicationRepository;
@@ -26,6 +29,6 @@ public class GetApplicationDetailedInfoUseCaseImpl implements GetApplicationDeta
             throw new ApplicationNotFoundException();
         }
 
-        return ApplicationDTOConverter.ConvertToApplicationDetailedInfo(application);
+        return ApplicationDTOConverter.convertToApplicationDetailedInfo(application);
     }
 }

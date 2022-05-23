@@ -12,6 +12,6 @@ public interface ApplicationRepository extends MongoRepository<Application, Stri
     @Query("{name:'?0'}")
     Application findByName(String name);
 
-    @Query("{status:true}")
-    List<Application> findByStatus();
+    @Query("{creatorID:'?0'}")
+    List<Application> findAllByCreatorID(String creatorID);
 }

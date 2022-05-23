@@ -8,9 +8,12 @@ import s3_gps_ivanti.business.exception.ApplicationNotFoundException;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.entity.Application;
 
+import javax.transaction.Transactional;
+
 @Service
 @Primary
 @RequiredArgsConstructor
+@Transactional
 public class DeleteApplicationUseCaseImpl implements DeleteApplicationUseCase {
 
     private final ApplicationRepository applicationRepository;

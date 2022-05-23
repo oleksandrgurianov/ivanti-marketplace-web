@@ -18,9 +18,9 @@ public class ApplicationDTOConverter {
                 .build();
     }
 
-    public static Application ConvertToEntity(CreateApplicationRequestDTO application) {
+    public static Application convertToEntity(CreateApplicationRequestDTO application) {
         return Application.builder()
-                .id(RandomStringUtils.randomAlphabetic(25))
+                .id(RandomStringUtils.randomAlphanumeric(25))
                 .creatorID(application.getCreatorId())
                 .name(application.getName())
                 .description(application.getDescription())
@@ -33,45 +33,35 @@ public class ApplicationDTOConverter {
                 .build();
     }
 
-    public static List<ApplicationBasicInfoDTO> ConvertListToDTO(List<Application> applications) {
+    public static List<ApplicationBasicInfoDTO> convertListToDTO(List<Application> applications) {
 
         List<ApplicationBasicInfoDTO> result = new ArrayList<>();
 
         for (Application app: applications) {
-            result.add(ApplicationDTOConverter.ConvertToDTO(app));
+            result.add(ApplicationDTOConverter.convertToDTO(app));
         }
 
         return result;
     }
 
-    private static ApplicationBasicInfoDTO ConvertToDTO(Application app) {
+    private static ApplicationBasicInfoDTO convertToDTO(Application app) {
         return ApplicationBasicInfoDTO.builder()
                 .name(app.getName())
                 .icon(app.getIcon())
                 .build();
     }
 
-    public static ApplicationDetailedInfoDTO ConvertToApplicationDetailedInfo(Application application) {
+    public static ApplicationDetailedInfoDTO convertToApplicationDetailedInfo(Application application) {
 
         int totalDownloads = 0;
         for (Version v : application.getVersions()) {
             totalDownloads += v.getTotalDownloads();
         }
 
-        //TODO  Not use this works
-        int totalStart = application.getRating().getOneStar()
-        + (application.getRating().getTwoStar()*2)
-        + (application.getRating().getThreeStar()*3)
-        + (application.getRating().getFourStar()*4)
-        + (application.getRating().getFiveStar()*5);
+        //TODO Mohammad make this
 
-        int totalRating = application.getRating().getOneStar()
-                + application.getRating().getTwoStar()
-                + application.getRating().getThreeStar()
-                + application.getRating().getFourStar()
-                + application.getRating().getFiveStar();
+        int avgRating = 0;
 
-        int avgRating = totalStart/totalRating ;
 
         return ApplicationDetailedInfoDTO.builder()
                 .name(application.getName())
@@ -85,7 +75,7 @@ public class ApplicationDTOConverter {
                 .build();
     }
 
-    public static Application ConvertToEntityForUpdate(UpdateApplicationRequestDTO app, Application application) {
+    public static Application convertToEntityForUpdate(UpdateApplicationRequestDTO app, Application application) {
         return Application.builder()
                 .id(application.getId())
                 .creatorID(application.getCreatorID())

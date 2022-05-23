@@ -1,8 +1,7 @@
 package s3_gps_ivanti.business.user;
 
-import s3_gps_ivanti.repository.entity.User;
+import s3_gps_ivanti.dto.user.CustomerDetailedInfoDTO;
 
 public interface GetCustomerUseCase {
-
-    User getCustomer(String username);
+    CustomerDetailedInfoDTO getCustomer(String username);
 }

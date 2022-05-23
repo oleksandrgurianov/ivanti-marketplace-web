@@ -18,20 +18,20 @@ public class ReviewDTOConverter {
         List<ReviewDTO> result = new ArrayList<>();
 
         for (Review r:reviews) {
-            result.add(ReviewDTOConverter.ConvertToDTO(r));
+            result.add(ReviewDTOConverter.convertToDTO(r));
         }
 
         return result;
     }
 
-    private static ReviewDTO ConvertToDTO(Review r) {
+    private static ReviewDTO convertToDTO(Review r) {
 
         return ReviewDTO.builder()
 
                 .build();
     }
 
-    public static Review ConvertToEntityCreate(CreateReviewRequestDTO review) {
+    public static Review convertToEntityCreate(CreateReviewRequestDTO review) {
         return Review.builder()
                 .customer(new User(review.getCustomerID()))
                 .rating(review.getRating())

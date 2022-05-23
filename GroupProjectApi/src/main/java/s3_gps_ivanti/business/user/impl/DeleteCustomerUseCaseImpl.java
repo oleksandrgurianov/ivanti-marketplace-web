@@ -7,9 +7,12 @@ import s3_gps_ivanti.business.exception.CustomerNotFoundException;
 import s3_gps_ivanti.business.user.DeleteCustomerUseCase;
 import s3_gps_ivanti.repository.UserRepository;
 
+import javax.transaction.Transactional;
+
 @Service
 @Primary
 @RequiredArgsConstructor
+@Transactional
 public class DeleteCustomerUseCaseImpl implements DeleteCustomerUseCase {
 
     private final UserRepository userRepository;

@@ -25,10 +25,5 @@ public class Application {
     private List<String> screenshots;
     private boolean status;
     private List<Version> versions;
-    private List<Review> reviews;
     private RatingAnalytics rating;
-
-    public Application(String id) {
-        this.id = id;
-    }
 }

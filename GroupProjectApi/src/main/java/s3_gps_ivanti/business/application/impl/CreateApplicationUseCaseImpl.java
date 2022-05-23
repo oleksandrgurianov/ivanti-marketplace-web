@@ -11,10 +11,13 @@ import s3_gps_ivanti.dto.application.CreateApplicationResponseDTO;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.entity.Application;
 
+import javax.transaction.Transactional;
+
 
 @Service
 @Primary
 @RequiredArgsConstructor
+@Transactional
 public class CreateApplicationUseCaseImpl implements CreateApplicationUseCase {
 
     private final ApplicationRepository applicationRepository;
@@ -26,7 +29,7 @@ public class CreateApplicationUseCaseImpl implements CreateApplicationUseCase {
             throw new ApplicationNameNotUnique();
         }
 
-        applicationRepository.save(ApplicationDTOConverter.ConvertToEntity(applicationRequestDTO));
+        applicationRepository.save(ApplicationDTOConverter.convertToEntity(applicationRequestDTO));
 
         Application newApplication = applicationRepository.findByName(applicationRequestDTO.getName());
 

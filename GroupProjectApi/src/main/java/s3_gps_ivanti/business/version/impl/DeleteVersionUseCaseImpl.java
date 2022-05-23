@@ -9,9 +9,12 @@ import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.entity.Application;
 import s3_gps_ivanti.repository.entity.Version;
 
+import javax.transaction.Transactional;
+
 @Service
 @Primary
 @RequiredArgsConstructor
+@Transactional
 public class DeleteVersionUseCaseImpl implements DeleteVersionUseCase {
 
     private final ApplicationRepository applicationRepository;

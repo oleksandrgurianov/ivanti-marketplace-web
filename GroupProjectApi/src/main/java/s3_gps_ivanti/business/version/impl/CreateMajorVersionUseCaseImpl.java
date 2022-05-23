@@ -7,22 +7,24 @@ import s3_gps_ivanti.business.dtoConvertor.VersionDTOConverter;
 import s3_gps_ivanti.business.exception.ApplicationNotFoundException;
 import s3_gps_ivanti.business.exception.VersionNumberIncorrectException;
 import s3_gps_ivanti.business.version.CreateMajorVersionUseCase;
-import s3_gps_ivanti.business.version.GetLatestVersion;
+import s3_gps_ivanti.business.version.GetLatestVersionUseCase;
 import s3_gps_ivanti.dto.version.CreateMajorVersionRequestDTO;
 import s3_gps_ivanti.dto.version.CreateMajorVersionResponseDTO;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.entity.Application;
 import s3_gps_ivanti.repository.entity.Version;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @Primary
 @RequiredArgsConstructor
+@Transactional
 public class CreateMajorVersionUseCaseImpl implements CreateMajorVersionUseCase {
 
     private final ApplicationRepository applicationRepository;
-    private final GetLatestVersion getLatestVersion;
+    private final GetLatestVersionUseCase getLatestVersion;
 
     @Override
     public CreateMajorVersionResponseDTO createVersion(CreateMajorVersionRequestDTO versionRequestDTO) {

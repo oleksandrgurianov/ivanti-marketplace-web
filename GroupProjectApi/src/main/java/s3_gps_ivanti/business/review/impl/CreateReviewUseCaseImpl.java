@@ -11,9 +11,12 @@ import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.entity.Application;
 import s3_gps_ivanti.repository.entity.Review;
 
+import javax.transaction.Transactional;
+
 @Service
 @Primary
 @RequiredArgsConstructor
+@Transactional
 public class CreateReviewUseCaseImpl implements CreateReviewUseCase {
 
     private final ApplicationRepository applicationRepository;
@@ -26,7 +29,7 @@ public class CreateReviewUseCaseImpl implements CreateReviewUseCase {
            throw new ApplicationNotFoundException();
        }
 
-       application.getReviews().add(ReviewDTOConverter.ConvertToEntityCreate(review));
+       application.getReviews().add(ReviewDTOConverter.convertToEntityCreate(review));
 
        applicationRepository.save(application);
     }
