@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -16,9 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @Document("Application")
 public class Application {
-
-    @Transient
-    public static final String SEQUENCE_NAME = "applications_sequence";
 
     @Id
     private String id;
@@ -31,4 +27,8 @@ public class Application {
     private List<Version> versions;
     private List<Review> reviews;
     private RatingAnalytics rating;
+
+    public Application(String id) {
+        this.id = id;
+    }
 }

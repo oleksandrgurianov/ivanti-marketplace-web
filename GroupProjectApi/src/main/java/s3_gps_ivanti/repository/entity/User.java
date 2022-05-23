@@ -21,5 +21,9 @@ public class User {
     private String password;
     private List<String> roles;
     private String permission;
-    private List<String> applicationID;
+    private List<Application> applicationID;
+
+    public User(String id){
+        this.id = id;
+    }
 }

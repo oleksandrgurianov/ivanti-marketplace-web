@@ -1,9 +1,12 @@
 package s3_gps_ivanti.business.dtoConvertor;
 
 import lombok.RequiredArgsConstructor;
+import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
 import s3_gps_ivanti.dto.review.ReviewDTO;
 import s3_gps_ivanti.repository.UserRepository;
+import s3_gps_ivanti.repository.entity.RatingAnalytics;
 import s3_gps_ivanti.repository.entity.Review;
+import s3_gps_ivanti.repository.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +28,16 @@ public class ReviewDTOConverter {
 
         return ReviewDTO.builder()
 
+                .build();
+    }
+
+    public static Review ConvertToEntityCreate(CreateReviewRequestDTO review) {
+        return Review.builder()
+                .customer(new User(review.getCustomerID()))
+                .rating(review.getRating())
+                .title(review.getTitle())
+                .description(review.getDescription())
+                .response(null)
                 .build();
     }
 }

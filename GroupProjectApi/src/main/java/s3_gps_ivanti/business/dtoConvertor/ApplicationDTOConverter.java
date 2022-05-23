@@ -20,7 +20,7 @@ public class ApplicationDTOConverter {
 
     public static Application ConvertToEntity(CreateApplicationRequestDTO application) {
         return Application.builder()
-                .id(RandomStringUtils.randomAlphabetic(23))
+                .id(RandomStringUtils.randomAlphabetic(25))
                 .creatorID(application.getCreatorId())
                 .name(application.getName())
                 .description(application.getDescription())

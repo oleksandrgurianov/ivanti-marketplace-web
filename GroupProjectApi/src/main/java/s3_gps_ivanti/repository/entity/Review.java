@@ -13,9 +13,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Document("Review")
 public class Review {
-    private String id;
-    private String customerID;
-    private String rating;
+    private User customer;
+    private int rating;
     private String title;
     private String description;
     private Response response;
