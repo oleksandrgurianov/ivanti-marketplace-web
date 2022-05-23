@@ -1,3 +1,4 @@
+/*
 import React from "react"
 import Item from "./Item";
 
@@ -15,4 +16,5 @@ class List extends React.Component {
   }
 }
 
-export default List
+export default List;
+*/

@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../styles/ErrorPage.css";
+import "../../styles/Authentication&Authorisation/ErrorPage.css";
 import error from "../../images/404.gif";
 import {Link} from "react-router-dom";
 

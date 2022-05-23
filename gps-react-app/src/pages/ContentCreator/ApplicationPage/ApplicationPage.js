@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { FaStar } from 'react-icons/fa'
-import '../../../styles/AppDetails.css'
+import '../../../styles/ContentCreator/ApplicationPage.css'
 
 // components
 import axios from 'axios'

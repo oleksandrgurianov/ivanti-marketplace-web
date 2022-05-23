@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "../../styles/ApplicationCss.css";
+import "../../styles/ContentCreator/AddAndUpdateApplicationPage.css";
 import axios from 'axios';
 import ReactDOM from "react-dom";
 import {useParams, useNavigate, Link} from "react-router-dom";

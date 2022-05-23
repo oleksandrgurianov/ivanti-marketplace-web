@@ -1,6 +1,7 @@
-import React from 'react'
+/*
+import React from "react";
 
-function ContactPage() {
+function AboutPage (){
     return (
         <div
             style={{
@@ -10,9 +11,10 @@ function ContactPage() {
                 height: '100vh'
             }}
         >
-           <h1>Contact Us</h1>
+            <h1>Ivanti AppMarket - by Group OnePointTwo.</h1>
         </div>
     );
 };
 
-export default ContactPage;
+export default AboutPage;
+*/

@@ -3,20 +3,20 @@
     margin: 0;
 }
 
-.Body {
-    flex: 1;
-    min-height: 0;
-    margin-top: 44px;
-    margin-left: 17%;
-    margin-right: 17%;
-    padding-bottom: 7rem;
-}
-
 .Html {
     display: flex;
     flex-direction: column;
     position: relative;
     min-height: 100vh;
+}
+
+.Body {
+    flex: 1;
+    min-height: 0;
+    margin-top: 100px;
+    margin-left: 17%;
+    margin-right: 17%;
+    padding-bottom: 7rem;
 }
 
 a {

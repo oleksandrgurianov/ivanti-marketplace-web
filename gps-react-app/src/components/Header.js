@@ -1,10 +1,11 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 import logo from "../images/ivanti-marketplace-logo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobe, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
 function Navbar() {
+
     function showContent() {
         document.getElementById("myDropdown").classList.toggle("show");
     }

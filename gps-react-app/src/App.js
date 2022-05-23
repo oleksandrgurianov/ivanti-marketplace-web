@@ -24,8 +24,8 @@ import Footer from './components/Footer';
     import UpdateVersionPage from "./pages/ContentCreator/UpdateVersionPage";
     import HomePage from "./pages/ContentCreator/HomePage"
     //Other
-    import AboutPage from "./pages/Other/AboutPage"
-    import ContactPage from "./pages/Other/ContactPage"
+    import AboutPage from "./pages/Miscellaneous/AboutPage"
+    import ContactPage from "./pages/Miscellaneous/ContactPage"
 
 //App Structure
 function App() {

@@ -21,7 +21,7 @@ In case of doubt use Misc! (So if we need to reorganize again we know where to c
 
 -AppCatalogue:
     Application.js
-    ApplicationList.js
+    MyAppsPage.css
     ApplicationPage.js
 
 -Creator:

@@ -3,7 +3,7 @@ import {registerables, Chart} from 'chart.js';
 import {useEffect, useState} from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom'
-import "../../styles/AnalyticsPage.css";
+import "../../styles/ContentCreator/AnalyticsPage.css";
 
 function AnalyticsPage() {
     Chart.register(...registerables)
