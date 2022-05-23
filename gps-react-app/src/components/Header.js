@@ -2,8 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import logo from "../images/ivanti-marketplace-logo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGlobe } from '@fortawesome/free-solid-svg-icons'
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { faGlobe, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
 function Navbar() {
     function showContent() {

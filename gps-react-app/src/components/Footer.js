@@ -1,72 +1,44 @@
 import React from "react"
 import logo from "../images/ivanti-logo.svg";
-import facebook from "../images/facebook-logo.svg";
-import linkedin from "../images/linkedin-logo.svg";
-import twitter from "../images/twitter-logo.svg";
-import youtube from "../images/youtube-logo.svg";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faLinkedinIn, faTwitter, faYoutube  } from '@fortawesome/free-brands-svg-icons'
 
 function Footer() {
     return (
-        <footer className="footer">
-
-            { /*
-            <div className="footer-container">
-                <div className="row">
-                    <div className="menu">
-                        <nav className="row">
-                            <div className="menu-col">
-                                <div className="menu-item">
-                                    <a href="https://www.ivanti.com/webinars">webinars</a>
-                                </div>
-                                <div className="menu-item">
-                                    <a href="https://www.ivanti.com/company/events">events</a>
-                                </div>
-                                <div className="menu-item">
-                                    <a href="https://www.ivanti.com/blog">blog</a>
-                                </div>
-                            </div>
-                            <div className="menu-col">
-                                <div className="menu-item">
-                                    <a href="https://www.ivanti.com/company/careers">careers</a>
-                                </div>
-                                <div className="menu-item">
-                                    <a href="https://www.ivanti.com/company/contacts">contact us</a>
-                                </div>
-                                <div className="menu-item">
-                                    <a href="https://www.ivanti.com/company/legal">Privacy & legal</a>
-                                </div>
-                            </div>
-                            <div className="menu-col">
-                                <div className="menu-item">
-                                    <a href="https://www.ivanti.com/partners">partners</a>
-                                </div>
-                                <div className="menu-item">
-                                    <a href="https://www.ivanti.com/company/press-releases">press releases</a>
-                                </div>
-                                <div className="menu-item">
-                                    <a href="https://www.ivanti.com/resources/downloads">downloads</a>
-                                </div>
-                            </div>
-                        </nav>
-                    </div>
+        <footer>
+            <div className={"row"}>
+                <img src={logo} height={"44px"} alt={"ivanti logo"}/>
+                <div className={"socials"}>
+                    <a href="https://www.linkedin.com/company/ivanti">
+                        <FontAwesomeIcon className="socials-icon" icon={faLinkedinIn} />
+                    </a>
+                    <a href="https://www.facebook.com/GoIvanti">
+                        <FontAwesomeIcon className="socials-icon" icon={faFacebookF} />
+                    </a>
+                    <a href="https://www.youtube.com/c/Ivanti">
+                        <FontAwesomeIcon className="socials-icon" icon={faYoutube} />
+                    </a>
+                    <a href="https://twitter.com/IvantiBenelux">
+                        <FontAwesomeIcon className="socials-icon" icon={faTwitter} />
+                    </a>
                 </div>
+                <p className={"copyright"}>Copyright &copy; 2022 Ivanti. All rights reserved.</p>
             </div>
-            */ }
-            <img src={logo} height={"38px"} alt={"ivanti logo"}/>
-            <img src={linkedin} height={"15px"} alt={"linkedin logo"}/>
-            <img src={facebook} height={"15px"} alt={"facebook logo"}/>
-            <img src={youtube} height={"15px"} alt={"youtube logo"}/>
-            <img src={twitter} height={"15px"} alt={"twitter logo"}/>
-            <p className="copyright">Copyright &copy 2022 Ivanti. All rights reserved.</p>
-            <p>Webinar</p>
-            <p>Events</p>
-            <p>Blog</p>
-            <p>Careers</p>
-            <p>Contact Us</p>
-            <p>Privacy & Legal</p>
-            <p>Partners</p>
-            <p>Press Releases</p>
-            <p>Downloads</p>
+            <div className={"row"}>
+                <a href="https://www.ivanti.com/partners">Partners</a>
+                <a href="https://www.ivanti.com/company/press-releases">Press Releases</a>
+                <a href="https://www.ivanti.com/resources/downloads">Downloads</a>
+            </div>
+            <div className={"row"}>
+                <a href="https://www.ivanti.com/company/careers">Careers</a>
+                <a href="https://www.ivanti.com/company/contacts">Contact Us</a>
+                <a href="https://www.ivanti.com/company/legal">Privacy & Legal</a>
+            </div>
+            <div className={"row"}>
+                <a href="https://www.ivanti.com/webinars">Webinars</a>
+                <a href="https://www.ivanti.com/company/events">Events</a>
+                <a href="https://www.ivanti.com/blog">Blog</a>
+            </div>
         </footer>
     )
 }
