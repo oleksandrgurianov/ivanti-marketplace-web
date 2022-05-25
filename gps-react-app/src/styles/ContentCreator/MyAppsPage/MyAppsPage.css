@@ -49,7 +49,7 @@
 
 .dropdown {
     display: grid;
-    grid-template-areas: "select dropdown-icon";
+    grid-template-areas: "select .dropdown-icon";
     align-items: center;
     height: 35px;
     min-width: 15ch;

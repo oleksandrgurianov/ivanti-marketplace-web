@@ -4,7 +4,7 @@ import { FaStar } from 'react-icons/fa'
 import '../../../styles/ContentCreator/ApplicationPage.css'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {faCaretDown, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import $ from 'jquery';
 
 const ApplicationPage = () => {
@@ -118,33 +118,29 @@ const ApplicationPage = () => {
 
     return (
         <div className='app'>
-
-            {/*
-                <div className='sidebar'>
-                    <h4>Version</h4>
-                    <select className={"versions"} value={version} onChange={e=>setVersion(e.target.value)}>
-                        { application.versions != null &&
-                            application.versions.map((version) => (
-                                <option>{parseFloat(version.number).toFixed(1)}</option>
-                        ))}
-                    </select>
-                    <div className='buttons-left' >
-                        <div className="button-left">
-                            <Link  to={`/creator/1/myApps/${application.name}/addMinorVersion`}>Add minor version</Link> | <Link to={`/creator/1/myApps/${application.name}/addMajorVersion`}>Add major version</Link>
-                        </div>
-                    </div>
-                    <h4>Category:</h4>
-                    <div className='categories'>
-                        <a href='src/pages/AppCatalogue/index'>Utilities</a>
-                    </div>
-                </div>
-            */}
-
             <div className={"app-controls"}>
                 <img className='icon' alt='application logo' src={application.icon}/>
                 <h1>{application.name}</h1>
+                <Link className="category" to={''}>Utilities</Link>
                 <Link className="edit-button" to={`/creator/1/myApps/${application.name}/updateApplication`}>Edit</Link>
                 <Link className="delete-button" to={`/creator/1/myApps`} onClick={deleteApplication}>Delete</Link>
+            </div>
+            <hr/>
+            <div className='app-version'>
+                <h2>Version</h2>
+                <div className={"version-content"}>
+                    <dropdown className={"version-selector"}>
+                        <select value={version} onChange={e=>setVersion(e.target.value)}>
+                            { application.versions != null &&
+                                application.versions.map((version) => (
+                                    <option>{parseFloat(version.number).toFixed(1)}</option>
+                                ))}
+                        </select>
+                        <FontAwesomeIcon className="dropdown-icon" icon={faCaretDown} />
+                    </dropdown>
+                    <Link className="version-button" to={`/creator/1/myApps/${application.name}/addMinorVersion`}>Add minor version</Link>
+                    <Link className="version-button" to={`/creator/1/myApps/${application.name}/addMajorVersion`}>Add major version</Link>
+                </div>
             </div>
             <hr/>
             <div className='menu-wrapper'>

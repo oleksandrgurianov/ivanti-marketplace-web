@@ -23,7 +23,23 @@
     margin-left: 10px;
 }
 
-.edit-button, .delete-button {
+.category {
+    height: 33.6px;
+    width: auto;
+    margin-left: 10px;
+    text-align: center;
+    color: darkgrey;
+    background-color: inherit;
+    border: 1.2px solid darkgrey;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 50px;
+    line-height: 33.6px;
+    padding: 0 15px;
+    transition: 0.3s;
+}
+
+.edit-button, .delete-button, .version-button {
     height: 35px;
     width: 125px;
     margin-left: 10px;
@@ -35,7 +51,7 @@
     transition: 0.3s;
 }
 
-.edit-button:hover, .delete-button:hover {
+.category:hover, .edit-button:hover, .delete-button:hover, .version-button:hover {
     opacity: 50%;
 }
 
@@ -53,8 +69,53 @@
     margin: 10px 0;
 }
 
-.app hr:nth-child(2) {
-    margin-bottom: 30px;
+.version-content {
+    display: flex;
+    align-items: center;
+}
+
+.version-selector {
+    display: grid;
+    grid-template-areas: "select .dropdown-icon";
+    align-items: center;
+    height: 33px;
+    width: 43px;
+    border: 1px solid darkgrey;
+    border-radius: 50px;
+    background-color: inherit;
+    padding: 0 10px 0 15px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1.1;
+}
+
+.version-selector select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    height: 33px;
+    width: 100%;
+    font-size: inherit;
+    font-weight: inherit;
+    color: darkgrey;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+    padding-right: 5px;
+}
+
+.version-selector .dropdown-icon {
+    grid-area: dropdown-icon;
+    color: darkgrey;
+    padding: 0;
+}
+
+.version-button {
+    height: 35px;
+    width: auto;
+    background-color: darkgrey;
+    padding: 0 15px;
 }
 
 .menu-wrapper {

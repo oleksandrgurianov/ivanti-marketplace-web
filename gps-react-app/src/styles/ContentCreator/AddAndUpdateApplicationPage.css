@@ -11,6 +11,7 @@
         grid-column-gap: 10px;
     }
 }
+
 input[type="file"] {
     display: none;
 }
@@ -19,6 +20,7 @@ input[type="file"] {
 .buttonsLeft{
     float: right;
 }
+
 .DoneButton {
     margin-left: 15px;
     transition: 0.5s;
