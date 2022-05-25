@@ -13,10 +13,8 @@
 .Body {
     flex: 1;
     min-height: 0;
-    margin-top: 100px;
-    margin-left: 17%;
-    margin-right: 17%;
     padding-bottom: 7rem;
+    margin: 100px 17% 15px;
 }
 
 a {

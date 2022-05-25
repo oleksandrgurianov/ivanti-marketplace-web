@@ -50,6 +50,7 @@ function Rating() {
             }]
         }
     }
+
     return (
         <div>
             <h2>{ratingArray.rating.averageStar}</h2>
