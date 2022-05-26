@@ -2,7 +2,9 @@ import React, {useState} from "react";
 import "../../styles/ContentCreator/AddAndUpdateApplicationPage.css";
 import axios from 'axios';
 import ReactDOM from "react-dom";
-import {useParams, useNavigate, Link} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCirclePlus, faPen} from "@fortawesome/free-solid-svg-icons";
 
 function AddApplicationPage() {
 
@@ -101,7 +103,7 @@ function AddApplicationPage() {
         let ChangeView = includeID.replace("/view?usp=drivesdk", "");
 
         setIcon(ChangeView);
-    };
+    }
     const changeName = (e) => {
         setName(e.target.value);
     };
@@ -137,16 +139,16 @@ function AddApplicationPage() {
         let ChangeView = includeID.replace("/view?usp=drivesdk", "");
 
         setApp(ChangeView);
-    };
+    }
 
     //Display images
     function LoadImages() {
         return (
-            <div id="images">
+            <div id="images" className={"screenshots-list"}>
                 {arrayImages.map(image => (
-                    <div>
-                        <img className={"image"} src={image}/>
-                        <button className={"RemoveImage"} value={image} onClick={RemoveImage}>Delete</button>
+                    <div className={"screenshot"}>
+                        <img src={image} alt={"application screenshot"}/>
+                        <button className={"delete-screenshot-button"} type="button" value={image} onClick={RemoveImage}>-</button>
                     </div>
                 ))}
             </div>
@@ -195,7 +197,7 @@ function AddApplicationPage() {
             alert(checkInput);}
         else{
             SendRequest();
-            let path = `/creator/` + id;
+            let path = `/creator/${id}/myApps`;
             navigate(path);
         }
     }
@@ -203,69 +205,50 @@ function AddApplicationPage() {
 
     return (
         <div className="container">
-            <span id={"error"}></span>
-
-            <div>
-                <img className={"icon"} src={icon}/>
-                <h1 className={"name"}>{name}</h1>
-                <div className={"buttonsLeft"}>
-                    <button className={"PreviewButton"}>Preview</button>
-                    <button className={"DoneButton"} onClick={SaveApp}>Done</button>
+            <span id={"error"}/>
+            <div className={"app-controls"}>
+                <img className={"icon"} src={icon} alt={"application icon"}/>
+                <h1>{name}</h1>
+                <button className={"preview-button"}>Preview</button>
+                <button className={"done-button"} onClick={SaveApp}>Done</button>
+            </div>
+            <hr/>
+            <div className={"app-icon"}>
+                <h2>Icon:</h2>
+                <div className={"icon-controls"}>
+                    <img src={icon} alt={"application icon"}/>
+                    <label htmlFor="editIconButton"><FontAwesomeIcon className="edit-icon" icon={faPen} /></label>
+                    <input id="editIconButton" type="file" accept="image/jpeg, image/png"
+                           onChange={(e) => SaveArchiveIcon(e)}/>
+                    <p className={"loading-icon"}>{loadingIcon}</p>
                 </div>
             </div>
-            <div>
-                <hr className={"topLine"}/>
+            <hr/>
+            <div className={"app-name"}>
+                <h2>Name:</h2>
+                <input type="text" value={name} placeholder={"Type here..."} onChange={changeName}/>
             </div>
-            <div>
-                <div className={"basic_Info"}>
-                    <h3 className={"IconLabel"}>Icon:</h3>
-                    <img className={"BigIcon"} src={icon}/>
-                    <label htmlFor="Add-icon" className="Add-Icon">
-                        <i></i> Add Icon
-                    </label>
-                    <input id="Add-icon"  className={"addIconButton"} type="file" accept="image/jpeg, image/png" text={"Add icon"} onChange={(e) => SaveArchiveIcon(e)}/>
-                    <p className={"IconLoading"}> {loadingIcon} </p>
+            <hr/>
+            <div className="app-screenshots">
+                <div className={"screenshots-header"}>
+                    <h2>Screenshots:</h2>
+                    <label htmlFor="addScreenshot"><FontAwesomeIcon className="add-screenshot-icon" icon={faCirclePlus} /></label>
+                    <input id={"addScreenshot"} type="file" accept="image/jpeg, image/png" onChange={(e) => SaveArchiveImage(e)}/>
+                    <p className={"loading-screenshot"}>{loadingImage}</p>
                 </div>
-                <hr className={"line"}/>
-                <div className={"basic_Info"}>
-                    <h3 className={"nameLabel"}>Name: </h3>
-                    <input className={"InputTitle"} type="text" value={name} onChange={changeName}/>
-                </div>
-
-                <hr className={"line"}/>
+                <LoadImages/>
             </div>
-
-            <div className="add-Screenshots">
-                <h3 className={"screenshotLabel"}>Screenshots:</h3>
-                <label htmlFor="Add-screenshot" className="Add-screenshot">
-                    <i></i> Add new
-                </label>
-                <input id={"Add-screenshot"} type="file" accept="image/jpeg, image/png" onChange={(e) => SaveArchiveImage(e)}/>
-                <p className={"ScreenshotLoading"}> {loadingImage} </p>
+            <hr/>
+            <div className={"app-description"}>
+                <h2>Description:</h2>
+                <textarea className={"description-field"} value={description} onChange={changeDescription}/>
             </div>
-
-            <LoadImages/>
-
-            <div>
-                <hr className={"line"}/>
-            </div>
-
-            <div>
-                <h3 className={"AppLabel"} >App:</h3>
-                <label htmlFor="Add-app" className="Add-app">
-                    <i></i> Add app
-                </label>
-                <input id={"Add-app"} className={"addAppButton"} type="file" accept="application/zip" onChange={(e) => SaveArchiveApp(e)}/>
+            <hr/>
+            <div className={"app-file"}>
+                <h2>File:</h2>
+                <label htmlFor="addFile"><FontAwesomeIcon className="add-file-icon" icon={faCirclePlus} /></label>
+                <input id={"addFile"} type="file" accept="application/zip" onChange={(e) => SaveArchiveApp(e)}/>
                 <p className={"AppLoading"}> {loadingApp} </p>
-            </div>
-
-            <div>
-                <hr className={"line"}/>
-            </div>
-
-            <div>
-                <h3 className={"DescriptionText"}>Details:</h3>
-                <textarea className={"Description"} type="textarea" value={description} onChange={changeDescription}/>
             </div>
         </div>
     );

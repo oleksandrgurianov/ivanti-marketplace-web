@@ -41,7 +41,7 @@ input[type="file"] {
     border: none;
 }
 
-.preview-button:hover, .done-button:hover, .icon-controls label:hover, .screenshots-header label:hover, .delete-screenshot-button:hover {
+.preview-button:hover, .done-button:hover, .icon-controls label:hover, .screenshots-header label:hover, .delete-screenshot-button:hover, .app-file label:hover {
     opacity: 50%;
 }
 
@@ -127,17 +127,17 @@ label .edit-icon {
     border-radius: 50px;
 }
 
-.screenshots-header {
+.screenshots-header, .app-file {
     display: flex;
     align-items: flex-end;
 }
 
-.screenshots-header label {
+.screenshots-header label, .app-file label {
     cursor: pointer;
     transition: 0.3s;
 }
 
-.add-screenshot-icon {
+.add-screenshot-icon, .add-file-icon {
     height: 25px;
     color: royalblue;
 }
@@ -150,14 +150,13 @@ label .edit-icon {
 .screenshots-list {
     display: flex;
     flex-wrap: wrap;
-    margin: -5px -15px -15px 0;
 }
 
 .screenshot {
     position: relative;
     height: 300px;
     width: 30em;
-    margin: 0 15px 15px 0;
+    margin: 10px 15px 0 0;
 }
 
 .screenshot img {
@@ -186,7 +185,7 @@ label .edit-icon {
 }
 
 .description-field {
-    width: 100%;
+    width: calc(100% - 30px);
     margin-top: 10px;
     padding: 15px 15px 100px 15px;
     background-color: #f2f2f2;

@@ -226,8 +226,8 @@ function UpdateApplicationPage() {
                         <h2>Screenshots:</h2>
                         <label htmlFor="addScreenshot"><FontAwesomeIcon className="add-screenshot-icon" icon={faCirclePlus} /></label>
                         <input id={"addScreenshot"} type="file" accept="image/jpeg, image/png" onChange={(e) => SaveArchiveImage(e)}/>
+                        <p className={"loading-screenshot"}>{loadingImage}</p>
                     </div>
-                    <p className={"loading-screenshot"}>{loadingImage}</p>
                     <LoadImages/>
                 </div>
                 <hr/>
