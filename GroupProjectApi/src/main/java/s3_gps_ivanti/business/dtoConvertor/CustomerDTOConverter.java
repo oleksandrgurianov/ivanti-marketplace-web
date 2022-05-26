@@ -1,11 +1,10 @@
-package s3_gps_ivanti.business.dtoConvertor;
+package s3_gps_ivanti.business.dtoconvertor;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import s3_gps_ivanti.dto.user.*;
 import s3_gps_ivanti.repository.entity.User;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class CustomerDTOConverter {
@@ -18,7 +17,6 @@ public class CustomerDTOConverter {
                 .password(customerRequestDTO.getPassword())
                 .roles(List.of("Customer"))
                 .permission("Customer")
-                .applicationID(Collections.emptyList())
                 .build();
     }
     public static User convertToEntity(UpdateCustomerRequestDTO customerRequestDTO, User oldCustomer) {
@@ -29,13 +27,18 @@ public class CustomerDTOConverter {
                 .password(customerRequestDTO.getPassword())
                 .roles(oldCustomer.getRoles())
                 .permission(oldCustomer.getPermission())
-                .applicationID(oldCustomer.getApplicationID())
                 .build();
     }
     private static CustomerBasicInfoDTO convertToDTO(User user) {
         return CustomerBasicInfoDTO.builder()
                 .username(user.getUsername())
                 .email(user.getEmail())
+                .build();
+    }
+    public static CustomerSmallDetailDTO convertToSmallDetailDTO(User user) {
+        return CustomerSmallDetailDTO.builder()
+                .id(user.getId())
+                .username(user.getUsername())
                 .build();
     }
     public static List<CustomerBasicInfoDTO> convertToListDTO(List<User> all) {
@@ -57,7 +60,6 @@ public class CustomerDTOConverter {
                 .username(result.getUsername())
                 .email(result.getEmail())
                 .permission(result.getPermission())
-                .applicationID(ApplicationDTOConverter.convertListToDTO(result.getApplicationID()))
                 .build();
     }
 }

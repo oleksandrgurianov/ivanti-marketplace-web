@@ -5,7 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.List;
 
@@ -26,4 +28,8 @@ public class Application {
     private boolean status;
     private List<Version> versions;
     private RatingAnalytics rating;
+
+    @ReadOnlyProperty
+    @DocumentReference(lookup="{'applicationId':?#{#self._id} }")
+    private List<Review> reviews;
 }

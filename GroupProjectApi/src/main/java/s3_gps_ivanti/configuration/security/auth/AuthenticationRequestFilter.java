@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import s3_gps_ivanti.business.Login.AccessTokenDecoder;
+import s3_gps_ivanti.business.login.AccessTokenDecoder;
 import s3_gps_ivanti.business.exception.InvalidAccessTokenException;
 import s3_gps_ivanti.dto.Login.AccessTokenDTO;
 

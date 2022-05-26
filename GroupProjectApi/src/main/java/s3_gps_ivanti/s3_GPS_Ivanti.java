@@ -17,9 +17,11 @@ import java.util.List;
 public class s3_GPS_Ivanti implements CommandLineRunner {
 
 	@Autowired
-	UserRepository userRepo;
+	UserRepository userRepository;
 	@Autowired
 	ApplicationRepository applicationRepository;
+	@Autowired
+	ReviewRepository reviewRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(s3_GPS_Ivanti.class, args);

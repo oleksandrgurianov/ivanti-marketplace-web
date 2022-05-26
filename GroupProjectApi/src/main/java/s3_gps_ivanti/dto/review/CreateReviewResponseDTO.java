@@ -10,9 +10,6 @@ import org.bson.types.ObjectId;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateReviewRequestDTO {
+public class CreateReviewResponseDTO {
     private ObjectId id;
-    private int rating;
-    private String title;
-    private String description;
 }

@@ -3,7 +3,7 @@ package s3_gps_ivanti.business.user.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-import s3_gps_ivanti.business.dtoConvertor.CustomerDTOConverter;
+import s3_gps_ivanti.business.dtoconvertor.CustomerDTOConverter;
 import s3_gps_ivanti.business.exception.CustomerNotFoundException;
 import s3_gps_ivanti.business.exception.EmailAlreadyExistsException;
 import s3_gps_ivanti.business.exception.UsernameAlreadyExistsException;
