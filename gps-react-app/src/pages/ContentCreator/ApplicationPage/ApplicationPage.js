@@ -166,7 +166,7 @@ const ApplicationPage = () => {
                 <button className={"see-all-button"}>See All</button>
             </div>
             <div className={"overall-rating"}>
-                <p className={"rating-number"}>3.6</p>
+                <p className={"rating-number"}>2.6</p>
                 <p>out of 5</p>
             </div>
             <div className={"app-reviews"}>

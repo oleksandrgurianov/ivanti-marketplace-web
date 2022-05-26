@@ -86,7 +86,7 @@ const MyAppsPage = () => {
                             </select>
                             <FontAwesomeIcon className="dropdown-icon" icon={faCaretDown} />
                         </div>
-                        <button className={"search-button"} type="button" onClick={searchAndSort}><FontAwesomeIcon className={"search-icon"} icon={faMagnifyingGlass}/></button>
+                        <button className={"search-button"} type="button" onClick={searchAndSort}><FontAwesomeIcon icon={faMagnifyingGlass}/></button>
                     </div>
                     <hr/>
                     <div className={"my-apps-list"}>

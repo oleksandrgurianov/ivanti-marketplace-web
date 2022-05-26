@@ -144,7 +144,7 @@ function AddApplicationPage() {
         return (
             <div id="images">
                 {arrayImages.map(image => (
-                    <div >
+                    <div>
                         <img className={"image"} src={image}/>
                         <button className={"RemoveImage"} value={image} onClick={RemoveImage}>Delete</button>
                     </div>
