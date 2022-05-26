@@ -1,0 +1,78 @@
+COMPONENTS
+Only reusable elements that are loaded as a structural element in the website.
+
+--- components:
+    Footer.js
+    Header.js
+________________________________________________________________________________________________________________________
+
+IMAGES
+Now we have some images being loaded from the cloud and others are stored in this directory.
+            ####### ACTION: We should create a convention about images location.
+________________________________________________________________________________________________________________________
+
+PAGES
+Only Route endpoints allowed in pages directory!
+Pages are separated in directories depending on the roles (Creator and Customer), and common elements (LogInPage, Review, AppCatalogue and Misc).
+Only pages related to creator view should be placed inside Creator directory and only pages related to Customer should be placed inside Customer.
+If your page affects both roles, use the common folder related to the topic that your page covers (AppCatalogue, LogInPage, Review or Misc).
+In case of doubt use Misc! (So if we need to reorganize again we know where to check ;) )
+
+--- pages:
+    -- Authentication&Authorisation:
+        ErrorPage.js
+        LogInPage.js
+        LogOutPage.js
+
+    -- ContentCreator:
+        - ApplicationPage:
+            - components:
+                - Rating:
+                    - components:
+                        RatingArray.js
+                    Rating.js
+                Application.js
+            ApplicationPage.js
+        - MyAppsPage:
+            - components:
+                Application.js
+            MyAppsPage.js
+        AddApplicationPage.js
+        AddMajorVersionPage.js
+        AddMinorVersionPage.js
+        AnalyticsPage.js
+        HomePage.js
+        UpdateApplicationPage.js
+
+    -- Miscellaneous:
+        AboutPage.js
+        ApplicationPreview.js
+        ContactPage.js
+        GetApplication.js
+        Item.js
+        List.js
+        UpdateVersionPage.js
+________________________________________________________________________________________________________________________
+
+STYLES
+Styles are associated to the page where they are being used, so if you need to create a new .css or .jv file name it as its related file and place it in the corresponding folder in "styles" directory.
+All style files goes here:
+
+--- styles:
+    -- Authentication&Authorisation:
+        ErrorPage.css
+
+    -- ContentCreator:
+        - MyAppsPage:
+            - components:
+                Application.css
+            MyAppsPage.css
+        AddAndUpdateApplicationPage.css
+        AnalyticsPage.css
+        ApplicationPage.css
+
+    -- Miscellaneous:
+        navElements.js
+
+    App.css
+________________________________________________________________________________________________________________________

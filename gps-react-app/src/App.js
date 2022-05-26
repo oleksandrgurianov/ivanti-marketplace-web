@@ -21,7 +21,7 @@ import Footer from './components/Footer';
     import ApplicationPage from "./pages/ContentCreator/ApplicationPage/ApplicationPage";
     import MyAppsPage from "./pages/ContentCreator/MyAppsPage/MyAppsPage";
     import UpdateApplicationPage from "./pages/ContentCreator/UpdateApplicationPage";
-    import UpdateVersionPage from "./pages/ContentCreator/UpdateVersionPage";
+    import UpdateVersionPage from "./pages/Miscellaneous/UpdateVersionPage";
     import HomePage from "./pages/ContentCreator/HomePage"
     //Other
     import AboutPage from "./pages/Miscellaneous/AboutPage"
