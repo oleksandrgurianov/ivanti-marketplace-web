@@ -80,6 +80,7 @@ select {
 .dropdown-icon {
     grid-area: dropdown-icon;
     color: white;
+    padding-left: 10px;
 }
 
 .my-apps hr {

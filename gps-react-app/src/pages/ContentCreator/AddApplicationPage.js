@@ -18,7 +18,7 @@ function AddApplicationPage() {
         reader.onload = function (e) { //.. once finished..
             let rawLog = reader.result.split(',')[1]; //extract only the file data part
 
-            setLoadingIcon("Loading...");
+            setLoadingIcon();
 
             let dataSend = {
                 dataReq: {data: rawLog, name: file.name, type: file.type},
