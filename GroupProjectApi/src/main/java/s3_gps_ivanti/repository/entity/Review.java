@@ -18,11 +18,12 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 public class Review {
 
     @Id
-    private ObjectId id;
+    private String id;
 
-    @DocumentReference(lookup = "{ 'id' : ?#{customer} }")
+    @DocumentReference(lookup = "{ 'username' : ?#{customerName} }")
     private User customer;
-    private ObjectId applicationId;
+
+    private String applicationId;
     
     private int rating;
     private String title;

@@ -45,6 +45,8 @@ public class ReviewDTOConverter {
 
     public static Review convertToEntityUpdate(UpdateReviewRequestDTO review) {
         return Review.builder()
+                .id(review.getId())
+                .applicationId(review.getApplicationID())
                 .rating(review.getRating())
                 .title(review.getTitle())
                 .description(review.getDescription())

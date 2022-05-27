@@ -11,7 +11,9 @@ import org.bson.types.ObjectId;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateReviewRequestDTO {
-    private ObjectId id;
+    private String id;
+    private String customer;
+    private String applicationID;
     private int rating;
     private String title;
     private String description;

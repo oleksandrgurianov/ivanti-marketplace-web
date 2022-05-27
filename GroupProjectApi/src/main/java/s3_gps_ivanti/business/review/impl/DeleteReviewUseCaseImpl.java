@@ -1,12 +1,10 @@
 package s3_gps_ivanti.business.review.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.bson.types.ObjectId;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-import s3_gps_ivanti.business.application.DeleteApplicationUseCase;
 import s3_gps_ivanti.business.review.DeleteReviewUseCase;
-import s3_gps_ivanti.repository.ApplicationRepository;
+import s3_gps_ivanti.business.validitycheck.ReviewIDValidCheck;
 import s3_gps_ivanti.repository.ReviewRepository;
 
 @Service
@@ -15,10 +13,15 @@ import s3_gps_ivanti.repository.ReviewRepository;
 public class DeleteReviewUseCaseImpl implements DeleteReviewUseCase {
 
     private final ReviewRepository reviewRepository;
+    private final ReviewIDValidCheck idValidCheck;
 
 
     @Override
-    public void deleteReview(ObjectId id) {
-        reviewRepository.deleteById(id.toString());
+    public void deleteReview(String id) {
+        idValidCheck.reviewInvalid(id);
+
+        reviewRepository.deleteById(id);
     }
+
+
 }

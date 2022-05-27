@@ -70,6 +70,7 @@ public class ApplicationDTOConverter {
                 .totalDownloads(totalDownloads)
                 .avgRating(avgRating)
                 .versions(VersionDTOConverter.convertToListOfDTO(application.getVersions()))
+                .reviews(ReviewDTOConverter.convertToListOfDTO(application.getReviews()))
                 .build();
     }
 

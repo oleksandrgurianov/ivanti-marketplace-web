@@ -11,5 +11,5 @@ import org.bson.types.ObjectId;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateReviewResponseDTO {
-    private ObjectId id;
+    private String id;
 }
