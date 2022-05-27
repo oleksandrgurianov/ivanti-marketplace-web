@@ -10,6 +10,7 @@ import s3_gps_ivanti.business.review.CreateReviewUseCase;
 import s3_gps_ivanti.business.review.DeleteReviewUseCase;
 import s3_gps_ivanti.business.review.UpdateReviewUseCase;
 import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
+import s3_gps_ivanti.dto.review.CreateReviewResponseDTO;
 import s3_gps_ivanti.dto.review.UpdateReviewRequestDTO;
 
 import java.util.ArrayList;
@@ -25,9 +26,9 @@ public class ReviewController {
    private final UpdateReviewUseCase updateReviewService;
 
     @PostMapping()
-    public ResponseEntity<Object>  createReview(@RequestBody CreateReviewRequestDTO review) {
-        createReviewService.createReview(review);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<CreateReviewResponseDTO>  createReview(@RequestBody CreateReviewRequestDTO review) {
+        CreateReviewResponseDTO response = createReviewService.createReview(review);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
     @PutMapping()
     public ResponseEntity<Object>  updateReview(@RequestBody UpdateReviewRequestDTO review) {
@@ -37,6 +38,6 @@ public class ReviewController {
     @DeleteMapping("/{reviewID}")
     public ResponseEntity<Object>  deleteReview(@PathVariable("reviewID") String reviewID) {
         deleteReviewService.deleteReview(reviewID);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 }

@@ -1,18 +1,14 @@
 package s3_gps_ivanti.business.dtoconvertor;
 
-import lombok.RequiredArgsConstructor;
 import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
 import s3_gps_ivanti.dto.review.ReviewDTO;
-import s3_gps_ivanti.dto.review.UpdateReviewRequestDTO;
-import s3_gps_ivanti.repository.UserRepository;
-import s3_gps_ivanti.repository.entity.RatingAnalytics;
 import s3_gps_ivanti.repository.entity.Review;
-import s3_gps_ivanti.repository.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewDTOConverter {
+    private ReviewDTOConverter(){}
 
     public static List<ReviewDTO> convertToListOfDTO(List<Review> reviews) {
         List<ReviewDTO> result = new ArrayList<>();
@@ -30,6 +26,7 @@ public class ReviewDTOConverter {
                 .rating(r.getRating())
                 .title(r.getTitle())
                 .description(r.getDescription())
+                .reply(ReplyDTOConverter.convertToDTO(r.getReply()))
                 .build();
     }
 
@@ -39,18 +36,7 @@ public class ReviewDTOConverter {
                 .rating(review.getRating())
                 .title(review.getTitle())
                 .description(review.getDescription())
-                .response(null)
-                .build();
-    }
-
-    public static Review convertToEntityUpdate(UpdateReviewRequestDTO review) {
-        return Review.builder()
-                .id(review.getId())
-                .applicationId(review.getApplicationID())
-                .rating(review.getRating())
-                .title(review.getTitle())
-                .description(review.getDescription())
-                .response(null)
+                .reply(null)
                 .build();
     }
 }

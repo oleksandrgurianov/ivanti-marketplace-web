@@ -1,4 +1,4 @@
-package s3_gps_ivanti.business.validitycheck;
+package s3_gps_ivanti.business.validation;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -7,7 +7,7 @@ import s3_gps_ivanti.repository.UserRepository;
 
 @Service
 @AllArgsConstructor
-public class CustomerUsernameValidCheck {
+public class CustomerUsernameValidation {
     private UserRepository userRepository;
 
     public void customerIsValid(String name){

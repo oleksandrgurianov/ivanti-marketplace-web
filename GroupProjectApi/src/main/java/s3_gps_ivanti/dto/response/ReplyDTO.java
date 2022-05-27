@@ -1,4 +1,4 @@
-package s3_gps_ivanti.repository.entity;
+package s3_gps_ivanti.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Response {
+public class ReplyDTO {
     private String title;
     private String description;
 }

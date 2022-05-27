@@ -1,4 +1,4 @@
-package s3_gps_ivanti.business.validitycheck;
+package s3_gps_ivanti.business.validation;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -7,7 +7,7 @@ import s3_gps_ivanti.repository.ApplicationRepository;
 
 @Service
 @AllArgsConstructor
-public class ApplicationIDValidCheck {
+public class ApplicationIDValidation {
     private ApplicationRepository applicationRepository;
 
     public void applicationIdIsValid(String id){

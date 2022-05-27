@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import s3_gps_ivanti.business.review.DeleteReviewUseCase;
-import s3_gps_ivanti.business.validitycheck.ReviewIDValidCheck;
+import s3_gps_ivanti.business.validation.ReviewIDValidation;
 import s3_gps_ivanti.repository.ReviewRepository;
 
 @Service
@@ -13,7 +13,7 @@ import s3_gps_ivanti.repository.ReviewRepository;
 public class DeleteReviewUseCaseImpl implements DeleteReviewUseCase {
 
     private final ReviewRepository reviewRepository;
-    private final ReviewIDValidCheck idValidCheck;
+    private final ReviewIDValidation idValidCheck;
 
 
     @Override
