@@ -26,6 +26,9 @@ import Footer from './components/Footer';
     //Other
     import AboutPage from "./pages/Miscellaneous/AboutPage"
     import ContactPage from "./pages/Miscellaneous/ContactPage"
+    // Customer
+    import AllApplicationsPage from "./pages/Customer/AllApplications/AllApplicationsPage";
+import ApplicationDetailedPage from "./pages/Customer/ApplicationDetails/ApplicationDetailedPage";
 
 //App Structure
 function App() {
@@ -38,6 +41,8 @@ function App() {
                     <Route path="/logIn" element={<LogInPage/>} />
                     <Route path="/about" element={<AboutPage/>} />
                     <Route path="/contact" element={<ContactPage/>} />
+                    <Route path="/all-apps" element={<AllApplicationsPage />} />
+                    <Route path="/app/:name" element={<ApplicationDetailedPage />} />
                     <Route path="/creator/:id/myApps/:name/updateApplication" element={<UpdateApplicationPage />}/>
                     <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
                     <Route path="/creator/:id/myApps/:name" element={<ApplicationPage />} />

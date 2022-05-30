@@ -1,20 +1,19 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { FaStar } from 'react-icons/fa'
-import '../../../styles/ContentCreator/ApplicationPage.css'
-import axios from 'axios'
+import { useParams, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
-/*import $ from 'jquery';*/
+import { FaStar } from 'react-icons/fa'
 
-const ApplicationPage = () => {
+const ApplicationDetailedPage = () => {
+
     let params = useParams();
 
     const [application, setApplication] = useState({});
     const [version, setVersion] = useState("1.0");
 
     const getApplication = () => {
-        axios.get(`http://localhost:8080/application/details/${params.name}`)
+        axios.get(`http://localhost:8080/application/${params.name}`)
         .then(response => {
             setApplication(response.data);
             console.log(response.data);
@@ -24,42 +23,16 @@ const ApplicationPage = () => {
         })
     }
 
-    const deleteApplication = () => {
-      axios.delete(`http://localhost:8080/application/${params.name}`)
-          .then(response => {
-            setApplication(response.data);
-            console.log(response.data);
-          })
-          .catch(err => {
-            console.log(err);
-          })
-    }
-
-    const deleteVersion = () => {
-        axios.post(`http://localhost:8080/application/version/delete`, {
-            'appName': params.appName,
-            'number': version
-        })
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }
-
     useEffect(() => {
         getApplication();
     }, []);
 
-    return (
-        <div className='app'>
+  return (
+    <div className='app'>
             <div className={"app-controls"}>
                 <img className='icon' alt='application logo' src={application.icon}/>
                 <h1>{application.name}</h1>
-                <Link className="category" to={''}>Utilities</Link>
-                <Link className="edit-button" to={`/creator/1/myApps/${application.name}/updateApplication`}>Edit</Link>
-                <Link className="delete-button" to={`/creator/1/myApps`} onClick={deleteApplication}>Delete</Link>
+                <Link className="delete-button" to={''}>Download</Link>
             </div>
             <hr/>
             <div className='app-version'>
@@ -74,27 +47,15 @@ const ApplicationPage = () => {
                         </select>
                         <FontAwesomeIcon className="dropdown-icon" icon={faCaretDown} />
                     </dropdown>
-                    <Link className="version-button" to={`/creator/1/myApps/${application.name}/addMinorVersion`}>Add minor version</Link>
-                    <Link className="version-button" to={`/creator/1/myApps/${application.name}/addMajorVersion`}>Add major version</Link>
                 </div>
             </div>
             <hr/>
             <div className='menu-wrapper'>
                 <ul className='menu'>
-                    { application.images != null && application.images.map((image) => (
+                    { application.screenshots != null && application.screenshots.map((image) => (
                         <li className='item' key={image}><img src={image}/></li>
                     ))}
                 </ul>
-                {/* ARROWS
-                    <div className="paddles">
-                        <button className="left-paddle paddle hidden">
-                            <FontAwesomeIcon className={"paddle-icon"} icon={faChevronLeft}/>
-                        </button>
-                        <button className="right-paddle paddle">
-                            <FontAwesomeIcon className={"paddle-icon"} icon={faChevronRight}/>
-                        </button>
-                    </div>
-                */}
             </div>
             <hr/>
             <div className={"ratings-header"}>
@@ -102,7 +63,7 @@ const ApplicationPage = () => {
                 <button className={"see-all-button"}>See All</button>
             </div>
             <div className={"overall-rating"}>
-                <p className={"rating-number"}>2.6</p>
+                <p className={"rating-number"}>{application.avgRating}</p>
                 <p>out of 5</p>
             </div>
             <div className={"app-reviews"}>
@@ -140,7 +101,7 @@ const ApplicationPage = () => {
                 <p>{application.description}</p>
             </div>
         </div>
-    )
+  )
 }
 
-export default ApplicationPage
+export default ApplicationDetailedPage
