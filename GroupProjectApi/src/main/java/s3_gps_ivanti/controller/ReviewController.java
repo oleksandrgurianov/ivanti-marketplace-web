@@ -1,14 +1,20 @@
 package s3_gps_ivanti.controller;
 
-import s3_gps_ivanti.business.ReviewService;
-import s3_gps_ivanti.dto.CreateReviewRequestDTO;
-import s3_gps_ivanti.dto.UpdateReviewRequestDTO;
-import s3_gps_ivanti.model.Review;
+
 import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import s3_gps_ivanti.business.review.CreateReviewUseCase;
+import s3_gps_ivanti.business.review.DeleteReviewUseCase;
+import s3_gps_ivanti.business.review.UpdateReviewUseCase;
+import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
+import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
+import s3_gps_ivanti.dto.review.CreateReviewResponseDTO;
+import s3_gps_ivanti.dto.review.UpdateReviewRequestDTO;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.ArrayList;
 
 @RestController
@@ -17,32 +23,31 @@ import java.util.ArrayList;
 @CrossOrigin(origins = "http://localhost:3000/")
 public class ReviewController {
 
-    private final ReviewService reviewService;
+   private final CreateReviewUseCase createReviewService;
+   private final DeleteReviewUseCase deleteReviewService;
+   private final UpdateReviewUseCase updateReviewService;
 
-    //Customer
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer"})
     @PostMapping()
-    public ResponseEntity<Object>  createReview(@RequestBody CreateReviewRequestDTO review) {
-
-        if (reviewService.createReview(review)) {
-            return ResponseEntity.ok().build();
-        } else {
-            return  ResponseEntity.status( HttpStatus.CONFLICT).build();
-        }
+    public ResponseEntity<CreateReviewResponseDTO>  createReview(@RequestBody CreateReviewRequestDTO review) {
+        CreateReviewResponseDTO response = createReviewService.createReview(review);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer"})
     @PutMapping()
     public ResponseEntity<Object>  updateReview(@RequestBody UpdateReviewRequestDTO review) {
-        if (reviewService.updateReview(review)) {
-            return ResponseEntity.noContent().build();
-
-        }else {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-        }
+        updateReviewService.updateReview(review);
+        return ResponseEntity.noContent().build();
     }
-    @DeleteMapping({"reviewID"})
-    public ResponseEntity<Object>  deleteReview(@PathVariable("reviewID")int reviewID) {
-        if (reviewService.deleteReview(reviewID)) {
-            return ResponseEntity.ok().build();
-        }
-        return ResponseEntity.notFound().build();
+
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer"})
+    @DeleteMapping("/{reviewID}")
+    public ResponseEntity<Object>  deleteReview(@PathVariable("reviewID") String reviewID) {
+        deleteReviewService.deleteReview(reviewID);
+        return ResponseEntity.ok().build();
     }
 }

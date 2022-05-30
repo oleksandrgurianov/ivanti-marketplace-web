@@ -1,93 +1,97 @@
 package s3_gps_ivanti.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import s3_gps_ivanti.business.UserService;
-import s3_gps_ivanti.business.exceptions.UserNotFoundException;
-import s3_gps_ivanti.model.User;
+
+import s3_gps_ivanti.business.user.*;
+import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
+import s3_gps_ivanti.dto.user.*;
 import s3_gps_ivanti.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import s3_gps_ivanti.dto.UserBasicInfoDTO;
-import s3_gps_ivanti.model.Creator;
-import s3_gps_ivanti.model.Customer;
 
+import javax.annotation.security.RolesAllowed;
+import javax.swing.text.html.parser.Entity;
+import java.net.URI;
 import java.util.List;
 
-@RequestMapping("/api/user")
+
+@RequestMapping("/user")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 public class UserController {
-private final UserRepository userRepository;
-private final UserService userService;
 
-@GetMapping("/users")
-public List<User> getUsers() {
-    return userRepository.findAll();
-}
-@GetMapping("/user/{id}")
-public User user(@PathVariable String id) {
-    return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
-}
-@DeleteMapping("/delete/{id}")
-public void deleteUser(@PathVariable String id) {
-   if (!userExists(id)) {
-   throw new UserNotFoundException(id);
-   }
-   userRepository.deleteById(id);
-}
-@PostMapping("/users")
-public void saveUser(@RequestBody User user) {
-        userRepository.save(user);
-}
-@PutMapping("/users/{id}")
-    User replaceUser(@RequestBody User updatedUser, @PathVariable String id) {
-        if (!userExists(id)) {
-        throw new UserNotFoundException(id);
+    private final CreateCustomerUseCase createCustomer;
+    private final DeleteCustomerUseCase deleteCustomer;
+    private final GetCustomersUseCase getCustomers;
+    private final GetCustomerUseCase getCustomer;
+    private final UpdateCustomerUseCase updateCustomer;
+
+    //All
+    @PostMapping()
+    public ResponseEntity<CreateCustomerResponseDTO> createUser(@RequestBody CreateCustomerRequestDTO user) {
+        CreateCustomerResponseDTO customerResponseDTO = createCustomer.createCustomer(user);
+
+        if(customerResponseDTO == null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
 
-        return userRepository.save(updatedUser);
-        }
-
-private boolean userExists(final String id) {
-        return userRepository.existsById(id);
-        }
-
-
-//    @GetMapping("{id}")
-//    public ResponseEntity<Application> getApplicationsBySearch(@PathVariable("id") long id) {
-//
-//        Application application = applicationService.getApplicationsByID(id);
-//
-//        if(application != null) {
-//            return ResponseEntity.ok().body(application);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
-
-    @GetMapping("/creator/{id}")
-    public ResponseEntity<UserBasicInfoDTO> getCreatorByID(@PathVariable("id") int id){
-        User user = userService.getUserByID(id);
-
-        if (user instanceof Creator){
-            UserBasicInfoDTO dto = new UserBasicInfoDTO(user);
-            return ResponseEntity.ok().body(dto);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok().body(customerResponseDTO);
     }
 
-    @GetMapping("/customer/{id}")
-    public ResponseEntity<UserBasicInfoDTO> getCustomerByID(@PathVariable("id") int id){
-        User user = userService.getUserByID(id);
 
-        if (user instanceof Customer){
-            UserBasicInfoDTO dto = new UserBasicInfoDTO(user);
-            return ResponseEntity.ok().body(dto);
-        } else {
+    //Queen
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_QueenAccess"})
+    @GetMapping()
+    public ResponseEntity<List<CustomerBasicInfoDTO>> getUsers() {
+        return ResponseEntity.ok().body(getCustomers.getAllCustomers());
+    }
+
+    //Customer and Creator
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer", "ROLE_Creator"})
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerDetailedInfoDTO> getUser(@PathVariable String username) {
+        CustomerDetailedInfoDTO customerDetailedInfoDTO = getCustomer.getCustomer(username);
+
+        if(customerDetailedInfoDTO == null) {
             return ResponseEntity.notFound().build();
         }
+
+        return ResponseEntity.ok().body(getCustomer.getCustomer(username));
     }
+
+    //Customer
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer"})
+    @PutMapping()
+    public ResponseEntity<Object> updateCustomer(@RequestBody UpdateCustomerRequestDTO updatedUser) {
+        updateCustomer.updateCustomer(updatedUser);
+        return ResponseEntity.ok().build();
+    }
+
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer"})
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object>  deleteUser(@PathVariable String id) {
+        deleteCustomer.DeleteCustomer(id);
+        return ResponseEntity.ok().build();
+    }
+
+
+    //TODO fix this
+   /* @GetMapping("{id}")
+   public ResponseEntity<Application> getApplicationsBySearch(@PathVariable("id") long id) {
+
+        Application Application = applicationService.getApplicationsByID(id);
+        /       if(Application != null) {
+            return ResponseEntity.ok().body(Application);} else {
+            return ResponseEntity.notFound().build();
+      }
+    }*/
+
+
 }
 
