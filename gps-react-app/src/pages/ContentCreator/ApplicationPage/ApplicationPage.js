@@ -5,7 +5,7 @@ import '../../../styles/ContentCreator/ApplicationPage.css'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
-import $ from 'jquery';
+/*import $ from 'jquery';*/
 
 const ApplicationPage = () => {
     let params = useParams();
