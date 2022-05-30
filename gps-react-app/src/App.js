@@ -21,7 +21,6 @@ import Footer from './components/Footer';
     import ApplicationPage from "./pages/ContentCreator/ApplicationPage/ApplicationPage";
     import MyAppsPage from "./pages/ContentCreator/MyAppsPage/MyAppsPage";
     import UpdateApplicationPage from "./pages/ContentCreator/UpdateApplicationPage";
-    import UpdateVersionPage from "./pages/Miscellaneous/UpdateVersionPage";
     import HomePage from "./pages/ContentCreator/HomePage"
     //Other
     import AboutPage from "./pages/Miscellaneous/AboutPage"
@@ -44,7 +43,7 @@ function App() {
                     <Route path='/creator/:id/myApps' element={<MyAppsPage />} />
                     <Route path='/creator/:id/myApps/:name/addMinorVersion' element={<AddMinorVersionPage />} />
                     <Route path='/creator/:id/myApps/:name/addMajorVersion' element={<AddMajorVersionPage />} />
-                    <Route path='/creator/:id/myApps/:name/updateVersion/:version' element={<UpdateVersionPage />} />
+                    <Route path='/creator/:id/myApps/:name/updateVersion/:version' element={<AddMajorVersionPage />} />
                     <Route path="/logOut" element={<LogOutPage/>} />
                     <Route path="/*" element={<ErrorPage />} />
                     <Route path="/creator/:id/analytics" element={<AnalyticsPage/>}/>

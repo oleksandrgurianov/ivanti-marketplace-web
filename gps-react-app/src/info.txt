@@ -51,7 +51,7 @@ In case of doubt use Misc! (So if we need to reorganize again we know where to c
         GetApplication.js
         Item.js
         List.js
-        UpdateVersionPage.js
+        AddMajorVersionPage.js
 ________________________________________________________________________________________________________________________
 
 STYLES
