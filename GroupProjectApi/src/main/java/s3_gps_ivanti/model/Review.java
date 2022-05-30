@@ -1,7 +1,7 @@
 package s3_gps_ivanti.model;
 
 import lombok.*;
-import s3_gps_ivanti.dto.CreateReviewRequestDTO;
+import s3_gps_ivanti.DTO.CreateReviewRequestDTO;
 
 @Data
 @Builder

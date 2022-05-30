@@ -1,6 +1,6 @@
 package s3_gps_ivanti.business.impl.dtoconverter;
 
-import s3_gps_ivanti.dto.CustomerDTO;
+import s3_gps_ivanti.DTO.CustomerDTO;
 import s3_gps_ivanti.model.Customer;
 import s3_gps_ivanti.model.User;
 

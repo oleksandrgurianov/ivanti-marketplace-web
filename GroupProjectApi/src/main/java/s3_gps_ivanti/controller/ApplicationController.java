@@ -1,7 +1,7 @@
 package s3_gps_ivanti.controller;
 
 import org.springframework.util.StringUtils;
-import s3_gps_ivanti.dto.*;
+import s3_gps_ivanti.DTO.*;
 import s3_gps_ivanti.business.ApplicationService;
 import s3_gps_ivanti.business.CreatorService;
 import s3_gps_ivanti.model.Application;

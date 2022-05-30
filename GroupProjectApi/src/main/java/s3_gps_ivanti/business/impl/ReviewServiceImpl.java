@@ -2,9 +2,7 @@ package s3_gps_ivanti.business.impl;
 
 import s3_gps_ivanti.business.ReviewService;
 import s3_gps_ivanti.business.impl.dtoconverter.ReviewDTOConverter;
-import s3_gps_ivanti.dto.CreateReviewRequestDTO;
-import s3_gps_ivanti.dto.UpdateReviewRequestDTO;
-import s3_gps_ivanti.model.Review;
+import s3_gps_ivanti.DTO.*;
 import s3_gps_ivanti.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;

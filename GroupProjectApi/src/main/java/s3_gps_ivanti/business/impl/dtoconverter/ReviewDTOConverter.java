@@ -1,8 +1,6 @@
 package s3_gps_ivanti.business.impl.dtoconverter;
 
-import s3_gps_ivanti.dto.CreateReviewRequestDTO;
-import s3_gps_ivanti.dto.UpdateReviewRequestDTO;
-import s3_gps_ivanti.dto.ViewReviewDTO;
+import s3_gps_ivanti.DTO.*;
 import s3_gps_ivanti.model.Review;
 
 import java.util.ArrayList;

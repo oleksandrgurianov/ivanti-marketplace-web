@@ -7,10 +7,9 @@ import s3_gps_ivanti.model.User;
 import s3_gps_ivanti.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import s3_gps_ivanti.dto.UserBasicInfoDTO;
+import s3_gps_ivanti.DTO.*;
 import s3_gps_ivanti.model.Creator;
 import s3_gps_ivanti.model.Customer;
-
 import java.util.List;
 
 @RequestMapping("/api/user")
@@ -18,40 +17,40 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 public class UserController {
-private final UserRepository userRepository;
-private final UserService userService;
+    private final UserRepository userRepository;
+    private final UserService userService;
 
-@GetMapping("/users")
-public List<User> getUsers() {
-    return userRepository.findAll();
-}
-@GetMapping("/user/{id}")
-public User user(@PathVariable String id) {
-    return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
-}
-@DeleteMapping("/delete/{id}")
-public void deleteUser(@PathVariable String id) {
-   if (!userExists(id)) {
-   throw new UserNotFoundException(id);
-   }
-   userRepository.deleteById(id);
-}
-@PostMapping("/users")
-public void saveUser(@RequestBody User user) {
-        userRepository.save(user);
-}
-@PutMapping("/users/{id}")
-    User replaceUser(@RequestBody User updatedUser, @PathVariable String id) {
-        if (!userExists(id)) {
-        throw new UserNotFoundException(id);
-        }
-
-        return userRepository.save(updatedUser);
-        }
-
-private boolean userExists(final String id) {
-        return userRepository.existsById(id);
-        }
+//    @GetMapping("/users")
+//    public List<User> getUsers() {
+//        return userRepository.findAll();
+//    }
+//    @GetMapping("/user/{id}")
+//    public User user(@PathVariable String id) {
+//        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+//    }
+//    @DeleteMapping("/delete/{id}")
+//    public void deleteUser(@PathVariable String id) {
+//       if (!userExists(id)) {
+//       throw new UserNotFoundException(id);
+//       }
+//       userRepository.deleteById(id);
+//    }
+//    @PostMapping("/users")
+//    public void saveUser(@RequestBody User user) {
+//            userRepository.save(user);
+//    }
+//    @PutMapping("/users/{id}")
+//        User replaceUser(@RequestBody User updatedUser, @PathVariable String id) {
+//            if (!userExists(id)) {
+//            throw new UserNotFoundException(id);
+//            }
+//
+//            return userRepository.save(updatedUser);
+//            }
+//
+//    private boolean userExists(final String id) {
+//            return userRepository.existsById(id);
+//            }
 
 
 //    @GetMapping("{id}")
