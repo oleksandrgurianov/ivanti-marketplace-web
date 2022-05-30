@@ -13,8 +13,6 @@ import s3_gps_ivanti.dto.Login.LoginResponseDTO;
 import s3_gps_ivanti.repository.UserRepository;
 import s3_gps_ivanti.repository.entity.User;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class LoginUseCaseImpl implements LoginUseCase {
