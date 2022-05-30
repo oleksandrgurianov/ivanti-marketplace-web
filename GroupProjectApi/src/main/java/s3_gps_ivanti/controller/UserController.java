@@ -43,7 +43,7 @@ public class UserController {
 
     //Queen
     @IsAuthenticated
-    @RolesAllowed({"ROLE_QueenAccess"})
+    @RolesAllowed({"ROLE_Creator"})
     @GetMapping()
     public ResponseEntity<List<CustomerBasicInfoDTO>> getUsers() {
         return ResponseEntity.ok().body(getCustomers.getAllCustomers());
