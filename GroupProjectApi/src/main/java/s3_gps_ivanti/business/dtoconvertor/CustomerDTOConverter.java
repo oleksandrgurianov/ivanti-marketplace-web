@@ -29,8 +29,8 @@ public class CustomerDTOConverter {
                 .permission(oldCustomer.getPermission())
                 .build();
     }
-    private static CustomerBasicInfoDTO convertToDTO(User user) {
-        return CustomerBasicInfoDTO.builder()
+    private static UserBasicInfoDTO convertToDTO(User user) {
+        return UserBasicInfoDTO.builder()
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .build();
@@ -41,8 +41,8 @@ public class CustomerDTOConverter {
                 .username(user.getUsername())
                 .build();
     }
-    public static List<CustomerBasicInfoDTO> convertToListDTO(List<User> all) {
-        List<CustomerBasicInfoDTO> result = new ArrayList<>();
+    public static List<UserBasicInfoDTO> convertToListDTO(List<User> all) {
+        List<UserBasicInfoDTO> result = new ArrayList<>();
 
         for (User user: all) {
             result.add(CustomerDTOConverter.convertToDTO(user));

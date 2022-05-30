@@ -7,12 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import s3_gps_ivanti.business.user.*;
 import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
 import s3_gps_ivanti.dto.user.*;
-import s3_gps_ivanti.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 import javax.annotation.security.RolesAllowed;
-import javax.swing.text.html.parser.Entity;
-import java.net.URI;
 import java.util.List;
 
 
@@ -45,7 +42,7 @@ public class UserController {
     @IsAuthenticated
     @RolesAllowed({"ROLE_QueenAccess"})
     @GetMapping()
-    public ResponseEntity<List<CustomerBasicInfoDTO>> getUsers() {
+    public ResponseEntity<List<UserBasicInfoDTO>> getUsers() {
         return ResponseEntity.ok().body(getCustomers.getAllCustomers());
     }
 
