@@ -2,7 +2,9 @@ package s3_gps_ivanti.repository.entity;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.List;
 
@@ -21,4 +23,8 @@ public class User {
     private String password;
     private List<String> roles;
     private String permission;
+
+    @ReadOnlyProperty
+    @DocumentReference(lookup="{'creatorId':?#{#self._id} }")
+    private List<Application> applications;
 }

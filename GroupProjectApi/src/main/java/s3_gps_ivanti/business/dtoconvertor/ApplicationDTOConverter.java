@@ -2,9 +2,9 @@ package s3_gps_ivanti.business.dtoconvertor;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import s3_gps_ivanti.dto.application.*;
-import s3_gps_ivanti.repository.entity.Application;
-import s3_gps_ivanti.repository.entity.RatingAnalytics;
-import s3_gps_ivanti.repository.entity.Version;
+import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
+import s3_gps_ivanti.dto.user.CustomerSmallDetailDTO;
+import s3_gps_ivanti.repository.entity.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +21,6 @@ public class ApplicationDTOConverter {
     public static Application convertToEntity(CreateApplicationRequestDTO application) {
         return Application.builder()
                 .id(RandomStringUtils.randomAlphanumeric(25))
-                .creatorID(application.getCreatorId())
                 .name(application.getName())
                 .description(application.getDescription())
                 .icon(application.getIcon())
@@ -43,7 +42,7 @@ public class ApplicationDTOConverter {
         return result;
     }
 
-    private static ApplicationBasicInfoDTO convertToDTO(Application app) {
+    public static ApplicationBasicInfoDTO convertToDTO(Application app) {
         return ApplicationBasicInfoDTO.builder()
                 .name(app.getName())
                 .icon(app.getIcon())
@@ -76,7 +75,6 @@ public class ApplicationDTOConverter {
     public static Application convertToEntityForUpdate(UpdateApplicationRequestDTO app, Application application) {
         return Application.builder()
                 .id(application.getId())
-                .creatorID(application.getCreatorID())
                 .name(application.getName())
                 .description(app.getDescription())
                 .icon(app.getIcon())

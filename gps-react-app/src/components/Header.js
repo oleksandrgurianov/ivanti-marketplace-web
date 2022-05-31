@@ -11,6 +11,8 @@ import ContactPage from "../pages/Miscellaneous/ContactPage";
 import UpdateApplicationPage from "../pages/ContentCreator/UpdateApplicationPage";
 import AddApplicationPage from "../pages/ContentCreator/AddApplicationPage";
 import ApplicationPage from "../pages/ContentCreator/ApplicationPage/ApplicationPage";
+import AllApplicationsPage from '../pages/Customer/AllApplications/AllApplicationsPage';
+import ApplicationDetailedPage from '../pages/Customer/ApplicationDetails/ApplicationDetailedPage';
 import MyAppsPage from "../pages/ContentCreator/MyAppsPage/MyAppsPage";
 import AddMinorVersionPage from "../pages/ContentCreator/AddMinorVersionPage";
 import AddMajorVersionPage from "../pages/ContentCreator/AddMajorVersionPage";
@@ -68,7 +70,7 @@ function Navbar() {
                         <Link className="NavLogo" to="/">
                             <img src={logo} height={"38px"} alt={"ivanti marketplace logo"}/>
                         </Link>
-                        <Link className="NavLink" to="/creator/1/myApps">My Apps</Link>
+                        <Link className='NavLink' to="/all-apps">All Apps</Link>
                         <Link className="NavLink" to="/creator/1/analytics">Analytics</Link>
                         <Link className="NavLink" to="/creator/1/notifications">Notifications</Link>
                         <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
@@ -87,17 +89,10 @@ function Navbar() {
                             <Route path="/" element={<HomePage/>} />
                             <Route path="/about" element={<AboutPage/>} />
                             <Route path="/contact" element={<ContactPage/>} />
-                            <Route path="/creator/:id/myApps/:name/updateApplication" element={<UpdateApplicationPage />}/>
-                            <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
-                            <Route path="/creator/:id/myApps/:name" element={<ApplicationPage />} />
-                            <Route path='/creator/:id/myApps' element={<MyAppsPage />} />
-                            <Route path='/creator/:id/myApps/:name/addMinorVersion' element={<AddMinorVersionPage />} />
-                            <Route path='/creator/:id/myApps/:name/addMajorVersion' element={<AddMajorVersionPage />} />
-                            <Route path='/creator/:id/myApps/:name/updateVersion/:version' element={<AddMajorVersionPage />} />
+                            <Route path='/all-apps' element={<AllApplicationsPage />} />
                             <Route path="/logout" element={<LogOutPage logout={logout}/>} />
                             <Route path="/login" element={<LogInPage login={login}/>} />
                             <Route path="/*" element={<ErrorPage />} />
-                            <Route path="/creator/:id/analytics" element={<AnalyticsPage/>}/>
                         </Routes>
                     </div>
                 </>
@@ -107,7 +102,7 @@ function Navbar() {
                         <Link className="NavLogo" to="/">
                             <img src={logo} height={"38px"} alt={"ivanti marketplace logo"}/>
                         </Link>
-                        <Link className="NavLink" to="/creator/1/myApps">My Apps</Link>
+                        <Link className='NavLink' to="/all-apps">All Apps</Link>
                         <Link className="NavLink" to="/creator/1/analytics">Analytics</Link>
                         <Link className="NavLink" to="/creator/1/notifications">Notifications</Link>
                         <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
@@ -129,7 +124,7 @@ function Navbar() {
                             <Route path="/creator/:id/myApps/:name/updateApplication" element={<UpdateApplicationPage />}/>
                             <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
                             <Route path="/creator/:id/myApps/:name" element={<ApplicationPage />} />
-                            <Route path='/creator/:id/myApps' element={<MyAppsPage />} />
+                            <Route path='/all-apps' element={<AllApplicationsPage />} />
                             <Route path='/creator/:id/myApps/:name/addMinorVersion' element={<AddMinorVersionPage />} />
                             <Route path='/creator/:id/myApps/:name/addMajorVersion' element={<AddMajorVersionPage />} />
                             <Route path='/creator/:id/myApps/:name/updateVersion/:version' element={<AddMajorVersionPage />} />
@@ -146,18 +141,11 @@ function Navbar() {
                         <Link className="NavLogo" to="/">
                             <img src={logo} height={"38px"} alt={"ivanti marketplace logo"}/>
                         </Link>
-                        <Link className="NavLink" to="/creator/1/myApps">My Apps</Link>
-                        <Link className="NavLink" to="/creator/1/analytics">Analytics</Link>
-                        <Link className="NavLink" to="/creator/1/notifications">Notifications</Link>
+                        <Link className='NavLink' to="/all-apps">All Apps</Link>
                         <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
-                        <div className="NavDropdown">
-                            <button className="dropdown-button" onClick={showContent}>Lars Kluijtmans<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
-                            <div className="dropdown-content" id="myDropdown">
-                                <Link to="/creator/1">My Account</Link>
-                                <hr/>
-                                <Link to="/login">Login</Link>
-                            </div>
-                        </div>
+                 
+                                <Link className="NavLink" to="/login">Login</Link>
+                      
                     </div>
 
                     <div className="Body">
@@ -165,47 +153,15 @@ function Navbar() {
                             <Route path="/" element={<HomePage/>} />
                             <Route path="/about" element={<AboutPage/>} />
                             <Route path="/contact" element={<ContactPage/>} />
-                            <Route path="/creator/:id/myApps/:name/updateApplication" element={<UpdateApplicationPage />}/>
-                            <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
-                            <Route path="/creator/:id/myApps/:name" element={<ApplicationPage />} />
-                            <Route path='/creator/:id/myApps' element={<MyAppsPage />} />
-                            <Route path='/creator/:id/myApps/:name/addMinorVersion' element={<AddMinorVersionPage />} />
-                            <Route path='/creator/:id/myApps/:name/addMajorVersion' element={<AddMajorVersionPage />} />
-                            <Route path='/creator/:id/myApps/:name/updateVersion/:version' element={<AddMajorVersionPage />} />
-                            <Route path="/logout" element={<LogOutPage logout={logout}/>} />
+                            <Route path='/all-apps' element={<AllApplicationsPage />} />
+                            <Route path='/app/:name' element={<ApplicationDetailedPage />} />
                             <Route path="/login" element={<LogInPage login={login}/>} />
                             <Route path="/*" element={<ErrorPage />} />
-                            <Route path="/creator/:id/analytics" element={<AnalyticsPage/>}/>
                         </Routes>
                     </div>
                 </>
             )}
         </>
-
-        /*<>
-            <Nav>
-                <NavLogo to="/HomePage">
-                    Ivanti AppMarket :P
-                </NavLogo>
-                <Bars />
-
-                <NavMenu>
-                    <NavLink to="/" activeStyle={{ color:'black' }}> HomePage </NavLink>
-                    <NavLink to="/about"activeStyle={{ color: 'black' }}> AboutPage</NavLink>
-                    <NavLink to="/contact" activeStyle={{ color: 'black' }}>ContactPage</NavLink>
-                    <NavLink to="/logout" activeStyle={{ color: 'black' }}>LogOutPage</NavLink>
-                    <NavLink to="/home" activeStyle={{ color: 'black' }}>HomePage</NavLink>
-                    <NavLink to="/MyAppsPage/update/:Name" activeStyle={{ color: 'black' }}>Update Application</NavLink>
-                    <NavLink to="/MyAppsPage/AddApp" activeStyle={{ color: 'black' }}>Add App</NavLink>
-                    <NavLink to="/MyAppsPage/MyApps" activeStyle={{ color: 'black' }}>My Apps</NavLink>
-                    <NavLink to="/Statistics" activeStyle={{ color: 'black' }}>Statistics</NavLink>
-                    <NavLink to="/*" activeStyle={{ color: 'black' }}>LogOutPage</NavLink>
-
-                    <NavBtn><NavBtnLink to="/LogInPage">Log In</NavBtnLink></NavBtn>
-
-                </NavMenu>
-            </Nav>
-        </>*/
     );
 }
 

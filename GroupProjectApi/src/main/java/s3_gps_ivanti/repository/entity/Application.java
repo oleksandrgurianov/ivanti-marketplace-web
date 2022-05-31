@@ -20,7 +20,10 @@ public class Application {
 
     @Id
     private String id;
-    private String creatorID;
+
+    @DocumentReference(lookup = "{ 'username' : ?#{creatorName} }")
+    private User creator;
+
     private String name;
     private String description;
     private String icon;
