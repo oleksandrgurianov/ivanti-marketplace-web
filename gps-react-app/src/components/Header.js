@@ -38,6 +38,7 @@ function Navbar() {
     }
 
     const [authorization, setAuthorization] = useState("");
+    const [usernameLoggedIn, setUsernameLoggedIn] = useState("");
 
     const login = (username, password) => {
 
@@ -48,6 +49,8 @@ function Navbar() {
             .then(res => {
                 localStorage.setItem("token", res.data.accessToken);
                 localStorage.setItem("authorization", res.data.permission);
+                localStorage.setItem("username", username);
+                setUsernameLoggedIn(username);
                 setAuthorization(res.data.permission);
                 console.log(authorization)
                 console.log(localStorage.getItem("token"))
@@ -75,7 +78,7 @@ function Navbar() {
                         <Link className="NavLink" to="/creator/1/notifications">Notifications</Link>
                         <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
                         <div className="NavDropdown">
-                            <button className="dropdown-button" onClick={showContent}>Lars Kluijtmans<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
+                            <button className="dropdown-button" onClick={showContent}>{usernameLoggedIn}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
                             <div className="dropdown-content" id="myDropdown">
                                 <Link to="/creator/1">My Account</Link>
                                 <hr/>
@@ -107,9 +110,9 @@ function Navbar() {
                         <Link className="NavLink" to="/creator/1/notifications">Notifications</Link>
                         <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
                         <div className="NavDropdown">
-                            <button className="dropdown-button" onClick={showContent}>Lars Kluijtmans<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
+                            <button className="dropdown-button" onClick={showContent}>{usernameLoggedIn}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
                             <div className="dropdown-content" id="myDropdown">
-                                <Link to="/creator/1">My Account</Link>
+                                <Link to={`/my-account/BetterEsther`}>My Account</Link>
                                 <hr/>
                                 <Link to="/" onClick={logout}>Logout</Link>
                             </div>
@@ -128,6 +131,7 @@ function Navbar() {
                             <Route path='/creator/:id/myApps/:name/addMinorVersion' element={<AddMinorVersionPage />} />
                             <Route path='/creator/:id/myApps/:name/addMajorVersion' element={<AddMajorVersionPage />} />
                             <Route path='/creator/:id/myApps/:name/updateVersion/:version' element={<AddMajorVersionPage />} />
+                            <Route path='/my-account/:username' element={<MyAppsPage />} /> 
                             <Route path="/logout" element={<LogOutPage logout={logout}/>} />
                             <Route path="/login" element={<LogInPage login={login}/>} />
                             <Route path="/*" element={<ErrorPage />} />
@@ -143,9 +147,7 @@ function Navbar() {
                         </Link>
                         <Link className='NavLink' to="/all-apps">All Apps</Link>
                         <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
-                 
-                                <Link className="NavLink" to="/login">Login</Link>
-                      
+                        <Link className="NavLink" to="/login">Login</Link>
                     </div>
 
                     <div className="Body">
