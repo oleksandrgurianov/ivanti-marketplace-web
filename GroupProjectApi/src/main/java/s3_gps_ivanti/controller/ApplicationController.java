@@ -11,6 +11,7 @@ import s3_gps_ivanti.business.application.*;
 import s3_gps_ivanti.business.version.UpdateVersionUseCase;
 import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
 import s3_gps_ivanti.dto.application.*;
+import s3_gps_ivanti.dto.creator.CreatorApplicationListDTO;
 
 import javax.annotation.security.RolesAllowed;
 import java.net.URI;
@@ -27,6 +28,7 @@ public class ApplicationController {
     private final DeleteApplicationUseCase deleteApplications;
     private final GetApplicationDetailedInfoUseCase getApplicationDetailedInfo;
     private final GetApplicationsBasicInfoUseCase getApplicationsBasicInfo;
+    private final GetApplicationByCreatorUseCase getApplicationByCreator;
     private final UpdateApplicationUseCase updateApplication;
 
 
@@ -43,15 +45,16 @@ public class ApplicationController {
        return ResponseEntity.ok().body(applicationDetailedInfoDTO);
     }
 
-//    @GetMapping
-//    public ResponseEntity<List<ApplicationBasicInfoDTO>> getAllApplications(){
-//        List<ApplicationBasicInfoDTO> allApplications = getApplicationsBasicInfo.getApplications();
-//
-//        if (allApplications == null) {
-//            return ResponseEntity.notFound().build();
-//        }
-//        return ResponseEntity.ok().body(allApplications);
-//    }
+    @GetMapping("/creator/{username}")
+    public ResponseEntity<CreatorApplicationListDTO> getApplicationsByCreator(@PathVariable("username") String username) {
+        CreatorApplicationListDTO creatorApplicationListDTO = getApplicationByCreator.getApplicationsByCreator(username);
+
+        if (creatorApplicationListDTO == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok().body(creatorApplicationListDTO);
+    }
 
     @GetMapping
     public ResponseEntity<GetAllApplicationsResponseDTO> getAllApplications() {

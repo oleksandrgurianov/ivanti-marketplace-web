@@ -25,6 +25,6 @@ public class User {
     private String permission;
 
     @ReadOnlyProperty
-    @DocumentReference(lookup="{'creatorId':?#{#self._id} }")
+    @DocumentReference(lookup="{'creatorID':?#{#self._id} }")
     private List<Application> applications;
 }
