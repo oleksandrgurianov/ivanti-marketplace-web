@@ -111,7 +111,6 @@ function AddApplicationPage() {
         setDescription(e.target.value);
     }
     function AddImage(url) {
-
         let includeID = url.replace("file/d/", "uc?export=view?&id=");
         let ChangeView = includeID.replace("/view?usp=drivesdk", "");
 
@@ -156,6 +155,7 @@ function AddApplicationPage() {
     }
 
     //Save app
+
     const SendRequest = () =>{
         axios.post(`http://localhost:8080/application`,
             {

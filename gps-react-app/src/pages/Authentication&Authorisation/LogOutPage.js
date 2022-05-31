@@ -1,9 +1,12 @@
 import React from 'react'
 
-function LogOutPage() {
+function LogOutPage({logout}) {
+    const tryLogout = () => {
+        logout();
+    }
     return (
         <div>
-            <h1>Log In and get started</h1>
+            <button onClick={tryLogout}> logout</button>
         </div>
     )
 }

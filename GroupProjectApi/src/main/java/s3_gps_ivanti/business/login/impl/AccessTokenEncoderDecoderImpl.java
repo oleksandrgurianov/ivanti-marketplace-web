@@ -9,9 +9,9 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import s3_gps_ivanti.business.exception.InvalidAccessTokenException;
 import s3_gps_ivanti.business.login.AccessTokenDecoder;
 import s3_gps_ivanti.business.login.AccessTokenEncoder;
-import s3_gps_ivanti.business.exception.InvalidAccessTokenException;
 import s3_gps_ivanti.dto.login.AccessTokenDTO;
 
 import java.security.Key;
