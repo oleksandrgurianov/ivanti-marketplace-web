@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import s3_gps_ivanti.dto.review.ReviewDTO;
+import s3_gps_ivanti.dto.user.CustomerSmallDetailDTO;
+import s3_gps_ivanti.dto.user.UserBasicInfoDTO;
 import s3_gps_ivanti.dto.version.VersionDTO;
 
 import java.util.List;
@@ -22,4 +24,5 @@ public class ApplicationDetailedInfoDTO {
     private int avgRating;
     private List<VersionDTO> versions;
     private List<ReviewDTO> reviews;
+    private CustomerSmallDetailDTO creator;
 }

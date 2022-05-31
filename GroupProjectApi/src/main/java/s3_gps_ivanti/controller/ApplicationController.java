@@ -42,19 +42,25 @@ public class ApplicationController {
 
        return ResponseEntity.ok().body(applicationDetailedInfoDTO);
     }
-    @GetMapping
-    public ResponseEntity<List<ApplicationBasicInfoDTO>> getAllApplications(){
-        List<ApplicationBasicInfoDTO> allApplications = getApplicationsBasicInfo.getApplications();
 
-        if (allApplications == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(allApplications);
+//    @GetMapping
+//    public ResponseEntity<List<ApplicationBasicInfoDTO>> getAllApplications(){
+//        List<ApplicationBasicInfoDTO> allApplications = getApplicationsBasicInfo.getApplications();
+//
+//        if (allApplications == null) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok().body(allApplications);
+//    }
+
+    @GetMapping
+    public ResponseEntity<GetAllApplicationsResponseDTO> getAllApplications() {
+        return ResponseEntity.ok(getApplicationsBasicInfo.getAllApplications());
     }
 
     //Content Creator
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_Creator"})
+//    @IsAuthenticated
+//    @RolesAllowed({"ROLE_Creator"})
     @PostMapping()
     public ResponseEntity<CreateApplicationResponseDTO> createApplications(@RequestBody CreateApplicationRequestDTO application) {
 

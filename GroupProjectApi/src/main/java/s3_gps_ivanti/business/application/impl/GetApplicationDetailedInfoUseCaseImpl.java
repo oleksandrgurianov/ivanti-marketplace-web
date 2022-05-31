@@ -11,6 +11,7 @@ import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.entity.Application;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 @Primary
@@ -31,4 +32,9 @@ public class GetApplicationDetailedInfoUseCaseImpl implements GetApplicationDeta
 
         return ApplicationDTOConverter.convertToApplicationDetailedInfo(application);
     }
+//
+//    @Override
+//    public Optional<ApplicationDetailedInfoDTO> getApplicationDetailedInfo(String name) {
+//        return applicationRepository.findByName(name).map(ApplicationDTOConverter::convertToApplicationDetailedInfo);
+//    }
 }
