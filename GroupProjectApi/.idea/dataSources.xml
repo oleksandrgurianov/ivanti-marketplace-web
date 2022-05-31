@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="17" uuid="3fc9be7b-902a-44e1-80b5-e2e24412861f">
+    <data-source source="LOCAL" name="ivantidb" uuid="e9aa8d37-10e9-4b7e-bd78-7bc6bb80caad">
       <driver-ref>mongo</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
-      <jdbc-url>mongodb://localhost:27017</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="18" uuid="33ce148f-5d91-4a5c-b269-c30a8a95f088">
-      <driver-ref>mongo</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
-      <jdbc-url>mongodb://localhost:27018</jdbc-url>
+      <jdbc-url>mongodb+srv://cluster.9hwibna.mongodb.net/?retryWrites=true&amp;w=majority</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
