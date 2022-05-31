@@ -42,5 +42,14 @@ public class GetApplicationByCreatorUseCaseImpl implements GetApplicationByCreat
         return CreatorApplicationListDTO.builder()
                 .myApplications(creatorApplications)
                 .build();
+//        List<ApplicationBasicInfoDTO> applications = applicationRepository.findAll()
+//                .stream()
+//                .filter(application -> application.getCreator() == creator)
+//                .map(ApplicationDTOConverter::convertToDTO)
+//                .toList();
+//
+//        return CreatorApplicationListDTO.builder()
+//                .myApplications(applications)
+//                .build();
     }
 }
