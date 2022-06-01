@@ -70,14 +70,14 @@ function AddApplicationPage() {
                 dataReq: {data: rawLog, name: file.name, type: file.type},
                 fname: "uploadFilesToGoogleDrive"
             }; //preapre info to send to API
-            fetch('https://script.google.com/macros/s/AKfycby3Ey1lmmyX9CAsRlanTAU4FveEyfKqnjrYQPTaaBHUEN6Z3OrF/exec', //your AppsScript URL
+             fetch('https://script.google.com/macros/s/AKfycby3Ey1lmmyX9CAsRlanTAU4FveEyfKqnjrYQPTaaBHUEN6Z3OrF/exec', //your AppsScript URL
                 {method: "POST", body: JSON.stringify(dataSend)}) //send to Api
                 .then(res => res.json()).then((a) => {
-                changeApp(a.url);
-                setLoadingApp("");
-            }).catch((e) => {
-                setLoadingApp("Something went wrong please try again later.\n" + e);
-            })
+                    changeApp(a.url);
+                    setLoadingApp("");
+                }).catch((e) => {
+                    setLoadingApp("Something went wrong please try again later.\n" + e);
+                })
         }
     }
 
@@ -155,18 +155,23 @@ function AddApplicationPage() {
     }
 
     //Save app
-
+    let token = localStorage.getItem("token");
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
     const SendRequest = () =>{
-        axios.post(`http://localhost:8080/application`,
-            {
-                'name': name,
-                'description': description,
-                'screenshots': arrayImages,
-                'icon':icon,
-                'appLocation': app,
-                'creatorId':id
-            })
-            .then(function () {})
+
+        let data = {
+            'name': name,
+            'description': description,
+            'screenshots': arrayImages,
+            'icon':icon,
+            'applicationLocation': app,
+            'creatorID':id
+        };
+
+        axios.post(`http://localhost:8080/application`,data,config)
+            .then(function (){})
             .catch(function (){});
     }
     const CheckInput = () =>{

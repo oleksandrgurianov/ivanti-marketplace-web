@@ -98,10 +98,6 @@ function UpdateApplicationPage() {
         setIcon(ChangeView);
     }
     
-    const changeTitle = (e) => {
-        setName(e.target.value);
-    }
-    
     const changeDescription = (e) => {
         setDescription(e.target.value);
     }
@@ -131,15 +127,19 @@ function UpdateApplicationPage() {
     }
 
     //Save changes
+
+    let token = localStorage.getItem("token");
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
     const SaveChanges = () => {
-        axios.put(`http://localhost:8080/application`,
-            {
-                'id': id,
-                'name': name,
-                'description': description,
-                'images': arrayImages,
-                'icon': icon
-            })
+        let data = {
+            'id': id,
+            'description': description,
+            'screenshots': arrayImages,
+            'icon': icon
+        }
+        axios.put(`http://localhost:8080/application`, data,config)
             .then(function(){})
             .catch(function (){})
     }
@@ -217,8 +217,7 @@ function UpdateApplicationPage() {
                 </div>
                 <hr/>
                 <div className={"app-name"}>
-                    <h2>Name:</h2>
-                    <input type="text" value={name} placeholder={"Type here..."} onChange={changeTitle}/>
+                    <h2>Name:{name} </h2>
                 </div>
                 <hr/>
                 <div className="app-screenshots">
