@@ -49,7 +49,7 @@ public class UserController {
     //Customer and Creator
     @IsAuthenticated
     @RolesAllowed({"ROLE_Customer", "ROLE_Creator"})
-    @GetMapping("/{id}")
+    @GetMapping("/{username}")
     public ResponseEntity<CustomerDetailedInfoDTO> getUser(@PathVariable String username) {
         CustomerDetailedInfoDTO customerDetailedInfoDTO = getCustomer.getCustomer(username);
 

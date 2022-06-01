@@ -24,7 +24,7 @@ public class GetCustomerUseCaseImpl implements GetCustomerUseCase {
     public CustomerDetailedInfoDTO getCustomer(String username) {
         //TODO check if is admin
 
-        User result = userRepository.findUserByUsernameAndPermission(username);
+        User result = userRepository.findUserByUsername(username);
 
        if(result == null){
            throw new CustomerNotFoundException();
