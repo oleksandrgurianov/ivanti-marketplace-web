@@ -22,15 +22,12 @@ import axios from "axios";
 
 
 function Navbar() {
-
     function showContent() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
-
     window.onclick = function(e) {
         if (!e.target.matches('.dropdown-button')) {
             let myDropdown = document.getElementById("myDropdown");
-
             if (myDropdown.classList.contains('show')) {
                 myDropdown.classList.remove('show');
             }
@@ -38,9 +35,8 @@ function Navbar() {
     }
 
     const [authorization, setAuthorization] = useState("");
-
+    const [username, setUsername] = useState("");
     const login = (username, password) => {
-
         axios.post(`http://localhost:8080/login`,{
             "username":username,
             "password":password
@@ -48,17 +44,17 @@ function Navbar() {
             .then(res => {
                 localStorage.setItem("token", res.data.accessToken);
                 localStorage.setItem("authorization", res.data.permission);
+                localStorage.setItem('username', username);
                 setAuthorization(res.data.permission);
+                setUsername(res.data.username)
                 console.log(authorization)
-                console.log(localStorage.getItem("token"))
             })
             .catch(err => {});
     }
     const logout =()=>{
         localStorage.removeItem("token");
         setAuthorization("");
-        console.log(authorization)
-        console.log(localStorage.getItem("token"))
+
     }
 
 
@@ -71,12 +67,11 @@ function Navbar() {
                             <img src={logo} height={"38px"} alt={"ivanti marketplace logo"}/>
                         </Link>
                         <Link className='NavLink' to="/all-apps">All Apps</Link>
-
                         <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
                         <div className="NavDropdown">
-                            <button className="dropdown-button" onClick={showContent}>Lars Kluijtmans<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
+                            <button className="dropdown-button" onClick={showContent}>{localStorage.getItem("username")}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
                             <div className="dropdown-content" id="myDropdown">
-                                <Link to="/creator/1">My Account</Link>
+                                <Link to="/customer/1">My Account</Link>
                                 <hr/>
                                 <Link to="/" onClick={logout}>Logout</Link>
                             </div>
@@ -88,11 +83,9 @@ function Navbar() {
                             <Route path="/" element={<HomePage/>} />
                             <Route path="/about" element={<AboutPage/>} />
                             <Route path="/contact" element={<ContactPage/>} />
-                            <Route path='/app/:name' element={<ApplicationDetailedPage />} />
-
                             <Route path='/all-apps' element={<AllApplicationsPage />} />
-                            <Route path="/logout" element={<LogOutPage logout={logout}/>} />
                             <Route path='/app/:name' element={<ApplicationDetailedPage />} />
+                            <Route path="/logout" element={<LogOutPage logout={logout}/>} />
                             <Route path="/login" element={<LogInPage login={login}/>} />
                             <Route path="/*" element={<ErrorPage />} />
                         </Routes>
@@ -104,13 +97,12 @@ function Navbar() {
                         <Link className="NavLogo" to="/">
                             <img src={logo} height={"38px"} alt={"ivanti marketplace logo"}/>
                         </Link>
-                        <Link className='NavLink' to="/creator/creator/myApps">my Apps</Link>
                         <Link className='NavLink' to="/all-apps">All Apps</Link>
-                        <Link className="NavLink" to="/creator/creator/analytics">Analytics</Link>
-                        <Link className="NavLink" to="/creator/creator/notifications">Notifications</Link>
+                        <Link className="NavLink" to="/creator/1/analytics">Analytics</Link>
+                        <Link className="NavLink" to="/creator/1/notifications">Notifications</Link>
                         <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
                         <div className="NavDropdown">
-                            <button className="dropdown-button" onClick={showContent}>Lars Kluijtmans<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
+                            <button className="dropdown-button" onClick={showContent}>{localStorage.getItem("username")}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
                             <div className="dropdown-content" id="myDropdown">
                                 <Link to="/creator/1">My Account</Link>
                                 <hr/>
@@ -124,20 +116,13 @@ function Navbar() {
                             <Route path="/" element={<HomePage/>} />
                             <Route path="/about" element={<AboutPage/>} />
                             <Route path="/contact" element={<ContactPage/>} />
-
-                            <Route path='/all-apps' element={<AllApplicationsPage />} />
-                            <Route path='/app/:name' element={<ApplicationDetailedPage />} />
-
-                            <Route path="/creator/:id/myApps" element={<MyAppsPage />}/>
                             <Route path="/creator/:id/myApps/:name/updateApplication" element={<UpdateApplicationPage />}/>
                             <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
                             <Route path="/creator/:id/myApps/:name" element={<ApplicationPage />} />
+                            <Route path='/app/:name' element={<ApplicationDetailedPage />} />
                             <Route path='/all-apps' element={<AllApplicationsPage />} />
                             <Route path='/creator/:id/myApps/:name/addMinorVersion' element={<AddMinorVersionPage />} />
                             <Route path='/creator/:id/myApps/:name/addMajorVersion' element={<AddMajorVersionPage />} />
-                            <Route path='/creator/:id/myApps/:name/updateVersion/:version' element={<AddMajorVersionPage />} />
-                            <Route path='/app/:name' element={<ApplicationDetailedPage />} />
-                            <Route path="/logout" element={<LogOutPage logout={logout}/>} />
                             <Route path="/login" element={<LogInPage login={login}/>} />
                             <Route path="/*" element={<ErrorPage />} />
                             <Route path="/creator/:id/analytics" element={<AnalyticsPage/>}/>
