@@ -59,8 +59,8 @@ public class ApplicationController {
     }
 
     //Content Creator
-//    @IsAuthenticated
-//    @RolesAllowed({"ROLE_Creator"})
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator"})
     @PostMapping()
     public ResponseEntity<CreateApplicationResponseDTO> createApplications(@RequestBody CreateApplicationRequestDTO application) {
 

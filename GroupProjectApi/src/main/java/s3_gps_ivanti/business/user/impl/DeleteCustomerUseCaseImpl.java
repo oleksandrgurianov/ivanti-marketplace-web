@@ -24,7 +24,7 @@ public class DeleteCustomerUseCaseImpl implements DeleteCustomerUseCase {
             throw new CustomerNotFoundException();
         }
 
-        if(userRepository.findByIdAAndPermission(customerID) != null) {
+        if(userRepository.findById(customerID) != null) {
             userRepository.deleteById(customerID);
         }
         else

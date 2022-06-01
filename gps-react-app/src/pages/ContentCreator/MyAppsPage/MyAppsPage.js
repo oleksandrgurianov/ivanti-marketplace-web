@@ -19,8 +19,13 @@ const MyAppsPage = () => {
 
     const [creator, setCreator] = useState({});
 
+    let token = localStorage.getItem("token");
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+
     const getCreator = () => {
-        axios.get(`http://localhost:8080/api/user/creator/${id}`)
+        axios.get(`http://localhost:8080/user/${id}`, config)
             .then(response => {
                 setCreator(response.data);
                 console.log(response.data);
@@ -30,11 +35,11 @@ const MyAppsPage = () => {
             })
     }
 
-    useEffect(() => {
+   useEffect(() => {
         getCreator();
     }, []);
 
-    function getApplicationsByCreator() {
+    /* function getApplicationsByCreator() {
         axios.get(`http://localhost:8080/application/creator/${id}`, {
             params: {
                 name: urlParams.get('name'),
@@ -67,7 +72,7 @@ const MyAppsPage = () => {
         }
 
         getApplicationsByCreator();
-    }
+    }*/
 
     return (
         <div>
@@ -76,7 +81,7 @@ const MyAppsPage = () => {
                     <div className={"my-apps-controls"}>
                         <h1 className={"title"}>My Apps</h1>
                         <Link to={`/creator/${id}/myApps/addApplication`}><FontAwesomeIcon className={"add-icon"} icon={faCirclePlus}/></Link>
-                        <input className={"search-field"} type="text"  placeholder="Search" value={name} onChange={(e) => setName(e.target.value)}/>
+                        {/* <input className={"search-field"} type="text"  placeholder="Search" value={name} onChange={(e) => setName(e.target.value)}/>
                         <div className={"dropdown"}>
                             <select value={sort} onChange={(e) => setSort(e.target.value)}>
                                 <option value="nameAsc">Name Ascending</option>
@@ -86,13 +91,13 @@ const MyAppsPage = () => {
                             </select>
                             <FontAwesomeIcon className="dropdown-icon" icon={faCaretDown} />
                         </div>
-                        <button className={"search-button"} type="button" onClick={searchAndSort}><FontAwesomeIcon icon={faMagnifyingGlass}/></button>
+                        <button className={"search-button"} type="button" onClick={searchAndSort}><FontAwesomeIcon icon={faMagnifyingGlass}/></button>*/}
                     </div>
                     <hr/>
                     <div className={"my-apps-list"}>
-                        { applications.length > 0 ? (
+                        { creator.applications.length > 0 ? (
                             <>
-                                { applications.map((app) => (
+                                { creator.applications.map((app) => (
                                     <Application key={app.name} name={app.name} icon={app.icon}/>
                                 )) }
                             </>

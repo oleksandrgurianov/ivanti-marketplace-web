@@ -60,6 +60,7 @@ public class CustomerDTOConverter {
                 .username(result.getUsername())
                 .email(result.getEmail())
                 .permission(result.getPermission())
+                .applications(ApplicationDTOConverter.convertListToDTO(result.getApplications()))
                 .build();
     }
 }
