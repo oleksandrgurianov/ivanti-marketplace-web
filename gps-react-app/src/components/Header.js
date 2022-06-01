@@ -92,6 +92,7 @@ function Navbar() {
 
                             <Route path='/all-apps' element={<AllApplicationsPage />} />
                             <Route path="/logout" element={<LogOutPage logout={logout}/>} />
+                            <Route path='/app/:name' element={<ApplicationDetailedPage />} />
                             <Route path="/login" element={<LogInPage login={login}/>} />
                             <Route path="/*" element={<ErrorPage />} />
                         </Routes>
@@ -135,6 +136,7 @@ function Navbar() {
                             <Route path='/creator/:id/myApps/:name/addMinorVersion' element={<AddMinorVersionPage />} />
                             <Route path='/creator/:id/myApps/:name/addMajorVersion' element={<AddMajorVersionPage />} />
                             <Route path='/creator/:id/myApps/:name/updateVersion/:version' element={<AddMajorVersionPage />} />
+                            <Route path='/app/:name' element={<ApplicationDetailedPage />} />
                             <Route path="/logout" element={<LogOutPage logout={logout}/>} />
                             <Route path="/login" element={<LogInPage login={login}/>} />
                             <Route path="/*" element={<ErrorPage />} />

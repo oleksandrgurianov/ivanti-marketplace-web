@@ -56,7 +56,6 @@ public class UserController {
         if(customerDetailedInfoDTO == null) {
             return ResponseEntity.notFound().build();
         }
-
         return ResponseEntity.ok().body(getCustomer.getCustomer(username));
     }
 
