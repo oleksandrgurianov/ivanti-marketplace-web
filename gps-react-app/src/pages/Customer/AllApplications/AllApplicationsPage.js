@@ -6,13 +6,17 @@ const AllApplicationsPage = () => {
 
     const [applicationsArray, setApplicationArray] = useState([]);
     const [name, setName] = useState('');
+    let token = localStorage.getItem("token");
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
 
     useEffect(() => {
         getApplications();
     }, []);
 
     const getApplications = () => {
-        axios.get(`http://localhost:8080/application`)
+        axios.get(`http://localhost:8080/application`, config)
         .then(res => {
             setApplicationArray(res.data);
             console.log(res.data);

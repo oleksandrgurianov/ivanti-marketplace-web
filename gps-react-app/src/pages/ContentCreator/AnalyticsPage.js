@@ -10,12 +10,17 @@ import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
 function AnalyticsPage() {
     Chart.register(...registerables)
     const [Applications, setApplications] = useState([]);
+    let token = localStorage.getItem("token");
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+
     useEffect(() => {
         GetAllApplications();
     },[Applications]);
 
     const GetAllApplications =() => {
-        axios.get(`http://localhost:8080/application/creator/1/statistics`)
+        axios.get(`http://localhost:8080/application/creator/1/statistics`, config)
             .then(res => {
                 setApplications(res.data);
             })

@@ -6,6 +6,10 @@ import {faCaretDown, faChevronLeft, faChevronRight} from '@fortawesome/free-soli
 import { FaStar } from 'react-icons/fa'
 
 const ApplicationDetailedPage = () => {
+    let token = localStorage.getItem("token");
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
 
     let params = useParams();
 
@@ -13,7 +17,7 @@ const ApplicationDetailedPage = () => {
     const [version, setVersion] = useState("1.0");
 
     const getApplication = () => {
-        axios.get(`http://localhost:8080/application/${params.name}`)
+        axios.get(`http://localhost:8080/application/${params.name}`, config)
         .then(response => {
             setApplication(response.data);
             console.log(response.data);

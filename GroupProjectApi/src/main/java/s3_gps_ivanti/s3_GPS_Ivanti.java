@@ -9,6 +9,7 @@ import s3_gps_ivanti.repository.*;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import s3_gps_ivanti.repository.entity.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @EnableMongoRepositories
