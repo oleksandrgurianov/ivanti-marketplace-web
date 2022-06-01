@@ -48,6 +48,7 @@ function Navbar() {
                 setAuthorization(res.data.permission);
                 setUsername(res.data.username)
                 console.log(authorization)
+
             })
             .catch(err => {});
     }
@@ -116,10 +117,21 @@ function Navbar() {
                             <Route path="/" element={<HomePage/>} />
                             <Route path="/about" element={<AboutPage/>} />
                             <Route path="/contact" element={<ContactPage/>} />
+
                             <Route path="/creator/:id/myApps/:name/updateApplication" element={<UpdateApplicationPage />}/>
                             <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
                             <Route path="/creator/:id/myApps/:name" element={<ApplicationPage />} />
                             <Route path='/app/:name' element={<ApplicationDetailedPage />} />
+
+
+                            <Route path='/all-apps' element={<AllApplicationsPage />} />
+                            <Route path='/app/:name' element={<ApplicationDetailedPage />} />
+
+                            <Route path="/creator/:id/myApps" element={<MyAppsPage />}/>
+                            <Route path="/creator/:id/myApps/:appName/updateApplication" element={<UpdateApplicationPage />}/>
+                            <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
+                            <Route path="/creator/:id/myApps/:appName" element={<ApplicationPage />} />
+
                             <Route path='/all-apps' element={<AllApplicationsPage />} />
                             <Route path='/creator/:id/myApps/:name/addMinorVersion' element={<AddMinorVersionPage />} />
                             <Route path='/creator/:id/myApps/:name/addMajorVersion' element={<AddMajorVersionPage />} />

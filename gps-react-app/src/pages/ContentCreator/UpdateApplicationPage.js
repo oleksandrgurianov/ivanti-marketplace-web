@@ -61,18 +61,18 @@ function UpdateApplicationPage() {
             GetProductByName();
         }, []);
 
-    let params = useParams()
+    const {appName} = useParams();
 
     const GetProductByName = () => {
-            axios.get(`http://localhost:8080/application/creator/appToUpdate/${params.name}`)
+            axios.get(`http://localhost:8080/application/`+ appName)
                 .then(res => {
-                    setId(res.data.id);
                     setIcon(res.data.icon);
                     setName(res.data.name);
                     setDescription(res.data.description);
-                    setArrayImages(res.data.images);
+                    setArrayImages(res.data.screenshots);
+
+                    console.log(res.data)
                 }).catch(() => {
-                setId(null);
                 setIcon(null);
                 setName(null);
                 setDescription(null);
@@ -81,7 +81,6 @@ function UpdateApplicationPage() {
     }
 
     //App info
-    const [id, setId] = useState("");
     const [icon, setIcon] = useState("");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -97,11 +96,9 @@ function UpdateApplicationPage() {
         let ChangeView = includeID.replace("/view?usp=drivesdk", "");
         setIcon(ChangeView);
     }
-    
     const changeDescription = (e) => {
         setDescription(e.target.value);
     }
-    
     function AddImage(url) {
         let includeID = url.replace("file/d/", "uc?export=view?&id=");
         let ChangeView = includeID.replace("/view?usp=drivesdk", "");
@@ -115,7 +112,6 @@ function UpdateApplicationPage() {
         
         setArrayImages(arrayImages);
     }
-    
     const RemoveImage = (e) => {
         for (let i = 0; i < arrayImages.length; i++) {
             if (arrayImages[i] === e.target.value) {
@@ -134,7 +130,7 @@ function UpdateApplicationPage() {
     };
     const SaveChanges = () => {
         let data = {
-            'id': id,
+            'username': name,
             'description': description,
             'screenshots': arrayImages,
             'icon': icon
@@ -164,10 +160,6 @@ function UpdateApplicationPage() {
         
         if (description === "") {
             result += "Please add a description. \n";
-        }
-        
-        if (name === "") {
-            result += "Please add a title. \n";
         }
         
         if (arrayImages !== null) {

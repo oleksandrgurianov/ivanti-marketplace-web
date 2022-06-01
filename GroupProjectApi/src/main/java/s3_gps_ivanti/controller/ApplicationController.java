@@ -80,7 +80,6 @@ public class ApplicationController {
     @RolesAllowed({"ROLE_Creator"})
     @PutMapping()
     public ResponseEntity<Object> updateApplications(@RequestBody UpdateApplicationRequestDTO application) {
-
         updateApplication.updateApplications(application);
         return ResponseEntity.noContent().build();
     }

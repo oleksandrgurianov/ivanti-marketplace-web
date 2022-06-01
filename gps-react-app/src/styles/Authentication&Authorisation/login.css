@@ -20,11 +20,11 @@
 }
 .login-input{
     width: 97%;
-    border: 1px solid #F4FFF8;
+    border: 1px solid black;
     padding: 5px;
     margin: 2px 0;
     border-radius: 5px;
-    background-color: #F4FFF8;
+    background-color: rgba(128, 128, 128, 0.12);
     box-shadow: none;
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 
@@ -42,7 +42,7 @@
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 .login-button:hover {
-    background-color: #cb4848;
+    background-color: rgb(160, 0, 0);
     color: white;
 }
 

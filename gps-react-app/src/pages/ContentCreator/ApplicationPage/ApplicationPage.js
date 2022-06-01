@@ -8,45 +8,28 @@ import {faCaretDown, faChevronLeft, faChevronRight} from '@fortawesome/free-soli
 /*import $ from 'jquery';*/
 
 const ApplicationPage = () => {
-    let params = useParams();
+    const {appName} = useParams();
 
     const [application, setApplication] = useState({});
     const [version, setVersion] = useState("1.0");
 
     const getApplication = () => {
-        axios.get(`http://localhost:8080/application/details/${params.name}`)
+        axios.get(`http://localhost:8080/application/` + appName)
         .then(response => {
             setApplication(response.data);
-            console.log(response.data);
         })
         .catch(err => {
-            console.log(err);
         })
     }
 
     const deleteApplication = () => {
-      axios.delete(`http://localhost:8080/application/${params.name}`)
+      axios.delete(`http://localhost:8080/application/` + appName)
           .then(response => {
-            setApplication(response.data);
-            console.log(response.data);
           })
           .catch(err => {
-            console.log(err);
           })
     }
 
-    const deleteVersion = () => {
-        axios.post(`http://localhost:8080/application/version/delete`, {
-            'appName': params.appName,
-            'number': version
-        })
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }
 
     useEffect(() => {
         getApplication();
@@ -81,7 +64,7 @@ const ApplicationPage = () => {
             <hr/>
             <div className='menu-wrapper'>
                 <ul className='menu'>
-                    { application.images != null && application.images.map((image) => (
+                    { application.screenshots != null && application.screenshots.map((image) => (
                         <li className='item' key={image}><img src={image}/></li>
                     ))}
                 </ul>
