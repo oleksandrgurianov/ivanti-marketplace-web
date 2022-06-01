@@ -78,10 +78,12 @@ public class ApplicationDTOConverter {
                 .name(application.getName())
                 .description(app.getDescription())
                 .icon(app.getIcon())
+                .creator(application.getCreator())
                 .screenshots(app.getScreenshots())
                 .status(application.isStatus()?
                         true
                         :false)
+                .reviews(application.getReviews())
                 .versions(application.getVersions())
                 .rating(application.getRating())
                 .build();

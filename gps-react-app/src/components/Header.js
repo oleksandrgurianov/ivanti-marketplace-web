@@ -128,9 +128,9 @@ function Navbar() {
                             <Route path='/app/:name' element={<ApplicationDetailedPage />} />
 
                             <Route path="/creator/:id/myApps" element={<MyAppsPage />}/>
-                            <Route path="/creator/:id/myApps/:name/updateApplication" element={<UpdateApplicationPage />}/>
+                            <Route path="/creator/:id/myApps/:appName/updateApplication" element={<UpdateApplicationPage />}/>
                             <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
-                            <Route path="/creator/:id/myApps/:name" element={<ApplicationPage />} />
+                            <Route path="/creator/:id/myApps/:appName" element={<ApplicationPage />} />
                             <Route path='/all-apps' element={<AllApplicationsPage />} />
                             <Route path='/creator/:id/myApps/:name/addMinorVersion' element={<AddMinorVersionPage />} />
                             <Route path='/creator/:id/myApps/:name/addMajorVersion' element={<AddMajorVersionPage />} />

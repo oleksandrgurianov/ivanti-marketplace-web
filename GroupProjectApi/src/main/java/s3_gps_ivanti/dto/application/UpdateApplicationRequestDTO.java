@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateApplicationRequestDTO {
-    private String id;
+    private String username;
     private String description;
     private List<String> screenshots;
     private String icon;
