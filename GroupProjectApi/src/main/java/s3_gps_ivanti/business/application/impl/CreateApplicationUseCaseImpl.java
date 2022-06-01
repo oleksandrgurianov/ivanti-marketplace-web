@@ -9,7 +9,9 @@ import s3_gps_ivanti.business.exception.ApplicationNameNotUnique;
 import s3_gps_ivanti.dto.application.CreateApplicationRequestDTO;
 import s3_gps_ivanti.dto.application.CreateApplicationResponseDTO;
 import s3_gps_ivanti.repository.ApplicationRepository;
+import s3_gps_ivanti.repository.UserRepository;
 import s3_gps_ivanti.repository.entity.Application;
+import s3_gps_ivanti.repository.entity.User;
 
 import javax.transaction.Transactional;
 
@@ -21,18 +23,20 @@ import javax.transaction.Transactional;
 public class CreateApplicationUseCaseImpl implements CreateApplicationUseCase {
 
     private final ApplicationRepository applicationRepository;
+    private final UserRepository userRepository;
 
     @Override
     public CreateApplicationResponseDTO createApplications(CreateApplicationRequestDTO applicationRequestDTO) {
 
-        if(applicationRepository.findByName(applicationRequestDTO.getName()) != null){
+        if(applicationRepository.findByName(applicationRequestDTO.getName()) != null)
+        {
             throw new ApplicationNameNotUnique();
         }
-
-        applicationRepository.save(ApplicationDTOConverter.convertToEntity(applicationRequestDTO));
-
+        Application app = ApplicationDTOConverter.convertToEntity(applicationRequestDTO);
+        User user = userRepository.findUserByUsername(applicationRequestDTO.getCreatorID());
+        app.setCreator(user);
+        applicationRepository.save(app);
         Application newApplication = applicationRepository.findByName(applicationRequestDTO.getName());
-
         return ApplicationDTOConverter.convertToDTOCreateResponse(newApplication);
     }
 }
