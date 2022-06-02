@@ -14,7 +14,7 @@ const ApplicationPage = () => {
     const [version, setVersion] = useState("1.0");
 
     const getApplication = () => {
-        axios.get(`http://localhost:8080/application/details/${params.name}`)
+        axios.get(`http://localhost:8080/application/${params.name}`)
         .then(response => {
             setApplication(response.data);
             console.log(response.data);
@@ -81,7 +81,7 @@ const ApplicationPage = () => {
             <hr/>
             <div className='menu-wrapper'>
                 <ul className='menu'>
-                    { application.images != null && application.images.map((image) => (
+                    { application.screenshots != null && application.screenshots.map((image) => (
                         <li className='item' key={image}><img src={image}/></li>
                     ))}
                 </ul>
@@ -102,7 +102,7 @@ const ApplicationPage = () => {
                 <button className={"see-all-button"}>See All</button>
             </div>
             <div className={"overall-rating"}>
-                <p className={"rating-number"}>2.6</p>
+                <p className={"rating-number"}>{application.avgRating}</p>
                 <p>out of 5</p>
             </div>
             <div className={"app-reviews"}>

@@ -64,15 +64,14 @@ function UpdateApplicationPage() {
     let params = useParams()
 
     const GetProductByName = () => {
-            axios.get(`http://localhost:8080/application/creator/appToUpdate/${params.name}`)
+            axios.get(`http://localhost:8080/application/` + params.name)
                 .then(res => {
-                    setId(res.data.id);
                     setIcon(res.data.icon);
                     setName(res.data.name);
                     setDescription(res.data.description);
-                    setArrayImages(res.data.images);
+                    setArrayImages(res.data.screenshots);
+                    console.log(res.data)
                 }).catch(() => {
-                setId(null);
                 setIcon(null);
                 setName(null);
                 setDescription(null);

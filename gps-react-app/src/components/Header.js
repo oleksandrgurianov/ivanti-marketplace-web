@@ -80,7 +80,7 @@ function Navbar() {
                         <div className="NavDropdown">
                             <button className="dropdown-button" onClick={showContent}>{usernameLoggedIn}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
                             <div className="dropdown-content" id="myDropdown">
-                                <Link to="/creator/1">My Account</Link>
+                                <Link to="/creator/1">My Apps</Link>
                                 <hr/>
                                 <Link to="/" onClick={logout}>Logout</Link>
                             </div>
@@ -93,6 +93,7 @@ function Navbar() {
                             <Route path="/about" element={<AboutPage/>} />
                             <Route path="/contact" element={<ContactPage/>} />
                             <Route path='/all-apps' element={<AllApplicationsPage />} />
+                            <Route path='/app/:name' element={<ApplicationDetailedPage />} />
                             <Route path="/logout" element={<LogOutPage logout={logout}/>} />
                             <Route path="/login" element={<LogInPage login={login}/>} />
                             <Route path="/*" element={<ErrorPage />} />
@@ -112,7 +113,7 @@ function Navbar() {
                         <div className="NavDropdown">
                             <button className="dropdown-button" onClick={showContent}>{usernameLoggedIn}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
                             <div className="dropdown-content" id="myDropdown">
-                                <Link to={`/my-account/BetterEsther`}>My Account</Link>
+                                <Link to={`/my-account/creator`}>My Apps</Link>
                                 <hr/>
                                 <Link to="/" onClick={logout}>Logout</Link>
                             </div>
@@ -121,20 +122,25 @@ function Navbar() {
 
                     <div className="Body">
                         <Routes>
-                            <Route path="/" element={<HomePage/>} />
+                            <Route path="/" element={<HomePage/>} /> 
                             <Route path="/about" element={<AboutPage/>} />
                             <Route path="/contact" element={<ContactPage/>} />
+                            <Route path='/all-apps' element={<AllApplicationsPage />} />
+                            <Route path='/app/:name' element={<ApplicationDetailedPage />} />
+
                             <Route path="/creator/:id/myApps/:name/updateApplication" element={<UpdateApplicationPage />}/>
                             <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
-                            <Route path="/creator/:id/myApps/:name" element={<ApplicationPage />} />
-                            <Route path='/all-apps' element={<AllApplicationsPage />} />
                             <Route path='/creator/:id/myApps/:name/addMinorVersion' element={<AddMinorVersionPage />} />
                             <Route path='/creator/:id/myApps/:name/addMajorVersion' element={<AddMajorVersionPage />} />
                             <Route path='/creator/:id/myApps/:name/updateVersion/:version' element={<AddMajorVersionPage />} />
+
                             <Route path='/my-account/:username' element={<MyAppsPage />} /> 
+                            <Route path="/creator/:id/myApps/:name" element={<ApplicationPage />} />
+
                             <Route path="/logout" element={<LogOutPage logout={logout}/>} />
                             <Route path="/login" element={<LogInPage login={login}/>} />
                             <Route path="/*" element={<ErrorPage />} />
+
                             <Route path="/creator/:id/analytics" element={<AnalyticsPage/>}/>
                         </Routes>
                     </div>
