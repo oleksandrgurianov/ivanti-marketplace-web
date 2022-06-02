@@ -4,10 +4,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import s3_gps_ivanti.business.dtoconvertor.ApplicationDTOConverter;
 import s3_gps_ivanti.business.user.*;
 import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
+import s3_gps_ivanti.dto.application.ApplicationAnalyticsDTO;
 import s3_gps_ivanti.dto.user.*;
 import lombok.RequiredArgsConstructor;
+import s3_gps_ivanti.repository.entity.User;
 
 import javax.annotation.security.RolesAllowed;
 import java.util.List;
@@ -24,6 +27,7 @@ public class UserController {
     private final GetCustomersUseCase getCustomers;
     private final GetCustomerUseCase getCustomer;
     private final UpdateCustomerUseCase updateCustomer;
+    private final GetCreatorUseCase getCreator;
 
     //All
     @PostMapping()
@@ -49,14 +53,13 @@ public class UserController {
     //Customer and Creator
     @IsAuthenticated
     @RolesAllowed({"ROLE_Customer", "ROLE_Creator"})
-    @GetMapping("/{id}")
+    @GetMapping("/{username}")
     public ResponseEntity<CustomerDetailedInfoDTO> getUser(@PathVariable String username) {
         CustomerDetailedInfoDTO customerDetailedInfoDTO = getCustomer.getCustomer(username);
 
         if(customerDetailedInfoDTO == null) {
             return ResponseEntity.notFound().build();
         }
-
         return ResponseEntity.ok().body(getCustomer.getCustomer(username));
     }
 
@@ -77,7 +80,16 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("{creatorName}/statistics")
+    public ResponseEntity<List<ApplicationAnalyticsDTO>>getVersionAnalytics(@PathVariable String creatorName) {
+        User creator = getCreator.getCreator(creatorName);
+        List<ApplicationAnalyticsDTO> analytics = ApplicationDTOConverter.convertToDTOListForAnalytics(creator.getApplications());
 
+        if(creator!=null){
+            return ResponseEntity.ok().body(analytics);
+        }
+        return ResponseEntity.notFound().build();
+    }
     //TODO fix this
    /* @GetMapping("{id}")
    public ResponseEntity<Application> getApplicationsBySearch(@PathVariable("id") long id) {
@@ -88,7 +100,5 @@ public class UserController {
             return ResponseEntity.notFound().build();
       }
     }*/
-
-
 }
 

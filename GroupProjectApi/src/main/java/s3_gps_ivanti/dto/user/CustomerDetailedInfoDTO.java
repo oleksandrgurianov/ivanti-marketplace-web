@@ -16,5 +16,5 @@ public class CustomerDetailedInfoDTO {
     private String username;
     private String email;
     private String permission;
-    private List<ApplicationBasicInfoDTO> applicationID;
+    private List<ApplicationBasicInfoDTO> applications;
 }

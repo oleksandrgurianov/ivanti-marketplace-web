@@ -22,15 +22,12 @@ import axios from "axios";
 
 
 function Navbar() {
-
     function showContent() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
-
     window.onclick = function(e) {
         if (!e.target.matches('.dropdown-button')) {
             let myDropdown = document.getElementById("myDropdown");
-
             if (myDropdown.classList.contains('show')) {
                 myDropdown.classList.remove('show');
             }
@@ -41,7 +38,6 @@ function Navbar() {
     const [usernameLoggedIn, setUsernameLoggedIn] = useState("");
 
     const login = (username, password) => {
-
         axios.post(`http://localhost:8080/login`,{
             "username":username,
             "password":password
@@ -49,21 +45,18 @@ function Navbar() {
             .then(res => {
                 localStorage.setItem("token", res.data.accessToken);
                 localStorage.setItem("authorization", res.data.permission);
-                localStorage.setItem("username", username);
-                setUsernameLoggedIn(username);
+                localStorage.setItem('username', username);
                 setAuthorization(res.data.permission);
+                setUsername(res.data.username)
                 console.log(authorization)
-                console.log(localStorage.getItem("token"))
+
             })
             .catch(err => {});
     }
     const logout =()=>{
         localStorage.removeItem("token");
         setAuthorization("");
-        console.log(authorization)
-        console.log(localStorage.getItem("token"))
     }
-
 
     return(
         <>
@@ -74,8 +67,6 @@ function Navbar() {
                             <img src={logo} height={"38px"} alt={"ivanti marketplace logo"}/>
                         </Link>
                         <Link className='NavLink' to="/all-apps">All Apps</Link>
-                        <Link className="NavLink" to="/creator/1/analytics">Analytics</Link>
-                        <Link className="NavLink" to="/creator/1/notifications">Notifications</Link>
                         <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
                         <div className="NavDropdown">
                             <button className="dropdown-button" onClick={showContent}>{usernameLoggedIn}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
@@ -107,11 +98,12 @@ function Navbar() {
                             <img src={logo} height={"38px"} alt={"ivanti marketplace logo"}/>
                         </Link>
                         <Link className='NavLink' to="/all-apps">All Apps</Link>
-                        <Link className="NavLink" to="/creator/1/analytics">Analytics</Link>
+                        <Link className="NavLink" to="/creator/analytics">Analytics</Link>
                         <Link className="NavLink" to="/creator/1/notifications">Notifications</Link>
+                        <Link className="NavLink" to="/creator/:id/myApps">Notifications</Link>
                         <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
                         <div className="NavDropdown">
-                            <button className="dropdown-button" onClick={showContent}>{usernameLoggedIn}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
+                            <button className="dropdown-button" onClick={showContent}>{localStorage.getItem("username")}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
                             <div className="dropdown-content" id="myDropdown">
                                 <Link to={`/my-account/creator`}>My Apps</Link>
                                 <hr/>

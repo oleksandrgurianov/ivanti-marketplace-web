@@ -24,7 +24,7 @@ public class UpdateApplicationUseCaseImpl implements UpdateApplicationUseCase {
     public void updateApplications(UpdateApplicationRequestDTO applicationRequestDTO) {
 
         //TODO check token.userid
-        Application application = applicationRepository.findById(applicationRequestDTO.getId()).orElse(null);
+        Application application = applicationRepository.findByName(applicationRequestDTO.getUsername());
 
         if(application == null) {
             throw new ApplicationNotFoundException();

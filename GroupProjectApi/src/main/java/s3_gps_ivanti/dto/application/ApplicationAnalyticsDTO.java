@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import s3_gps_ivanti.repository.entity.DownloadsPerMonth;
 
 import java.util.List;
 
@@ -11,9 +12,9 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateApplicationRequestDTO {
-    private String username;
-    private String description;
-    private List<String> screenshots;
+public class ApplicationAnalyticsDTO {
+    private String name;
     private String icon;
+    private List<DownloadsPerMonth> downloads;
+    private long totalDownloads;
 }

@@ -21,7 +21,7 @@ public class ApplicationDetailedInfoDTO {
     private String description;
     private List<String> screenshots;
     private int totalDownloads;
-    private int avgRating;
+    private double avgRating;
     private List<VersionDTO> versions;
     private List<ReviewDTO> reviews;
     private CustomerSmallDetailDTO creator;

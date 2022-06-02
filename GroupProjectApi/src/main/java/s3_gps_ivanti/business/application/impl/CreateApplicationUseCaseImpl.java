@@ -28,18 +28,15 @@ public class CreateApplicationUseCaseImpl implements CreateApplicationUseCase {
     @Override
     public CreateApplicationResponseDTO createApplications(CreateApplicationRequestDTO applicationRequestDTO) {
 
-        if(applicationRepository.findByName(applicationRequestDTO.getName()) != null){
+        if(applicationRepository.findByName(applicationRequestDTO.getName()) != null)
+        {
             throw new ApplicationNameNotUnique();
         }
-
         Application app = ApplicationDTOConverter.convertToEntity(applicationRequestDTO);
         User user = userRepository.findUserByUsername(applicationRequestDTO.getCreatorID());
         app.setCreator(user);
-
         applicationRepository.save(app);
-
         Application newApplication = applicationRepository.findByName(applicationRequestDTO.getName());
-
         return ApplicationDTOConverter.convertToDTOCreateResponse(newApplication);
     }
 }

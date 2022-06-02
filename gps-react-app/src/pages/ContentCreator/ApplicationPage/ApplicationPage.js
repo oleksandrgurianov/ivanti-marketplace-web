@@ -8,7 +8,7 @@ import {faCaretDown, faChevronLeft, faChevronRight} from '@fortawesome/free-soli
 /*import $ from 'jquery';*/
 
 const ApplicationPage = () => {
-    let params = useParams();
+    const {appName} = useParams();
 
     const [application, setApplication] = useState({});
     const [version, setVersion] = useState("1.0");
@@ -17,36 +17,19 @@ const ApplicationPage = () => {
         axios.get(`http://localhost:8080/application/${params.name}`)
         .then(response => {
             setApplication(response.data);
-            console.log(response.data);
         })
         .catch(err => {
-            console.log(err);
         })
     }
 
     const deleteApplication = () => {
-      axios.delete(`http://localhost:8080/application/${params.name}`)
+      axios.delete(`http://localhost:8080/application/` + appName)
           .then(response => {
-            setApplication(response.data);
-            console.log(response.data);
           })
           .catch(err => {
-            console.log(err);
           })
     }
 
-    const deleteVersion = () => {
-        axios.post(`http://localhost:8080/application/version/delete`, {
-            'appName': params.appName,
-            'number': version
-        })
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }
 
     useEffect(() => {
         getApplication();
@@ -127,7 +110,7 @@ const ApplicationPage = () => {
                                     )
                                 })}
                             </p>
-                            <p className={"nickname"}>Nickname</p>
+                            <p className={"nickname"}>{review.customer}</p>
                         </div>
                         <p className={"card-description"}>{review.description}</p>
                         <button className={"reply-button"}>Reply</button>

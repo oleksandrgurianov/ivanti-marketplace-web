@@ -61,7 +61,7 @@ function UpdateApplicationPage() {
             GetProductByName();
         }, []);
 
-    let params = useParams()
+    const {appName} = useParams();
 
     const GetProductByName = () => {
             axios.get(`http://localhost:8080/application/` + params.name)
@@ -70,6 +70,7 @@ function UpdateApplicationPage() {
                     setName(res.data.name);
                     setDescription(res.data.description);
                     setArrayImages(res.data.screenshots);
+
                     console.log(res.data)
                 }).catch(() => {
                 setIcon(null);
@@ -80,7 +81,6 @@ function UpdateApplicationPage() {
     }
 
     //App info
-    const [id, setId] = useState("");
     const [icon, setIcon] = useState("");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -96,15 +96,9 @@ function UpdateApplicationPage() {
         let ChangeView = includeID.replace("/view?usp=drivesdk", "");
         setIcon(ChangeView);
     }
-    
-    const changeTitle = (e) => {
-        setName(e.target.value);
-    }
-    
     const changeDescription = (e) => {
         setDescription(e.target.value);
     }
-    
     function AddImage(url) {
         let includeID = url.replace("file/d/", "uc?export=view?&id=");
         let ChangeView = includeID.replace("/view?usp=drivesdk", "");
@@ -118,7 +112,6 @@ function UpdateApplicationPage() {
         
         setArrayImages(arrayImages);
     }
-    
     const RemoveImage = (e) => {
         for (let i = 0; i < arrayImages.length; i++) {
             if (arrayImages[i] === e.target.value) {
@@ -130,15 +123,19 @@ function UpdateApplicationPage() {
     }
 
     //Save changes
+
+    let token = localStorage.getItem("token");
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
     const SaveChanges = () => {
-        axios.put(`http://localhost:8080/application`,
-            {
-                'id': id,
-                'name': name,
-                'description': description,
-                'images': arrayImages,
-                'icon': icon
-            })
+        let data = {
+            'username': name,
+            'description': description,
+            'screenshots': arrayImages,
+            'icon': icon
+        }
+        axios.put(`http://localhost:8080/application`, data,config)
             .then(function(){})
             .catch(function (){})
     }
@@ -163,10 +160,6 @@ function UpdateApplicationPage() {
         
         if (description === "") {
             result += "Please add a description. \n";
-        }
-        
-        if (name === "") {
-            result += "Please add a title. \n";
         }
         
         if (arrayImages !== null) {
@@ -216,8 +209,7 @@ function UpdateApplicationPage() {
                 </div>
                 <hr/>
                 <div className={"app-name"}>
-                    <h2>Name:</h2>
-                    <input type="text" value={name} placeholder={"Type here..."} onChange={changeTitle}/>
+                    <h2>Name:{name} </h2>
                 </div>
                 <hr/>
                 <div className="app-screenshots">

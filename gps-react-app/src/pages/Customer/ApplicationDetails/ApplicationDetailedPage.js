@@ -6,7 +6,6 @@ import {faCaretDown, faChevronLeft, faChevronRight} from '@fortawesome/free-soli
 import { FaStar } from 'react-icons/fa'
 
 const ApplicationDetailedPage = () => {
-
     let params = useParams();
 
     const [application, setApplication] = useState({});
@@ -88,10 +87,9 @@ const ApplicationDetailedPage = () => {
                                     )
                                 })}
                             </p>
-                            <p className={"nickname"}>Nickname</p>
+                            <p className={"nickname"}>{review.customer}</p>
                         </div>
                         <p className={"card-description"}>{review.description}</p>
-                        <button className={"reply-button"}>Reply</button>
                     </div>
                 )}
             </div>

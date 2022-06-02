@@ -6,6 +6,10 @@ const AllApplicationsPage = () => {
 
     const [applicationsArray, setApplicationArray] = useState([]);
     const [name, setName] = useState('');
+    let token = localStorage.getItem("token");
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
 
     useEffect(() => {
         getApplications();
