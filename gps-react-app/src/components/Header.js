@@ -35,7 +35,8 @@ function Navbar() {
     }
 
     const [authorization, setAuthorization] = useState("");
-    const [username, setUsername] = useState("");
+    const [usernameLoggedIn, setUsernameLoggedIn] = useState("");
+
     const login = (username, password) => {
         axios.post(`http://localhost:8080/login`,{
             "username":username,
@@ -68,9 +69,9 @@ function Navbar() {
                         <Link className='NavLink' to="/all-apps">All Apps</Link>
                         <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
                         <div className="NavDropdown">
-                            <button className="dropdown-button" onClick={showContent}>{localStorage.getItem("username")}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
+                            <button className="dropdown-button" onClick={showContent}>{usernameLoggedIn}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
                             <div className="dropdown-content" id="myDropdown">
-                                <Link to="/customer/1">My Account</Link>
+                                <Link to="/creator/1">My Apps</Link>
                                 <hr/>
                                 <Link to="/" onClick={logout}>Logout</Link>
                             </div>
@@ -104,7 +105,7 @@ function Navbar() {
                         <div className="NavDropdown">
                             <button className="dropdown-button" onClick={showContent}>{localStorage.getItem("username")}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
                             <div className="dropdown-content" id="myDropdown">
-                                <Link to="/creator/1">My Account</Link>
+                                <Link to={`/my-account/creator`}>My Apps</Link>
                                 <hr/>
                                 <Link to="/" onClick={logout}>Logout</Link>
                             </div>
@@ -113,25 +114,26 @@ function Navbar() {
 
                     <div className="Body">
                         <Routes>
-                            <Route path="/" element={<HomePage/>} />
+                            <Route path="/" element={<HomePage/>} /> 
                             <Route path="/about" element={<AboutPage/>} />
                             <Route path="/contact" element={<ContactPage/>} />
+                            <Route path='/all-apps' element={<AllApplicationsPage />} />
+                            <Route path='/app/:name' element={<ApplicationDetailedPage />} />
 
                             <Route path="/creator/:id/myApps/:name/updateApplication" element={<UpdateApplicationPage />}/>
                             <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
-                            <Route path="/creator/:id/myApps/:name" element={<ApplicationPage />} />
-                            <Route path='/app/:name' element={<ApplicationDetailedPage />} />
-                            <Route path='/all-apps' element={<AllApplicationsPage />} />
-                            <Route path='/app/:name' element={<ApplicationDetailedPage />} />
-                            <Route path="/creator/:id/myApps" element={<MyAppsPage />}/>
-                            <Route path="/creator/:id/myApps/:appName/updateApplication" element={<UpdateApplicationPage />}/>
-                            <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
-                            <Route path="/creator/:id/myApps/:appName" element={<ApplicationPage />} />
                             <Route path='/creator/:id/myApps/:name/addMinorVersion' element={<AddMinorVersionPage />} />
                             <Route path='/creator/:id/myApps/:name/addMajorVersion' element={<AddMajorVersionPage />} />
+                            <Route path='/creator/:id/myApps/:name/updateVersion/:version' element={<AddMajorVersionPage />} />
+
+                            <Route path='/my-account/:username' element={<MyAppsPage />} /> 
+                            <Route path="/creator/:id/myApps/:name" element={<ApplicationPage />} />
+
+                            <Route path="/logout" element={<LogOutPage logout={logout}/>} />
                             <Route path="/login" element={<LogInPage login={login}/>} />
                             <Route path="/*" element={<ErrorPage />} />
-                            <Route path="/creator/analytics" element={<AnalyticsPage/>}/>
+
+                            <Route path="/creator/:id/analytics" element={<AnalyticsPage/>}/>
                         </Routes>
                     </div>
                 </>
@@ -143,9 +145,7 @@ function Navbar() {
                         </Link>
                         <Link className='NavLink' to="/all-apps">All Apps</Link>
                         <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
-                 
-                                <Link className="NavLink" to="/login">Login</Link>
-                      
+                        <Link className="NavLink" to="/login">Login</Link>
                     </div>
 
                     <div className="Body">

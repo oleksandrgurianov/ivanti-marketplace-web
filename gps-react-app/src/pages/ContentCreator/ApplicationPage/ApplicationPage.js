@@ -14,7 +14,7 @@ const ApplicationPage = () => {
     const [version, setVersion] = useState("1.0");
 
     const getApplication = () => {
-        axios.get(`http://localhost:8080/application/` + appName)
+        axios.get(`http://localhost:8080/application/${params.name}`)
         .then(response => {
             setApplication(response.data);
         })
