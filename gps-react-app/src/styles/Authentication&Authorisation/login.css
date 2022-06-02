@@ -1,0 +1,52 @@
+.login-container{
+    width:400px;
+    height:500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10vh auto 10vh;
+    background-color: white;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+
+.login-logo{
+    height: 140px;
+    width: 200px;
+    align-self: center;
+}
+.login-input{
+    width: 97%;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 2px 0;
+    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.12);
+    box-shadow: none;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
+}
+
+.login-button{
+    width: 100%;
+    margin: 5px 0;
+    background-color: #c20c0c;
+    padding: 5px 0;
+    font-weight: 600;
+    border: none;
+    color: #F4FFF8;
+    border-radius: 5px;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+.login-button:hover {
+    background-color: rgb(160, 0, 0);
+    color: white;
+}
+
+
+
+
+

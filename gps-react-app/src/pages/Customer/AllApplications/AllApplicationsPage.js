@@ -16,7 +16,7 @@ const AllApplicationsPage = () => {
     }, []);
 
     const getApplications = () => {
-        axios.get(`http://localhost:8080/application`, config)
+        axios.get(`http://localhost:8080/application`)
         .then(res => {
             setApplicationArray(res.data);
             console.log(res.data);

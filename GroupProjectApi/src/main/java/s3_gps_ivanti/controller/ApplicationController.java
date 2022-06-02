@@ -3,18 +3,15 @@ package s3_gps_ivanti.controller;
 
 import lombok.RequiredArgsConstructor;
 
-import org.hibernate.sql.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import s3_gps_ivanti.business.application.*;
-import s3_gps_ivanti.business.version.UpdateVersionUseCase;
 import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
 import s3_gps_ivanti.dto.application.*;
 
 import javax.annotation.security.RolesAllowed;
 import java.net.URI;
-import java.util.List;
 
 
 @RestController
@@ -59,8 +56,7 @@ public class ApplicationController {
     }
 
     //Content Creator
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_Creator"})
+
     @PostMapping()
     public ResponseEntity<CreateApplicationResponseDTO> createApplications(@RequestBody CreateApplicationRequestDTO application) {
 
@@ -128,16 +124,6 @@ public class ApplicationController {
             return ResponseEntity.ok().body(applicationsDTO);
         }
 
-        return ResponseEntity.notFound().build();
-    }
-
-     @GetMapping("creator/{id}/statistics")
-    public ResponseEntity<List<ApplicationStatisticsDTO>>getApplicationsStatistics(@PathVariable int id) {
-        Creator creator = creatorService.getCreator(id);
-        List<ApplicationStatisticsDTO> statisticsDTOS = applicationService.getApplicationStatisticsDTO((ArrayList<Application>) creator.getMyApplications());
-        if(creator!=null){
-            return ResponseEntity.ok().body(statisticsDTOS);
-        }
         return ResponseEntity.notFound().build();
     }*/
 }

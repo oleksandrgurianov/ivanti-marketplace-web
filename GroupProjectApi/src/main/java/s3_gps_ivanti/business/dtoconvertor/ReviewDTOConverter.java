@@ -22,7 +22,7 @@ public class ReviewDTOConverter {
 
     private static ReviewDTO convertToDTO(Review r) {
         return ReviewDTO.builder()
-                .customer(CustomerDTOConverter.convertToSmallDetailDTO(r.getCustomer()))
+                .customer(r.getCustomer().getUsername())
                 .rating(r.getRating())
                 .title(r.getTitle())
                 .description(r.getDescription())
