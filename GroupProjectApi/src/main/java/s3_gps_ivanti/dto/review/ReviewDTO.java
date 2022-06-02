@@ -12,7 +12,7 @@ import s3_gps_ivanti.dto.user.CustomerSmallDetailDTO;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReviewDTO {
-    private CustomerSmallDetailDTO customer;
+    private String customer;
     private int rating;
     private String title;
     private String description;

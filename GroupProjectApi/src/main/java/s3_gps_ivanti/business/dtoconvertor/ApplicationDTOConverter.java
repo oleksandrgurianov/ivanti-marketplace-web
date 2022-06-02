@@ -56,10 +56,6 @@ public class ApplicationDTOConverter {
             totalDownloads += v.getTotalDownloads();
         }
 
-        //TODO Mohammad make this
-
-        int avgRating = 0;
-
 
         return ApplicationDetailedInfoDTO.builder()
                 .name(application.getName())
@@ -67,8 +63,9 @@ public class ApplicationDTOConverter {
                 .description(application.getDescription())
                 .screenshots(application.getScreenshots())
                 .totalDownloads(totalDownloads)
-                .avgRating(avgRating)
+                .avgRating(application.getRating().avgStar())
                 .versions(VersionDTOConverter.convertToListOfDTO(application.getVersions()))
+                .reviews(ReviewDTOConverter.convertToListOfDTO(application.getReviews()))
                 .build();
     }
 
@@ -87,5 +84,20 @@ public class ApplicationDTOConverter {
                 .versions(application.getVersions())
                 .rating(application.getRating())
                 .build();
+    }
+
+    public static ApplicationAnalyticsDTO convertToDTOForAnalytics(Application app){
+        return ApplicationAnalyticsDTO.builder()
+                .name(app.getName())
+                .icon(app.getIcon())
+                .build();
+    }
+    public static List<ApplicationAnalyticsDTO> convertToDTOListForAnalytics(List<Application> apps){
+        List<ApplicationAnalyticsDTO> result = new ArrayList<>();
+
+        for (Application app: apps){
+            result.add(convertToDTOForAnalytics(app));
+        }
+        return result;
     }
 }

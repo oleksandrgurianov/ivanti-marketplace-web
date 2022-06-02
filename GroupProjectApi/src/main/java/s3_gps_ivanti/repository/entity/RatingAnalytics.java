@@ -15,4 +15,15 @@ public class RatingAnalytics {
     private int threeStar;
     private int fourStar;
     private int fiveStar;
+
+    private int totalAmount(){
+        return oneStar+twoStar+threeStar+fourStar+fiveStar;
+    }
+
+    public double avgStar(){
+        if(totalAmount()!=0) {
+            return (oneStar + 2 * twoStar + 3 * threeStar + 4 * fourStar + 5 * fiveStar) / totalAmount();
+        }
+        return 0;
+    }
 }

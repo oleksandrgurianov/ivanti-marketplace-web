@@ -37,7 +37,7 @@
     line-height: 1.1;
 }
 
-select {
+option {
     appearance: none;
     background-color: transparent;
     border: none;
@@ -45,7 +45,7 @@ select {
     height: 35px;
     width: 100%;
     font-size: inherit;
-    color: white;
+    color: black;
     cursor: inherit;
     line-height: inherit;
     outline: none;

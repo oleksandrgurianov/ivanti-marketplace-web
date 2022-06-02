@@ -9,20 +9,30 @@ import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
 
 function AnalyticsPage() {
     Chart.register(...registerables)
-    const [Applications, setApplications] = useState([]);
+    const [applications, setApplications] = useState([]);
+    const [version, setVersion] = useState({});
     let token = localStorage.getItem("token");
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
 
     useEffect(() => {
-        GetAllApplications();
-    },[Applications]);
+        getAllApplications();
+    },[applications]);
 
-    const GetAllApplications =() => {
-        axios.get(`http://localhost:8080/application/creator/1/statistics`, config)
+    const getAllApplications =() => {
+        axios.get(`http://localhost:8080/user/statistics`, config)
             .then(res => {
                 setApplications(res.data);
+            })
+            .catch(err => {
+                console.log(err.message);
+            });
+    }
+    const getVersion =(appName) => {
+        axios.get(`http://localhost:8080/application/`+{appName}+"version/1.0/statistics")
+            .then(res => {
+                setVersion(res.data);
             })
             .catch(err => {
                 console.log(err.message);
@@ -34,23 +44,6 @@ function AnalyticsPage() {
             <div className={"analytics-controls"}>
                 <h1 className={"title"}>Analytics</h1>
                 <input className={"search-field"} type="text"  placeholder="Search"/>
-                <div className={"month-dropdown"}>
-                    <select>
-                        <option value="january">January</option>
-                        <option value="february">February</option>
-                        <option value="march">March</option>
-                        <option value="april">April</option>
-                        <option value="may">May</option>
-                        <option value="june">June</option>
-                        <option value="july">July</option>
-                        <option value="august">August</option>
-                        <option value="september">September</option>
-                        <option value="october">October</option>
-                        <option value="november">November</option>
-                        <option value="december">December</option>
-                    </select>
-                    <FontAwesomeIcon className="dropdown-icon" icon={faCaretDown} />
-                </div>
                 <div className={"year-dropdown"}>
                     <select>
                         <option value="2022">2022</option>
@@ -60,22 +53,23 @@ function AnalyticsPage() {
                 </div>
             </div>
             <hr/>
-            {Applications.map(graphs =>
+            {applications.map(app =>
                 <>
                     <div className={"app-downloads"}>
-                        <Link to={`/creator/1/myApps/${graphs.name}`}>
-                            <img src={graphs.icon}/>
+                        <Link to={`/creator/1/myApps/${app.name}`}>
+                            <img src={app.icon}/>
                         </Link>
-                        <p>{graphs.name}</p>
+                        <p>{app.name}</p>
+                        {getVersion(app.name)}
                         <div className={"downloads-graph"}>
                             <h3 className={"graph-title"}>DOWNLOADS</h3>
                             <div className={"graph-numbers"}>
-                                <h4 className={"number"}>{graphs.totalDownloads}</h4>
+                                <h4 className={"number"}>{version.totalDownloads}</h4>
                                 <h5 className={"raise"}>+7%</h5>
                             </div>
                             <div className={"graph"}>
                                 <Line  data={ {
-                                    labels: graphs.downloads.map((data) => data.month),
+                                    labels: version.downloads.map((data) => data.month),
                                     datasets: [
                                         {
                                             fill: {
@@ -83,7 +77,7 @@ function AnalyticsPage() {
                                                 above: 'rgb(130, 192, 250)',
                                             },
                                             label: "DOWNLOADS",
-                                            data: graphs.downloads.map((data1) => data1.amount),
+                                            data: version.downloads.map((data1) => data1.amount),
                                         }]}}
                                        options={ {
                                            maintainAspectRatio: true,

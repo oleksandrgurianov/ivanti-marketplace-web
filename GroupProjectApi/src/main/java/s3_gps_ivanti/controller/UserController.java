@@ -4,10 +4,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import s3_gps_ivanti.business.application.GetApplicationAnalyticsUseCase;
+import s3_gps_ivanti.business.dtoconvertor.ApplicationDTOConverter;
 import s3_gps_ivanti.business.user.*;
 import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
+import s3_gps_ivanti.dto.application.ApplicationAnalyticsDTO;
 import s3_gps_ivanti.dto.user.*;
 import lombok.RequiredArgsConstructor;
+import s3_gps_ivanti.dto.version.VersionAnalyticsDTO;
+import s3_gps_ivanti.repository.entity.User;
 
 import javax.annotation.security.RolesAllowed;
 import java.util.List;
@@ -24,6 +29,7 @@ public class UserController {
     private final GetCustomersUseCase getCustomers;
     private final GetCustomerUseCase getCustomer;
     private final UpdateCustomerUseCase updateCustomer;
+    private final GetApplicationAnalyticsUseCase analytics;
 
     //All
     @PostMapping()
@@ -87,7 +93,15 @@ public class UserController {
             return ResponseEntity.notFound().build();
       }
     }*/
+    @GetMapping("statistics/{creatorName}")
+    public ResponseEntity<List<ApplicationAnalyticsDTO>>getApplicationsStatistics(@PathVariable String creatorName) {
+        User creator = analytics.getCreator(creatorName);
+        List<ApplicationAnalyticsDTO> apps = ApplicationDTOConverter.convertToDTOListForAnalytics(creator.getApplications());
 
-
+        if(creator!=null){
+            return ResponseEntity.ok().body(apps);
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
 
