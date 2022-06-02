@@ -8,22 +8,23 @@ import {faCaretDown, faChevronLeft, faChevronRight} from '@fortawesome/free-soli
 /*import $ from 'jquery';*/
 
 const ApplicationPage = () => {
-    const {appName} = useParams();
+    const params = useParams();
 
     const [application, setApplication] = useState({});
     const [version, setVersion] = useState("1.0");
 
     const getApplication = () => {
-        axios.get(`http://localhost:8080/application/` + appName)
+        axios.get(`http://localhost:8080/application/${params.name}`)
         .then(response => {
             setApplication(response.data);
+            console.log(response.data);
         })
         .catch(err => {
         })
     }
 
     const deleteApplication = () => {
-      axios.delete(`http://localhost:8080/application/` + appName)
+      axios.delete(`http://localhost:8080/application/` + params.name)
           .then(response => {
           })
           .catch(err => {

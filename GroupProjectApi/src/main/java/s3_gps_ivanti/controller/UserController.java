@@ -83,7 +83,6 @@ public class UserController {
     @GetMapping("{creatorName}/statistics")
     public ResponseEntity<List<ApplicationAnalyticsDTO>>getVersionAnalytics(@PathVariable String creatorName) {
         User creator = getCreator.getCreator(creatorName);
-
         List<ApplicationAnalyticsDTO> analytics = ApplicationDTOConverter.convertToDTOListForAnalytics(creator.getApplications());
 
         if(creator!=null){

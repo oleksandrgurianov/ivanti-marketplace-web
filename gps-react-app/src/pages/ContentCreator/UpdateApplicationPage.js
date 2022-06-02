@@ -61,10 +61,10 @@ function UpdateApplicationPage() {
             GetProductByName();
         }, []);
 
-    const {appName} = useParams();
+    const params = useParams();
 
     const GetProductByName = () => {
-            axios.get(`http://localhost:8080/application/`+ appName)
+            axios.get(`http://localhost:8080/application/` + params.name)
                 .then(res => {
                     setIcon(res.data.icon);
                     setName(res.data.name);

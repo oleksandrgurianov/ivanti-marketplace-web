@@ -14,13 +14,14 @@ function AnalyticsPage() {
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
+    let username = localStorage.getItem("username");
 
     useEffect(() => {
         getAllApplications();
     },[applications]);
-
+    console.log(username)
     const getAllApplications =() => {
-        axios.get(`http://localhost:8080/user/Bob/statistics`)
+        axios.get(`http://localhost:8080/user/`+username+`/statistics`)
             .then(res => {
                 setApplications(res.data);
             })
