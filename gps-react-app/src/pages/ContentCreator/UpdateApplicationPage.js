@@ -70,13 +70,7 @@ function UpdateApplicationPage() {
                     setName(res.data.name);
                     setDescription(res.data.description);
                     setArrayImages(res.data.screenshots);
-
-                    console.log(res.data)
                 }).catch(() => {
-                setIcon(null);
-                setName(null);
-                setDescription(null);
-                setArrayImages(null);
             })
     }
 
