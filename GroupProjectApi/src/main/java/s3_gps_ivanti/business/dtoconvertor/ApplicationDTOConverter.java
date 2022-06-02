@@ -28,6 +28,12 @@ public class ApplicationDTOConverter {
                 .status(false)
                 .versions(List.of(new Version(1.0,0,application.getApplicationLocation(),Collections.emptyList())))
                 .rating(new RatingAnalytics(0,0,0,0,0))
+                .downloads(List.of(DownloadsPerMonth.builder()
+                        .amount(0)
+                        .month("")
+                        .year(0)
+                        .build()))
+                .totalDownloads(0)
                 .build();
     }
 
@@ -90,6 +96,8 @@ public class ApplicationDTOConverter {
         return ApplicationAnalyticsDTO.builder()
                 .name(app.getName())
                 .icon(app.getIcon())
+                .totalDownloads(app.getTotalDownloads())
+                .downloads(app.getDownloads())
                 .build();
     }
     public static List<ApplicationAnalyticsDTO> convertToDTOListForAnalytics(List<Application> apps){

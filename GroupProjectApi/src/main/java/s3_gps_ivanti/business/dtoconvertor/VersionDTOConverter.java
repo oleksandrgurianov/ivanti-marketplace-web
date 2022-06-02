@@ -82,11 +82,4 @@ public class VersionDTOConverter {
         return result;
     }
 
-    public static VersionAnalyticsDTO convertToDTOForAnalytics(Version version){
-        VersionAnalyticsDTO.builder()
-                .number(version.getNumber())
-                .downloads(version.getDownloads())
-                .totalDownloads(version.getTotalDownloads())
-                .build();
-    }
 }
