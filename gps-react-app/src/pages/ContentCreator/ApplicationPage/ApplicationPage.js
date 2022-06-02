@@ -17,6 +17,7 @@ const ApplicationPage = () => {
         axios.get(`http://localhost:8080/application/` + appName)
         .then(response => {
             setApplication(response.data);
+            console.log(response.data)
         })
         .catch(err => {
         })

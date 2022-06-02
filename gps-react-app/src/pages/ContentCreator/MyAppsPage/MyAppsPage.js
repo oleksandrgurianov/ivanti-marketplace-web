@@ -7,10 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown, faCirclePlus, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 
 const MyAppsPage = () => {
+
     const [applications, setApplications] = useState({});
-
     const [name, setName] = useState('');
-
     const [sort, setSort] = useState('');
 
     const {id} = useParams();
@@ -28,10 +27,8 @@ const MyAppsPage = () => {
         axios.get(`http://localhost:8080/user/${id}`, config)
             .then(response => {
                 setCreator(response.data);
-                console.log(response.data);
             })
             .catch(err => {
-                console.log(err);
             })
     }
 
