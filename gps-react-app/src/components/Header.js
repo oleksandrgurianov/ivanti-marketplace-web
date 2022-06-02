@@ -105,7 +105,7 @@ function Navbar() {
                         <div className="NavDropdown">
                             <button className="dropdown-button" onClick={showContent}>{localStorage.getItem("username")}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
                             <div className="dropdown-content" id="myDropdown">
-                                <Link to="/creator/1">My Account</Link>
+                                <Link to="/creator/1/myApps">My Account</Link>
                                 <hr/>
                                 <Link to="/" onClick={logout}>Logout</Link>
                             </div>

@@ -83,7 +83,7 @@ public class VersionDTOConverter {
     }
 
     public static VersionAnalyticsDTO convertToDTOForAnalytics(Version version){
-        VersionAnalyticsDTO.builder()
+        return VersionAnalyticsDTO.builder()
                 .number(version.getNumber())
                 .downloads(version.getDownloads())
                 .totalDownloads(version.getTotalDownloads())
