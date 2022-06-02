@@ -10,7 +10,6 @@ import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
 function AnalyticsPage() {
     Chart.register(...registerables)
     const [applications, setApplications] = useState([]);
-    const [version, setVersion] = useState({});
     let token = localStorage.getItem("token");
     const config = {
         headers: { Authorization: `Bearer ${token}` }
@@ -21,18 +20,9 @@ function AnalyticsPage() {
     },[applications]);
 
     const getAllApplications =() => {
-        axios.get(`http://localhost:8080/user/statistics`, config)
+        axios.get(`http://localhost:8080/user/Bob/statistics`)
             .then(res => {
                 setApplications(res.data);
-            })
-            .catch(err => {
-                console.log(err.message);
-            });
-    }
-    const getVersion =(appName) => {
-        axios.get(`http://localhost:8080/application/`+{appName}+"version/1.0/statistics")
-            .then(res => {
-                setVersion(res.data);
             })
             .catch(err => {
                 console.log(err.message);
@@ -60,16 +50,15 @@ function AnalyticsPage() {
                             <img src={app.icon}/>
                         </Link>
                         <p>{app.name}</p>
-                        {getVersion(app.name)}
                         <div className={"downloads-graph"}>
                             <h3 className={"graph-title"}>DOWNLOADS</h3>
                             <div className={"graph-numbers"}>
-                                <h4 className={"number"}>{version.totalDownloads}</h4>
+                                <h4 className={"number"}>{app.totalDownloads}</h4>
                                 <h5 className={"raise"}>+7%</h5>
                             </div>
                             <div className={"graph"}>
                                 <Line  data={ {
-                                    labels: version.downloads.map((data) => data.month),
+                                    labels: app.downloads.map((data) => data.month),
                                     datasets: [
                                         {
                                             fill: {
@@ -77,7 +66,7 @@ function AnalyticsPage() {
                                                 above: 'rgb(130, 192, 250)',
                                             },
                                             label: "DOWNLOADS",
-                                            data: version.downloads.map((data1) => data1.amount),
+                                            data: app.downloads.map((data1) => data1.amount),
                                         }]}}
                                        options={ {
                                            maintainAspectRatio: true,

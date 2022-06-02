@@ -3,20 +3,15 @@ package s3_gps_ivanti.controller;
 
 import lombok.RequiredArgsConstructor;
 
-import org.hibernate.sql.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import s3_gps_ivanti.business.application.*;
-import s3_gps_ivanti.business.version.UpdateVersionUseCase;
 import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
 import s3_gps_ivanti.dto.application.*;
-import s3_gps_ivanti.dto.version.VersionAnalyticsDTO;
-import s3_gps_ivanti.repository.entity.User;
 
 import javax.annotation.security.RolesAllowed;
 import java.net.URI;
-import java.util.List;
 
 
 @RestController
@@ -30,7 +25,6 @@ public class ApplicationController {
     private final GetApplicationDetailedInfoUseCase getApplicationDetailedInfo;
     private final GetApplicationsBasicInfoUseCase getApplicationsBasicInfo;
     private final UpdateApplicationUseCase updateApplication;
-    private final GetApplicationAnalyticsUseCase analytics;
 
 
     //All
@@ -62,8 +56,7 @@ public class ApplicationController {
     }
 
     //Content Creator
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_Creator"})
+
     @PostMapping()
     public ResponseEntity<CreateApplicationResponseDTO> createApplications(@RequestBody CreateApplicationRequestDTO application) {
 
@@ -133,13 +126,4 @@ public class ApplicationController {
 
         return ResponseEntity.notFound().build();
     }*/
-
-    @GetMapping("{appName}/version/{number}/statistics")
-    public ResponseEntity<VersionAnalyticsDTO>getVersionAnalytics(@PathVariable String appName, @PathVariable double number) {
-        VersionAnalyticsDTO versionAnalytics = analytics.getVersion(appName, number);
-        if(versionAnalytics!=null){
-            return ResponseEntity.ok().body(versionAnalytics);
-        }
-        return ResponseEntity.notFound().build();
-    }
 }
