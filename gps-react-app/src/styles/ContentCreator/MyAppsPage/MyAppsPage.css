@@ -52,7 +52,7 @@
     grid-template-areas: "select .dropdown-icon";
     align-items: center;
     height: 35px;
-    min-width: 15ch;
+    min-width: auto;
     margin: 8px 0 0 10px;
     border: 1px solid lightgrey;
     border-radius: 50px;
@@ -93,4 +93,11 @@ select {
     grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
     grid-row-gap: 30px;
     grid-column-gap: 30px;
+}
+
+.loading-apps {
+    height: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

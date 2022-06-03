@@ -143,7 +143,7 @@ function Navbar() {
                         <Link className="NavLogo" to="/">
                             <img src={logo} height={"38px"} alt={"ivanti marketplace logo"}/>
                         </Link>
-                        <Link className='NavLink' to="/all-apps">All Apps</Link>
+                        <Link className='NavLink' to="/all-apps">Apps</Link>
                         <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
 
                         <Link className="NavLink" to="/login">Login</Link>
