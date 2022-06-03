@@ -10,9 +10,12 @@ import s3_gps_ivanti.business.application.*;
 import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
 import s3_gps_ivanti.dto.application.*;
 import s3_gps_ivanti.dto.creator.CreatorApplicationListDTO;
+import s3_gps_ivanti.business.application.impl.DriveQuickstart;
 
 import javax.annotation.security.RolesAllowed;
 import java.net.URI;
+import java.io.*;
+import java.security.GeneralSecurityException;
 
 
 @RestController
@@ -90,6 +93,20 @@ public class ApplicationController {
 
         deleteApplications.deleteApplications(applicationID);
         return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(path = "/download/{fileId}/{appName}", method = RequestMethod.GET)
+    public void downloadApplication(@PathVariable("fileId")String fileId,
+                                      @PathVariable("appName")String appName)
+            throws GeneralSecurityException, IOException{
+
+        DriveQuickstart dq = new DriveQuickstart();
+        String home = System.getProperty("user.home");
+        String path = home + "/Downloads" + "/" + appName + ".zip";
+        dq.downloadApplication(path, fileId);
+
+        System.out.println("Success");
+
     }
 
     //TODO fix this
