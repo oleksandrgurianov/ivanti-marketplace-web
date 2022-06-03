@@ -31,18 +31,9 @@ const MyAppsPage = () => {
     return (
         <>
             <div className='my-apps'>
-                <div className='my-apps-controls'>
+                <div className='my-apps-controls' style={{justifyContent: "normal"}}>
                     <h1 className='title'>My Apps</h1>
                     <Link to='/creator/username/myApps/addApplication'><FontAwesomeIcon className='add-icon' icon={faCirclePlus}/></Link>
-                    <input className='search-field' type='text' placeholder='Search'/>
-                    <div className='dropdown'>
-                        <select>
-                            <option value="nameAsc">Name &uarr;</option>
-                            <option value="nameDesc">Name &darr;</option>
-                            <option value="popularity">Popularity</option>
-                        </select>
-                        <FontAwesomeIcon className="dropdown-icon" icon={faCaretDown}/>
-                    </div>
                 </div>
                 <hr/>
                 {applicationsArray.myApplications ? (
