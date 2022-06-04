@@ -25,11 +25,15 @@ function Navbar() {
     function showContent() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
+
     window.onclick = function(e) {
         if (!e.target.matches('.dropdown-button')) {
             let myDropdown = document.getElementById("myDropdown");
-            if (myDropdown.classList.contains('show')) {
-                myDropdown.classList.remove('show');
+
+            if (myDropdown != null) {
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
             }
         }
     }

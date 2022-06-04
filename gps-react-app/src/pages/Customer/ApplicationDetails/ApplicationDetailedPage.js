@@ -31,6 +31,7 @@ const ApplicationDetailedPage = () => {
             <div className={"app-controls"}>
                 <img className='icon' alt='application logo' src={application.icon}/>
                 <h1>{application.name}</h1>
+                <Link className="category" to={''}>Utilities</Link>
                 <Link className="edit-button" to={''}>Download</Link>
             </div>
             <hr/>
