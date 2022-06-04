@@ -111,7 +111,7 @@ const ApplicationPage = () => {
                                     )
                                 })}
                             </p>
-                            <p className={"nickname"}>{review.customer}</p>
+                            <p className={"nickname"}>{review.customerName}</p>
                         </div>
                         <p className={"card-description"}>{review.description}</p>
                         <button className={"reply-button"}>Reply</button>

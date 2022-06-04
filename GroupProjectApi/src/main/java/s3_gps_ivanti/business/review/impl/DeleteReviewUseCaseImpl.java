@@ -6,22 +6,23 @@ import org.springframework.stereotype.Service;
 import s3_gps_ivanti.business.review.DeleteReviewUseCase;
 import s3_gps_ivanti.business.validation.ReviewIDValidation;
 import s3_gps_ivanti.repository.ReviewRepository;
+import s3_gps_ivanti.repository.entity.Review;
 
 @Service
 @Primary
 @RequiredArgsConstructor
 public class DeleteReviewUseCaseImpl implements DeleteReviewUseCase {
-
     private final ReviewRepository reviewRepository;
-    private final ReviewIDValidation idValidCheck;
-
+    private final ReviewIDValidation reviewIsValid;
+    private final UpdateRating updateRating;
 
     @Override
     public void deleteReview(String id) {
-        idValidCheck.reviewInvalid(id);
+        reviewIsValid.reviewInvalid(id);
+
+        Review review = reviewRepository.findById(id).orElse(null);
+        updateRating.subtractAppRating(review.getApplicationName(), review.getRating());
 
         reviewRepository.deleteById(id);
     }
-
-
 }

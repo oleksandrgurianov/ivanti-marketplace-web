@@ -22,7 +22,7 @@ public class Review {
     @DocumentReference(lookup = "{ 'username' : ?#{customerName} }")
     private User customer;
 
-    private String applicationId;
+    private String applicationName;
     
     private int rating;
     private String title;

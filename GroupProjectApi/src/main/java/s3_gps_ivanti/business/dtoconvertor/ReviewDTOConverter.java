@@ -2,6 +2,7 @@ package s3_gps_ivanti.business.dtoconvertor;
 
 import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
 import s3_gps_ivanti.dto.review.ReviewDTO;
+import s3_gps_ivanti.dto.review.UpdateReviewDTO;
 import s3_gps_ivanti.repository.entity.Review;
 
 import java.util.ArrayList;
@@ -14,15 +15,15 @@ public class ReviewDTOConverter {
         List<ReviewDTO> result = new ArrayList<>();
 
         for (Review r:reviews) {
-            result.add(ReviewDTOConverter.convertToDTO(r));
+            result.add(ReviewDTOConverter.convertToDTOForView(r));
         }
 
         return result;
     }
 
-    private static ReviewDTO convertToDTO(Review r) {
+    private static ReviewDTO convertToDTOForView(Review r) {
         return ReviewDTO.builder()
-                .customer(r.getCustomer().getUsername())
+                .customerName(r.getCustomer().getUsername())
                 .rating(r.getRating())
                 .title(r.getTitle())
                 .description(r.getDescription())
@@ -30,9 +31,20 @@ public class ReviewDTOConverter {
                 .build();
     }
 
+    public static UpdateReviewDTO convertToDTOForUpdate(Review r) {
+        return UpdateReviewDTO.builder()
+                .id(r.getId())
+                .applicationName(r.getApplicationName())
+                .customerName(r.getCustomer().getUsername())
+                .rating(r.getRating())
+                .title(r.getTitle())
+                .description(r.getDescription())
+                .build();
+    }
+
     public static Review convertToEntityCreate(CreateReviewRequestDTO review) {
         return Review.builder()
-                .applicationId(review.getApplicationID())
+                .applicationName(review.getApplicationName())
                 .rating(review.getRating())
                 .title(review.getTitle())
                 .description(review.getDescription())

@@ -5,5 +5,4 @@ import s3_gps_ivanti.dto.review.CreateReviewResponseDTO;
 
 public interface CreateReviewUseCase {
     CreateReviewResponseDTO createReview(CreateReviewRequestDTO request);
-
 }

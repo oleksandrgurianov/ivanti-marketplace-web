@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateReviewRequestDTO {
-    private String customer;
-    private String applicationID;
+    private String customerName;
+    private String applicationName;
     private int rating;
     private String title;
     private String description;

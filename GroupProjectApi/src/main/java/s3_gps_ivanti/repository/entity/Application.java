@@ -33,7 +33,7 @@ public class Application {
     private RatingAnalytics rating;
 
     @ReadOnlyProperty
-    @DocumentReference(lookup="{'applicationId':?#{#self._id} }")
+    @DocumentReference(lookup="{'applicationName':?#{#self.name} }")
     private List<Review> reviews;
     private int totalDownloads;
     private List<DownloadsPerMonth> downloads;
