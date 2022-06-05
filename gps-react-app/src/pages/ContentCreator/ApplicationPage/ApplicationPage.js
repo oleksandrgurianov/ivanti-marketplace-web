@@ -5,6 +5,7 @@ import '../../../styles/ContentCreator/ApplicationPage.css'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import ReviewList from '../../Customer/ApplicationDetails/component/ReviewList'
 /*import $ from 'jquery';*/
 
 const ApplicationPage = () => {
@@ -89,35 +90,7 @@ const ApplicationPage = () => {
                 <p className={"rating-number"}>{application.avgRating}</p>
                 <p>out of 5</p>
             </div>
-            <div className={"app-reviews"}>
-                { application.reviews != null && application.reviews.map(review =>
-                    <div className={"review-card"}>
-                        <div className={"card-title"}>
-                            <p className={"text"}>{review.title}</p>
-                            <p className={"date"}>3y ago</p>
-                        </div>
-                        <div className={"card-stars"}>
-                            <p className={"stars"}>
-                                {[...Array(5)].map((star, i) => {
-                                    const ratingValue = i + 1;
-                                    return (
-                                        <label>
-                                            <FaStar
-                                                className={"star"}
-                                                color={ratingValue <= review.rating ? "#4F4746" : "#e4e5e9"}
-                                                size={15}
-                                            />
-                                        </label>
-                                    )
-                                })}
-                            </p>
-                            <p className={"nickname"}>{review.customerName}</p>
-                        </div>
-                        <p className={"card-description"}>{review.description}</p>
-                        <button className={"reply-button"}>Reply</button>
-                    </div>
-                )}
-            </div>
+            <ReviewList reviews = {application.reviews}/>
             <hr/>
             <div className='app-description'>
                 <h2>Description</h2>
