@@ -20,10 +20,8 @@ public class Application {
 
     @Id
     private String id;
-
     @DocumentReference(lookup = "{ 'username' : ?#{creatorName} }")
     private User creator;
-
     private String name;
     private String description;
     private String icon;
@@ -31,7 +29,6 @@ public class Application {
     private boolean status;
     private List<Version> versions;
     private RatingAnalytics rating;
-
     @ReadOnlyProperty
     @DocumentReference(lookup="{'applicationName':?#{#self.name} }")
     private List<Review> reviews;

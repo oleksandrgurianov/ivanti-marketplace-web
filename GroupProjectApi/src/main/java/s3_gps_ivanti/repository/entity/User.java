@@ -23,7 +23,6 @@ public class User {
     private String password;
     private List<String> roles;
     private String permission;
-
     @ReadOnlyProperty
     @DocumentReference(lookup="{'creator.creatorName':?#{#self.username} }")
     private List<Application> applications;

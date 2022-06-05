@@ -34,7 +34,9 @@ public class CreateReviewUseCaseImpl implements CreateReviewUseCase {
         applicationIsValid.applicationIdIsValid(request.getApplicationName());
         customerIsValid.customerIsValid(request.getCustomerName());
 
-        if(reviewRepository.existsByCustomerAndAndApplicationName(request.getCustomerName(), request.getApplicationName())){
+        User user = userRepository.findUserByUsername(request.getCustomerName());
+
+        if(reviewRepository.existsByCustomerAndAndApplicationName(user, request.getApplicationName())){
             throw new ReviewByCustomerAlreadyExistException();
         }
 
