@@ -12,7 +12,7 @@ import s3_gps_ivanti.dto.response.ReplyDTO;
 @AllArgsConstructor
 public class ReviewDTO {
     private String customerName;
-    private int rating;
+    private double rating;
     private String title;
     private String description;
     private ReplyDTO reply;

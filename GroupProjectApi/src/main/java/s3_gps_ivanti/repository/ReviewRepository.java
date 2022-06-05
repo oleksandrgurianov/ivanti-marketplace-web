@@ -5,5 +5,6 @@ import s3_gps_ivanti.repository.entity.Review;
 
 public interface ReviewRepository extends MongoRepository<Review, String> {
     boolean existsByCustomerAndAndApplicationName(String customer, String application);
-    Review findByCustomerAndAndApplicationName(String customer, String applciation);
+    Review findByCustomerAndAndApplicationName(String customer, String application);
+    int countByApplicationName(String application);
 }
