@@ -16,4 +16,5 @@ public interface ApplicationRepository extends MongoRepository<Application, Stri
     List<Application> findAllByCreatorID(String creatorID);
 
     boolean existsByName(String name);
+    
 }

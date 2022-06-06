@@ -12,7 +12,7 @@ function ReviewList({reviews}) {
                     <div className={"review-card"}>
                         <div className={"card-title"}>
                             <p className={"text"}>{review.title}</p>
-                            <p className={"date"}>3y ago</p>
+                            <p className={"date"}>{review.timePassed}</p>
                         </div>
                         <div className={"card-stars"}>
                             <p className={"stars"}>

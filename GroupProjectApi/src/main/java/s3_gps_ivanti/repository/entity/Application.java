@@ -32,6 +32,8 @@ public class Application {
     @ReadOnlyProperty
     @DocumentReference(lookup="{'applicationName':?#{#self.name} }")
     private List<Review> reviews;
-    private int totalDownloads;
+    private long totalDownloads;
     private List<DownloadsPerMonth> downloads;
+    private long totalReviews;
+    private List<ReviewsPerMonth> reviewsPerMonths;
 }

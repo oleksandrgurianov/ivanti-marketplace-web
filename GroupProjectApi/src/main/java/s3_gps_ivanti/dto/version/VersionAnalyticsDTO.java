@@ -1,4 +1,4 @@
-package s3_gps_ivanti.dto.application;
+package s3_gps_ivanti.dto.version;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,9 +12,8 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApplicationAnalyticsDTO {
-    private String name;
-    private String icon;
+public class VersionAnalyticsDTO {
+    private double number;
     private List<DownloadsPerMonth> downloads;
     private long totalDownloads;
 }

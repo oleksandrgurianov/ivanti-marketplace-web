@@ -2,8 +2,6 @@ package s3_gps_ivanti.business.dtoconvertor;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import s3_gps_ivanti.dto.application.*;
-import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
-import s3_gps_ivanti.dto.user.CustomerSmallDetailDTO;
 import s3_gps_ivanti.repository.entity.*;
 
 import java.util.ArrayList;
@@ -33,7 +31,13 @@ public class ApplicationDTOConverter {
                         .month("")
                         .year(0)
                         .build()))
+                .reviewsPerMonths(List.of(ReviewsPerMonth.builder()
+                        .amount(0)
+                        .month("")
+                        .year(0)
+                        .build()))
                 .totalDownloads(0)
+                .totalReviews(0)
                 .build();
     }
 
@@ -92,16 +96,18 @@ public class ApplicationDTOConverter {
                 .build();
     }
 
-    public static ApplicationAnalyticsDTO convertToDTOForAnalytics(Application app){
-        return ApplicationAnalyticsDTO.builder()
+    public static ApplicationAnalyticsResponseDTO convertToDTOForAnalytics(Application app){
+        return ApplicationAnalyticsResponseDTO.builder()
                 .name(app.getName())
                 .icon(app.getIcon())
                 .totalDownloads(app.getTotalDownloads())
                 .downloads(app.getDownloads())
+                .totalReviews(app.getTotalReviews())
+                .reviews(app.getReviewsPerMonths())
                 .build();
     }
-    public static List<ApplicationAnalyticsDTO> convertToDTOListForAnalytics(List<Application> apps){
-        List<ApplicationAnalyticsDTO> result = new ArrayList<>();
+    public static List<ApplicationAnalyticsResponseDTO> convertToDTOListForAnalytics(List<Application> apps){
+        List<ApplicationAnalyticsResponseDTO> result = new ArrayList<>();
 
         for (Application app: apps){
             result.add(convertToDTOForAnalytics(app));

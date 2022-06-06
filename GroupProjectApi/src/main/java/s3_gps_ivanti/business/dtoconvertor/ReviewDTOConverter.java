@@ -72,48 +72,48 @@ public class ReviewDTOConverter {
         long years = ChronoUnit.YEARS.between(start, end);
 
         if(seconds < 0){
-            return "few seconds ago";
+            return "just now";
         }
         if(seconds == 1){
-            return "one second ago";
+            return "one sec ago";
         }
         if(seconds > 1 && seconds < 60){
-            return seconds + " seconds ago";
+            return seconds + "secs ago";
         }
         if(seconds > 60){
             if(minutes == 1){
-                return "one minute ago";
+                return "one min ago";
             }
             if(minutes > 1 && minutes < 60){
-                return minutes + " minutes ago";
+                return minutes + "mins ago";
             }
             if(minutes > 60){
                 if(hours == 1){
-                    return "one hour ago";
+                    return "one hr ago";
                 }
                 if(hours > 1 && hours < 24){
-                    return hours + " hours ago";
+                    return hours + "hrs ago";
                 }
                 if(hours > 24){
                     if(days == 1){
                         return "one day ago";
                     }
                     if(days > 1 && days < 30){
-                        return days + " days ago";
+                        return days + "days ago";
                     }
                     if(days > 30){
                         if(months == 1){
                             return "one month ago";
                         }
                         if(months > 1 && months < 12){
-                            return months + " months ago";
+                            return months + "months ago";
                         }
                         if(months > 12){
                             if(years == 1){
-                                return "one year ago";
+                                return "one yr ago";
                             }
                             if(years > 1){
-                                return years + " years ago";
+                                return years + "yrs ago";
                             }
                         }
                     }
