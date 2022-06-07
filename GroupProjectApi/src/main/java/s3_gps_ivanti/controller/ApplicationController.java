@@ -46,8 +46,8 @@ public class ApplicationController {
        return ResponseEntity.ok().body(applicationDetailedInfoDTO);
     }
 
-    //todo tixme this code gave me errors
-    /*@GetMapping
+    /*todo fixme ,this code gave me errors
+    @GetMapping
     public ResponseEntity<GetAllApplicationsResponseDTO> getAllApplications() {
         return ResponseEntity.ok(getApplicationsBasicInfo.getAllApplications());
     }*/

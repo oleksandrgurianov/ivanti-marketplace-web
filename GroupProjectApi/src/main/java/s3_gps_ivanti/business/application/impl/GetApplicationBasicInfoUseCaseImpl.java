@@ -28,8 +28,8 @@ public class GetApplicationBasicInfoUseCaseImpl implements GetApplicationsBasicI
     public GetAllApplicationsResponseDTO getAllApplications(GetAllApplicationsRequestDTO request) {
         List<Application> results = null;
 
-        //fixme this code kept giving me errors
-      /*    if (StringUtils.hasText(request.getName())) {
+       /* todo fixme , this code kept giving me errors
+          if (StringUtils.hasText(request.getName())) {
             if (StringUtils.hasText(request.getSort())) {
                 switch (request.getSort()) {
                     case "nameAsc" -> results = applicationRepository.findAllByNameContainingIgnoreCaseOrderByNameAsc(request.getName());

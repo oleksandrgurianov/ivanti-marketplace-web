@@ -62,19 +62,4 @@ class AccessTokenEncoderDecoderImplTest {
 
         assertEquals(expectedResult,actualResult.substring(0,21));
     }
-    @Test
-    void decode() {
-
-        AccessTokenDTO expectedResult = AccessTokenDTO.builder()
-                .subject("user")
-                .roles(List.of("Customer"))
-                .userID("id")
-                .build();
-
-        String encodedToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNjU0NjI3NDM3LCJleHAiOjE2NTQ2MjkyMzcsInJvbGVzIjpbIkN1c3RvbWVyIl0sInVzZXJJRCI6ImlkIn0.neVdfI5UaMpr6qqoV9lp1grKttMbys9F2sPTvUkAyUU";
-
-        AccessTokenDTO actualResult = accessTokenEncoderDecoder.decode(encodedToken);
-
-        assertEquals(expectedResult, actualResult);
-    }
 }
