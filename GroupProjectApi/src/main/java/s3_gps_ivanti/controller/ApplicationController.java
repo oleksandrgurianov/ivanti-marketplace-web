@@ -39,18 +39,12 @@ public class ApplicationController {
 
         ApplicationDetailedInfoDTO applicationDetailedInfoDTO = getApplicationDetailedInfo.getApplicationInfo(applicationName);
 
-        if(applicationDetailedInfoDTO == null) {
+        if (applicationDetailedInfoDTO == null) {
             return ResponseEntity.notFound().build();
         }
 
-       return ResponseEntity.ok().body(applicationDetailedInfoDTO);
+        return ResponseEntity.ok().body(applicationDetailedInfoDTO);
     }
-
-    /*todo fixme ,this code gave me errors
-    @GetMapping
-    public ResponseEntity<GetAllApplicationsResponseDTO> getAllApplications() {
-        return ResponseEntity.ok(getApplicationsBasicInfo.getAllApplications());
-    }*/
 
     //Content Creator
     @IsAuthenticated
@@ -59,7 +53,7 @@ public class ApplicationController {
     public ResponseEntity<CreatorApplicationListDTO> getApplicationsByCreator(@PathVariable("username") String username) {
         CreatorApplicationListDTO creatorApplicationListDTO = getApplicationByCreator.getApplicationsByCreator(username);
 
-        if (creatorApplicationListDTO == null){
+        if (creatorApplicationListDTO == null) {
             return ResponseEntity.notFound().build();
         }
 
@@ -81,12 +75,11 @@ public class ApplicationController {
     @PostMapping()
     public ResponseEntity<CreateApplicationResponseDTO> createApplications(@RequestBody CreateApplicationRequestDTO application) {
 
-         CreateApplicationResponseDTO createApplicationResponseDTO = createApplications.createApplications(application);
+        CreateApplicationResponseDTO createApplicationResponseDTO = createApplications.createApplications(application);
 
-        if(createApplicationResponseDTO == null) {
+        if (createApplicationResponseDTO == null) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
-        }
-        else {
+        } else {
             String url = "Application/" + createApplicationResponseDTO.getId();
             URI uri = URI.create(url);
             return ResponseEntity.created(uri).build();
@@ -111,9 +104,7 @@ public class ApplicationController {
     }
 
     @RequestMapping(path = "/download/{fileId}/{appName}", method = RequestMethod.GET)
-    public void downloadApplication(@PathVariable("fileId")String fileId,
-                                      @PathVariable("appName")String appName)
-            throws GeneralSecurityException, IOException{
+    public void downloadApplication(@PathVariable("fileId") String fileId, @PathVariable("appName") String appName) throws GeneralSecurityException, IOException {
 
         DriveQuickstart dq = new DriveQuickstart();
         String home = System.getProperty("user.home");
@@ -124,41 +115,4 @@ public class ApplicationController {
 
     }
 
-    //TODO fix this
-
-
-   /*  @GetMapping("creator/{id}")
-    public ResponseEntity<List<ApplicationBasicInfoDTO>> getApplicationsByCreator(@PathVariable int id, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "sort", required = false) String sort) {
-        ArrayList<Application> applications;
-
-        if (StringUtils.hasText(name)) {
-            applications = applicationService.getApplicationsByCreatorIdAndName(id, name);
-        } else {
-            applications = applicationService.getApplicationsByCreatorId(id);
-        }
-
-        ArrayList<ApplicationBasicInfoDTO> applicationsDTO  = new ArrayList<>();
-
-        if (!applications.isEmpty()) {
-            if (StringUtils.hasText(sort)) {
-                switch (sort) {
-                    case "nameDesc" -> applicationService.sortApplicationsByName(applications, false);
-                    case "ratingAsc" -> applicationService.sortApplicationsByRating(applications, true);
-                    case "ratingDesc" -> applicationService.sortApplicationsByRating(applications, false);
-                    default -> applicationService.sortApplicationsByName(applications, true);
-                }
-            } else {
-                applicationService.sortApplicationsByName(applications, true);
-            }
-
-            for (Application a : applications) {
-                ApplicationBasicInfoDTO applicationDTO = new ApplicationBasicInfoDTO(a);
-                applicationsDTO.add(applicationDTO);
-            }
-
-            return ResponseEntity.ok().body(applicationsDTO);
-        }
-
-        return ResponseEntity.notFound().build();
-    }*/
 }
