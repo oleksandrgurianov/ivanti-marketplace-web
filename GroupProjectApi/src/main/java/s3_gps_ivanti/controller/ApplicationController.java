@@ -3,6 +3,7 @@ package s3_gps_ivanti.controller;
 
 import lombok.RequiredArgsConstructor;
 
+import org.flywaydb.core.internal.util.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -57,8 +58,11 @@ public class ApplicationController {
     }
 
     @GetMapping
-    public ResponseEntity<GetAllApplicationsResponseDTO> getAllApplications() {
-        return ResponseEntity.ok(getApplicationsBasicInfo.getAllApplications());
+    public ResponseEntity<GetAllApplicationsResponseDTO> getAllApplications(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "sort", required = false) String sort) {
+        GetAllApplicationsRequestDTO request = new GetAllApplicationsRequestDTO();
+        request.setName(name);
+        request.setSort(sort);
+        return ResponseEntity.ok(getApplicationsBasicInfo.getAllApplications(request));
     }
 
     //Content Creator

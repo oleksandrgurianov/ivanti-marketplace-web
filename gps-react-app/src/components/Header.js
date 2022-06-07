@@ -25,11 +25,15 @@ function Navbar() {
     function showContent() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
+
     window.onclick = function(e) {
         if (!e.target.matches('.dropdown-button')) {
             let myDropdown = document.getElementById("myDropdown");
-            if (myDropdown.classList.contains('show')) {
-                myDropdown.classList.remove('show');
+
+            if (myDropdown != null) {
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
             }
         }
     }
@@ -143,7 +147,7 @@ function Navbar() {
                         <Link className="NavLogo" to="/">
                             <img src={logo} height={"38px"} alt={"ivanti marketplace logo"}/>
                         </Link>
-                        <Link className='NavLink' to="/all-apps">All Apps</Link>
+                        <Link className='NavLink' to="/all-apps">Apps</Link>
                         <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
 
                         <Link className="NavLink" to="/login">Login</Link>
