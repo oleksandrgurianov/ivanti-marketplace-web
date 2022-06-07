@@ -46,10 +46,10 @@ public class ApplicationController {
        return ResponseEntity.ok().body(applicationDetailedInfoDTO);
     }
 
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<GetAllApplicationsResponseDTO> getAllApplications() {
         return ResponseEntity.ok(getApplicationsBasicInfo.getAllApplications());
-    }
+    }*/
 
     //Content Creator
     @IsAuthenticated

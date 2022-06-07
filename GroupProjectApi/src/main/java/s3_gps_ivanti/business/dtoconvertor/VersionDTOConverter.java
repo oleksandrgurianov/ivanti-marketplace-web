@@ -63,14 +63,4 @@ public class VersionDTOConverter {
         }
         return result;
     }
-    public static List<Version> convertToListOfEntity(List<VersionDTO> versions) {
-
-        List<Version> result = new ArrayList<>();
-        for (VersionDTO v :versions) {
-            result.add(VersionDTOConverter.convertToEntity(v));
-        }
-        return result;
-    }
-
-
 }
