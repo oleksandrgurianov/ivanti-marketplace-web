@@ -5,33 +5,58 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import { FaStar } from 'react-icons/fa'
 
+
+
 const ApplicationDetailedPage = () => {
+
     let params = useParams();
 
     const [application, setApplication] = useState({});
+    const [appLocation, setAppLocation] = useState();
+    const [name, setName] = useState();
     const [version, setVersion] = useState("1.0");
+
 
     const getApplication = () => {
         axios.get(`http://localhost:8080/application/${params.name}`)
-        .then(response => {
-            setApplication(response.data);
-            console.log(response.data);
-        })
-        .catch(err => {
-            console.log(err);
-        })
+            .then(response => {
+                setApplication(response.data);
+                setName(response.data.name);
+                setAppLocation(response.data.versions[0].appLocation);
+                console.log(response.data);
+                console.log(appLocation);
+                console.log(name);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    const downloadApplication = async (e) => {
+        e.preventDefault();
+        try {
+            console.log("METHOD STARTED");
+            console.log(appLocation);
+            console.log(name);
+            const response = await axios.get(`http://localhost:8080/application/download/${appLocation}/${name}`)
+            console.log("SUCCESSFUL");
+        } catch (err){
+            console.log("Something went wrong");
+        }
     }
 
     useEffect(() => {
         getApplication();
     }, []);
 
-  return (
-    <div className='app'>
+    return (
+        <div className='app'>
             <div className={"app-controls"}>
                 <img className='icon' alt='application logo' src={application.icon}/>
                 <h1>{application.name}</h1>
-                <Link className="delete-button" to={''}>Download</Link>
+                <Link className="delete-button" to={''}>
+                    <span onClick={downloadApplication}>Download</span>
+                </Link>
             </div>
             <hr/>
             <div className='app-version'>
@@ -99,7 +124,7 @@ const ApplicationDetailedPage = () => {
                 <p>{application.description}</p>
             </div>
         </div>
-  )
+    )
 }
 
 export default ApplicationDetailedPage

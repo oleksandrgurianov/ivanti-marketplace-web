@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class VersionDTOConverter {
+
     private VersionDTOConverter(){}
 
     public static Version convertToEntityForCreate(CreateMajorVersionRequestDTO majorVersionRequestDTO){
@@ -26,6 +27,7 @@ public class VersionDTOConverter {
                 .downloads(Collections.emptyList())
                 .build();
     }
+
     public static CreateMajorVersionResponseDTO convertToDTOForMajorResponse(Version version){
         return CreateMajorVersionResponseDTO.builder()
                 .number(version.getNumber())
@@ -36,6 +38,7 @@ public class VersionDTOConverter {
                 .number(version.getNumber())
                 .build();
     }
+
     public static Version convertToEntityForUpdate(UpdateVersionRequestDTO updateVersionRequestDTO, Version oldVersion){
         return Version.builder()
                 .number(updateVersionRequestDTO.getNumber())
@@ -60,4 +63,14 @@ public class VersionDTOConverter {
         }
         return result;
     }
+    public static List<Version> convertToListOfEntity(List<VersionDTO> versions) {
+
+        List<Version> result = new ArrayList<>();
+        for (VersionDTO v :versions) {
+            result.add(VersionDTOConverter.convertToEntity(v));
+        }
+        return result;
+    }
+
+
 }

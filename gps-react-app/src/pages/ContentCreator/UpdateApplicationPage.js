@@ -61,7 +61,7 @@ function UpdateApplicationPage() {
             GetProductByName();
         }, []);
 
-    const {appName} = useParams();
+    const params = useParams();
 
     const GetProductByName = () => {
             axios.get(`http://localhost:8080/application/` + params.name)
