@@ -8,7 +8,6 @@ import s3_gps_ivanti.business.dtoconvertor.ApplicationDTOConverter;
 import s3_gps_ivanti.dto.application.ApplicationBasicInfoDTO;
 import s3_gps_ivanti.dto.application.GetAllApplicationsResponseDTO;
 import s3_gps_ivanti.repository.ApplicationRepository;
-import s3_gps_ivanti.repository.entity.Application;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -20,11 +19,6 @@ import java.util.List;
 public class GetApplicationBasicInfoUseCaseImpl implements GetApplicationsBasicInfoUseCase {
 
     private final ApplicationRepository applicationRepository;
-
-//    @Override
-//    public List<ApplicationBasicInfoDTO> getApplications() {
-//        return ApplicationDTOConverter.convertListToDTO(applicationRepository.findAll());
-//    }
 
     @Override
     public GetAllApplicationsResponseDTO getAllApplications() {

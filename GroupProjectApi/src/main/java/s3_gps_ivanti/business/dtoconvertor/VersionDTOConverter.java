@@ -8,7 +8,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class VersionDTOConverter {
-
     private VersionDTOConverter(){}
 
     public static Version convertToEntityForCreate(CreateMajorVersionRequestDTO majorVersionRequestDTO){
@@ -27,7 +26,6 @@ public class VersionDTOConverter {
                 .downloads(Collections.emptyList())
                 .build();
     }
-
     public static CreateMajorVersionResponseDTO convertToDTOForMajorResponse(Version version){
         return CreateMajorVersionResponseDTO.builder()
                 .number(version.getNumber())
@@ -38,22 +36,12 @@ public class VersionDTOConverter {
                 .number(version.getNumber())
                 .build();
     }
-
     public static Version convertToEntityForUpdate(UpdateVersionRequestDTO updateVersionRequestDTO, Version oldVersion){
         return Version.builder()
                 .number(updateVersionRequestDTO.getNumber())
                 .totalDownloads(oldVersion.getTotalDownloads())
                 .appLocation(updateVersionRequestDTO.getAppLocation())
                 .downloads(oldVersion.getDownloads())
-                .build();
-    }
-
-    public static Version convertToEntity(VersionDTO versionDTO){
-        return Version.builder()
-                .number(versionDTO.getNumber())
-                .totalDownloads(versionDTO.getTotalDownloads())
-                .appLocation(versionDTO.getAppLocation())
-                .downloads(versionDTO.getDownloads())
                 .build();
     }
     public static VersionDTO convertToDTO(Version version){
@@ -64,7 +52,6 @@ public class VersionDTOConverter {
                 .downloads(version.getDownloads())
                 .build();
     }
-
     public static List<VersionDTO> convertToListOfDTO(List<Version> versions) {
 
         List<VersionDTO> result = new ArrayList<>();
@@ -73,13 +60,4 @@ public class VersionDTOConverter {
         }
         return result;
     }
-    public static List<Version> convertToListOfEntity(List<VersionDTO> versions) {
-
-        List<Version> result = new ArrayList<>();
-        for (VersionDTO v :versions) {
-            result.add(VersionDTOConverter.convertToEntity(v));
-        }
-        return result;
-    }
-
 }

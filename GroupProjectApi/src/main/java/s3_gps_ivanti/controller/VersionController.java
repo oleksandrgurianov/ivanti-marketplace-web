@@ -4,12 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import s3_gps_ivanti.business.application.GetApplicationDetailedInfoUseCase;
 import s3_gps_ivanti.business.version.*;
 import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
-import s3_gps_ivanti.dto.application.ApplicationDetailedInfoDTO;
 import s3_gps_ivanti.dto.version.*;
-import s3_gps_ivanti.repository.entity.Application;
 
 import javax.annotation.security.RolesAllowed;
 import java.net.URI;

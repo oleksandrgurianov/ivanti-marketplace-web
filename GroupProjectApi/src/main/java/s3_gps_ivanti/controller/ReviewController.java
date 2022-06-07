@@ -2,7 +2,6 @@ package s3_gps_ivanti.controller;
 
 
 import lombok.RequiredArgsConstructor;
-import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,6 @@ import s3_gps_ivanti.dto.review.CreateReviewResponseDTO;
 import s3_gps_ivanti.dto.review.UpdateReviewRequestDTO;
 
 import javax.annotation.security.RolesAllowed;
-import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/review")
@@ -26,7 +24,6 @@ public class ReviewController {
    private final CreateReviewUseCase createReviewService;
    private final DeleteReviewUseCase deleteReviewService;
    private final UpdateReviewUseCase updateReviewService;
-
 
     @PostMapping()
     public ResponseEntity<CreateReviewResponseDTO>  createReview(@RequestBody CreateReviewRequestDTO review) {

@@ -47,7 +47,6 @@ function Navbar() {
                 localStorage.setItem("authorization", res.data.permission);
                 localStorage.setItem('username', username);
                 setAuthorization(res.data.permission);
-                setUsername(res.data.username)
                 console.log(authorization)
 
             })
@@ -71,7 +70,7 @@ function Navbar() {
                         <div className="NavDropdown">
                             <button className="dropdown-button" onClick={showContent}>{usernameLoggedIn}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
                             <div className="dropdown-content" id="myDropdown">
-                                <Link to="/creator/1">My Apps</Link>
+                                <Link to="/creator/creator">My Apps</Link>
                                 <hr/>
                                 <Link to="/" onClick={logout}>Logout</Link>
                             </div>

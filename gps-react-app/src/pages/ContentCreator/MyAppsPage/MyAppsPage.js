@@ -84,8 +84,7 @@ const MyAppsPage = () => {
                             </select>
                             <FontAwesomeIcon className="dropdown-icon" icon={faCaretDown} />
                         </div>
-                        <button className={"search-button"} type="button" onClick={searchAndSort}><FontAwesomeIcon icon={faMagnifyingGlass}/></button>*/}
-                    </div>
+                        <button className={"search-button"} type="button" onClick={searchAndSort}><FontAwesomeIcon icon={faMagnifyingGlass}/></button>}
                     <hr/>
                     <div className={"my-apps-list"}>
                         { creator.applications.length > 0 ? (

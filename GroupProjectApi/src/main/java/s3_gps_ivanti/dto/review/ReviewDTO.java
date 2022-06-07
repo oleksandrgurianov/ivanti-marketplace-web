@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import s3_gps_ivanti.dto.response.ReplyDTO;
-import s3_gps_ivanti.dto.user.CustomerSmallDetailDTO;
 
 @Data
 @Builder

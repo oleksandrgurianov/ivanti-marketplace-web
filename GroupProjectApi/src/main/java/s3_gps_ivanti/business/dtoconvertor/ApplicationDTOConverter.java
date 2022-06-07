@@ -2,8 +2,6 @@ package s3_gps_ivanti.business.dtoconvertor;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import s3_gps_ivanti.dto.application.*;
-import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
-import s3_gps_ivanti.dto.user.CustomerSmallDetailDTO;
 import s3_gps_ivanti.repository.entity.*;
 
 import java.util.ArrayList;
@@ -11,13 +9,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class ApplicationDTOConverter {
+    private ApplicationDTOConverter(){}
 
     public static CreateApplicationResponseDTO convertToDTOCreateResponse(Application application) {
         return CreateApplicationResponseDTO.builder()
                 .id(application.getId())
                 .build();
     }
-
     public static Application convertToEntity(CreateApplicationRequestDTO application) {
         return Application.builder()
                 .id(RandomStringUtils.randomAlphanumeric(25))
@@ -36,7 +34,6 @@ public class ApplicationDTOConverter {
                 .totalDownloads(0)
                 .build();
     }
-
     public static List<ApplicationBasicInfoDTO> convertListToDTO(List<Application> applications) {
 
         List<ApplicationBasicInfoDTO> result = new ArrayList<>();
@@ -47,14 +44,12 @@ public class ApplicationDTOConverter {
 
         return result;
     }
-
     public static ApplicationBasicInfoDTO convertToDTO(Application app) {
         return ApplicationBasicInfoDTO.builder()
                 .name(app.getName())
                 .icon(app.getIcon())
                 .build();
     }
-
     public static ApplicationDetailedInfoDTO convertToApplicationDetailedInfo(Application application) {
 
         int totalDownloads = 0;
@@ -74,7 +69,6 @@ public class ApplicationDTOConverter {
                 .reviews(ReviewDTOConverter.convertToListOfDTO(application.getReviews()))
                 .build();
     }
-
     public static Application convertToEntityForUpdate(UpdateApplicationRequestDTO app, Application application) {
         return Application.builder()
                 .id(application.getId())
@@ -91,7 +85,6 @@ public class ApplicationDTOConverter {
                 .rating(application.getRating())
                 .build();
     }
-
     public static ApplicationAnalyticsDTO convertToDTOForAnalytics(Application app){
         return ApplicationAnalyticsDTO.builder()
                 .name(app.getName())

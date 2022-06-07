@@ -6,12 +6,11 @@ import org.springframework.stereotype.Service;
 import s3_gps_ivanti.business.application.GetApplicationByCreatorUseCase;
 import s3_gps_ivanti.business.dtoconvertor.ApplicationDTOConverter;
 import s3_gps_ivanti.business.exception.CreatorNotFoundException;
+import s3_gps_ivanti.business.exception.InvalidAccessTokenException;
 import s3_gps_ivanti.dto.application.ApplicationBasicInfoDTO;
-import s3_gps_ivanti.dto.application.GetAllApplicationsResponseDTO;
 import s3_gps_ivanti.dto.creator.CreatorApplicationListDTO;
-import s3_gps_ivanti.repository.ApplicationRepository;
+import s3_gps_ivanti.dto.login.AccessTokenDTO;
 import s3_gps_ivanti.repository.UserRepository;
-import s3_gps_ivanti.repository.entity.Application;
 import s3_gps_ivanti.repository.entity.User;
 
 import javax.transaction.Transactional;
@@ -24,7 +23,7 @@ import java.util.List;
 public class GetApplicationByCreatorUseCaseImpl implements GetApplicationByCreatorUseCase {
 
     private final UserRepository userRepository;
-    private final ApplicationRepository applicationRepository;
+    private final AccessTokenDTO requestAccessToken;
 
     @Override
     public CreatorApplicationListDTO getApplicationsByCreator(String username) {
@@ -34,6 +33,11 @@ public class GetApplicationByCreatorUseCaseImpl implements GetApplicationByCreat
             throw new CreatorNotFoundException();
         }
 
+        if(!requestAccessToken.getUserID().equals(creator.getId())){
+            throw new InvalidAccessTokenException("Unauthorized");
+        }
+
+
         List<ApplicationBasicInfoDTO> creatorApplications = creator.getApplications()
                 .stream()
                 .map(ApplicationDTOConverter::convertToDTO)
@@ -42,14 +46,5 @@ public class GetApplicationByCreatorUseCaseImpl implements GetApplicationByCreat
         return CreatorApplicationListDTO.builder()
                 .myApplications(creatorApplications)
                 .build();
-//        List<ApplicationBasicInfoDTO> applications = applicationRepository.findAll()
-//                .stream()
-//                .filter(application -> application.getCreator() == creator)
-//                .map(ApplicationDTOConverter::convertToDTO)
-//                .toList();
-//
-//        return CreatorApplicationListDTO.builder()
-//                .myApplications(applications)
-//                .build();
     }
 }

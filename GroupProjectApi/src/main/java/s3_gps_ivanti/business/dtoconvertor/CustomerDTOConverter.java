@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDTOConverter {
+    private CustomerDTOConverter(){}
 
     public static User convertToEntity(CreateCustomerRequestDTO customerRequestDTO) {
         return User.builder()

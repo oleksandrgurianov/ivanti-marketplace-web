@@ -22,7 +22,6 @@ public class GetCustomerUseCaseImpl implements GetCustomerUseCase {
 
     @Override
     public CustomerDetailedInfoDTO getCustomer(String username) {
-        //TODO check if is admin
 
         User result = userRepository.findUserByUsername(username);
 

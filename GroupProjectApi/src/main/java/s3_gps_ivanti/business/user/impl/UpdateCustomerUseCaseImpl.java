@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import s3_gps_ivanti.business.dtoconvertor.CustomerDTOConverter;
 import s3_gps_ivanti.business.exception.CustomerNotFoundException;
 import s3_gps_ivanti.business.exception.EmailAlreadyExistsException;
+import s3_gps_ivanti.business.exception.InvalidCredentialsException;
 import s3_gps_ivanti.business.exception.UsernameAlreadyExistsException;
 import s3_gps_ivanti.business.user.UpdateCustomerUseCase;
+import s3_gps_ivanti.dto.login.AccessTokenDTO;
 import s3_gps_ivanti.dto.user.UpdateCustomerRequestDTO;
 import s3_gps_ivanti.repository.UserRepository;
 import s3_gps_ivanti.repository.entity.User;
@@ -21,11 +23,15 @@ import javax.transaction.Transactional;
 public class UpdateCustomerUseCaseImpl implements UpdateCustomerUseCase {
 
     private final UserRepository userRepository;
+    private final AccessTokenDTO requestAccessToken;
 
     @Override
     public void updateCustomer(UpdateCustomerRequestDTO customerRequestDTO) {
 
-        //TODO check token.userid
+        if(!requestAccessToken.getUserID().equals(customerRequestDTO.getId())){
+            throw new InvalidCredentialsException();
+        }
+
         if(userRepository.findUserByUsername(customerRequestDTO.getUsername()) != null
                 && !(userRepository.findUserByUsername(customerRequestDTO.getUsername()).getId().equals(customerRequestDTO.getId()))) {
             throw new UsernameAlreadyExistsException();
@@ -42,7 +48,7 @@ public class UpdateCustomerUseCaseImpl implements UpdateCustomerUseCase {
             throw new CustomerNotFoundException();
         }
 
-        if(oldCustomer.getPermission() != "Customer" || !(oldCustomer.getRoles().contains("Customer"))) {
+        if(!oldCustomer.getPermission().equals("Customer") || !(oldCustomer.getRoles().contains("Customer"))) {
             throw new CustomerNotFoundException();
         }
 

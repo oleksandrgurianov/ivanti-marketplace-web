@@ -7,6 +7,7 @@ import s3_gps_ivanti.business.dtoconvertor.ReviewDTOConverter;
 import s3_gps_ivanti.business.review.CreateReviewUseCase;
 import s3_gps_ivanti.business.validation.ApplicationIDValidation;
 import s3_gps_ivanti.business.validation.CustomerUsernameValidation;
+import s3_gps_ivanti.dto.login.AccessTokenDTO;
 import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
 import s3_gps_ivanti.dto.review.CreateReviewResponseDTO;
 import s3_gps_ivanti.repository.ReviewRepository;
@@ -26,6 +27,7 @@ public class CreateReviewUseCaseImpl implements CreateReviewUseCase {
     private final UserRepository userRepository;
     private final ApplicationIDValidation applicationIsValid;
     private final CustomerUsernameValidation customerIsValidCheck;
+    private final AccessTokenDTO requestAccessToken;
 
     @Override
     public CreateReviewResponseDTO createReview(CreateReviewRequestDTO request) {

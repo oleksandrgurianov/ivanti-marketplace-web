@@ -42,6 +42,14 @@ public class ApplicationController {
        return ResponseEntity.ok().body(applicationDetailedInfoDTO);
     }
 
+    @GetMapping
+    public ResponseEntity<GetAllApplicationsResponseDTO> getAllApplications() {
+        return ResponseEntity.ok(getApplicationsBasicInfo.getAllApplications());
+    }
+
+    //Content Creator
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator"})
     @GetMapping("/creator/{username}")
     public ResponseEntity<CreatorApplicationListDTO> getApplicationsByCreator(@PathVariable("username") String username) {
         CreatorApplicationListDTO creatorApplicationListDTO = getApplicationByCreator.getApplicationsByCreator(username);
@@ -53,13 +61,8 @@ public class ApplicationController {
         return ResponseEntity.ok().body(creatorApplicationListDTO);
     }
 
-    @GetMapping
-    public ResponseEntity<GetAllApplicationsResponseDTO> getAllApplications() {
-        return ResponseEntity.ok(getApplicationsBasicInfo.getAllApplications());
-    }
-
-    //Content Creator
-
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator"})
     @PostMapping()
     public ResponseEntity<CreateApplicationResponseDTO> createApplications(@RequestBody CreateApplicationRequestDTO application) {
 
@@ -92,7 +95,7 @@ public class ApplicationController {
         return ResponseEntity.ok().build();
     }
 
-    //TODO fix this
+    //fixme 01/06/2022
 
 
    /*  @GetMapping("creator/{id}")
