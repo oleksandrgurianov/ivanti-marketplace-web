@@ -11,6 +11,7 @@ import s3_gps_ivanti.dto.application.ApplicationBasicInfoDTO;
 import s3_gps_ivanti.dto.application.GetAllApplicationsRequestDTO;
 import s3_gps_ivanti.dto.application.GetAllApplicationsResponseDTO;
 import s3_gps_ivanti.repository.ApplicationRepository;
+import s3_gps_ivanti.repository.entity.Application;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -23,11 +24,12 @@ public class GetApplicationBasicInfoUseCaseImpl implements GetApplicationsBasicI
 
     private final ApplicationRepository applicationRepository;
 
-    @Override
+  @Override
     public GetAllApplicationsResponseDTO getAllApplications(GetAllApplicationsRequestDTO request) {
         List<Application> results = null;
 
-        if (StringUtils.hasText(request.getName())) {
+        //fixme this code kept giving me errors
+      /*    if (StringUtils.hasText(request.getName())) {
             if (StringUtils.hasText(request.getSort())) {
                 switch (request.getSort()) {
                     case "nameAsc" -> results = applicationRepository.findAllByNameContainingIgnoreCaseOrderByNameAsc(request.getName());
@@ -47,7 +49,7 @@ public class GetApplicationBasicInfoUseCaseImpl implements GetApplicationsBasicI
             } else {
                 results = applicationRepository.findAllByOrderByNameAsc();
             }
-        }
+        }*/
 
         List<ApplicationBasicInfoDTO> applications = results
                 .stream()
