@@ -4,7 +4,7 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import "../../../../styles/ContentCreator/AnalyticsPage.css";
 
-function DownloadAnalytics({ applications }) {
+function Analytics({ applications }) {
     Chart.register(...registerables)
     return (
         <div>
@@ -76,4 +76,4 @@ function DownloadAnalytics({ applications }) {
         </div>
     )
 }
-export default DownloadAnalytics;
+export default Analytics;
