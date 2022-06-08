@@ -100,18 +100,6 @@ public class ApplicationDTOConverter {
         return ApplicationAnalyticsResponseDTO.builder()
                 .name(app.getName())
                 .icon(app.getIcon())
-                .totalDownloads(app.getTotalDownloads())
-                .downloads(app.getDownloads())
-                .totalReviews(app.getTotalReviews())
-                .reviews(app.getReviewsPerMonths())
                 .build();
-    }
-    public static List<ApplicationAnalyticsResponseDTO> convertToDTOListForAnalytics(List<Application> apps){
-        List<ApplicationAnalyticsResponseDTO> result = new ArrayList<>();
-
-        for (Application app: apps){
-            result.add(convertToDTOForAnalytics(app));
-        }
-        return result;
     }
 }

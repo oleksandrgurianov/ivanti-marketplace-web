@@ -3,7 +3,7 @@ import axios from "axios";
 import "../../../styles/ContentCreator/AnalyticsPage.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
-import AppAnalytics from "./component/AppAnalytics";
+import DownloadAnalytics from "./component/DownloadAnalytics";
 
 function AnalyticsPage() {
     const [applications, setApplications] = useState([]);
@@ -12,10 +12,9 @@ function AnalyticsPage() {
     useEffect(() => {
         getAllApplications();
     },[applications]);
-    console.log(username)
 
     const getAllApplications =() => {
-        axios.get(`http://localhost:8080/user/`+username+`/statistics`)
+        axios.get(`http://localhost:8080/user/`+username+`/statistics?year=`+2021)
             .then(res => {
                 setApplications(res.data);
             })
@@ -38,7 +37,7 @@ function AnalyticsPage() {
                 </div>
             </div>
             <hr/>
-            <AppAnalytics applications={applications} />
+            <DownloadAnalytics applications={applications} />
         </div>
     );
 }

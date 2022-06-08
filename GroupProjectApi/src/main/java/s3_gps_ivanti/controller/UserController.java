@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import s3_gps_ivanti.business.application.GetApplicationsAnalyticsPerYearUseCase;
+import s3_gps_ivanti.business.application.GetApplicationsAnalyticsPerMonthUseCase;
 import s3_gps_ivanti.business.user.*;
 import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
 import s3_gps_ivanti.dto.application.ApplicationAnalyticsRequestDTO;
@@ -26,7 +26,7 @@ public class UserController {
     private final GetCustomersUseCase getCustomers;
     private final GetCustomerUseCase getCustomer;
     private final UpdateCustomerUseCase updateCustomer;
-    private final GetApplicationsAnalyticsPerYearUseCase applicationsAnalyticsPerYear;
+    private final GetApplicationsAnalyticsPerMonthUseCase applicationsAnalyticsPerMonth;
 
     //All
     @PostMapping()
@@ -86,7 +86,7 @@ public class UserController {
         if(year!=null)
         request.setYear(year);
 
-        List<ApplicationAnalyticsResponseDTO> analytics = applicationsAnalyticsPerYear.getApplicationAnalytics(request);
+        List<ApplicationAnalyticsResponseDTO> analytics = applicationsAnalyticsPerMonth.getApplicationAnalytics(request);
 
         if(analytics!=null){
             return ResponseEntity.ok().body(analytics);

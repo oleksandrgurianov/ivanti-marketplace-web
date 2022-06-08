@@ -5,6 +5,6 @@ import s3_gps_ivanti.dto.application.ApplicationAnalyticsResponseDTO;
 
 import java.util.List;
 
-public interface GetApplicationsAnalyticsPerYearUseCase {
+public interface GetApplicationsAnalyticsPerMonthUseCase {
     List<ApplicationAnalyticsResponseDTO> getApplicationAnalytics(ApplicationAnalyticsRequestDTO request);
 }
