@@ -16,11 +16,11 @@
     margin: 30px 0 10px 0;
 }
 
-.NotFoundLink {
+.NotFound .NotFoundLink {
     color: rgb(0, 102, 204);
     transition: 0.3s;
 }
 
-.NotFoundLink:hover {
+.NotFound .NotFoundLink:hover {
     color: rgb(0, 128, 255);
 }

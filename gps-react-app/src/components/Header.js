@@ -19,6 +19,7 @@ import AddMajorVersionPage from "../pages/ContentCreator/AddMajorVersionPage";
 import ErrorPage from "../pages/Authentication&Authorisation/ErrorPage";
 import axios from "axios";
 import AnalyticsPage from '../pages/ContentCreator/AnalyticsPage/AnalyticsPage';
+import Translate from './Translate';
 
 
 function Navbar() {
@@ -71,7 +72,7 @@ function Navbar() {
                         </Link>
                         <Link className='NavLink' to="/all-apps">Apps</Link>
                         <Link className='NavLink' to="/*">My Downloads</Link>
-                        <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
+                        <Translate/>
                         <div className="NavDropdown">
                             <button className="dropdown-button" onClick={showContent}>{localStorage.getItem("username")}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
                             <div className="dropdown-content" id="myDropdown">
@@ -105,7 +106,7 @@ function Navbar() {
                         <Link className="NavLink" to="/creator/analytics">Analytics</Link>
                         <Link className="NavLink" to="/*">Notifications</Link>
                         <Link className="NavLink" to="/my-account/creator">My Apps</Link>
-                        <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
+                        <Translate/>
                         <div className="NavDropdown">
                             <button className="dropdown-button" onClick={showContent}>{localStorage.getItem("username")}<FontAwesomeIcon className="NavIcon" icon={faCaretDown} /></button>
                             <div className="dropdown-content" id="myDropdown">
@@ -121,7 +122,6 @@ function Navbar() {
                             <Route path="/" element={<HomePage/>} />
                             <Route path="/about" element={<AboutPage/>} />
                             <Route path="/contact" element={<ContactPage/>} />
-
                             <Route path="/creator/:id/myApps/:name/updateApplication" element={<UpdateApplicationPage />}/>
                             <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
                             <Route path="/creator/:id/myApps/:name" element={<ApplicationPage />} />
@@ -148,10 +148,8 @@ function Navbar() {
                             <img src={logo} height={"38px"} alt={"ivanti marketplace logo"}/>
                         </Link>
                         <Link className='NavLink' to="/all-apps">Apps</Link>
-                        <div className="NavTranslate">Translate<FontAwesomeIcon className="NavIcon" icon={faGlobe} /></div>
-
-                        <Link className="NavLink" to="/login">Login</Link>
-
+                        <Translate/>
+                        <Link className="NavLinkLogin" to="/login">Login</Link>
                     </div>
 
                     <div className="Body">

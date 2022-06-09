@@ -64,7 +64,7 @@ option {
 
 .app-downloads {
     display: grid;
-    grid-template-columns: 105px 15% auto;
+    grid-template-columns: 105px 15% auto auto;
     align-items: center;
 }
 
