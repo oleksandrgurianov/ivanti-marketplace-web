@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import s3_gps_ivanti.business.application.CreateApplicationUseCase;
 import s3_gps_ivanti.business.dtoconvertor.ApplicationDTOConverter;
-import s3_gps_ivanti.business.exception.ApplicationNameNotUnique;
+import s3_gps_ivanti.business.exception.ApplicationNameNotUniqueException;
 import s3_gps_ivanti.dto.application.CreateApplicationRequestDTO;
 import s3_gps_ivanti.dto.application.CreateApplicationResponseDTO;
 import s3_gps_ivanti.repository.ApplicationRepository;
@@ -30,7 +30,7 @@ public class CreateApplicationUseCaseImpl implements CreateApplicationUseCase {
 
         if(applicationRepository.findByName(applicationRequestDTO.getName()) != null)
         {
-            throw new ApplicationNameNotUnique();
+            throw new ApplicationNameNotUniqueException();
         }
         Application app = ApplicationDTOConverter.convertToEntity(applicationRequestDTO);
         User user = userRepository.findUserByUsername(applicationRequestDTO.getCreatorID());

@@ -4,14 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateReviewRequestDTO {
+public class UpdateReviewDTO {
     private String id;
+    private String applicationName;
+    private String customerName;
     private int rating;
     private String title;
     private String description;

@@ -4,13 +4,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import s3_gps_ivanti.business.dtoconvertor.ApplicationDTOConverter;
+import s3_gps_ivanti.business.application.GetApplicationsAnalyticsPerMonthUseCase;
 import s3_gps_ivanti.business.user.*;
 import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
-import s3_gps_ivanti.dto.application.ApplicationAnalyticsDTO;
+import s3_gps_ivanti.dto.application.ApplicationAnalyticsRequestDTO;
+import s3_gps_ivanti.dto.application.ApplicationAnalyticsResponseDTO;
 import s3_gps_ivanti.dto.user.*;
 import lombok.RequiredArgsConstructor;
-import s3_gps_ivanti.repository.entity.User;
 
 import javax.annotation.security.RolesAllowed;
 import java.util.List;
@@ -26,7 +26,7 @@ public class UserController {
     private final GetCustomersUseCase getCustomers;
     private final GetCustomerUseCase getCustomer;
     private final UpdateCustomerUseCase updateCustomer;
-    private final GetCreatorUseCase getCreator;
+    private final GetApplicationsAnalyticsPerMonthUseCase applicationsAnalyticsPerMonth;
 
     //All
     @PostMapping()
@@ -80,11 +80,15 @@ public class UserController {
     }
 
     @GetMapping("{creatorName}/statistics")
-    public ResponseEntity<List<ApplicationAnalyticsDTO>>getVersionAnalytics(@PathVariable String creatorName) {
-        User creator = getCreator.getCreator(creatorName);
-        List<ApplicationAnalyticsDTO> analytics = ApplicationDTOConverter.convertToDTOListForAnalytics(creator.getApplications());
+    public ResponseEntity<List<ApplicationAnalyticsResponseDTO>>getAppAnalytics(@PathVariable String creatorName, @RequestParam(value = "year", required = false) Integer year) {
+        ApplicationAnalyticsRequestDTO request = new ApplicationAnalyticsRequestDTO();
+        request.setCreatorName(creatorName);
+        if(year!=null)
+        request.setYear(year);
 
-        if(creator!=null){
+        List<ApplicationAnalyticsResponseDTO> analytics = applicationsAnalyticsPerMonth.getApplicationAnalytics(request);
+
+        if(analytics!=null){
             return ResponseEntity.ok().body(analytics);
         }
         return ResponseEntity.notFound().build();

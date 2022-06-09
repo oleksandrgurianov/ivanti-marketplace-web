@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import s3_gps_ivanti.repository.entity.DownloadsPerMonth;
+import s3_gps_ivanti.repository.entity.ReviewsPerMonth;
 
 import java.util.List;
 
@@ -12,9 +13,11 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApplicationAnalyticsDTO {
+public class ApplicationAnalyticsResponseDTO {
     private String name;
     private String icon;
     private List<DownloadsPerMonth> downloads;
     private long totalDownloads;
+    private List<ReviewsPerMonth> reviews;
+    private long totalReviews;
 }

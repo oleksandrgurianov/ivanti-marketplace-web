@@ -17,8 +17,8 @@ import MyAppsPage from "../pages/ContentCreator/MyAppsPage/MyAppsPage";
 import AddMinorVersionPage from "../pages/ContentCreator/AddMinorVersionPage";
 import AddMajorVersionPage from "../pages/ContentCreator/AddMajorVersionPage";
 import ErrorPage from "../pages/Authentication&Authorisation/ErrorPage";
-import AnalyticsPage from "../pages/ContentCreator/AnalyticsPage";
 import axios from "axios";
+import AnalyticsPage from '../pages/ContentCreator/AnalyticsPage/AnalyticsPage';
 
 
 function Navbar() {

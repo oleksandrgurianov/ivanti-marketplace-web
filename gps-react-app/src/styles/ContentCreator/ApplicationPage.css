@@ -249,6 +249,23 @@
     margin: 0 15px 15px 0;
 }
 
+.add-review-card{
+    padding: 15px;
+    width: 100px;
+    height: 100px;
+    background-color: lightgrey;
+    border-radius: 100%;
+    display: flex;
+    font-size: 50px;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 15px 15px 0;
+}
+.add-review-card:hover{
+    background-color: #4F4746;
+    color: white;
+}
+
 .card-title, .card-stars {
     display: flex;
     align-items: center;

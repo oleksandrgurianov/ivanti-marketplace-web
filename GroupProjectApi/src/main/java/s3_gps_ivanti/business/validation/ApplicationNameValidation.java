@@ -7,11 +7,11 @@ import s3_gps_ivanti.repository.ApplicationRepository;
 
 @Service
 @AllArgsConstructor
-public class ApplicationIDValidation {
+public class ApplicationNameValidation {
     private ApplicationRepository applicationRepository;
 
-    public void applicationIdIsValid(String id){
-        if(!applicationRepository.existsById(id)){
+    public void applicationIdIsValid(String name){
+        if(!applicationRepository.existsByName(name)){
             throw new ApplicationNotFoundException();
         }
     }
