@@ -3,19 +3,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons'
 import ReviewForm from "../../../../styles/ReviewForm.css"
 import { FaStar } from 'react-icons/fa'
+import axios from "axios";
 
-function AddReviewForm({ review, setOpenPopup }) {
-    const titleRef = useRef();
+function AddReviewForm({ application, customer, setOpenPopup }) {
+    const url = "http://localhost:8080/review";
 
-    const [title, setTitle] = useState(review != null ? review.title : "");
-    const [description, setDescription] = useState(review != null ? review.description : "");
+    const [review, setReview] = useState({
+        customerName: "",
+        applicationName: "",
+        rating: "",
+        title: "",
+        description: ""
+    })
+
+    const [hover, setHover] = useState(0);
+    const [validRating, setValidRating] = useState(false);
+    const [rating, setRating] = useState(review != null ? review.rating : 0);
 
     const [validTitle, setValidTitle] = useState(false);
+    const [title, setTitle] = useState(review != null ? review.title : "");
+    
     const [validDescription, setValidDescription] = useState(false);
-
-    const [rating, setRating] = useState(review != null ? review.rating : 0)
-    const [hover, setHover] = useState(0)
-
+    const [description, setDescription] = useState(review != null ? review.description : "");
 
     useEffect(() => {
         setValidTitle(title.length > 0);
@@ -25,19 +34,32 @@ function AddReviewForm({ review, setOpenPopup }) {
         setValidDescription(description.length > 0);
     }, [description])
 
-    function handleSubmit() {
+    useEffect(() => {
+        setValidRating(rating > 0);
+    }, [rating])
 
-    }
-    function closePopUp() {
+    function handleSubmit() {
+        setReview({
+            customerName: customer,
+            applicationName: application,
+            rating: rating,
+            title: title,
+            description: description
+        });
+
+        axios.post(url, review)
+            .then(res => {
+                console.log(res.data);
+            });
+        
         setOpenPopup(false)
     }
-
 
     return (
         <>
             <section>
                 <div className="review-header">
-                    <h1>Submit Review</h1><div onClick={closePopUp}><FontAwesomeIcon className="close" icon={faClose} color="red" /></div>
+                    <h1>Submit Review</h1><div onClick={() => {setOpenPopup(false)}}><FontAwesomeIcon className="close" icon={faClose} color="red" /></div>
                 </div>
                 <p className={"stars"}>
                     {[...Array(5)].map((star, i) => {
@@ -61,12 +83,11 @@ function AddReviewForm({ review, setOpenPopup }) {
                         )
                     })}
                 </p>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit()}>
                     <label htmlFor="title"> Title: </label>
                     <input
                         type="text"
                         id="title"
-                        ref={titleRef}
                         autoComplete="off"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
@@ -82,7 +103,7 @@ function AddReviewForm({ review, setOpenPopup }) {
                         value={description}
                         required
                     />
-                    <button disabled={!validDescription || !validTitle ? true : false}>Submit</button>
+                    <button disabled={!validDescription || !validTitle || !validRating ? true : false}>Submit</button>
                 </form>
             </section>
         </>

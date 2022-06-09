@@ -58,7 +58,7 @@ function Analytics({ applications }) {
                                                     above: 'rgb(130, 192, 250)',
                                                 },
                                                 label: "DOWNLOADS",
-                                                data: app.downloads.map((data1) => data1.amount),
+                                                data: app.reviews.map((data1) => data1.amount),
                                             }]
                                     }}
                                         options={{
