@@ -80,7 +80,7 @@ public class UserController {
     }
 
 
-    //TODO is this a public resource, can anyone use this?
+    //todo fix this
     @GetMapping("{creatorName}/statistics")
     public ResponseEntity<List<ApplicationAnalyticsResponseDTO>>getAppAnalytics(@PathVariable String creatorName, @RequestParam(value = "year", required = false) Integer year) {
         ApplicationAnalyticsRequestDTO request = new ApplicationAnalyticsRequestDTO();
@@ -95,15 +95,5 @@ public class UserController {
         }
         return ResponseEntity.notFound().build();
     }
-    //TODO fix this
-   /* @GetMapping("{id}")
-   public ResponseEntity<Application> getApplicationsBySearch(@PathVariable("id") long id) {
-
-        Application Application = applicationService.getApplicationsByID(id);
-        /       if(Application != null) {
-            return ResponseEntity.ok().body(Application);} else {
-            return ResponseEntity.notFound().build();
-      }
-    }*/
 }
 

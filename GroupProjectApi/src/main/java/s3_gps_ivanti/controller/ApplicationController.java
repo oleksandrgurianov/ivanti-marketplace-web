@@ -46,6 +46,26 @@ public class ApplicationController {
         return ResponseEntity.ok().body(applicationDetailedInfoDTO);
     }
 
+    @RequestMapping(path = "/download/{fileId}/{appName}", method = RequestMethod.GET)
+    public void downloadApplication(@PathVariable("fileId") String fileId, @PathVariable("appName") String appName) throws GeneralSecurityException, IOException {
+
+        DriveQuickstart dq = new DriveQuickstart();
+        String home = System.getProperty("user.home");
+        String path = home + "/Downloads" + "/" + appName + ".zip";
+        dq.downloadApplication(path, fileId);
+
+        System.out.println("Success");
+
+    }
+
+    @GetMapping
+    public ResponseEntity<GetAllApplicationsResponseDTO> getAllApplications(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "sort", required = false) String sort) {
+        GetAllApplicationsRequestDTO request = new GetAllApplicationsRequestDTO();
+        request.setName(name);
+        request.setSort(sort);
+        return ResponseEntity.ok(getApplicationsBasicInfo.getAllApplications(request));
+    }
+
     //Content Creator
     @IsAuthenticated
     @RolesAllowed({"ROLE_Creator"})
@@ -58,14 +78,6 @@ public class ApplicationController {
         }
 
         return ResponseEntity.ok().body(creatorApplicationListDTO);
-    }
-
-    @GetMapping
-    public ResponseEntity<GetAllApplicationsResponseDTO> getAllApplications(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "sort", required = false) String sort) {
-        GetAllApplicationsRequestDTO request = new GetAllApplicationsRequestDTO();
-        request.setName(name);
-        request.setSort(sort);
-        return ResponseEntity.ok(getApplicationsBasicInfo.getAllApplications(request));
     }
 
     //Content Creator
@@ -102,17 +114,4 @@ public class ApplicationController {
         deleteApplications.deleteApplications(applicationID);
         return ResponseEntity.ok().build();
     }
-
-    @RequestMapping(path = "/download/{fileId}/{appName}", method = RequestMethod.GET)
-    public void downloadApplication(@PathVariable("fileId") String fileId, @PathVariable("appName") String appName) throws GeneralSecurityException, IOException {
-
-        DriveQuickstart dq = new DriveQuickstart();
-        String home = System.getProperty("user.home");
-        String path = home + "/Downloads" + "/" + appName + ".zip";
-        dq.downloadApplication(path, fileId);
-
-        System.out.println("Success");
-
-    }
-
 }

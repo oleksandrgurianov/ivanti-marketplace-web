@@ -7,7 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import s3_gps_ivanti.business.dtoconvertor.ApplicationDTOConverter;
-import s3_gps_ivanti.business.exception.ApplicationNameNotUnique;
+import s3_gps_ivanti.business.exception.ApplicationNameNotUniqueException;
+import s3_gps_ivanti.business.exception.ApplicationNotFoundException;
 import s3_gps_ivanti.business.exception.CantCreateApplicationException;
 import s3_gps_ivanti.business.exception.InvalidAccessTokenException;
 import s3_gps_ivanti.dto.application.CreateApplicationRequestDTO;
@@ -63,7 +64,7 @@ class CreateApplicationUseCaseImplTest {
         when(applicationRepository.findByName("Name"))
                 .thenReturn(application);
 
-        assertThrows(ApplicationNameNotUnique.class, () -> createApplicationUseCase.createApplications(requestDTO));
+        assertThrows(ApplicationNameNotUniqueException.class, () -> createApplicationUseCase.createApplications(requestDTO));
 
         verify(requestAccessToken).hasRole("Creator");
         verify(applicationRepository).findByName("Name");
@@ -90,7 +91,7 @@ class CreateApplicationUseCaseImplTest {
         assertThrows(CantCreateApplicationException.class, () -> createApplicationUseCase.createApplications(requestDTO));
 
         verify(requestAccessToken).hasRole("Creator");
-        verify(applicationRepository).findByName("Name");
+        verify(applicationRepository, times(2)).findByName("Name");
         verify(userRepository).findUserByUsername("creatorName");
     }
 
@@ -126,7 +127,7 @@ class CreateApplicationUseCaseImplTest {
         assertThrows(InvalidAccessTokenException.class, () -> createApplicationUseCase.createApplications(requestDTO));
 
         verify(requestAccessToken).hasRole("Creator");
-        verify(applicationRepository).findByName("Name");
+        verify(applicationRepository, times(2)).findByName("Name");
         verify(userRepository).findUserByUsername("creatorName");
         verify(requestAccessToken).getUserID();
     }
@@ -178,7 +179,7 @@ class CreateApplicationUseCaseImplTest {
         assertEquals(expectedResult, actualResult);
 
         verify(requestAccessToken).hasRole("Creator");
-        verify(applicationRepository).findByName("Name");
+        verify(applicationRepository, times(2)).findByName("Name");
         verify(userRepository).findUserByUsername("creatorName");
         verify(requestAccessToken).getUserID();
         verify(applicationRepository).save(application);
