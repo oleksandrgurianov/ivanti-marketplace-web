@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd } from '@fortawesome/free-solid-svg-icons'
 import { FaStar } from 'react-icons/fa'
+import Popup from "./Popup";
+import AddReviewForm from "./AddReviewForm";
 
-function ReviewList({reviews}) {
+function ReviewList({ reviews }) {
+    const [openPopup, setOpenPopup] = useState(false)
+    const [review, setReview] = useState({
+        rating: 3,
+        title: "Yooooo",
+        description: "Yooooo"
+    })
+
+    function Click() {
+        setOpenPopup(true)
+    }
+
     return (
         <div>
             <div className={"app-reviews"}>
-                <div className={"add-review-card"}> <FontAwesomeIcon icon={faAdd} /></div>
+                <Popup openPopup={openPopup}><AddReviewForm review={review} setOpenPopup={setOpenPopup} /></Popup>
+                <div className={"add-review-card"} onClick={Click}> <FontAwesomeIcon icon={faAdd} /></div>
                 {reviews != null && reviews.map(review =>
                     <div className={"review-card"}>
                         <div className={"card-title"}>
@@ -21,7 +35,6 @@ function ReviewList({reviews}) {
                                     return (
                                         <label>
                                             <FaStar
-                                                className={"star"}
                                                 color={ratingValue <= review.rating ? "#4F4746" : "#e4e5e9"}
                                                 size={15}
                                             />

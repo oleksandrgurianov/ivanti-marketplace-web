@@ -3,7 +3,7 @@ import axios from "axios";
 import "../../../styles/ContentCreator/AnalyticsPage.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
-import DownloadAnalytics from "./component/DownloadAnalytics";
+import Analytics from "./component/Analytics";
 
 function AnalyticsPage() {
     const [applications, setApplications] = useState([]);
@@ -37,7 +37,7 @@ function AnalyticsPage() {
                 </div>
             </div>
             <hr/>
-            <DownloadAnalytics applications={applications} />
+            <Analytics applications={applications} />
         </div>
     );
 }
