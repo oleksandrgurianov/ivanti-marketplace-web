@@ -26,7 +26,6 @@ public class CreateReviewUseCaseImpl implements CreateReviewUseCase {
 
     private final ReviewRepository reviewRepository;
     private final UserRepository userRepository;
-    private final ApplicationIDValidation applicationIsValid;
     private final CustomerUsernameValidation customerIsValidCheck;
     private final AccessTokenDTO requestAccessToken;
     private final UpdateRating updateRating;

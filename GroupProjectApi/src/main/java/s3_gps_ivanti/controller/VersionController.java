@@ -27,6 +27,7 @@ public class VersionController {
     private final DeleteVersionUseCase deleteVersion;
     private final GetLatestVersionUseCase getLatestVersion;
     private final UpdateVersionUseCase updateVersion;
+    private final GetVersionAnalyticsPerMonthUseCase versionAnalyticsPerMonth;
 
 
     @IsAuthenticated

@@ -106,12 +106,4 @@ public class ApplicationDTOConverter {
                 .downloads(app.getDownloads())
                 .build();
     }
-    public static List<ApplicationAnalyticsDTO> convertToDTOListForAnalytics(List<Application> apps){
-        List<ApplicationAnalyticsDTO> result = new ArrayList<>();
-
-        for (Application app: apps){
-            result.add(convertToDTOForAnalytics(app));
-        }
-        return result;
-    }
 }

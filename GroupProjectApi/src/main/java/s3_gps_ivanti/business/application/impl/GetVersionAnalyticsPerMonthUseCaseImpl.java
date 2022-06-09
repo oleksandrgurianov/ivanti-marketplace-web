@@ -5,12 +5,9 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import s3_gps_ivanti.business.application.GetVersionAnalyticsPerMonthUseCase;
-import s3_gps_ivanti.business.dtoconvertor.ApplicationDTOConverter;
-import s3_gps_ivanti.dto.application.ApplicationAnalyticsResponseDTO;
 import s3_gps_ivanti.dto.version.VersionAnalyticsRequestDTO;
 import s3_gps_ivanti.dto.version.VersionAnalyticsResponseDTO;
 import s3_gps_ivanti.repository.ApplicationRepository;
-import s3_gps_ivanti.repository.entity.Application;
 import s3_gps_ivanti.repository.entity.DownloadsPerMonth;
 import s3_gps_ivanti.repository.entity.Version;
 

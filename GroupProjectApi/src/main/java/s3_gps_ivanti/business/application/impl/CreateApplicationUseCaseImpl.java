@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import s3_gps_ivanti.business.application.CreateApplicationUseCase;
 import s3_gps_ivanti.business.dtoconvertor.ApplicationDTOConverter;
 import s3_gps_ivanti.business.exception.ApplicationNameNotUniqueException;
+import s3_gps_ivanti.business.exception.CantCreateApplicationException;
+import s3_gps_ivanti.business.exception.InvalidAccessTokenException;
 import s3_gps_ivanti.dto.application.CreateApplicationRequestDTO;
 import s3_gps_ivanti.dto.application.CreateApplicationResponseDTO;
 import s3_gps_ivanti.dto.login.AccessTokenDTO;
@@ -30,30 +32,30 @@ public class CreateApplicationUseCaseImpl implements CreateApplicationUseCase {
     @Override
     public CreateApplicationResponseDTO createApplications(CreateApplicationRequestDTO applicationRequestDTO) {
 
-        if(!requestAccessToken.hasRole("Creator")){
+        if (!requestAccessToken.hasRole("Creator")) {
             throw new InvalidAccessTokenException("Unauthorized");
         }
 
-        if(applicationRepository.findByName(applicationRequestDTO.getName()) != null) {
-            throw new ApplicationNameNotUnique();
-        if(applicationRepository.findByName(applicationRequestDTO.getName()) != null)
-        {
+        if (applicationRepository.findByName(applicationRequestDTO.getName()) != null) {
             throw new ApplicationNameNotUniqueException();
         }
+            if (applicationRepository.findByName(applicationRequestDTO.getName()) != null) {
+                throw new ApplicationNameNotUniqueException();
+            }
 
-        Application app = ApplicationDTOConverter.convertToEntity(applicationRequestDTO);
-        User user = userRepository.findUserByUsername(applicationRequestDTO.getCreatorID());
+            Application app = ApplicationDTOConverter.convertToEntity(applicationRequestDTO);
+            User user = userRepository.findUserByUsername(applicationRequestDTO.getCreatorID());
 
-        if(user == null){
-            throw new CantCreateApplicationException();
+            if (user == null) {
+                throw new CantCreateApplicationException();
+            }
+
+            if (!requestAccessToken.getUserID().equals(user.getId())) {
+                throw new InvalidAccessTokenException("Unauthorized");
+            }
+
+            app.setCreator(user);
+            Application newApplication = applicationRepository.save(app);
+            return ApplicationDTOConverter.convertToDTOCreateResponse(newApplication);
         }
-
-        if(!requestAccessToken.getUserID().equals(user.getId())){
-            throw new InvalidAccessTokenException("Unauthorized");
-        }
-
-        app.setCreator(user);
-        Application newApplication = applicationRepository.save(app);
-        return ApplicationDTOConverter.convertToDTOCreateResponse(newApplication);
     }
-}
