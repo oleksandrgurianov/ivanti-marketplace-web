@@ -21,7 +21,7 @@ public class GetCustomersUseCaseImpl implements GetCustomersUseCase {
 
     @Override
     public List<UserBasicInfoDTO> getAllCustomers() {
-        //TODO check if is admin
+
         return CustomerDTOConverter.convertToListDTO(userRepository.findAll());
     }
 }

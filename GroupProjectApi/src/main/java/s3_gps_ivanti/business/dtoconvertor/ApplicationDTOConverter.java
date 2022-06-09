@@ -2,6 +2,8 @@ package s3_gps_ivanti.business.dtoconvertor;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import s3_gps_ivanti.dto.application.*;
+import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
+import s3_gps_ivanti.dto.user.CustomerSmallDetailDTO;
 import s3_gps_ivanti.repository.entity.*;
 
 import java.util.ArrayList;
@@ -100,6 +102,16 @@ public class ApplicationDTOConverter {
         return ApplicationAnalyticsResponseDTO.builder()
                 .name(app.getName())
                 .icon(app.getIcon())
+                .totalDownloads(app.getTotalDownloads())
+                .downloads(app.getDownloads())
                 .build();
+    }
+    public static List<ApplicationAnalyticsDTO> convertToDTOListForAnalytics(List<Application> apps){
+        List<ApplicationAnalyticsDTO> result = new ArrayList<>();
+
+        for (Application app: apps){
+            result.add(convertToDTOForAnalytics(app));
+        }
+        return result;
     }
 }

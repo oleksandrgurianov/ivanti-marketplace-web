@@ -47,15 +47,6 @@ public class VersionDTOConverter {
                 .downloads(oldVersion.getDownloads())
                 .build();
     }
-
-    public static Version convertToEntity(VersionDTO versionDTO){
-        return Version.builder()
-                .number(versionDTO.getNumber())
-                .totalDownloads(versionDTO.getTotalDownloads())
-                .appLocation(versionDTO.getAppLocation())
-                .downloads(versionDTO.getDownloads())
-                .build();
-    }
     public static VersionDTO convertToDTO(Version version){
         return VersionDTO.builder()
                 .number(version.getNumber())
@@ -64,7 +55,6 @@ public class VersionDTOConverter {
                 .downloads(version.getDownloads())
                 .build();
     }
-
     public static List<VersionDTO> convertToListOfDTO(List<Version> versions) {
 
         List<VersionDTO> result = new ArrayList<>();
@@ -73,14 +63,4 @@ public class VersionDTOConverter {
         }
         return result;
     }
-    public static List<Version> convertToListOfEntity(List<VersionDTO> versions) {
-
-        List<Version> result = new ArrayList<>();
-        for (VersionDTO v :versions) {
-            result.add(VersionDTOConverter.convertToEntity(v));
-        }
-        return result;
-    }
-
-
 }

@@ -10,6 +10,7 @@ import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
 import s3_gps_ivanti.dto.application.ApplicationAnalyticsRequestDTO;
 import s3_gps_ivanti.dto.application.ApplicationAnalyticsResponseDTO;
 import s3_gps_ivanti.dto.version.*;
+import s3_gps_ivanti.repository.entity.Application;
 
 import javax.annotation.security.RolesAllowed;
 import java.net.URI;
@@ -26,7 +27,6 @@ public class VersionController {
     private final DeleteVersionUseCase deleteVersion;
     private final GetLatestVersionUseCase getLatestVersion;
     private final UpdateVersionUseCase updateVersion;
-    private final GetVersionAnalyticsPerMonthUseCase versionAnalyticsPerMonth;
 
 
     @IsAuthenticated

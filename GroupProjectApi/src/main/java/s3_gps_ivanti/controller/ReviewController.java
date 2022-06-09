@@ -25,7 +25,6 @@ public class ReviewController {
    private final DeleteReviewUseCase deleteReviewService;
    private final UpdateReviewUseCase updateReviewService;
 
-
     @PostMapping()
     public ResponseEntity<CreateReviewResponseDTO>  createReview(@RequestBody CreateReviewRequestDTO review) {
         CreateReviewResponseDTO response = createReviewService.createReview(review);

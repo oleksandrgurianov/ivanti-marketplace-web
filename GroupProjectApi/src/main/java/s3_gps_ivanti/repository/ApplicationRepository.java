@@ -15,6 +15,18 @@ public interface ApplicationRepository extends MongoRepository<Application, Stri
     @Query("{creatorID:'?0'}")
     List<Application> findAllByCreatorID(String creatorID);
 
+    List<Application> findAllByOrderByNameAsc();
+
+    List<Application> findAllByOrderByNameDesc();
+
+    List<Application> findAllByOrderByTotalDownloadsDesc();
+
+    List<Application> findAllByNameContainingIgnoreCaseOrderByNameAsc(String name);
+
+    List<Application> findAllByNameContainingIgnoreCaseOrderByNameDesc(String name);
+
+    List<Application> findAllByNameContainingIgnoreCaseOrderByTotalDownloadsDesc(String name);
+
     boolean existsByName(String name);
-    
+
 }

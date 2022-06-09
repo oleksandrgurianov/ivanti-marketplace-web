@@ -8,6 +8,7 @@ import s3_gps_ivanti.business.dtoconvertor.ApplicationDTOConverter;
 import s3_gps_ivanti.business.exception.ApplicationNameNotUniqueException;
 import s3_gps_ivanti.dto.application.CreateApplicationRequestDTO;
 import s3_gps_ivanti.dto.application.CreateApplicationResponseDTO;
+import s3_gps_ivanti.dto.login.AccessTokenDTO;
 import s3_gps_ivanti.repository.ApplicationRepository;
 import s3_gps_ivanti.repository.UserRepository;
 import s3_gps_ivanti.repository.entity.Application;
@@ -24,19 +25,35 @@ public class CreateApplicationUseCaseImpl implements CreateApplicationUseCase {
 
     private final ApplicationRepository applicationRepository;
     private final UserRepository userRepository;
+    private final AccessTokenDTO requestAccessToken;
 
     @Override
     public CreateApplicationResponseDTO createApplications(CreateApplicationRequestDTO applicationRequestDTO) {
 
+        if(!requestAccessToken.hasRole("Creator")){
+            throw new InvalidAccessTokenException("Unauthorized");
+        }
+
+        if(applicationRepository.findByName(applicationRequestDTO.getName()) != null) {
+            throw new ApplicationNameNotUnique();
         if(applicationRepository.findByName(applicationRequestDTO.getName()) != null)
         {
             throw new ApplicationNameNotUniqueException();
         }
+
         Application app = ApplicationDTOConverter.convertToEntity(applicationRequestDTO);
         User user = userRepository.findUserByUsername(applicationRequestDTO.getCreatorID());
+
+        if(user == null){
+            throw new CantCreateApplicationException();
+        }
+
+        if(!requestAccessToken.getUserID().equals(user.getId())){
+            throw new InvalidAccessTokenException("Unauthorized");
+        }
+
         app.setCreator(user);
-        applicationRepository.save(app);
-        Application newApplication = applicationRepository.findByName(applicationRequestDTO.getName());
+        Application newApplication = applicationRepository.save(app);
         return ApplicationDTOConverter.convertToDTOCreateResponse(newApplication);
     }
 }

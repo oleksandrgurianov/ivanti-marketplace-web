@@ -43,7 +43,7 @@ public class UserController {
 
     //Queen
     @IsAuthenticated
-    @RolesAllowed({"ROLE_Creator"})
+    @RolesAllowed({"ROLE_Queen"})
     @GetMapping()
     public ResponseEntity<List<UserBasicInfoDTO>> getUsers() {
         return ResponseEntity.ok().body(getCustomers.getAllCustomers());
@@ -79,6 +79,8 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+
+    //TODO is this a public resource, can anyone use this?
     @GetMapping("{creatorName}/statistics")
     public ResponseEntity<List<ApplicationAnalyticsResponseDTO>>getAppAnalytics(@PathVariable String creatorName, @RequestParam(value = "year", required = false) Integer year) {
         ApplicationAnalyticsRequestDTO request = new ApplicationAnalyticsRequestDTO();

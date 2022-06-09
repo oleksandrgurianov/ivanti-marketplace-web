@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import s3_gps_ivanti.dto.user.UserBasicInfoDTO;
 
 import java.util.List;
 

@@ -8,6 +8,7 @@ import s3_gps_ivanti.business.exception.ReviewByCustomerAlreadyExistException;
 import s3_gps_ivanti.business.review.CreateReviewUseCase;
 import s3_gps_ivanti.business.validation.ApplicationNameValidation;
 import s3_gps_ivanti.business.validation.CustomerUsernameValidation;
+import s3_gps_ivanti.dto.login.AccessTokenDTO;
 import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
 import s3_gps_ivanti.dto.review.CreateReviewResponseDTO;
 import s3_gps_ivanti.repository.ReviewRepository;
@@ -25,6 +26,9 @@ public class CreateReviewUseCaseImpl implements CreateReviewUseCase {
 
     private final ReviewRepository reviewRepository;
     private final UserRepository userRepository;
+    private final ApplicationIDValidation applicationIsValid;
+    private final CustomerUsernameValidation customerIsValidCheck;
+    private final AccessTokenDTO requestAccessToken;
     private final UpdateRating updateRating;
     private final ApplicationNameValidation applicationIsValid;
     private final CustomerUsernameValidation customerIsValid;
