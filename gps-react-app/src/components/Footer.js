@@ -25,9 +25,9 @@ function Footer() {
                 <p className={"copyright"}>Copyright &copy; 2022 Ivanti. All rights reserved.</p>
             </div>
             <div className={"row"}>
-                <a href="https://www.ivanti.com/partners">Partners</a>
-                <a href="https://www.ivanti.com/company/press-releases">Press Releases</a>
-                <a href="https://www.ivanti.com/resources/downloads">Downloads</a>
+                <a href="https://www.ivanti.com/webinars">Webinars</a>
+                <a href="https://www.ivanti.com/company/events">Events</a>
+                <a href="https://www.ivanti.com/blog">Blog</a>
             </div>
             <div className={"row"}>
                 <a href="https://www.ivanti.com/company/careers">Careers</a>
@@ -35,9 +35,9 @@ function Footer() {
                 <a href="https://www.ivanti.com/company/legal">Privacy & Legal</a>
             </div>
             <div className={"row"}>
-                <a href="https://www.ivanti.com/webinars">Webinars</a>
-                <a href="https://www.ivanti.com/company/events">Events</a>
-                <a href="https://www.ivanti.com/blog">Blog</a>
+                <a href="https://www.ivanti.com/partners">Partners</a>
+                <a href="https://www.ivanti.com/company/press-releases">Press Releases</a>
+                <a href="https://www.ivanti.com/resources/downloads">Downloads</a>
             </div>
         </footer>
     )

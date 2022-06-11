@@ -34,7 +34,7 @@ a {
 .Nav {
     overflow: hidden;
     position: fixed;
-    background:rgba(0,0,0,.8);
+    background: rgba(0,0,0,.8);
     height: 44px;
     top: 0;
     left: 0;
@@ -49,12 +49,12 @@ a {
     backdrop-filter: blur(5px);
 }
 
-.NavLogo {
+.Nav .NavLogo {
     cursor: pointer;
     margin-right: 3%;
 }
 
-.NavLink, .NavTranslate, .NavProfile, .NavDropdown .dropdown-button {
+.Nav .NavLink, .Nav .NavDropdown, .Nav .NavDropdown .dropdown-button, .Nav .NavDropdownTranslate, .Nav .NavDropdownTranslate .dropdown-button-translate, .Nav .NavLinkLogin {
     color: darkgrey;
     font-size: 15px;
     font-weight: normal;
@@ -62,24 +62,23 @@ a {
     margin: 0 3%;
 }
 
-.NavLink:hover, .NavTranslate:hover, .NavProfile:hover, .NavDropdown .dropdown-button:hover, .dropdown-content a:hover {
+.Nav .NavLink:hover, .Nav .NavDropdown .dropdown-button:hover, .Nav .NavDropdownTranslate .dropdown-button-translate:hover, .dropdown-content a:hover, .Nav .NavLinkLogin:hover {
     color: white;
 }
 
-.NavTranslate {
-    cursor: pointer;
-    margin-left: auto;
-}
-
-.NavIcon {
+.Nav .NavIcon {
     padding-left: 5px;
 }
 
-.NavDropdown {
+.Nav .NavDropdownTranslate {
+    margin-left: auto;
+}
+
+.Nav .NavDropdown {
     margin-right: 0;
 }
 
-.NavDropdown .dropdown-button {
+.Nav .NavDropdown .dropdown-button, .Nav .NavDropdownTranslate .dropdown-button-translate {
     cursor: pointer;
     border: none;
     outline: none;
@@ -92,10 +91,12 @@ a {
     position: fixed;
     margin-top: 15px;
     padding: 15px;
-    background-color: black;
+    background: rgba(0,0,0,.8);
     min-width: 6%;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
 }
 
 .dropdown-content a {
@@ -123,37 +124,45 @@ a {
     display: block;
 }
 
+.Nav .NavLinkLogin {
+    margin-right: 0;
+}
+
 
 
 /* Footer */
 footer {
     position: absolute;
-    display: block;
+    display: flex;
+    flex-direction: row;
     height: 5rem;
     left: 0;
     right: 0;
     bottom: 0;
     padding: 15px 17%;
     background-color: black;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: space-between;
     transition: 0.3s;
 }
 
-footer .row {
+.row {
     margin: 0 6%;
-    float: right;
     display: flex;
     flex-direction: column;
     transition: 0.3s;
 }
 
-footer .row:first-child {
-    float: left;
+.row:first-child {
     align-items: flex-start;
-    margin: 0;
+    margin-left: 0;
 }
 
-footer .row:nth-child(2) {
+.row:nth-child(2) {
+    margin-left: auto;
+}
+
+.row:last-child {
     margin-right: 0;
 }
 
@@ -176,14 +185,14 @@ footer .row:nth-child(2) {
     margin-right: 0;
 }
 
-.row .copyright {
+.copyright {
     cursor: default;
     color: dimgrey;
     font-size: xx-small;
     font-weight: normal;
 }
 
-.row a {
+footer .row a {
     color: dimgrey;
     font-size: 15px;
     font-weight: normal;
@@ -192,12 +201,8 @@ footer .row:nth-child(2) {
     padding-bottom: 8px;
 }
 
-.row a:hover {
+footer .row a:hover {
     color: darkgrey;
-}
-
-.row a:last-child {
-    padding-bottom: 0;
 }
 
 
@@ -217,7 +222,7 @@ footer .row:nth-child(2) {
     }
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1000px) {
     .Nav {
         padding: 0 15px;
     }
@@ -231,17 +236,25 @@ footer .row:nth-child(2) {
     }
 }
 
-@media (max-width: 850px) {
-    .NavLink, .NavTranslate, .NavProfile, .NavDropdown .dropdown-button {
+@media (max-width: 750px) {
+    .Nav .NavLink, .Nav .NavDropdown, .Nav .NavDropdownTranslate, .Nav .NavLinkLogin {
         margin: 0 1%;
     }
 
-    .NavLogo {
+    .Nav .NavLogo {
         margin-right: 1%;
     }
 
-    .NavTranslate {
+    .Nav .NavDropdownTranslate {
         margin-left: auto;
+    }
+
+    .Nav .NavLinkLogin {
+        margin-right: 0;
+    }
+
+    .Nav .NavDropdown {
+        margin-right: 0;
     }
 
     footer .row {
