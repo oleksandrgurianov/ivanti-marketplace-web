@@ -21,7 +21,7 @@
     opacity: 50%;
 }
 
-.search-field {
+.my-apps-controls .search-field, .analytics-controls .search-field {
     height: 35px;
     width: 150px;
     margin: 8px 0 0 auto;
