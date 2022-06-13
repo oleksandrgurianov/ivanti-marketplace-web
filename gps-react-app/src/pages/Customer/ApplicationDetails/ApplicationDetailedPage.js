@@ -11,6 +11,7 @@ import ReviewList from './component/ReviewList';
 const ApplicationDetailedPage = () => {
 
     let params = useParams();
+    let username = localStorage.getItem("username");
 
     const [application, setApplication] = useState({});
     const [appLocation, setAppLocation] = useState();
@@ -90,7 +91,7 @@ const ApplicationDetailedPage = () => {
                 <p className={"rating-number"}>{application.avgRating}</p>
                 <p>out of 5</p>
             </div>
-            <ReviewList reviews = {application.reviews}/>
+            <ReviewList customer = {username} application = {application.name} reviews = {application.reviews}/>
             <hr/>
             <div className='app-description'>
                 <h2>Description</h2>

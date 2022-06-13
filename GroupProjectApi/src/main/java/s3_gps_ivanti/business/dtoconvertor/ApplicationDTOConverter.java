@@ -102,8 +102,6 @@ public class ApplicationDTOConverter {
         return ApplicationAnalyticsResponseDTO.builder()
                 .name(app.getName())
                 .icon(app.getIcon())
-                .totalDownloads(app.getTotalDownloads())
-                .downloads(app.getDownloads())
                 .build();
     }
 }

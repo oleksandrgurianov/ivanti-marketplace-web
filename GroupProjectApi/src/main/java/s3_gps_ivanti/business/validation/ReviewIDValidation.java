@@ -12,7 +12,7 @@ public class ReviewIDValidation {
 
     public void reviewInvalid(String id){
         if(!reviewRepository.existsById(id)){
-            throw new InvalidReviewException();
+            throw new InvalidReviewException("INVALID_REVIEW");
         }
     }
 }
