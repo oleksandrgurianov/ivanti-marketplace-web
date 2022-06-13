@@ -55,7 +55,8 @@ public class CreateMajorVersionUseCaseImpl implements CreateMajorVersionUseCase 
             throw new VersionNumberIncorrectException();
         }
 
-        List<Version> newVersions = new ArrayList<>(application.getVersions());
+        List<Version> newVersions = new ArrayList<>();
+        newVersions.addAll(application.getVersions());
         Version version = VersionDTOConverter.convertToEntityForCreate(versionRequestDTO);
         newVersions.add(version);
         application.setVersions(newVersions);

@@ -51,12 +51,12 @@ public class CreateMinorVersionUseCaseImpl implements CreateMinorVersionUseCase 
         double nextVersion = latestVersion.getNumber() + 0.1;
 
         nextVersion = Double.parseDouble(df.format(nextVersion));
-
         if(nextVersion != versionRequestDTO.getNumber()){
             throw new VersionNumberIncorrectException();
         }
 
-        List<Version> newVersions = new ArrayList<>(application.getVersions());
+        List<Version> newVersions = new ArrayList<>();
+        newVersions.addAll(application.getVersions());
         Version version = VersionDTOConverter.convertToEntityForCreate(versionRequestDTO);
         newVersions.add(version);
         application.setVersions(newVersions);
