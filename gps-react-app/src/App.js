@@ -12,7 +12,7 @@ import RequireAuth from './components/RequireAuth';
 
 //Pages
 import HomePage from "./pages/ContentCreator/HomePage";
-import AllApplicationsPage from "./pages/Customer/AllApplications/AllApplicationsPage";
+import AllApplicationsPage from "./pages/PublicRoutes/AllApplicationsPage";
 import ApplicationDetailedPage from "./pages/Customer/ApplicationDetails/ApplicationDetailedPage";
 import AboutPage from "./pages/Miscellaneous/AboutPage";
 import ContactPage from "./pages/Miscellaneous/ContactPage";
@@ -20,10 +20,10 @@ import LoginPage from "./pages/Authentication&Authorisation/LogInPage";
 import LogOutPage from "./pages/Authentication&Authorisation/LogOutPage";
 import ErrorPage from "./pages/Authentication&Authorisation/ErrorPage";
 import MyAppsPage from "./pages/ContentCreator/MyAppsPage/MyAppsPage";
+import ApplicationPage from "./pages/ContentCreator/ApplicationPage/ApplicationPage"
 
 //App Structure
 function App() {
-
 
     return (
         <div className="Html">
@@ -42,7 +42,9 @@ function App() {
 
                 {/* creator */}
                 <Route element={<RequireAuth allowedRoles={["Creator"]} />}>
+                    {/* applications */}
                     <Route path="/creator/my-apps" element={<MyAppsPage />} />
+                    <Route path="/creator/app/:name" element={<ApplicationPage />} />
                 </Route>
 
                 {/* customer */}

@@ -1,6 +1,8 @@
 COMPONENTS
 Only reusable elements that are loaded as a structural element in the website.
 
+Reusable parts are also added here. 
+
 --- components:
     Footer.js
     Header.js
@@ -34,9 +36,7 @@ In case of doubt use Misc! (So if we need to reorganize again we know where to c
                 Application.js
             ApplicationPage.js
         - MyAppsPage:
-            - components:
-                Application.js
-            MyAppsPage.js
+            MyAppsPage.js // shows all apps of creator
         AddApplicationPage.js
         AddMajorVersionPage.js
         AddMinorVersionPage.js

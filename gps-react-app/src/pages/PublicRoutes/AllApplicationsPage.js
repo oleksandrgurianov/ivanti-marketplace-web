@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import ApplicationBasic from './ApplicationBasic';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
-import '../../../styles/ContentCreator/MyAppsPage/MyAppsPage.css';
-import loading from "../../../images/loading.gif";
+// import '../../../styles/ContentCreator/MyAppsPage/MyAppsPage.css';
+import loading from "../../images/loading.gif";
 import { useStateWithCallbackLazy } from 'use-state-with-callback';
+import BasicApplication from '../../components/BasicApplication';
 
 const AllApplicationsPage = () => {
     const [applicationsArray, setApplicationArray] = useState([]);
@@ -66,7 +66,7 @@ const AllApplicationsPage = () => {
                 {applicationsArray.applications ? (
                     <div className='my-apps-list'>
                         { applicationsArray.applications && applicationsArray.applications.map((app) => (
-                            <ApplicationBasic key={app.name} name={app.name} icon={app.icon} />
+                            <BasicApplication key={app.name} name={app.name} icon={app.icon} />
                         ))}
                     </div>
                 ) : (

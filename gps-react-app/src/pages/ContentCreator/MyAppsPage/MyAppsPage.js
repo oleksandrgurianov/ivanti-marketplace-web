@@ -1,32 +1,36 @@
 import React, { useEffect, useState } from 'react'
-import Application from './components/Application'
 import axios from 'axios';
 import '../../../styles/ContentCreator/MyAppsPage/MyAppsPage.css';
-import { useParams, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faCaretDown, faCirclePlus} from '@fortawesome/free-solid-svg-icons'
-import ApplicationBasicCreator from './ApplicationBasicCreator';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import loading from "../../../images/loading.gif";
+import useAuth from '../../../hooks/useAuth';
+import BasicApplication from '../../../components/BasicApplication';
 
 const MyAppsPage = () => {
-    const [applicationsArray, setApplicationsArray] = useState({});
 
-    const {username} = useParams();
+    const { auth } = useAuth();
+    const authorisation = {
+        headers: { Authorization: 'Bearer ' + auth?.accessToken }
+    }
+    const [applications, setApplications] = useState([]);
 
-    const getApplications = () => {
-        axios.get(`http://localhost:8080/application/creator/${username}`)
-            .then(res => {
-                setApplicationsArray(res.data);
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
+    const getApplicationsByCreator = () => {
+        const URL = `http://localhost:8080/application/creator/${auth?.decoded?.sub}`
+
+        axios.get(URL, authorisation)
+        .then(res => {
+            setApplications(res.data.myApplications)
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     useEffect(() => {
-        getApplications();
-    }, []);
+        getApplicationsByCreator()
+    }, [])
 
     return (
         <>
@@ -36,10 +40,10 @@ const MyAppsPage = () => {
                     <Link to='/creator/username/myApps/addApplication'><FontAwesomeIcon className='add-icon' icon={faCirclePlus}/></Link>
                 </div>
                 <hr/>
-                {applicationsArray.myApplications ? (
+                {applications ? (
                     <div className='my-apps-list'>
-                        {applicationsArray.myApplications && applicationsArray.myApplications.map((app) => (
-                            <ApplicationBasicCreator key={app.name} name={app.name} icon={app.icon}/>
+                        {applications?.map((app) => (
+                            <BasicApplication key={app.name} name={app.name} icon={app.icon}/>
                         ))}
                     </div>
                 ) : (

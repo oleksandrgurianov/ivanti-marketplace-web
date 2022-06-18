@@ -159,7 +159,7 @@
 
 // export default Navbar;
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
 import logo from "../images/ivanti-marketplace-logo.png";
@@ -167,7 +167,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobe, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import Translate from './Translate'; 
 
-const Navbar = () => {
+function Navbar() {
+
+    const { auth } = useAuth();
+    const [isCreator, setIsCreator] = useState(false)
+
+    const checkRoleStatus = () => {
+        auth?.roles?.map((role) => {
+            if (role === "Creator") {
+                setIsCreator(true)
+            }
+        })
+    }
+
+    useEffect(() => {
+        checkRoleStatus()
+    }, [auth])
 
     function showContent() {
         document.getElementById("myDropdown").classList.toggle("show");
@@ -185,24 +200,42 @@ const Navbar = () => {
         }
     }
 
-    const { auth } = useAuth();
+    
 
   return (
-    <div className='body'>
+    <div>
         <div className='Nav'>
             <Link className='NavLogo' to={'/'}>
                 <img src={logo} height={'38px'} alt={"ivanti marketplace logo"} />
             </Link>
             <Link className='NavLink' to={'/all-apps'}>Apps</Link>
-            {auth?.decoded && <Link className='NavLink' to={'/creator/analytics'}>Analytics</Link>}
-            {auth?.decoded && <Link className='NavLink' to={'/*'}>Notifications</Link>}
-            {auth?.decoded && <Link className='NavLink' to={'/creator/my-apps'}>My Apps</Link>}
+
+            { isCreator ? (
+                <>
+                    {auth?.decoded && <Link className='NavLink' to={'/creator/analytics'}>Analytics</Link>}
+                    {auth?.decoded && <Link className='NavLink' to={'/*'}>Notifications</Link>}
+                    {auth?.decoded && <Link className='NavLink' to={'/creator/my-apps'}>My Apps</Link>}
+                </>
+            ) : (
+                <>
+                    {auth?.decoded && <Link className='NavLink' to={'/*'}>My Downloads</Link> }
+                </>
+            )}
+            
             <Translate />
             {auth?.decoded &&
                 <div className='NavDropdown'>
                     <button className='dropdown-button' onClick={showContent}>{auth?.decoded.sub}<FontAwesomeIcon className='NavIcon' icon={faCaretDown} /></button>
                     <div className='dropdown-content'>
-                        <Link to={'/creator/my-apps'}>My Account</Link>
+                        { isCreator ? (
+                            <>
+                                <Link to={'/creator/my-apps'}>My Account</Link>
+                            </>
+                        ) : (
+                            <>
+                                <Link to={'/*'}>My Account</Link>
+                            </>
+                        )}
                         <hr />
                         <Link to={'/logout'}>Logout</Link>
                     </div>

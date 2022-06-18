@@ -37,7 +37,7 @@ const LoginPage = () => {
             const accessToken = response?.data?.accessToken;
             const decoded = jwt_decode(accessToken);
             const roles = decoded?.roles;
-            console.log(decoded)
+            console.log(roles)
             setAuth({ accessToken, decoded, roles });
 
             setUsername('')
