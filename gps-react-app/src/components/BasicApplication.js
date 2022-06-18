@@ -7,8 +7,6 @@ const BasicApplication = ({ name, icon }) => {
   const { auth } = useAuth();
   const [isCreator, setIsCreator] = useState(false)
 
-
-
     const checkRoleStatus = () => {
         auth?.roles?.map((role) => {
             if (role === "Creator") {

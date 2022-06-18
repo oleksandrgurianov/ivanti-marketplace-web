@@ -11,16 +11,16 @@ import Footer from './components/Footer';
 import RequireAuth from './components/RequireAuth';
 
 //Pages
-import HomePage from "./pages/ContentCreator/HomePage";
+import HomePage from "./pages/PublicRoutes/HomePage";
 import AllApplicationsPage from "./pages/PublicRoutes/AllApplicationsPage";
-import ApplicationDetailedPage from "./pages/Customer/ApplicationDetails/ApplicationDetailedPage";
-import AboutPage from "./pages/Miscellaneous/AboutPage";
-import ContactPage from "./pages/Miscellaneous/ContactPage";
+import AboutPage from "./pages/PublicRoutes/AboutPage";
+import ContactPage from "./pages/PublicRoutes/ContactPage";
 import LoginPage from "./pages/Authentication&Authorisation/LogInPage";
 import LogOutPage from "./pages/Authentication&Authorisation/LogOutPage";
 import ErrorPage from "./pages/Authentication&Authorisation/ErrorPage";
 import MyAppsPage from "./pages/ContentCreator/MyAppsPage/MyAppsPage";
-import ApplicationPage from "./pages/ContentCreator/ApplicationPage/ApplicationPage"
+import DetailedApplicationPage from "./pages/PublicRoutes/DetailedApplication";
+import AddApplicationPage from "./pages/ContentCreator/AddApplicationPage";
 
 //App Structure
 function App() {
@@ -34,7 +34,7 @@ function App() {
 
                 {/* public routes */}
                 <Route path="/all-apps"  element={<AllApplicationsPage />} />
-                <Route path="/app/:name" element={<ApplicationDetailedPage />} />
+                <Route path="/app/:name" element={<DetailedApplicationPage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/login" element={<LoginPage />} />
@@ -44,7 +44,10 @@ function App() {
                 <Route element={<RequireAuth allowedRoles={["Creator"]} />}>
                     {/* applications */}
                     <Route path="/creator/my-apps" element={<MyAppsPage />} />
-                    <Route path="/creator/app/:name" element={<ApplicationPage />} />
+                    <Route path="/creator/app/:name" element={<DetailedApplicationPage />} />
+
+                    {/* application actions */}
+                    <Route path="/creator/add-app" element={<AddApplicationPage />} />
                 </Route>
 
                 {/* customer */}

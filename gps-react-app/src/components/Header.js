@@ -215,6 +215,7 @@ function Navbar() {
                     {auth?.decoded && <Link className='NavLink' to={'/creator/analytics'}>Analytics</Link>}
                     {auth?.decoded && <Link className='NavLink' to={'/*'}>Notifications</Link>}
                     {auth?.decoded && <Link className='NavLink' to={'/creator/my-apps'}>My Apps</Link>}
+                    {auth?.decoded && <Link className='NavLink' to={'/creator/add-app'}>Add App</Link>}
                 </>
             ) : (
                 <>

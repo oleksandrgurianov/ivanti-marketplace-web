@@ -20,6 +20,9 @@ Only pages related to creator view should be placed inside Creator directory and
 If your page affects both roles, use the common folder related to the topic that your page covers (AppCatalogue, LogInPage, Review or Misc).
 In case of doubt use Misc! (So if we need to reorganize again we know where to check ;) )
 
+DetailedApplication.js is used to show the detailed info of the app. Based on the logged in user the page shows actions for the customer or creator.
+TODO: link id of logged in user to the application creator, so creators only see the actions like update for their own apps!!!!
+
 --- pages:
     -- Authentication&Authorisation:
         ErrorPage.js
@@ -44,14 +47,12 @@ In case of doubt use Misc! (So if we need to reorganize again we know where to c
         HomePage.js
         UpdateApplicationPage.js
 
-    -- Miscellaneous:
+    -- Miscellaneous: NOW CALLED PUBLIC ROUTES
         AboutPage.js
         ApplicationPreview.js
         ContactPage.js
-        GetApplication.js
-        Item.js
-        List.js
         AddMajorVersionPage.js
+        AllApplicationsPage.js
 ________________________________________________________________________________________________________________________
 
 STYLES

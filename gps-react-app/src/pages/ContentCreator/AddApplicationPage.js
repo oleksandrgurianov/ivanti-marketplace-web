@@ -5,8 +5,11 @@ import ReactDOM from "react-dom";
 import {useParams, useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCirclePlus, faPen} from "@fortawesome/free-solid-svg-icons";
+import useAuth from "../../hooks/useAuth";
 
 function AddApplicationPage() {
+
+    const { auth } = useAuth();
 
     let navigate = useNavigate();
 
@@ -81,14 +84,13 @@ function AddApplicationPage() {
         }
     }
 
-    const {id} = useParams();
-
     //Variables
-    const [icon, setIcon] = useState("");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [arrayImages, setArrayImages] = useState([])
-    const [app, setApp] = useState("");
+    const [screenshots, setScreenshots] = useState([])
+    const [icon, setIcon] = useState("");
+    const [appLocation, setAppLocation] = useState("");
+    const [creatorID, setCreatorID] = useState('');
 
     //Loading screens
     const [loadingImage, setLoadingImage] = useState("");
@@ -114,19 +116,19 @@ function AddApplicationPage() {
         let includeID = url.replace("file/d/", "uc?export=view?&id=");
         let ChangeView = includeID.replace("/view?usp=drivesdk", "");
 
-        if (arrayImages === null) {
-            setArrayImages(ChangeView);
-        } else if (arrayImages.length < 10) {
-            arrayImages.push(ChangeView);
-            setArrayImages(arrayImages);
+        if (screenshots === null) {
+            setScreenshots(ChangeView);
+        } else if (screenshots.length < 10) {
+            screenshots.push(ChangeView);
+            setScreenshots(screenshots);
         }
         //ReactDOM.render( <div id="images"><LoadImages/></div>, document.getElementById('images'));
-        setArrayImages(arrayImages);
+        setScreenshots(screenshots);
     }
     const RemoveImage = (e) => {
-        for (let i = 0; i < arrayImages.length; i++) {
-            if (arrayImages[i] === e.target.value) {
-                arrayImages.splice(i, 1);
+        for (let i = 0; i < screenshots.length; i++) {
+            if (screenshots[i] === e.target.value) {
+                screenshots.splice(i, 1);
                 ReactDOM.render( <LoadImages/>, document.getElementById('images'));
                 return;
             }
@@ -137,14 +139,14 @@ function AddApplicationPage() {
         let includeID = url.replace("file/d/", "uc?export=view?&id=");
         let ChangeView = includeID.replace("/view?usp=drivesdk", "");
 
-        setApp(ChangeView);
+        setAppLocation(ChangeView);
     }
 
     //Display images
     function LoadImages() {
         return (
             <div id="images" className={"screenshots-list"}>
-                {arrayImages.map(image => (
+                {screenshots.map(image => (
                     <div className={"screenshot"}>
                         <img src={image} alt={"application screenshot"}/>
                         <button className={"delete-screenshot-button"} type="button" value={image} onClick={RemoveImage}>-</button>
@@ -155,19 +157,18 @@ function AddApplicationPage() {
     }
 
     //Save app
-    let token = localStorage.getItem("token");
     const config = {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${auth?.accessToken}` }
     };
     const SendRequest = () =>{
 
         let data = {
             'name': name,
             'description': description,
-            'screenshots': arrayImages,
+            'screenshots': screenshots,
             'icon':icon,
-            'applicationLocation': app,
-            'creatorID':id
+            'applicationLocation': appLocation,
+            'creatorID': auth?.decoded?.sub
         };
 
         axios.post(`http://localhost:8080/application`,data,config)
@@ -187,10 +188,10 @@ function AddApplicationPage() {
         if(name == "" ){
             result += "Please add a title. \n";
         }
-        if(arrayImages == null || arrayImages.length == 0) {
+        if(screenshots == null || screenshots.length == 0) {
             result += "Please add at least 1 image. \n";
         }
-        if(app == "") {
+        if(appLocation == "") {
             result += "Please make sure to include the url to the application. \n";
         }
         return result;
@@ -202,8 +203,8 @@ function AddApplicationPage() {
             alert(checkInput);}
         else{
             SendRequest();
-            let path = `/creator/${id}/myApps`;
-            navigate(path);
+            alert("App Created!")
+            navigate('/creator/my-apps')
         }
     }
 

@@ -37,7 +37,7 @@ const MyAppsPage = () => {
             <div className='my-apps'>
                 <div className='my-apps-controls' style={{justifyContent: "normal"}}>
                     <h1 className='title'>My Apps</h1>
-                    <Link to='/creator/username/myApps/addApplication'><FontAwesomeIcon className='add-icon' icon={faCirclePlus}/></Link>
+                    <Link to='/creator/add-app'><FontAwesomeIcon className='add-icon' icon={faCirclePlus}/></Link>
                 </div>
                 <hr/>
                 {applications ? (
