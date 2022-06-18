@@ -76,3 +76,11 @@ All style files goes here:
 
     App.css
 ________________________________________________________________________________________________________________________
+
+AUTHENTICATION/AUTHORISATION
+
+context folder: the AuthProvider provides the auth context, we can use this in the entire application.
+hooks folder: useAuth is a custom hook, which we can import in all the pages where we need it. This uses the context
+RequireAuth.js redirects users to the login page if they dont have permission to visit the page. 
+
+App.js: contains all routes, uses protected routes.
