@@ -4,17 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import s3_gps_ivanti.business.application.GetVersionAnalyticsPerMonthUseCase;
 import s3_gps_ivanti.business.version.*;
 import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
-import s3_gps_ivanti.dto.application.ApplicationAnalyticsRequestDTO;
-import s3_gps_ivanti.dto.application.ApplicationAnalyticsResponseDTO;
 import s3_gps_ivanti.dto.version.*;
-import s3_gps_ivanti.repository.entity.Application;
 
 import javax.annotation.security.RolesAllowed;
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/version")
@@ -27,11 +22,8 @@ public class VersionController {
     private final DeleteVersionUseCase deleteVersion;
     private final GetLatestVersionUseCase getLatestVersion;
     private final UpdateVersionUseCase updateVersion;
-    private final GetVersionAnalyticsPerMonthUseCase versionAnalyticsPerMonth;
 
 
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_Creator"})
     @GetMapping("/{applicationName}")
     public ResponseEntity<Double>getLatestVersion(@PathVariable("applicationName")  String applicationName) {
 
@@ -44,8 +36,6 @@ public class VersionController {
         }
     }
 
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_Creator"})
     @PostMapping("/major")
     public ResponseEntity<CreateMajorVersionResponseDTO> createMajorVersion(@RequestBody CreateMajorVersionRequestDTO createVersionDTO) {
 
@@ -61,8 +51,6 @@ public class VersionController {
         }
     }
 
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_Creator"})
     @PostMapping("/minor")
     public ResponseEntity<CreateMinorVersionResponseDTO> createMinorVersion(@RequestBody CreateMinorVersionRequestDTO createVersionDTO) {
 
@@ -78,8 +66,6 @@ public class VersionController {
         }
     }
 
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_QueenAccess"})
     @PutMapping() //This code is here only to take up space
     public ResponseEntity<Object> updateVersion(@RequestBody UpdateVersionRequestDTO updateVersionDTO) {
 
@@ -87,29 +73,10 @@ public class VersionController {
         return ResponseEntity.ok().build();
     }
 
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_QueenAccess"})
     @DeleteMapping({"/{applicationID}/{versionNumber}"})
     public ResponseEntity<Object> deleteVersion(@PathVariable("applicationID") String applicationID, @PathVariable("versionNumber")  double versionNumber) {
 
         deleteVersion.deleteVersion(applicationID,versionNumber);
         return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("{appName}/{number}/statistics")
-    public ResponseEntity<VersionAnalyticsResponseDTO> getVersionAnalytics(@PathVariable("appName") String appName, @PathVariable("number") double number, @RequestParam(value = "year", required = false) Integer year) {
-        VersionAnalyticsRequestDTO request = new VersionAnalyticsRequestDTO();
-        request.setApp(appName);
-        request.setNumber(number);
-
-        if(year!=null)
-            request.setYear(year);
-
-        VersionAnalyticsResponseDTO analytics = versionAnalyticsPerMonth.getVersionAnalytics(request);
-
-        if(analytics!=null){
-            return ResponseEntity.ok().body(analytics);
-        }
-        return ResponseEntity.notFound().build();
     }
 }

@@ -31,16 +31,12 @@ public class ReviewController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_Customer"})
     @PutMapping()
     public ResponseEntity<Object>  updateReview(@RequestBody UpdateReviewDTO review) {
         updateReviewService.updateReview(review);
         return ResponseEntity.noContent().build();
     }
 
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_Customer"})
     @DeleteMapping("/{reviewID}")
     public ResponseEntity<Object>  deleteReview(@PathVariable("reviewID") String reviewID) {
         deleteReviewService.deleteReview(reviewID);

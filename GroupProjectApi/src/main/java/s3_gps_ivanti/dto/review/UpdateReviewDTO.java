@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UpdateReviewDTO {
     private String id;
-    private String applicationName;
-    private String customerName;
     private int rating;
     private String title;
     private String description;
