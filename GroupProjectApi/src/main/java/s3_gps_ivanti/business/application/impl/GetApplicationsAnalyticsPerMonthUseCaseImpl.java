@@ -56,11 +56,14 @@ public class GetApplicationsAnalyticsPerMonthUseCaseImpl implements GetApplicati
     private List<DownloadsPerMonth> getDownloadAnalyticsPerApp(Application app, int year) {
         List<DownloadsPerMonth> downloadsAnalytics = new ArrayList<>();
 
-        for (DownloadsPerMonth download : app.getDownloads()){
-            if(download.getYear()==year){
-                downloadsAnalytics.add(download);
+        if(app.getDownloads()!=null){
+            for (DownloadsPerMonth download : app.getDownloads()){
+                if(download.getYear()==year){
+                    downloadsAnalytics.add(download);
+                }
             }
         }
+
         return downloadsAnalytics;
     }
     private int totalDownloadPerYear(int year, Application app){
@@ -76,11 +79,14 @@ public class GetApplicationsAnalyticsPerMonthUseCaseImpl implements GetApplicati
     private List<ReviewsPerMonth> getReviewAnalyticsPerApp(Application app, int year) {
         List<ReviewsPerMonth> reviewsAnalytics = new ArrayList<>();
 
-        for (ReviewsPerMonth review : app.getReviewsPerMonths()){
-            if(review.getYear()==year){
-                reviewsAnalytics.add(review);
+        if(app.getReviewsPerMonths()!=null){
+            for (ReviewsPerMonth review : app.getReviewsPerMonths()){
+                if(review.getYear()==year){
+                    reviewsAnalytics.add(review);
+                }
             }
         }
+
         return reviewsAnalytics;
     }
     private int totalReviewsPerYear(int year, Application app){

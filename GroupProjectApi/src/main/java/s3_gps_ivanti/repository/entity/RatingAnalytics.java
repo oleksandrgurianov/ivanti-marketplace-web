@@ -16,7 +16,7 @@ public class RatingAnalytics {
     private int fourStar;
     private int fiveStar;
 
-    private int totalAmount(){
+    private double totalAmount(){
         return oneStar+twoStar+threeStar+fourStar+fiveStar;
     }
 
