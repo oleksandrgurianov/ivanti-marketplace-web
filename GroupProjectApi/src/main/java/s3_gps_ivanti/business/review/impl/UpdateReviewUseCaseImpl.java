@@ -26,10 +26,6 @@ public class UpdateReviewUseCaseImpl implements UpdateReviewUseCase {
 
         Review review = reviewRepository.findById(request.getId()).orElse(null);
 
-        if(review.getCustomer().getUsername()!=request.getCustomerName() && review.getApplicationName() != request.getApplicationName()){
-            throw new UnauthorizedDataAccessException("UNAUTHORISED");
-        }
-
         updateRating.subtractAppRating(review.getApplicationName(), review.getRating());
 
         review.setDescription(request.getDescription());

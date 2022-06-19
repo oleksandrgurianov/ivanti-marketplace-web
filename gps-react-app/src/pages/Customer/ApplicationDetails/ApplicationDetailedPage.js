@@ -14,6 +14,7 @@ const ApplicationDetailedPage = () => {
     let username = localStorage.getItem("username");
 
     const [application, setApplication] = useState({});
+    const [ownReview, setOwnReview ] = useState(null);
     const [appLocation, setAppLocation] = useState();
     const [name, setName] = useState();
     const [version, setVersion] = useState("1.0");
@@ -33,6 +34,8 @@ const ApplicationDetailedPage = () => {
             })
     }
 
+
+
     const downloadApplication = async (e) => {
         e.preventDefault();
         try {
@@ -49,6 +52,21 @@ const ApplicationDetailedPage = () => {
     useEffect(() => {
         getApplication();
     }, []);
+
+    const getReview = () => {
+        axios.get(`http://localhost:8080/review/${username}/${params.name}`)
+            .then(res => {
+                setOwnReview(res.data);
+            })
+            .catch(err => {
+                console.log(err.message);
+                setOwnReview(null);
+            });
+    }
+
+    useEffect(() => {
+        getReview();
+    }, [application])
 
     return (
         <div className='app'>
@@ -88,10 +106,10 @@ const ApplicationDetailedPage = () => {
                 <button className={"see-all-button"}>See All</button>
             </div>
             <div className={"overall-rating"}>
-                <p className={"rating-number"}>{application.avgRating}</p>
+                <p className={"rating-number"}>{application?.avgRating?.toFixed(1)}</p>
                 <p>out of 5</p>
             </div>
-            <ReviewList customer = {username} application = {application.name} reviews = {application.reviews}/>
+            <ReviewList ownReview = {ownReview} reviews = {application?.reviews} app={params.name}/>
             <hr/>
             <div className='app-description'>
                 <h2>Description</h2>

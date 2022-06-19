@@ -5,8 +5,9 @@ import ReviewForm from "../../../../styles/ReviewForm.css"
 import { FaStar } from 'react-icons/fa'
 import axios from "axios";
 
-function AddReviewForm({ review, setReview, application, customer, setOpenPopup }) {
+function AddReviewForm({ review, setOpenPopup, app }) {
     const url = "http://localhost:8080/review";
+    let username = localStorage.getItem("username");
 
     const [hover, setHover] = useState(0);
     const [validRating, setValidRating] = useState(false);
@@ -19,11 +20,19 @@ function AddReviewForm({ review, setReview, application, customer, setOpenPopup 
     const [description, setDescription] = useState(review != null ? review.description : "");
 
     useEffect(() => {
-        setValidTitle(title.length > 0);
+        if(review!=null){
+            setTitle(review?.title)
+            setDescription(review?.description)
+            setRating(review?.rating)
+        }
+    },[])
+
+    useEffect(() => {
+        setValidTitle(title?.length > 0);
     }, [title])
 
     useEffect(() => {
-        setValidDescription(description.length > 0);
+        setValidDescription(description?.length > 0);
     }, [description])
 
     useEffect(() => {
@@ -31,9 +40,23 @@ function AddReviewForm({ review, setReview, application, customer, setOpenPopup 
     }, [rating])
 
     const handleSubmit = () => {
+
+        if(review!=null){
+            axios.put(url, {
+                id: review?.id,
+                rating: rating,
+                title: title,
+                description: description
+            })
+                .then(res => {
+                    console.log(res.data);
+                });
+            setOpenPopup(false)
+        }
+        else
         axios.post(url, {
-            customerName: customer,
-            applicationName: application,
+            customerName: username,
+            applicationName: app,
             rating: rating,
             title: title,
             description: description
@@ -41,20 +64,12 @@ function AddReviewForm({ review, setReview, application, customer, setOpenPopup 
             .then(res => {
                 console.log(res.data);
             });
-        setReview({
-            customerName: customer,
-            applicationName: application,
-            rating: rating,
-            title: title,
-            description: description
-        })
-        setOpenPopup(true)
+        setOpenPopup(false)
     }
 
     return (
         <>
             <section>
-                
                 <div className="review-header">
                     <h1>Submit Review</h1><div onClick={() => { setOpenPopup(false) }}><FontAwesomeIcon className="close" icon={faClose} color="red" /></div>
                 </div>

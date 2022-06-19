@@ -14,17 +14,17 @@ public class VersionDTOConverter {
     public static Version convertToEntityForCreate(CreateMajorVersionRequestDTO majorVersionRequestDTO){
         return Version.builder()
                 .number(majorVersionRequestDTO.getNumber())
+                .totalReviews(0)
                 .totalDownloads(0)
                 .appLocation(majorVersionRequestDTO.getAppLocation())
-                .downloads(Collections.emptyList())
                 .build();
     }
     public static Version convertToEntityForCreate(CreateMinorVersionRequestDTO minorVersionRequestDTO){
         return Version.builder()
                 .number(minorVersionRequestDTO.getNumber())
+                .totalReviews(0)
                 .totalDownloads(0)
                 .appLocation(minorVersionRequestDTO.getAppLocation())
-                .downloads(Collections.emptyList())
                 .build();
     }
 
@@ -43,23 +43,39 @@ public class VersionDTOConverter {
         return Version.builder()
                 .number(updateVersionRequestDTO.getNumber())
                 .totalDownloads(oldVersion.getTotalDownloads())
+                .totalReviews(oldVersion.getTotalReviews())
                 .appLocation(updateVersionRequestDTO.getAppLocation())
-                .downloads(oldVersion.getDownloads())
                 .build();
     }
     public static VersionDTO convertToDTO(Version version){
         return VersionDTO.builder()
                 .number(version.getNumber())
                 .totalDownloads(version.getTotalDownloads())
+                .totalReviews(version.getTotalReviews())
                 .appLocation(version.getAppLocation())
-                .downloads(version.getDownloads())
                 .build();
     }
     public static List<VersionDTO> convertToListOfDTO(List<Version> versions) {
 
         List<VersionDTO> result = new ArrayList<>();
         for (Version v :versions) {
-            result.add(VersionDTOConverter.convertToDTO(v));
+            result.add(convertToDTO(v));
+        }
+        return result;
+    }
+
+    private static VersionAnalyticsDTO convertToVersionAnalytics(Version version){
+        return VersionAnalyticsDTO.builder()
+                .number(version.getNumber())
+                .totalDownloads(version.getTotalDownloads())
+                .totalReviews(version.getTotalReviews())
+                .build();
+    }
+
+    public static List<VersionAnalyticsDTO> convertToVersionAnalyticsList(List<Version> versions){
+        List<VersionAnalyticsDTO> result = new ArrayList<>();
+        for (Version v :versions) {
+            result.add(convertToVersionAnalytics(v));
         }
         return result;
     }

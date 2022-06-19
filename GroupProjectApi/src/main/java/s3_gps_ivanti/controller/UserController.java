@@ -5,10 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import s3_gps_ivanti.business.application.GetApplicationsAnalyticsPerMonthUseCase;
+import s3_gps_ivanti.business.application.GetApplicationsAnalyticsPerVersionUseCase;
 import s3_gps_ivanti.business.user.*;
 import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
 import s3_gps_ivanti.dto.application.ApplicationAnalyticsRequestDTO;
 import s3_gps_ivanti.dto.application.ApplicationAnalyticsResponseDTO;
+import s3_gps_ivanti.dto.application.ApplicationVersionAnalyticsDTO;
 import s3_gps_ivanti.dto.user.*;
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +29,7 @@ public class UserController {
     private final GetCustomerUseCase getCustomer;
     private final UpdateCustomerUseCase updateCustomer;
     private final GetApplicationsAnalyticsPerMonthUseCase applicationsAnalyticsPerMonth;
+    private final GetApplicationsAnalyticsPerVersionUseCase applicationsAnalyticsPerVersion;
 
     //All
     @PostMapping()
@@ -94,6 +97,13 @@ public class UserController {
             return ResponseEntity.ok().body(analytics);
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("{creatorName}/statistics/version")
+    public ResponseEntity<List<ApplicationVersionAnalyticsDTO>>getAppVersionAnalytics(@PathVariable String creatorName) {
+        List<ApplicationVersionAnalyticsDTO> analytics = applicationsAnalyticsPerVersion.getVersionAnalytics(creatorName);
+
+        return ResponseEntity.ok().body(analytics);
     }
     //TODO fix this
    /* @GetMapping("{id}")
