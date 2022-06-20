@@ -23,7 +23,7 @@ function AnalyticsPage() {
     }, [isMonth]);
 
     const getAllApplicationsAnalyticsForMonth = () => {
-        axios.get(`http://localhost:8080/user/` + username + `/statistics?year=` + year)
+        axios.get(`http://localhost:8080/user/` + username + `/statistics?year=2021`)
             .then(res => {
                 setAppsForMonth(res.data);
             })
