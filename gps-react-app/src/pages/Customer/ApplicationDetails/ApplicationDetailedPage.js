@@ -2,9 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faCaretDown, faChevronLeft, faChevronRight, faAdd} from '@fortawesome/free-solid-svg-icons'
+import {faCaretDown, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import { FaStar } from 'react-icons/fa'
-import ReviewList from './component/ReviewList';
 
 
 
@@ -17,7 +16,9 @@ const ApplicationDetailedPage = () => {
     const [ownReview, setOwnReview ] = useState(null);
     const [appLocation, setAppLocation] = useState();
     const [name, setName] = useState();
-    const [version, setVersion] = useState("1.0");
+    const [version, setVersion] = useState();
+    const [arrayOfBytes, setArrayOfBytes] = useState({});
+
 
     const getApplication = () => {
         axios.get(`http://localhost:8080/application/${params.name}`)
@@ -33,6 +34,26 @@ const ApplicationDetailedPage = () => {
                 console.log(err);
             })
     }
+    function base64ToArrayBuffer(base64) {
+        let binaryString = window.atob(base64);
+        let binaryLen = binaryString.length;
+        let bytes = new Uint8Array(binaryLen);
+        for (let i = 0; i < binaryLen; i++) {
+            let ascii = binaryString.charCodeAt(i);
+            bytes[i] = ascii;
+        }
+        return bytes;
+    }
+
+    const saveByteArray = (name, byte)  => {
+        let blob = new Blob([byte], {type: "image/png"});
+        let link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        let fileName = name;
+        link.download = fileName;
+        link.click();
+    };
+
 
 
 
@@ -43,6 +64,15 @@ const ApplicationDetailedPage = () => {
             console.log(appLocation);
             console.log(name);
             const response = await axios.get(`http://localhost:8080/application/download/${appLocation}/${name}`)
+                .then(
+                    response => {
+                        setArrayOfBytes(response.data);
+                        let bytes = base64ToArrayBuffer(arrayOfBytes.arrayOfBytes)
+                        saveByteArray(name, bytes);
+                        console.log(arrayOfBytes);
+                        console.log(arrayOfBytes.arrayOfBytes);
+                    }
+                )
             console.log("SUCCESSFUL");
         } catch (err){
             console.log("Something went wrong");

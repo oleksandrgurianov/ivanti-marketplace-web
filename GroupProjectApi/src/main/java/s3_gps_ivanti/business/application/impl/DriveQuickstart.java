@@ -76,37 +76,24 @@ public class DriveQuickstart {
 
 
 
-    public static void downloadApplication(String path, String fileID) throws IOException, GeneralSecurityException {
+    public static byte[] downloadApplication(String path, String fileID) throws IOException, GeneralSecurityException {
         // Build a new authorized API client service.
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         Drive service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
 
-        //------------- Print the names and IDs for up to 25 files.
-
-     /*   FileList result = service.files().list()
-                .setPageSize(25)
-                .setFields("nextPageToken, files(id, name)")
-                .execute();
-        List<File> files = result.getFiles();
-        if (files == null || files.isEmpty()) {
-            System.out.println("No files found.");
-        } else {
-            System.out.println("Files:");
-            for (File file : files) {
-                System.out.printf("%s (%s)\n", file.getName(), file.getId());
-            }
-
-        }*/
-
-        //---------------------------Download specified file---------------------------
+//---------------------------Download specified file---------------------------
 
 
-        OutputStream outputStream = new FileOutputStream(path);
-        service.files().get(fileID).executeMediaAndDownloadTo(outputStream);
-        outputStream.flush();
-        outputStream.close();
+        /*OutputStream outputStream = new FileOutputStream(path);
+        service.files().get(fileID).executeMediaAndDownloadTo(outputStream);*/
+
+        byte[] bytes = (service.files().get(fileID).executeMediaAsInputStream()).readAllBytes();
+
+        return bytes;
+        //outputStream.flush();
+        //outputStream.close();
 
     }
 }
