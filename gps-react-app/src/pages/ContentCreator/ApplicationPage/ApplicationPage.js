@@ -87,10 +87,10 @@ const ApplicationPage = () => {
                 <button className={"see-all-button"}>See All</button>
             </div>
             <div className={"overall-rating"}>
-                <p className={"rating-number"}>{application.avgRating}</p>
+                <p className={"rating-number"}>{application?.avgRating?.toFixed(1)}</p>
                 <p>out of 5</p>
             </div>
-            <ReviewList reviews = {application.reviews}/>
+            <ReviewList reviews = {application?.reviews}/>
             <hr/>
             <div className='app-description'>
                 <h2>Description</h2>

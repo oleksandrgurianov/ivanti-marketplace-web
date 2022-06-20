@@ -10,8 +10,10 @@ import { FaStar } from 'react-icons/fa'
 const ApplicationDetailedPage = () => {
 
     let params = useParams();
+    let username = localStorage.getItem("username");
 
     const [application, setApplication] = useState({});
+    const [ownReview, setOwnReview ] = useState(null);
     const [appLocation, setAppLocation] = useState();
     const [name, setName] = useState();
     const [version, setVersion] = useState();
@@ -53,6 +55,8 @@ const ApplicationDetailedPage = () => {
     };
 
 
+
+
     const downloadApplication = async (e) => {
         e.preventDefault();
         try {
@@ -78,6 +82,21 @@ const ApplicationDetailedPage = () => {
     useEffect(() => {
         getApplication();
     }, []);
+
+    const getReview = () => {
+        axios.get(`http://localhost:8080/review/${username}/${params.name}`)
+            .then(res => {
+                setOwnReview(res.data);
+            })
+            .catch(err => {
+                console.log(err.message);
+                setOwnReview(null);
+            });
+    }
+
+    useEffect(() => {
+        getReview();
+    }, [application])
 
     return (
         <div className='app'>
@@ -117,37 +136,10 @@ const ApplicationDetailedPage = () => {
                 <button className={"see-all-button"}>See All</button>
             </div>
             <div className={"overall-rating"}>
-                <p className={"rating-number"}>{application.avgRating}</p>
+                <p className={"rating-number"}>{application?.avgRating?.toFixed(1)}</p>
                 <p>out of 5</p>
             </div>
-            <div className={"app-reviews"}>
-                { application.reviews != null && application.reviews.map(review =>
-                    <div className={"review-card"}>
-                        <div className={"card-title"}>
-                            <p className={"text"}>{review.title}</p>
-                            <p className={"date"}>3y ago</p>
-                        </div>
-                        <div className={"card-stars"}>
-                            <p className={"stars"}>
-                                {[...Array(5)].map((star, i) => {
-                                    const ratingValue = i + 1;
-                                    return (
-                                        <label>
-                                            <FaStar
-                                                className={"star"}
-                                                color={ratingValue <= review.rating ? "#4F4746" : "#e4e5e9"}
-                                                size={15}
-                                            />
-                                        </label>
-                                    )
-                                })}
-                            </p>
-                            <p className={"nickname"}>{review.customer}</p>
-                        </div>
-                        <p className={"card-description"}>{review.description}</p>
-                    </div>
-                )}
-            </div>
+            <ReviewList ownReview = {ownReview} reviews = {application?.reviews} app={params.name}/>
             <hr/>
             <div className='app-description'>
                 <h2>Description</h2>
