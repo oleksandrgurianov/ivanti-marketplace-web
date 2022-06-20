@@ -1,9 +1,10 @@
-package s3_gps_ivanti.repository.entity;
+package s3_gps_ivanti.dto.application;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import s3_gps_ivanti.dto.version.VersionAnalyticsDTO;
 
 import java.util.List;
 
@@ -11,9 +12,10 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Version {
-    private double number;
+public class ApplicationVersionAnalyticsDTO {
+    private String name;
+    private String icon;
     private long totalDownloads;
     private long totalReviews;
-    private String appLocation;
+    private List<VersionAnalyticsDTO> versions;
 }

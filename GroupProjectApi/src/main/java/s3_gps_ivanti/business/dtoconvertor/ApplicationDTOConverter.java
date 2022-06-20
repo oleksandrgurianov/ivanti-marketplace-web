@@ -26,8 +26,13 @@ public class ApplicationDTOConverter {
                 .icon(application.getIcon())
                 .screenshots(application.getScreenshots())
                 .status(false)
-                .versions(List.of(new Version(1.0,0,application.getApplicationLocation(),Collections.emptyList())))
-                .rating(new RatingAnalytics(0,0,0,0,0))
+                .versions(List.of(Version.builder()
+                        .number(1.0)
+                        .totalReviews(0)
+                        .totalDownloads(0)
+                        .appLocation(application.getApplicationLocation())
+                        .build()))
+                .rating(new RatingAnalytics(0, 0, 0, 0, 0))
                 .downloads(List.of(DownloadsPerMonth.builder()
                         .amount(0)
                         .month("")
@@ -47,7 +52,7 @@ public class ApplicationDTOConverter {
 
         List<ApplicationBasicInfoDTO> result = new ArrayList<>();
 
-        for (Application app: applications) {
+        for (Application app : applications) {
             result.add(ApplicationDTOConverter.convertToDTO(app));
         }
 
@@ -89,19 +94,38 @@ public class ApplicationDTOConverter {
                 .icon(app.getIcon())
                 .creator(application.getCreator())
                 .screenshots(app.getScreenshots())
-                .status(application.isStatus()?
+                .status(application.isStatus() ?
                         true
-                        :false)
+                        : false)
                 .reviews(application.getReviews())
                 .versions(application.getVersions())
                 .rating(application.getRating())
                 .build();
     }
 
-    public static ApplicationAnalyticsResponseDTO convertToDTOForAnalytics(Application app){
+    public static ApplicationAnalyticsResponseDTO convertToDTOForAnalytics(Application app) {
         return ApplicationAnalyticsResponseDTO.builder()
                 .name(app.getName())
                 .icon(app.getIcon())
                 .build();
+    }
+
+    private static ApplicationVersionAnalyticsDTO convertToDTOForVersionAnalytics(Application app) {
+        return ApplicationVersionAnalyticsDTO.builder()
+                .name(app.getName())
+                .icon(app.getIcon())
+                .totalDownloads(app.getTotalDownloads())
+                .totalReviews(app.getTotalReviews())
+                .versions(VersionDTOConverter.convertToVersionAnalyticsList(app.getVersions()))
+                .build();
+    }
+
+    public static List<ApplicationVersionAnalyticsDTO> convertToDTOForVersionAnalyticsList(List<Application> apps) {
+        List<ApplicationVersionAnalyticsDTO> result = new ArrayList<>();
+
+        for (Application app : apps) {
+            result.add(convertToDTOForVersionAnalytics(app));
+        }
+        return result;
     }
 }

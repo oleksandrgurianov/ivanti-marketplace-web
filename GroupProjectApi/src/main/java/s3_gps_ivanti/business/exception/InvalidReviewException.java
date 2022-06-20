@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 public class InvalidReviewException extends ResponseStatusException {
-    public InvalidReviewException() {
-        super(HttpStatus.BAD_REQUEST, "INVALID_REVIEW");
+    public InvalidReviewException(String error) {
+        super(HttpStatus.BAD_REQUEST, error);
     }
 }

@@ -15,7 +15,7 @@ public class CustomerUsernameValidation {
         if(!userRepository.existsByUsername(name)){
             throw new CustomerNotFoundException();
         }
-        else
-            return userRepository.findUserByUsername(name);
+        return
+                userRepository.findUserByUsername(name);
     }
 }
