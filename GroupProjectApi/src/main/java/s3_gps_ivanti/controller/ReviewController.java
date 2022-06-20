@@ -25,6 +25,8 @@ public class ReviewController {
    private final DeleteReviewUseCase deleteReviewService;
    private final UpdateReviewUseCase updateReviewService;
 
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer"})
     @PostMapping()
     public ResponseEntity<CreateReviewResponseDTO>  createReview(@RequestBody CreateReviewRequestDTO review) {
         CreateReviewResponseDTO response = createReviewService.createReview(review);

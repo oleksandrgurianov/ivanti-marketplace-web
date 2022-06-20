@@ -18,9 +18,8 @@ public class DeleteReviewUseCaseImpl implements DeleteReviewUseCase {
 
     @Override
     public void deleteReview(String id) {
-        reviewIsValid.reviewInvalid(id);
+        Review review = reviewIsValid.reviewInvalid(id);
 
-        Review review = reviewRepository.findById(id).orElse(null);
         updateRating.subtractAppRating(review.getApplicationName(), review.getRating());
 
         reviewRepository.deleteById(id);

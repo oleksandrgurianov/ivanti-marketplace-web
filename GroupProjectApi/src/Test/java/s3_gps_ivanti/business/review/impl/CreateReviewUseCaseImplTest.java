@@ -7,19 +7,19 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import s3_gps_ivanti.business.dtoconvertor.ReviewDTOConverter;
+import s3_gps_ivanti.business.exception.ApplicationNotFoundException;
+import s3_gps_ivanti.business.exception.CustomerNotFoundException;
+import s3_gps_ivanti.business.exception.ReviewByCustomerAlreadyExistException;
 import s3_gps_ivanti.business.validation.ApplicationNameValidation;
 import s3_gps_ivanti.business.validation.CustomerUsernameValidation;
 import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
 import s3_gps_ivanti.dto.review.CreateReviewResponseDTO;
 import s3_gps_ivanti.repository.ReviewRepository;
-import s3_gps_ivanti.repository.UserRepository;
+import s3_gps_ivanti.repository.entity.Application;
 import s3_gps_ivanti.repository.entity.Review;
 import s3_gps_ivanti.repository.entity.User;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,8 +27,6 @@ class CreateReviewUseCaseImplTest {
 
     @Mock
     private ReviewRepository reviewRepository;
-    @Mock
-    private UserRepository userRepository;
     @Mock
     private UpdateRating updateRating;
     @Mock
@@ -40,8 +38,11 @@ class CreateReviewUseCaseImplTest {
 
     @Test
     void createReview() {
-        /* todo Make test
-         CreateReviewRequestDTO requestDTO = CreateReviewRequestDTO.builder()
+        User user = User.builder()
+                .id("id")
+                .build();
+
+        CreateReviewRequestDTO requestDTO = CreateReviewRequestDTO.builder()
                 .customerName("name")
                 .applicationName("applicationID")
                 .rating(5)
@@ -49,29 +50,52 @@ class CreateReviewUseCaseImplTest {
                 .description("description")
                 .build();
 
-
-        User user = User.builder()
-                .id("id")
-                .username("creatorName")
-                .email("email")
-                .password("password")
-                .roles(List.of("role"))
-                .permission("permission")
-                .build();
+        when(applicationIsValid.applicationIsValid("applicationID")).thenReturn(new Application());
+        when(customerIsValid.customerIsValid("name")).thenReturn(user);
+        when(reviewRepository.existsByCustomerAndAndApplicationName(user, "applicationID")).thenReturn(false);
 
         Review review = ReviewDTOConverter.convertToEntityCreate(requestDTO);
         review.setCustomer(user);
 
-        when(userRepository.findUserByUsername("customer"))
-                .thenReturn(user);
-        when(reviewRepository.save(review))
-                .thenReturn(review);
+        Review savedReview = Review.builder()
+                .id("1")
+                .customer(user)
+                .applicationName("applicationID")
+                .rating(5)
+                .title("title")
+                .description("description")
+                .build();
+
+        when(reviewRepository.save(review)).thenReturn(savedReview);
 
         CreateReviewResponseDTO actualResult = createReviewUseCase.createReview(requestDTO);
         CreateReviewResponseDTO expectedResult = CreateReviewResponseDTO.builder()
-                .id(null)
+                .id("1")
                 .build();
 
-        assertEquals(expectedResult,actualResult);*/
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    void createReviewAlreadyExist() {
+        User user = User.builder()
+                .id("id")
+                .build();
+
+        CreateReviewRequestDTO requestDTO = CreateReviewRequestDTO.builder()
+                .customerName("name")
+                .applicationName("applicationID")
+                .rating(5)
+                .title("title")
+                .description("description")
+                .build();
+
+        when(applicationIsValid.applicationIsValid("applicationID")).thenReturn(new Application());
+        when(customerIsValid.customerIsValid("name")).thenReturn(user);
+        when(reviewRepository.existsByCustomerAndAndApplicationName(user, "applicationID")).thenReturn(true);
+
+        ReviewByCustomerAlreadyExistException exception = assertThrows(ReviewByCustomerAlreadyExistException.class, () -> createReviewUseCase.createReview(requestDTO));
+
+        assertEquals("REVIEW_BY_CUSTOMER_ALREADY_EXIST", exception.getReason());
     }
 }

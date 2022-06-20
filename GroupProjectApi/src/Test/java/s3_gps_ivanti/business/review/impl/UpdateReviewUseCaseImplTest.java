@@ -12,6 +12,7 @@ import s3_gps_ivanti.dto.review.CreateUpdateDeleteReplyDTO;
 import s3_gps_ivanti.dto.review.UpdateReviewDTO;
 import s3_gps_ivanti.repository.ReviewRepository;
 import s3_gps_ivanti.repository.entity.Review;
+import s3_gps_ivanti.repository.entity.User;
 
 import java.util.Optional;
 
@@ -24,50 +25,59 @@ class UpdateReviewUseCaseImplTest {
     @Mock
     private ReviewRepository reviewRepository;
     @Mock
-    private ReviewIDValidation idValidCheck;
+    private ReviewIDValidation reviewIsValid;
+    @Mock
+    private UpdateRating updateRating;
     @InjectMocks
     private UpdateReviewUseCaseImpl updateReviewUseCase;
 
     @Test
     void updateReview() {
+        User user = User.builder().username("yeet").build();
+        Review oldReview = Review.builder()
+                .id("id")
+                .rating(1)
+                .description("oldDescription")
+                .title("oldTile")
+                .customer(user)
+                .build();
 
-          /*todo make test
+        when(reviewIsValid.reviewInvalid("id")).thenReturn(oldReview);
+
         UpdateReviewDTO request = UpdateReviewDTO.builder()
                 .id("id")
                 .rating(5)
                 .title("title")
                 .description("description")
                 .build();
+
+        Review newReview = Review.builder()
+                .id("id")
+                .rating(5)
+                .description("description")
+                .customer(user)
+                .title("title")
+                .build();
+
+        when(reviewRepository.save(newReview))
+                .thenReturn(newReview);
+
+        updateReviewUseCase.updateReview(request);
+
+        verify(reviewRepository).save(newReview);
+
+    }
+
+    @Test
+    void addingValidReplyToReview() {
         Review oldReview = Review.builder()
                 .id("id")
                 .rating(1)
                 .description("oldDescription")
                 .title("oldTile")
                 .build();
-        Review newReview = Review.builder()
-                .id("id")
-                .rating(5)
-                .description("description")
-                .title("title")
-                .build();
 
-        when(reviewRepository.findById("id"))
-                .thenReturn(Optional.ofNullable(oldReview));
-        when(reviewRepository.save(newReview))
-                .thenReturn(newReview);
-
-        updateReviewUseCase.updateReview(request);
-
-        verify(idValidCheck).reviewInvalid("id");
-        verify(reviewRepository).findById("id");
-        verify(reviewRepository).save(newReview);
-      */
-    }
-
-    @Test
-    void replyAction() {
-
-        /*todo make test
+        when(reviewIsValid.reviewInvalid("id")).thenReturn(oldReview);
 
         ReplyDTO replyDTO = ReplyDTO.builder()
                 .title("title")
@@ -77,12 +87,7 @@ class UpdateReviewUseCaseImplTest {
                 .id("id")
                 .reply(replyDTO)
                 .build();
-        Review oldReview = Review.builder()
-                .id("id")
-                .rating(1)
-                .description("oldDescription")
-                .title("oldTile")
-                .build();
+
         Review newReview = Review.builder()
                 .id("id")
                 .rating(1)
@@ -91,16 +96,8 @@ class UpdateReviewUseCaseImplTest {
                 .reply(ReplyDTOConverter.convertToEntity(replyDTO))
                 .build();
 
-        when(reviewRepository.findById("id"))
-                .thenReturn(Optional.ofNullable(oldReview));
-        when(reviewRepository.save(newReview))
-                .thenReturn(newReview);
-
         updateReviewUseCase.replyAction(request);
 
-        verify(idValidCheck).reviewInvalid("id");
-        verify(reviewRepository).findById("id");
         verify(reviewRepository).save(newReview);
-        */
     }
 }

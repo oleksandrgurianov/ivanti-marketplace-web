@@ -22,13 +22,7 @@ public class UpdateReviewUseCaseImpl implements UpdateReviewUseCase {
 
     @Override
     public void updateReview(UpdateReviewDTO request) {
-        reviewIsValid.reviewInvalid(request.getId());
-
-        Review review = reviewRepository.findById(request.getId()).orElse(null);
-
-        if(review.getCustomer().getUsername()!=request.getCustomerName() && review.getApplicationName() != request.getApplicationName()){
-            throw new UnauthorizedDataAccessException("UNAUTHORISED");
-        }
+        Review review = reviewIsValid.reviewInvalid(request.getId());
 
         updateRating.subtractAppRating(review.getApplicationName(), review.getRating());
 
@@ -42,9 +36,8 @@ public class UpdateReviewUseCaseImpl implements UpdateReviewUseCase {
     }
     @Override
     public void replyAction(CreateUpdateDeleteReplyDTO request) {
-        reviewIsValid.reviewInvalid(request.getId());
+        Review review = reviewIsValid.reviewInvalid(request.getId());
 
-        Review review = reviewRepository.findById(request.getId()).orElse(null);
         review.setReply(ReplyDTOConverter.convertToEntity(request.getReply()));
 
         reviewRepository.save(review);
