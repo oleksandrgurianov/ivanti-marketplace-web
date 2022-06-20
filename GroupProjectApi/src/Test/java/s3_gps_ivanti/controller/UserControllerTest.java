@@ -5,6 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -12,7 +13,6 @@ import s3_gps_ivanti.business.application.GetApplicationsAnalyticsPerMonthUseCas
 import s3_gps_ivanti.business.user.*;
 import s3_gps_ivanti.dto.application.ApplicationAnalyticsRequestDTO;
 import s3_gps_ivanti.dto.application.ApplicationAnalyticsResponseDTO;
-import s3_gps_ivanti.dto.review.UpdateReviewDTO;
 import s3_gps_ivanti.dto.user.*;
 
 import java.util.ArrayList;
@@ -47,6 +47,7 @@ class UserControllerTest {
     private GetApplicationsAnalyticsPerMonthUseCase getApplicationsAnalyticsPerMonthUseCase;
 
     @Test
+    @WithMockUser(username = "Yellow", roles = {"Customer"})
     void createUser() throws Exception{
         CreateCustomerRequestDTO customer = CreateCustomerRequestDTO.builder()
                 .username("name")
@@ -81,6 +82,7 @@ class UserControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "Yellow", roles = {"Queen"})
     void getUsers() throws Exception{
         UserBasicInfoDTO user = UserBasicInfoDTO.builder()
                 .email("email")
@@ -110,6 +112,7 @@ class UserControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "Yellow", roles = {"Customer"})
     void getUser() throws Exception{
         CustomerDetailedInfoDTO user = CustomerDetailedInfoDTO.builder()
                 .email("email")
@@ -133,6 +136,7 @@ class UserControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "Yellow", roles = {"Customer"})
     void updateCustomer() throws Exception{
         mockMvc.perform(put("/user")
                         .contentType(APPLICATION_JSON_VALUE)
@@ -156,6 +160,7 @@ class UserControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "Yellow", roles = {"Customer"})
     void deleteUser() throws Exception{
         mockMvc.perform(delete("/user/1"))
                 .andDo(print())
@@ -165,6 +170,7 @@ class UserControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "Yellow", roles = {"Creator"})
     void getAppAnalytics() throws Exception{
         ApplicationAnalyticsResponseDTO analytic = ApplicationAnalyticsResponseDTO.builder()
                 .icon("icon")

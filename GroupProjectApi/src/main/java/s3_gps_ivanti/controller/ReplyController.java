@@ -17,6 +17,8 @@ import javax.annotation.security.RolesAllowed;
 public class ReplyController {
     private final UpdateReviewUseCase updateReviewService;
 
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator"})
     @PutMapping()
     public ResponseEntity<Object> replyAction(@RequestBody CreateUpdateDeleteReplyDTO request){
         updateReviewService.replyAction(request);

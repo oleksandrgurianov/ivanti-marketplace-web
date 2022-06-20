@@ -36,6 +36,8 @@ public class VersionController {
         }
     }
 
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator"})
     @PostMapping("/major")
     public ResponseEntity<CreateMajorVersionResponseDTO> createMajorVersion(@RequestBody CreateMajorVersionRequestDTO createVersionDTO) {
 
@@ -51,6 +53,8 @@ public class VersionController {
         }
     }
 
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator"})
     @PostMapping("/minor")
     public ResponseEntity<CreateMinorVersionResponseDTO> createMinorVersion(@RequestBody CreateMinorVersionRequestDTO createVersionDTO) {
 
@@ -66,13 +70,16 @@ public class VersionController {
         }
     }
 
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator"})
     @PutMapping() //This code is here only to take up space
     public ResponseEntity<Object> updateVersion(@RequestBody UpdateVersionRequestDTO updateVersionDTO) {
 
         updateVersion.updateVersion(updateVersionDTO);
         return ResponseEntity.ok().build();
     }
-
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator"})
     @DeleteMapping({"/{applicationID}/{versionNumber}"})
     public ResponseEntity<Object> deleteVersion(@PathVariable("applicationID") String applicationID, @PathVariable("versionNumber")  double versionNumber) {
 

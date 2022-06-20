@@ -25,18 +25,24 @@ public class ReviewController {
    private final DeleteReviewUseCase deleteReviewService;
    private final UpdateReviewUseCase updateReviewService;
 
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer"})
     @PostMapping()
     public ResponseEntity<CreateReviewResponseDTO>  createReview(@RequestBody CreateReviewRequestDTO review) {
         CreateReviewResponseDTO response = createReviewService.createReview(review);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer"})
     @PutMapping()
     public ResponseEntity<Object>  updateReview(@RequestBody UpdateReviewDTO review) {
         updateReviewService.updateReview(review);
         return ResponseEntity.noContent().build();
     }
 
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Customer"})
     @DeleteMapping("/{reviewID}")
     public ResponseEntity<Object>  deleteReview(@PathVariable("reviewID") String reviewID) {
         deleteReviewService.deleteReview(reviewID);

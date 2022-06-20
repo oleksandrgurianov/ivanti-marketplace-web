@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ReplyDTOConverterTest {
 
     @Test
-    void convertToDTONull() {
+    void convertToDTOReturnNull() {
         Reply reply = null;
         ReplyDTO actual = ReplyDTOConverter.convertToDTO(reply);
 

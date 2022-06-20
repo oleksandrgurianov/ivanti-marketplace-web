@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import s3_gps_ivanti.business.review.UpdateReviewUseCase;
@@ -30,7 +31,8 @@ class ReplyControllerTest {
     private UpdateReviewUseCase updateReviewUseCase;
 
     @Test
-    void replyAction() throws Exception{
+    @WithMockUser(username = "Yellow", roles = {"Creator"})
+    void addReplyToReview() throws Exception{
         mockMvc.perform(put("/reply")
                         .contentType(APPLICATION_JSON_VALUE)
                         .content("""

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import s3_gps_ivanti.business.review.CreateReviewUseCase;
@@ -40,6 +41,7 @@ class ReviewControllerTest {
     private UpdateReviewUseCase updateReviewService;
 
     @Test
+    @WithMockUser(username = "Yellow", roles = {"Customer"})
     void createReview() throws Exception{
         CreateReviewRequestDTO review = CreateReviewRequestDTO.builder()
                 .applicationName("app")
@@ -78,6 +80,7 @@ class ReviewControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "Yellow", roles = {"Customer"})
     void updateReview() throws Exception{
         mockMvc.perform(put("/review")
                         .contentType(APPLICATION_JSON_VALUE)
@@ -103,6 +106,7 @@ class ReviewControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "Yellow", roles = {"Customer"})
     void deleteReview() throws Exception{
         mockMvc.perform(delete("/review/1"))
                 .andDo(print())

@@ -70,7 +70,7 @@ class CreateReviewUseCaseImplTest {
 
         CreateReviewResponseDTO actualResult = createReviewUseCase.createReview(requestDTO);
         CreateReviewResponseDTO expectedResult = CreateReviewResponseDTO.builder()
-                .id(actualResult.getId())
+                .id("1")
                 .build();
 
         assertEquals(expectedResult, actualResult);

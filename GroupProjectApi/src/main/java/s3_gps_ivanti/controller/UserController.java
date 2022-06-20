@@ -42,12 +42,16 @@ public class UserController {
 
 
     //Queen
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Queen"})
     @GetMapping()
     public ResponseEntity<List<UserBasicInfoDTO>> getUsers() {
         return ResponseEntity.ok().body(getCustomers.getAllCustomers());
     }
 
     //Customer and Creator
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator", "ROLE_Customer"})
     @GetMapping("/{username}")
     public ResponseEntity<CustomerDetailedInfoDTO> getUser(@PathVariable String username) {
         CustomerDetailedInfoDTO customerDetailedInfoDTO = getCustomer.getCustomer(username);
@@ -59,12 +63,16 @@ public class UserController {
     }
 
     //Customer
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator", "ROLE_Customer"})
     @PutMapping()
     public ResponseEntity<Object> updateCustomer(@RequestBody UpdateCustomerRequestDTO updatedUser) {
         updateCustomer.updateCustomer(updatedUser);
         return ResponseEntity.ok().build();
     }
 
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator", "ROLE_Customer"})
     @DeleteMapping("/{id}")
     public ResponseEntity<Object>  deleteUser(@PathVariable String id) {
         deleteCustomer.DeleteCustomer(id);
@@ -72,7 +80,8 @@ public class UserController {
     }
 
 
-    //todo fix this
+    @IsAuthenticated
+    @RolesAllowed({"ROLE_Creator"})
     @GetMapping("{creatorName}/statistics")
     public ResponseEntity<List<ApplicationAnalyticsResponseDTO>>getAppAnalytics(@PathVariable String creatorName, @RequestParam(value = "year", required = false) Integer year) {
         ApplicationAnalyticsRequestDTO request = new ApplicationAnalyticsRequestDTO();

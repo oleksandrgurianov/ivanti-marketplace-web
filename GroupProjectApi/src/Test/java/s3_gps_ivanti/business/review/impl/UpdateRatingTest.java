@@ -19,12 +19,12 @@ class UpdateRatingTest {
     private UpdateRating updateRating;
 
     @Test
-    void appRatingAdd() {
+    void appRatingAddShouldThrowInvalidRatingExceptionWhenRatingMoreThan5() {
         assertThrows(InvalidRatingException.class, ()->updateRating.addAppRating("app", 6));
     }
 
     @Test
-    void appRatingSub() {
+    void subtractRatingAddShouldThrowInvalidRatingExceptionWhenRatingMoreThan5() {
         assertThrows(InvalidRatingException.class, ()->updateRating.subtractAppRating("app", 6));
     }
 }

@@ -69,7 +69,7 @@ class UpdateReviewUseCaseImplTest {
     }
 
     @Test
-    void replyAction() {
+    void addingValidReplyToReview() {
         Review oldReview = Review.builder()
                 .id("id")
                 .rating(1)
