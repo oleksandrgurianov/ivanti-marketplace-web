@@ -3,20 +3,38 @@ import axios from "axios";
 import "../../../styles/ContentCreator/AnalyticsPage.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
-import Analytics from "./component/Analytics";
+import AnalyticsPerMonth from "./component/AnalyticsPerMonth";
+import AnalyticsPerVersion from "./component/AnalyticsPerVersion";
 
 function AnalyticsPage() {
-    const [applications, setApplications] = useState([]);
+    const [appsForMonth, setAppsForMonth] = useState([]);
+    const [appsForVersion, setAppsForVersion] = useState([]);
+    const [isMonth, setIsMonth] = useState(true);
+    const [year, setYear] = useState(0);
+
     let username = localStorage.getItem("username");
 
     useEffect(() => {
-        getAllApplications();
-    },[applications]);
+        getAllApplicationsAnalyticsForMonth();
+    }, [isMonth, year]);
 
-    const getAllApplications =() => {
-        axios.get(`http://localhost:8080/user/`+username+`/statistics?year=`+2021)
+    useEffect(() => {
+        getAllApplicationsAnalyticsForVersion();
+    }, [isMonth]);
+
+    const getAllApplicationsAnalyticsForMonth = () => {
+        axios.get(`http://localhost:8080/user/` + username + `/statistics?year=2021`)
             .then(res => {
-                setApplications(res.data);
+                setAppsForMonth(res.data);
+            })
+            .catch(err => {
+                console.log(err.message);
+            });
+    }
+    const getAllApplicationsAnalyticsForVersion = () => {
+        axios.get(`http://localhost:8080/user/` + username + `/statistics/version`)
+            .then(res => {
+                setAppsForVersion(res.data);
             })
             .catch(err => {
                 console.log(err.message);
@@ -27,18 +45,40 @@ function AnalyticsPage() {
         <div className={"analytics"}>
             <div className={"analytics-controls"}>
                 <h1 className={"title"}>Analytics</h1>
-                <input className={"search-field"} type="text"  placeholder="Search"/>
+                <input className={"search-field"} type="text" placeholder="Search"/>
                 <div className={"year-dropdown"}>
                     <select>
-                        <option value="2022">2022</option>
-                        <option value="2021">2021</option>
+                        <option value="2022" onClick={() => setYear(2022)}>2022</option>
+                        <option value="2021" onClick={() => setYear(2021)}>2021</option>
                     </select>
-                    <FontAwesomeIcon className="dropdown-icon" icon={faCaretDown} />
+                    <FontAwesomeIcon className="dropdown-icon" icon={faCaretDown}/>
                 </div>
             </div>
             <hr/>
-            <Analytics applications={applications} />
+            <div className="radio-button">
+                <label onClick={() => setIsMonth(true)}>
+                    <input
+                        type="radio"
+                        checked={isMonth}
+                        onClick={() => setIsMonth(true)}
+                    />
+                    Per Month
+                </label>
+                <label onClick={() => setIsMonth(false)}>
+                    <input
+                        type="radio"
+                        checked={!isMonth}
+                        onClick={() => setIsMonth(false)}
+                    />
+                    Per Version
+                </label>
+            </div>
+            {isMonth ?
+                <AnalyticsPerMonth applications={appsForMonth}/> :
+                <AnalyticsPerVersion applications={appsForVersion}/>
+            }
         </div>
     );
 }
+
 export default AnalyticsPage;
