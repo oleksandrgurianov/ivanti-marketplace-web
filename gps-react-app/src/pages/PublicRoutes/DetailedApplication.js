@@ -7,11 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
 
 import ReviewList from '../Customer/ApplicationDetails/component/ReviewList';
-import {useNavigate} from "react-router";
+import AdminReviewList from "../ContentCreator/ApplicationPage/components/AdminReviewList";
 
 
 const DetailedApplicationPage = () => {
     const { auth } = useAuth();
+    const username = auth?.decoded?.sub;
     const [isCreator, setIsCreator] = useState(false)
     const navigate =  useNavigate()
 
@@ -85,7 +86,7 @@ const DetailedApplicationPage = () => {
             console.log("Something went wrong");
         }
     }
-    
+
     // useEffect(() => {
     //     console.log(application?.creator?.username)
     //     if (application?.creator?.username === auth?.decoded?.sub) {
@@ -112,7 +113,7 @@ const DetailedApplicationPage = () => {
             }
         })
     }
-    
+
     // const getReview = () => {
     //     axios.get(`http://localhost:8080/review/${username}/${application.name}`)
     //         .then(res => {
@@ -127,7 +128,7 @@ const DetailedApplicationPage = () => {
     // useEffect(() => {
     //     getReview();
     // }, [application])
-    
+
 
   return (
     <div className='app'>
@@ -181,16 +182,20 @@ const DetailedApplicationPage = () => {
             <button className='see-all-button'>See All</button>
         </div>
         <div className='overall-rating'>
-            <p className='rating-number'>{application.avgRating}</p>
+            <p className='rating-number'>{application.avgRating?.toFixed(1)}</p>
             <p>out of 5</p>
         </div>
-        <ReviewList reviews={application.reviews} />
+        {isCreator?
+            <AdminReviewList reviews = {application?.reviews} app = {application?.name}/>:
+            <ReviewList ownReview = {ownReview} reviews = {application?.reviews} app = {application?.name}/>
+        }
+
         <hr />
         <div className='app-description'>
             <h2>Description</h2>
             <p>{application.description}</p>
         </div>
-    </div> 
+    </div>
   )
 }
 

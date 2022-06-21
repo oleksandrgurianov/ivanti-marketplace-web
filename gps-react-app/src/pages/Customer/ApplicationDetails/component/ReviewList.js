@@ -5,9 +5,11 @@ import {FaStar} from 'react-icons/fa'
 import Popup from "./Popup";
 import AddReviewForm from "./AddReviewForm";
 import axios from "axios";
+import useAuth from "../../../../hooks/useAuth";
 
 function ReviewList({ownReview, reviews, app}) {
     const [openPopup, setOpenPopup] = useState(false)
+    const {auth} = useAuth();
 
     const handleDelete = (id) => {
         axios.delete(`http://localhost:8080/review/${id}`)
@@ -19,48 +21,56 @@ function ReviewList({ownReview, reviews, app}) {
             });
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(app)
-    },[])
+    }, [])
 
     return (
         <div>
             <div className={"app-reviews"}>
-                <Popup openPopup={openPopup}><AddReviewForm review={ownReview} setOpenPopup={setOpenPopup} app = {app}/></Popup>
                 {
-                    !ownReview ?
-                        <div className={"add-review-card"} onClick={() => {
-                            setOpenPopup(true)
-                        }}><FontAwesomeIcon icon={faAdd}/></div> :
-                        <div className={"review-card"}>
-                            <div className={"card-title"}>
-                                <p className={"text"}>{ownReview?.title}</p>
-                            </div>
-                            <div className={"card-stars"}>
-                                <p className={"stars"}>
-                                    {[...Array(5)].map((star, i) => {
-                                        const ratingValue = i + 1;
-                                        return (
-                                            <label>
-                                                <FaStar
-                                                    color={ratingValue <= ownReview?.rating ? "#4F4746" : "#e4e5e9"}
-                                                    size={15}
-                                                />
-                                            </label>
-                                        )
-                                    })}
-                                </p>
-                                <p className={"nickname"}>{ownReview?.customerName}</p>
-                            </div>
-                            <p className={"card-description"}>{ownReview?.description}</p>
-                            <button className={"reply-button"} onClick={() => {
-                                setOpenPopup(true)
-                            }}>Update
-                            </button>
-                            <button className={"reply-button"} onClick={() => handleDelete(ownReview?.id)}>Delete
-                            </button>
-                        </div>
+                    auth?.accessToken ?
+                        <div>
+                            <Popup openPopup={openPopup}><AddReviewForm review={ownReview} setOpenPopup={setOpenPopup}
+                                                                        app={app}/></Popup>
+                            {
+                                !ownReview ?
+                                    <div className={"add-review-card"} onClick={() => {
+                                        setOpenPopup(true)
+                                    }}><FontAwesomeIcon icon={faAdd}/></div> :
+                                    <div className={"review-card"}>
+                                        <div className={"card-title"}>
+                                            <p className={"text"}>{ownReview?.title}</p>
+                                        </div>
+                                        <div className={"card-stars"}>
+                                            <p className={"stars"}>
+                                                {[...Array(5)].map((star, i) => {
+                                                    const ratingValue = i + 1;
+                                                    return (
+                                                        <label>
+                                                            <FaStar
+                                                                color={ratingValue <= ownReview?.rating ? "#4F4746" : "#e4e5e9"}
+                                                                size={15}
+                                                            />
+                                                        </label>
+                                                    )
+                                                })}
+                                            </p>
+                                            <p className={"nickname"}>{ownReview?.customerName}</p>
+                                        </div>
+                                        <p className={"card-description"}>{ownReview?.description}</p>
+                                        <button className={"reply-button"} onClick={() => {
+                                            setOpenPopup(true)
+                                        }}>Update
+                                        </button>
+                                        <button className={"reply-button"}
+                                                onClick={() => handleDelete(ownReview?.id)}>Delete
+                                        </button>
+                                    </div>
+                            }
+                        </div> : <div></div>
                 }
+
                 {reviews?.map(review => review?.id != ownReview?.id ?
                     <div className={"review-card"}>
                         <div className={"card-title"}>
