@@ -226,7 +226,7 @@ function Navbar() {
             {auth?.decoded &&
                 <div className='NavDropdown'>
                     <button className='dropdown-button' onClick={showContent}>{auth?.decoded.sub}<FontAwesomeIcon className='NavIcon' icon={faCaretDown} /></button>
-                    <div className='dropdown-content'>
+                    <div className='dropdown-content'  id="myDropdown">
                         { isCreator ? (
                             <>
                                 <Link to={'/creator/my-apps'}>My Account</Link>
