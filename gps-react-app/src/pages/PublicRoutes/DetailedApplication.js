@@ -11,11 +11,9 @@ import ReviewList from '../Customer/ApplicationDetails/component/ReviewList';
 
 const DetailedApplicationPage = () => {
     const { auth } = useAuth();
+    const username = auth?.decoded?.sub;
     const [isCreator, setIsCreator] = useState(false)
-
-    useEffect(() => {
-        getApplication()
-    }, [])
+    const [ownReview, setOwnReview ] = useState(null);
 
     useEffect(() => {
         checkRoleStatus()
@@ -40,6 +38,25 @@ const DetailedApplicationPage = () => {
         })
         
     }
+
+    useEffect(() => {
+        getApplication()
+    }, [])
+
+    const getReview = () => {
+        axios.get(`http://localhost:8080/review/${username}/${params.name}`)
+            .then(res => {
+                setOwnReview(res.data);
+            })
+            .catch(err => {
+                console.log(err.message);
+                setOwnReview(null);
+            });
+    }
+
+    useEffect(() => {
+        getReview();
+    }, [application])
 
     // useEffect(() => {
     //     console.log(application?.creator?.username)
@@ -127,10 +144,10 @@ const DetailedApplicationPage = () => {
             <button className='see-all-button'>See All</button>
         </div>
         <div className='overall-rating'>
-            <p className='rating-number'>{application.avgRating}</p>
+            <p className='rating-number'>{application.avgRating?.toFixed(1)}</p>
             <p>out of 5</p>
         </div>
-        <ReviewList reviews={application.reviews} />
+        <ReviewList ownReview = {ownReview} reviews = {application?.reviews} app = {application?.name}/>
         <hr />
         <div className='app-description'>
             <h2>Description</h2>

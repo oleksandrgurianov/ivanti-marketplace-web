@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import { FaStar } from 'react-icons/fa'
+import ReviewList from "./component/ReviewList";
 
 
 
