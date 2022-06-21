@@ -87,7 +87,7 @@ const DetailedApplicationPage = () => {
                 </>
             ) : (
                 <>
-                    <Link className='delete-button' to={''}>
+                    <Link className='edit-button' to={''}>
                         <span onClick={downloadApplication}>Download</span>
                     </Link>
                 </>
