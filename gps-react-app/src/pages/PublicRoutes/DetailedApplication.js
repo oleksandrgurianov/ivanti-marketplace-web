@@ -30,6 +30,7 @@ const DetailedApplicationPage = () => {
     const [application, setApplication] = useState({})
     const [version, setVersion] = useState("1.0")
     const [appLocation, setAppLocation] = useState('')
+    const[arrayOfBytes,setArrayOfBytes] = useState('')
 
     const getApplication = () => {
         axios.get(URL)
@@ -85,47 +86,15 @@ const DetailedApplicationPage = () => {
         }
     }
 
-    // useEffect(() => {
-    //     console.log(application?.creator?.username)
-    //     if (application?.creator?.username === auth?.decoded?.sub) {
-    //         // setIsCreator(false)
-    //         console.log("yay")
-    //     } else {
-    //         setIsCreator(false)
-    //     }
-    // }, [application])
-
     
     const checkRoleStatus = () => {
         auth?.roles?.map((role) => {
             if (role === "Creator") {
-                setIsCreator(true) // TODO check if creator id matches application id
-                // console.log(auth?.decoded?.sub)
+                setIsCreator(true)
             }
         })
     }
 
-    // const getReview = () => {
-    //     axios.get(`http://localhost:8080/review/${username}/${application.name}`)
-    //         .then(res => {
-    //             setOwnReview(res.data);
-    //         })
-    //         .catch(err => {
-    //             console.log(err.message);
-    //             setOwnReview(null);
-    //         });
-    // }
-
-        try {
-            console.log("METHOD STARTED");
-            console.log(appLocation);
-            console.log(application.name);
-            const response = await axios.get(`http://localhost:8080/application/download/${appLocation}/${application.name}`);
-            console.log("SUCCESSFUL");
-        } catch (err) {
-            console.log("Something went wrong...")
-        }
-    }
     const deleteApp = ()=>{
         const config = {
             headers: { Authorization: 'Bearer ' + auth?.accessToken}
@@ -199,7 +168,7 @@ const DetailedApplicationPage = () => {
             <button className='see-all-button'>See All</button>
         </div>
         <div className='overall-rating'>
-            <p className='rating-number'>{application.avgRating}</p>
+            <p className='rating-number'>{application.avgRating?.toFixed(1)}</p>
             <p>out of 5</p>
         </div>
         <ReviewList reviews={application.reviews} />

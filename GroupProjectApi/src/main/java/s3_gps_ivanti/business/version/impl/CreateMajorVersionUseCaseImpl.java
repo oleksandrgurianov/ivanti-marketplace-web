@@ -44,17 +44,6 @@ public class CreateMajorVersionUseCaseImpl implements CreateMajorVersionUseCase 
             throw new InvalidCredentialsException();
         }
 
-        Version latestVersion = getLatestVersion.getLatestVersion(application);
-
-        DecimalFormat df = new DecimalFormat("###.##");
-        double nextVersion = latestVersion.getNumber() + 1.0;
-        nextVersion = Double.parseDouble(df.format(nextVersion));
-
-
-        if(nextVersion != versionRequestDTO.getNumber()){
-            throw new VersionNumberIncorrectException();
-        }
-
         List<Version> newVersions = new ArrayList<>();
         newVersions.addAll(application.getVersions());
         Version version = VersionDTOConverter.convertToEntityForCreate(versionRequestDTO);

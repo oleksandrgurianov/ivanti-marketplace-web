@@ -85,13 +85,14 @@ function AddMinorVersionPage() {
         }
         return result;
     }
-    const SaveApp = () =>{
+    const SaveApp = async () => {
         let checkInput = CheckInput();
 
-        if(checkInput != ""){
-            alert(checkInput);}
-        else{
+        if (checkInput != "") {
+            alert(checkInput);
+        } else {
             SendRequest();
+            await alert("new version has been added.")
             let path = `/app/` + params.name;
             navigate(path);
         }
