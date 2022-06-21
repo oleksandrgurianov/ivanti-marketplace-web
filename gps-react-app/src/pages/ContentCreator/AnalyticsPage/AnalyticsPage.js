@@ -56,22 +56,18 @@ function AnalyticsPage() {
             </div>
             <hr/>
             <div className="radio-button">
-                <label onClick={() => setIsMonth(true)}>
-                    <input
-                        type="radio"
-                        checked={isMonth}
-                        onClick={() => setIsMonth(true)}
-                    />
-                    Per Month
-                </label>
-                <label onClick={() => setIsMonth(false)}>
-                    <input
-                        type="radio"
-                        checked={!isMonth}
-                        onClick={() => setIsMonth(false)}
-                    />
-                    Per Version
-                </label>
+                <input
+                    type="radio"
+                    checked={isMonth}
+                    onClick={() => setIsMonth(true)}
+                />
+                <label onClick={() => setIsMonth(true)}>Per Month</label>
+                <input
+                    type="radio"
+                    checked={!isMonth}
+                    onClick={() => setIsMonth(false)}
+                />
+                <label onClick={() => setIsMonth(false)}>Per Version</label>
             </div>
             {isMonth ?
                 <AnalyticsPerMonth applications={appsForMonth}/> :
