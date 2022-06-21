@@ -98,6 +98,12 @@ const DetailedApplicationPage = () => {
     const checkRoleStatus = () => {
         auth?.roles?.map((role) => {
             if (role === "Creator") {
+                const username = localStorage.getItem("username");
+                if (username === application?.creator?.username){
+                    console.log("match!")
+                } else {
+                    console.log("hahaha no")
+                }
                 setIsCreator(true) // TODO check if creator id matches application id
                 // console.log(auth?.decoded?.sub)
             }
