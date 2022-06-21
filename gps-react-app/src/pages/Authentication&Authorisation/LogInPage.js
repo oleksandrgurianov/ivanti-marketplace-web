@@ -52,19 +52,27 @@ const LoginPage = () => {
     }
 
   return (
-    <div className='container'>
-        <div className='login-container'>
-            <div className='login-logo'>
-                <img src={logo} />
-            </div>
-            <form onSubmit={handleSubmit}>
-                <h2>Login</h2>
-                <input className='login-input' type={'username'} placeholder='username' ref={usernameRef} value={username} onChange={(e) => {storeUsername(e.target.value)}} />
-                <input className='login-input' type={'password'} placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button className='login-button'>Login</button>
+    <>
+        <div className='LogIn'>
+            <h1>Log In</h1>
+            <form onSubmit={handleSubmit} className={'LogInForm'}>
+                <input
+                    type={'username'}
+                    placeholder='Username *'
+                    ref={usernameRef}
+                    value={username}
+                    onChange={(e) => {setUsername(e.target.value)}}
+                />
+                <input
+                    type={'password'}
+                    placeholder='Password *'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <button>Log In</button>
             </form>
         </div>
-    </div>
+    </>
   )
 }
 

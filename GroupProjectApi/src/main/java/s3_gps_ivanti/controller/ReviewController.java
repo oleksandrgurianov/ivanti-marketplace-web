@@ -34,8 +34,6 @@ public class ReviewController {
        return ResponseEntity.ok().body(review);
    }
 
-    @IsAuthenticated
-    @RolesAllowed({"ROLE_Customer"})
     @PostMapping()
     public ResponseEntity<CreateReviewResponseDTO>  createReview(@RequestBody CreateReviewRequestDTO review) {
         CreateReviewResponseDTO response = createReviewService.createReview(review);

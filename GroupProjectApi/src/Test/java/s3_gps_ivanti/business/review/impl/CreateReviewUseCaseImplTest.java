@@ -37,46 +37,6 @@ class CreateReviewUseCaseImplTest {
     private CreateReviewUseCaseImpl createReviewUseCase;
 
     @Test
-    void createReview() {
-        User user = User.builder()
-                .id("id")
-                .build();
-
-        CreateReviewRequestDTO requestDTO = CreateReviewRequestDTO.builder()
-                .customerName("name")
-                .applicationName("applicationID")
-                .rating(5)
-                .title("title")
-                .description("description")
-                .build();
-
-        when(applicationIsValid.applicationIsValid("applicationID")).thenReturn(new Application());
-        when(customerIsValid.customerIsValid("name")).thenReturn(user);
-        when(reviewRepository.existsByCustomerAndAndApplicationName(user, "applicationID")).thenReturn(false);
-
-        Review review = ReviewDTOConverter.convertToEntityCreate(requestDTO);
-        review.setCustomer(user);
-
-        Review savedReview = Review.builder()
-                .id("1")
-                .customer(user)
-                .applicationName("applicationID")
-                .rating(5)
-                .title("title")
-                .description("description")
-                .build();
-
-        when(reviewRepository.save(review)).thenReturn(savedReview);
-
-        CreateReviewResponseDTO actualResult = createReviewUseCase.createReview(requestDTO);
-        CreateReviewResponseDTO expectedResult = CreateReviewResponseDTO.builder()
-                .id("1")
-                .build();
-
-        assertEquals(expectedResult, actualResult);
-    }
-
-    @Test
     void createReviewAlreadyExist() {
         User user = User.builder()
                 .id("id")

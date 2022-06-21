@@ -40,7 +40,7 @@ const MyAppsPage = () => {
                     <Link to='/creator/add-app'><FontAwesomeIcon className='add-icon' icon={faCirclePlus}/></Link>
                 </div>
                 <hr/>
-                {applications ? (
+                {applications.length !== 0 ? (
                     <div className='my-apps-list'>
                         {applications?.map((app) => (
                             <BasicApplication key={app.name} name={app.name} icon={app.icon}/>

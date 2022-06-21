@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import { FaStar } from 'react-icons/fa'
+import ReviewList from "./component/ReviewList";
 
 
 
@@ -28,7 +29,7 @@ const ApplicationDetailedPage = () => {
                 setAppLocation(response.data.versions[0].appLocation);
                 console.log(response.data);
                 console.log(appLocation);
-                console.log(name);
+                console.log(name); 
             })
             .catch(err => {
                 console.log(err);
@@ -103,7 +104,7 @@ const ApplicationDetailedPage = () => {
             <div className={"app-controls"}>
                 <img className='icon' alt='application logo' src={application.icon}/>
                 <h1>{application.name}</h1>
-                <Link className="delete-button" to={''}>
+                <Link className="edit-button" to={''}>
                     <span onClick={downloadApplication}>Download</span>
                 </Link>
             </div>
