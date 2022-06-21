@@ -34,17 +34,23 @@
 
 .search-button {
     cursor: pointer;
-    height: 25px;
-    width: 25px;
+    height: 35px;
+    width: 35px;
     margin: 8px 0 0 10px;
     background-color: red;
-    border: none;
     border-radius: 50px;
     color: white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    transition: 0.3s;
+    transition: .3s;
+    border: 1px solid lightgrey;
+}
+
+.search-button .button-icon {
+    height: 15px;
+    width: 15px;
+    margin-bottom: 4px;
 }
 
 .dropdown {

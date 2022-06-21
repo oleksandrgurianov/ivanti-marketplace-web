@@ -164,7 +164,7 @@ import { Link } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
 import logo from "../images/ivanti-marketplace-logo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGlobe, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import Translate from './Translate'; 
 
 function Navbar() {
