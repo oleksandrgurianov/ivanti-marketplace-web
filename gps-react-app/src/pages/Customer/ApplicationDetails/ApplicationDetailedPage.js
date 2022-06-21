@@ -103,7 +103,7 @@ const ApplicationDetailedPage = () => {
             <div className={"app-controls"}>
                 <img className='icon' alt='application logo' src={application.icon}/>
                 <h1>{application.name}</h1>
-                <Link className="delete-button" to={''}>
+                <Link className="edit-button" to={''}>
                     <span onClick={downloadApplication}>Download</span>
                 </Link>
             </div>

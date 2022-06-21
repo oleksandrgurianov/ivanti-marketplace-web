@@ -57,7 +57,7 @@ const AllApplicationsPage = () => {
                     </div>
                 </div>
                 <hr/>
-                {applications ? (
+                {applications.length !== 0 ? (
                     <div className='my-apps-list'>
                         { applications?.map((app) => (
                             <BasicApplication key={app.name} name={app.name} icon={app.icon} />
