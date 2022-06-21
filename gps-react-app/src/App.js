@@ -46,6 +46,7 @@ function App() {
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/logout" element={<LogOutPage />} />
 
+
                         {/* creator */}
                         <Route element={<RequireAuth allowedRoles={["Creator"]} />}>
                             {/* applications */}

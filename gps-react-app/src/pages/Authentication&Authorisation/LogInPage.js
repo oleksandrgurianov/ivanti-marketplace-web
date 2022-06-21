@@ -11,17 +11,19 @@ const URL = 'http://localhost:8080/login'
 const LoginPage = () => {
 
     const { setAuth } = useAuth();
-
     const navigate = useNavigate();
-
     const usernameRef = useRef();
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     useEffect(() => {
         usernameRef.current.focus();
     }, [])
+
+    function storeUsername(username){
+        setUsername(username)
+        localStorage.setItem("username", username);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -57,7 +59,7 @@ const LoginPage = () => {
             </div>
             <form onSubmit={handleSubmit}>
                 <h2>Login</h2>
-                <input className='login-input' type={'username'} placeholder='username' ref={usernameRef} value={username} onChange={(e) => {setUsername(e.target.value)}} />
+                <input className='login-input' type={'username'} placeholder='username' ref={usernameRef} value={username} onChange={(e) => {storeUsername(e.target.value)}} />
                 <input className='login-input' type={'password'} placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 <button className='login-button'>Login</button>
             </form>
