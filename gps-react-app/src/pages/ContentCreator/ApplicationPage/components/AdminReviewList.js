@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faAdd} from '@fortawesome/free-solid-svg-icons'
 import {FaStar} from 'react-icons/fa'
 import Popup from "./Popup";
 import AddReplyForm from "./AddReplyForm";
 import axios from "axios";
 
-function AdminReviewList({ownReview, reviews, app}) {
+function AdminReviewList({ reviews, app }) {
     const [openPopup, setOpenPopup] = useState(false)
 
     const handleDelete = (id) => {
@@ -22,8 +20,7 @@ function AdminReviewList({ownReview, reviews, app}) {
     return (
         <div>
             <div className={"app-reviews"}>
-                <Popup openPopup={openPopup}><AddReplyForm reply={ownReview} setOpenPopup={setOpenPopup}
-                                                           app={app}/></Popup>
+                <Popup openPopup={openPopup}><AddReplyForm setOpenPopup={setOpenPopup} app={app}/></Popup>
                 {reviews?.map(review =>
                     <div className={"review-card"}>
                         <div className={"card-title"}>
@@ -48,7 +45,7 @@ function AdminReviewList({ownReview, reviews, app}) {
                         </div>
                         <p className={"card-description"}>{review.description}</p>
 
-                        {review.reply ?
+                        {review?.reply ?
                             <>
                                 <br/>
                                 <b>Content-creator:</b>
@@ -58,6 +55,7 @@ function AdminReviewList({ownReview, reviews, app}) {
                                 </div>
                                 <p className={"card-description"}>{review.reply?.description}</p>
                                 <button className={"reply-button"}>Update</button>
+                                <button className={"reply-button"}>Delete</button>
                             </> : <button className={"reply-button"}>Reply</button>}
                     </div>
                 )}

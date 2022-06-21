@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
 
 import ReviewList from '../Customer/ApplicationDetails/component/ReviewList';
+import AdminReviewList from "../ContentCreator/ApplicationPage/components/AdminReviewList";
 
 
 const DetailedApplicationPage = () => {
@@ -147,7 +148,11 @@ const DetailedApplicationPage = () => {
             <p className='rating-number'>{application.avgRating?.toFixed(1)}</p>
             <p>out of 5</p>
         </div>
-        <ReviewList ownReview = {ownReview} reviews = {application?.reviews} app = {application?.name}/>
+        {isCreator?
+            <AdminReviewList reviews = {application?.reviews} app = {application?.name}/>:
+            <ReviewList ownReview = {ownReview} reviews = {application?.reviews} app = {application?.name}/>
+        }
+
         <hr />
         <div className='app-description'>
             <h2>Description</h2>
