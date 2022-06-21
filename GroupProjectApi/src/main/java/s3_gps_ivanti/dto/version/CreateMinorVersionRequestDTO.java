@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateMinorVersionRequestDTO {
-    private String applicationID;
+    private String appName;
     private double number;
     private String appLocation;
 }

@@ -5,8 +5,11 @@ import "../../styles/ContentCreator/AddAndUpdateApplicationPage.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCirclePlus, faPen} from '@fortawesome/free-solid-svg-icons'
 import ReactDOM from "react-dom";
+import useAuth from "../../hooks/useAuth";
 
 function UpdateApplicationPage() {
+
+    const { auth } = useAuth()
 
     let navigate = useNavigate();
 
@@ -118,9 +121,8 @@ function UpdateApplicationPage() {
 
     //Save changes
 
-    let token = localStorage.getItem("token");
     const config = {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${auth?.accessToken}` }
     };
     const SaveChanges = () => {
         let data = {
@@ -129,18 +131,21 @@ function UpdateApplicationPage() {
             'screenshots': arrayImages,
             'icon': icon
         }
-        axios.put(`http://localhost:8080/application`, data,config)
-            .then(function(){})
+        axios.put(`http://localhost:8080/application`, data, config)
+            .then(function(){
+
+            })
             .catch(function (){})
     }
-    const SaveApp = () => {
+    const SaveApp = async () => {
         let checkInput = CheckInput();
 
         if (checkInput !== "") {
             alert(checkInput);
         } else {
             SaveChanges();
-            let path = `/` ;
+            await alert('app has been updated')
+            let path = `/creator/app/` + params.name;
             navigate(path);
         }
     }

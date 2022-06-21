@@ -7,11 +7,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
 
 import ReviewList from '../Customer/ApplicationDetails/component/ReviewList';
+import {useNavigate} from "react-router";
 
 
 const DetailedApplicationPage = () => {
     const { auth } = useAuth();
     const [isCreator, setIsCreator] = useState(false)
+    const navigate =  useNavigate()
 
     useEffect(() => {
         getApplication()
@@ -74,16 +76,36 @@ const DetailedApplicationPage = () => {
             console.log("Something went wrong...")
         }
     }
+    const deleteApp = ()=>{
+        const config = {
+            headers: { Authorization: 'Bearer ' + auth?.accessToken}
+        }
 
-  return (
+        axios.put(`http://localhost:8080/application/${params.name}`, null, config)
+            .then(function (){})
+            .catch(err => {
+                console.log(err)}
+            )
+            navigate('/creator/my-apps')
+    }
+
+    return (
     <div className='app'>
         <div className='app-controls'>
             <img className='icon' alt='application logo' src={application.icon} />
             <h1>{application.name}</h1>
             { isCreator ? (
                 <>
-                    <Link className='edit-button' to={'/*'}>Edit</Link>
-                    <Link className='delete-button' to={'/*'}>Delete</Link>
+                    <Link className='edit-button' to={`/creator/update/${application.name}`}>Edit</Link>
+                    { application.discontinued ? (
+                        <>
+                            <button className='delete-button' onClick={deleteApp}>Activate</button>
+                        </>
+                    ) : (
+                        <>
+                            <button className='delete-button' onClick={deleteApp}>Discontinue</button>
+                        </>
+                    )}
                 </>
             ) : (
                 <>
@@ -107,8 +129,8 @@ const DetailedApplicationPage = () => {
                 </dropdown>
                 { isCreator ? (
                     <>
-                        <Link className='version-button' to={'/*'}>Add minor version</Link>
-                        <Link className='version-button' to={'/*'}>Add major version</Link>
+                        <Link className='version-button' to={`/creator/version/${application.name}/minor`}>Add minor version</Link>
+                        <Link className='version-button' to={`/creator/version/${application.name}/major`}>Add major version</Link>
                     </>
                 ) : (null)}
             </div>

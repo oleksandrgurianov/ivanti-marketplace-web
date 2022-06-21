@@ -34,7 +34,7 @@ public class CreateMajorVersionUseCaseImpl implements CreateMajorVersionUseCase 
     @Override
     public CreateMajorVersionResponseDTO createVersion(CreateMajorVersionRequestDTO versionRequestDTO) {
 
-        Application application = applicationRepository.findById(versionRequestDTO.getApplicationID()).orElse(null);
+        Application application = applicationRepository.findByName(versionRequestDTO.getAppName());
 
         if(application == null) {
             throw new ApplicationNotFoundException();

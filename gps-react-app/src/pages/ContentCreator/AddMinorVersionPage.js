@@ -1,8 +1,13 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {useParams,useNavigate} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPen} from "@fortawesome/free-solid-svg-icons";
+import useAuth from "../../hooks/useAuth";
 
 function AddMinorVersionPage() {
+
+    const { auth } = useAuth()
 
     let navigate = useNavigate();
     useEffect(() => {
@@ -11,8 +16,12 @@ function AddMinorVersionPage() {
 
     let params = useParams();
 
+    const config = {
+        headers: { Authorization: `Bearer ${auth?.accessToken}` }
+    };
+
     const GetProductByName = () => {
-        axios.get(`http://localhost:8080/application/version/${params.name}`)
+        axios.get(`http://localhost:8080/version/${params.name}`,config)
             .then(res => {
                 setVersion(res.data);
             }).catch(e => {
@@ -59,12 +68,12 @@ function AddMinorVersionPage() {
     };
 
     const SendRequest = () =>{
-        axios.post(`http://localhost:8080/application/version`,
+        axios.post(`http://localhost:8080/version/minor`,
             {
                 'appName': params.name,
                 'number': parseFloat(version + 0.1).toFixed(2),
                 'appLocation': app,
-            })
+            },config)
             .then(function () {})
             .catch(function (){});
     }
@@ -93,8 +102,9 @@ function AddMinorVersionPage() {
         <div className="container">
             <p>Latest version: {parseFloat(version).toFixed(1)} </p>
             <p>New version number: {parseFloat(version + 0.1).toFixed(1)} </p>
-
-            <input type="file" accept="application/pdf, application/json" onChange={(e) => SaveArchiveApp(e)}/>
+            <br/>
+            <label htmlFor="addMinorVersion"><FontAwesomeIcon className="edit-icon" icon={faPen}/>select file</label>
+            <input id={"addMinorVersion"} type="file" accept="application/zip" onChange={(e) => SaveArchiveApp(e)}/>
             <p>{loadingApp}</p>
             <button className={"SaveButton"} onClick={SaveApp}>Save</button>
         </div>
