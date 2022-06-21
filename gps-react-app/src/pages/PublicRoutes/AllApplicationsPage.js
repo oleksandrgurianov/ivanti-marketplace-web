@@ -8,17 +8,12 @@ import { useStateWithCallbackLazy } from 'use-state-with-callback';
 import BasicApplication from '../../components/BasicApplication';
 
 const AllApplicationsPage = () => {
-    const [applicationsArray, setApplicationArray] = useState([]);
+
+    const [applications, setApplications] = useState([]);
 
     const [name, setName] = useStateWithCallbackLazy('');
 
     const [sort, setSort] = useStateWithCallbackLazy('');
-
-    let token = localStorage.getItem("token");
-
-    const config = {
-        headers: { Authorization: `Bearer ${token}` }
-    };
 
     function searchApps(e) {
         setName(e, () => {
@@ -35,8 +30,8 @@ const AllApplicationsPage = () => {
     const getApplications = () => {
          axios.get(`http://localhost:8080/application?name=${name}&sort=${sort}`)
             .then(res => {
-                setApplicationArray(res.data);
-                console.log(res.data);
+                setApplications(res.data.applications);
+                console.log(res.data.applications);
             })
             .catch(err => {
                 console.log(err);
@@ -45,7 +40,7 @@ const AllApplicationsPage = () => {
 
     useEffect(() => {
         getApplications();
-    }, [applicationsArray]);
+    }, []);
 
     return (
         <>
@@ -63,9 +58,9 @@ const AllApplicationsPage = () => {
                     </div>
                 </div>
                 <hr/>
-                {applicationsArray.applications ? (
+                {applications ? (
                     <div className='my-apps-list'>
-                        { applicationsArray.applications && applicationsArray.applications.map((app) => (
+                        { applications?.map((app) => (
                             <BasicApplication key={app.name} name={app.name} icon={app.icon} />
                         ))}
                     </div>

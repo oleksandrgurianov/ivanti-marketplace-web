@@ -13,17 +13,14 @@ const DetailedApplicationPage = () => {
     const { auth } = useAuth();
     const [isCreator, setIsCreator] = useState(false)
 
-    const checkRoleStatus = () => {
-        auth?.roles?.map((role) => {
-            if (role === "Creator") {
-                setIsCreator(true) // TODO check if creator id matches application id
-            }
-        })
-    }
+    useEffect(() => {
+        getApplication()
+    }, [])
 
     useEffect(() => {
         checkRoleStatus()
     }, [auth])
+
 
     const params = useParams();
     const URL = `http://localhost:8080/application/${params.name}`
@@ -41,11 +38,28 @@ const DetailedApplicationPage = () => {
         .catch(err => {
             console.log(err)
         })
+        
     }
 
-    useEffect(() => {
-        getApplication()
-    }, [])
+    // useEffect(() => {
+    //     console.log(application?.creator?.username)
+    //     if (application?.creator?.username === auth?.decoded?.sub) {
+    //         // setIsCreator(false)
+    //         console.log("yay")
+    //     } else {
+    //         setIsCreator(false)
+    //     }
+    // }, [application])
+
+    
+    const checkRoleStatus = () => {
+        auth?.roles?.map((role) => {
+            if (role === "Creator") {
+                setIsCreator(true) // TODO check if creator id matches application id
+                // console.log(auth?.decoded?.sub)
+            }
+        })
+    }
 
     const downloadApplication = async (e) => {
         e.preventDefault();

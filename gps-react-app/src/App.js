@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 
 //CSS
 import './styles/App.css';
+import './styles/ContentCreator/ApplicationPage.css'
 
 //Components
 import Navbar from './components/Header';
@@ -21,44 +22,57 @@ import ErrorPage from "./pages/Authentication&Authorisation/ErrorPage";
 import MyAppsPage from "./pages/ContentCreator/MyAppsPage/MyAppsPage";
 import DetailedApplicationPage from "./pages/PublicRoutes/DetailedApplication";
 import AddApplicationPage from "./pages/ContentCreator/AddApplicationPage";
+import UpdateApplicationPage from './pages/ContentCreator/UpdateApplicationPage';
+import AddMajorVersionPage from './pages/ContentCreator/AddMajorVersionPage'
+import AddMinorVersionPage from './pages/ContentCreator/AddMinorVersionPage'
+import AnalyticsPage from './pages/ContentCreator/AnalyticsPage/AnalyticsPage'
 
 //App Structure
 function App() {
 
     return (
         <div className="Html">
-            <Navbar/>
             
-            <Routes>
-                <Route path="/" element={<HomePage />} />
+            <Navbar/>
+                <div className="Body">
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
 
-                {/* public routes */}
-                <Route path="/all-apps"  element={<AllApplicationsPage />} />
-                <Route path="/app/:name" element={<DetailedApplicationPage />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/contact" element={<ContactPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/logout" element={<LogOutPage />} />
+                        {/* public routes */}
+                        <Route path="/all-apps"  element={<AllApplicationsPage />} />
+                        <Route path="/app/:name" element={<DetailedApplicationPage />} />
+                        <Route path="/about" element={<AboutPage />} />
+                        <Route path="/contact" element={<ContactPage />} />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/logout" element={<LogOutPage />} />
 
-                {/* creator */}
-                <Route element={<RequireAuth allowedRoles={["Creator"]} />}>
-                    {/* applications */}
-                    <Route path="/creator/my-apps" element={<MyAppsPage />} />
-                    <Route path="/creator/app/:name" element={<DetailedApplicationPage />} />
+                        {/* creator */}
+                        <Route element={<RequireAuth allowedRoles={["Creator"]} />}>
+                            {/* applications */}
+                            <Route path="/creator/my-apps" element={<MyAppsPage />} />
+                            <Route path="/creator/app/:name" element={<DetailedApplicationPage />} />
 
-                    {/* application actions */}
-                    <Route path="/creator/add-app" element={<AddApplicationPage />} />
-                </Route>
+                            {/* application actions */}
+                            <Route path="/creator/add-app" element={<AddApplicationPage />} />
+                            <Route path="/creator/update/:name" element={<UpdateApplicationPage />} />
 
-                {/* customer */}
-                <Route element={<RequireAuth allowedRoles={["Customer"]} />}>
+                            {/* version */}
+                            <Route path="/creator/version/:name/major" element={<AddMajorVersionPage />} />
+                            <Route path="/creator/version/:name/minor" element={<AddMinorVersionPage />} />
 
-                </Route>
-                
-                {/* error */}
-                <Route path="/*" element={<ErrorPage />} />
-            </Routes>
+                            {/* analytics */}
+                            <Route path="/creator/analytics" element={<AnalyticsPage />} />
+                        </Route>
 
+                        {/* customer */}
+                        <Route element={<RequireAuth allowedRoles={["Customer"]} />}>
+
+                        </Route>
+                        
+                        {/* error */}
+                        <Route path="/*" element={<ErrorPage />} />
+                    </Routes>
+                </div>
             <Footer/>
         </div>
     );
@@ -72,13 +86,10 @@ export default App;
                             <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
                             <Route path="/creator/:id/myApps/:name" element={<ApplicationPage />} />
                             <Route path="/my-account/:username" element={<MyAppsPage />}/>
-                            <Route path="/creator/:id/myApps/:appName/updateApplication" element={<UpdateApplicationPage />}/>
-                            <Route path="/creator/:id/myApps/addApplication" element={<AddApplicationPage/>}/>
-                            <Route path="/creator/:id/myApps/:appName" element={<ApplicationPage />} />
+
                             <Route path='/creator/:id/myApps/:name/addMinorVersion' element={<AddMinorVersionPage />} />
                             <Route path='/creator/:id/myApps/:name/addMajorVersion' element={<AddMajorVersionPage />} />
 
-                            <Route path="/creator/myApps/:name" element={<ApplicationPage />} />
 
                             <Route path="/creator/analytics" element={<AnalyticsPage/>}/>
                         </Routes> */}

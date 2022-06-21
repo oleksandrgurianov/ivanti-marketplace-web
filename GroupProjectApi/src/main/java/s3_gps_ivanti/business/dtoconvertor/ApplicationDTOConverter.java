@@ -78,6 +78,7 @@ public class ApplicationDTOConverter {
                 .avgRating(application.getRating().avgStar())
                 .versions(VersionDTOConverter.convertToListOfDTO(application.getVersions()))
                 .reviews(ReviewDTOConverter.convertToListOfDTO(application.getReviews()))
+                .creator(CustomerSmallDetailDTO.builder().id(application.getCreator().getId()).username(application.getCreator().getUsername()).build())
                 .build();
     }
 

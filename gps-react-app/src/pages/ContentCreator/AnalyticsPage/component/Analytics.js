@@ -12,7 +12,7 @@ function Analytics({ applications }) {
                 applications.map(app =>
                     <>
                         <div className={"app-downloads"}>
-                            <Link to={`/creator/1/myApps/${app.name}`}>
+                            <Link to={`/creator/app/${app.name}`}>
                                 <img src={app.icon} />
                             </Link>
                             <p>{app.name}</p>

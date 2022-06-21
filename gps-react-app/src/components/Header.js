@@ -203,7 +203,7 @@ function Navbar() {
     
 
   return (
-    <div>
+    <>
         <div className='Nav'>
             <Link className='NavLogo' to={'/'}>
                 <img src={logo} height={'38px'} alt={"ivanti marketplace logo"} />
@@ -215,7 +215,6 @@ function Navbar() {
                     {auth?.decoded && <Link className='NavLink' to={'/creator/analytics'}>Analytics</Link>}
                     {auth?.decoded && <Link className='NavLink' to={'/*'}>Notifications</Link>}
                     {auth?.decoded && <Link className='NavLink' to={'/creator/my-apps'}>My Apps</Link>}
-                    {auth?.decoded && <Link className='NavLink' to={'/creator/add-app'}>Add App</Link>}
                 </>
             ) : (
                 <>
@@ -244,7 +243,7 @@ function Navbar() {
             }
             {!auth?.decoded && <Link className='NavLinkLogin' to={'/login'}>Login</Link>}
         </div>
-    </ div>
+    </>
   )
 }
 

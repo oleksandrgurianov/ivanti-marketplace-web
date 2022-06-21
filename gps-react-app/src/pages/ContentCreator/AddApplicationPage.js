@@ -179,19 +179,19 @@ function AddApplicationPage() {
 
         let result = "";
 
-        if(icon == ""){
+        if(icon === ""){
             result += "Please add a icon. \n";
         }
-        if(description == ""){
+        if(description === ""){
             result +="Please add a description. \n";
         }
-        if(name == "" ){
+        if(name === "" ){
             result += "Please add a title. \n";
         }
-        if(screenshots == null || screenshots.length == 0) {
+        if(screenshots === null || screenshots.length === 0) {
             result += "Please add at least 1 image. \n";
         }
-        if(appLocation == "") {
+        if(appLocation === "") {
             result += "Please make sure to include the url to the application. \n";
         }
         return result;
@@ -199,7 +199,7 @@ function AddApplicationPage() {
     const SaveApp = () =>{
         let checkInput = CheckInput();
 
-        if(checkInput != ""){
+        if(checkInput !== ""){
             alert(checkInput);}
         else{
             SendRequest();
