@@ -32,43 +32,6 @@ class UpdateReviewUseCaseImplTest {
     private UpdateReviewUseCaseImpl updateReviewUseCase;
 
     @Test
-    void updateReview() {
-        User user = User.builder().username("yeet").build();
-        Review oldReview = Review.builder()
-                .id("id")
-                .rating(1)
-                .description("oldDescription")
-                .title("oldTile")
-                .customer(user)
-                .build();
-
-        when(reviewIsValid.reviewInvalid("id")).thenReturn(oldReview);
-
-        UpdateReviewDTO request = UpdateReviewDTO.builder()
-                .id("id")
-                .rating(5)
-                .title("title")
-                .description("description")
-                .build();
-
-        Review newReview = Review.builder()
-                .id("id")
-                .rating(5)
-                .description("description")
-                .customer(user)
-                .title("title")
-                .build();
-
-        when(reviewRepository.save(newReview))
-                .thenReturn(newReview);
-
-        updateReviewUseCase.updateReview(request);
-
-        verify(reviewRepository).save(newReview);
-
-    }
-
-    @Test
     void addingValidReplyToReview() {
         Review oldReview = Review.builder()
                 .id("id")

@@ -4,10 +4,12 @@ import { faClose } from '@fortawesome/free-solid-svg-icons'
 import ReviewForm from "../../../../styles/ReviewForm.css"
 import { FaStar } from 'react-icons/fa'
 import axios from "axios";
+import useAuth from "../../../../hooks/useAuth";
 
 function AddReviewForm({ review, setOpenPopup, app }) {
     const url = "http://localhost:8080/review";
-    let username = localStorage.getItem("username");
+    const {auth} = useAuth();
+    let username = auth?.decoded?.sub;
 
     const [hover, setHover] = useState(0);
     const [validRating, setValidRating] = useState(false);
@@ -28,6 +30,8 @@ function AddReviewForm({ review, setOpenPopup, app }) {
     },[])
 
     useEffect(() => {
+        console.log(app)
+        console.log(username)
         setValidTitle(title?.length > 0);
     }, [title])
 

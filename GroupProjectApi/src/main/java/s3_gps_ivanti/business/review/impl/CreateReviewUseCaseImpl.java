@@ -16,6 +16,7 @@ import s3_gps_ivanti.repository.entity.Review;
 import s3_gps_ivanti.repository.entity.User;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 
 @Service
 @Primary
@@ -49,6 +50,7 @@ public class CreateReviewUseCaseImpl implements CreateReviewUseCase {
         User user = customerIsValid.customerIsValid(request.getCustomerName());
 
         Review review = ReviewDTOConverter.convertToEntityCreate(request);
+        review.setDate(LocalDateTime.now());
         review.setCustomer(user);
 
         return reviewRepository.save(review);

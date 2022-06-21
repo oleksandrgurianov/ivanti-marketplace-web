@@ -19,11 +19,14 @@ function ReviewList({ownReview, reviews, app}) {
             });
     }
 
+    useEffect(()=>{
+        console.log(app)
+    },[])
+
     return (
         <div>
             <div className={"app-reviews"}>
-                <Popup openPopup={openPopup}><AddReviewForm review={ownReview} setOpenPopup={setOpenPopup}
-                                                            app={app}/></Popup>
+                <Popup openPopup={openPopup}><AddReviewForm review={ownReview} setOpenPopup={setOpenPopup} app = {app}/></Popup>
                 {
                     !ownReview ?
                         <div className={"add-review-card"} onClick={() => {
