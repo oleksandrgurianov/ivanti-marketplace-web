@@ -11,17 +11,19 @@ const URL = 'http://localhost:8080/login'
 const LoginPage = () => {
 
     const { setAuth } = useAuth();
-
     const navigate = useNavigate();
-
     const usernameRef = useRef();
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     useEffect(() => {
         usernameRef.current.focus();
     }, [])
+
+    function storeUsername(username){
+        setUsername(username)
+        localStorage.setItem("username", username);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();

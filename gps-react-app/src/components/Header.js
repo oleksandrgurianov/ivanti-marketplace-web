@@ -164,9 +164,9 @@ import { Link } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
 import logo from "../images/ivanti-marketplace-logo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
-import Translate from './Translate'; 
-
+import { faGlobe, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import Translate from './Translate';
+import Notification from "../pages/Notification/Notification";
 function Navbar() {
 
     const { auth } = useAuth();
@@ -176,6 +176,7 @@ function Navbar() {
         auth?.roles?.map((role) => {
             if (role === "Creator") {
                 setIsCreator(true)
+                localStorage.setItem("creator", "true")
             }
         })
     }
@@ -200,28 +201,31 @@ function Navbar() {
         }
     }
 
-    
 
   return (
     <>
+
         <div className='Nav'>
             <Link className='NavLogo' to={'/'}>
                 <img src={logo} height={'38px'} alt={"ivanti marketplace logo"} />
             </Link>
             <Link className='NavLink' to={'/all-apps'}>Apps</Link>
+            <Link className='NavLink' to={'/About'}>About</Link>
 
             { isCreator ? (
                 <>
                     {auth?.decoded && <Link className='NavLink' to={'/creator/analytics'}>Analytics</Link>}
-                    {auth?.decoded && <Link className='NavLink' to={'/*'}>Notifications</Link>}
                     {auth?.decoded && <Link className='NavLink' to={'/creator/my-apps'}>My Apps</Link>}
+                    <Notification />
                 </>
             ) : (
                 <>
                     {auth?.decoded && <Link className='NavLink' to={'/*'}>My Downloads</Link> }
                 </>
             )}
-            
+
+
+
             <Translate />
             {auth?.decoded &&
                 <div className='NavDropdown'>
@@ -229,15 +233,15 @@ function Navbar() {
                     <div className='dropdown-content'  id="myDropdown">
                         { isCreator ? (
                             <>
-                                <Link to={'/creator/my-apps'}>My Account</Link>
+                                <Link className='NavLink' to={'/creator/my-apps'}>My Account</Link>
                             </>
                         ) : (
                             <>
-                                <Link to={'/*'}>My Account</Link>
+                                <Link className='NavLink' to={'/*'}>My Account</Link>
                             </>
                         )}
                         <hr />
-                        <Link to={'/logout'}>Logout</Link>
+                        <Link className='NavLink' to={'/logout'}>Log Out</Link>
                     </div>
                 </ div>
             }
