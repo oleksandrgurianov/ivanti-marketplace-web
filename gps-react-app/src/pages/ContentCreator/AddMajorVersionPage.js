@@ -1,8 +1,13 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPen} from "@fortawesome/free-solid-svg-icons";
+import useAuth from "../../hooks/useAuth";
 
 function AddMajorVersionPage() {
+
+    const { auth } = useAuth()
 
     let navigate = useNavigate();
     useEffect(() => {
@@ -10,8 +15,11 @@ function AddMajorVersionPage() {
     }, []);
     let params = useParams();
 
+    const config = {
+        headers: { Authorization: `Bearer ${auth?.accessToken}` }
+    };
     const GetProductByName = () => {
-        axios.get(`http://localhost:8080/application/version/${params.name}`)
+        axios.get(`http://localhost:8080/version/${params.name}`,config)
             .then(res => {
                 setVersion(res.data);
             }).catch(e => {
@@ -58,12 +66,12 @@ function AddMajorVersionPage() {
     };
 
     const SendRequest = () =>{
-        axios.post(`http://localhost:8080/application/version`,
+        axios.post(`http://localhost:8080/version/major`,
             {
                 'appName': params.name,
                 'number': parseFloat(version + 1.0).toFixed(1),
                 'appLocation': app,
-            })
+            }, config)
             .then(function () {})
             .catch(function (){});
     }
@@ -75,13 +83,15 @@ function AddMajorVersionPage() {
         }
         return result;
     }
-    const SaveApp = () =>{
+    const SaveApp = async () => {
         let checkInput = CheckInput();
 
-        if(checkInput != ""){
-            alert(checkInput);}
-        else{
+        if (checkInput != "") {
+            alert(checkInput);
+        } else {
             SendRequest();
+            await alert("new version has been added.")
+
             let path = `/app/` + params.name;
             navigate(path);
         }
@@ -92,7 +102,9 @@ function AddMajorVersionPage() {
         <div className="container">
             <p>Latest version: {parseFloat(version).toFixed(1)}</p>
             <p>New version number: {parseFloat(version + 1.0).toFixed(1)} </p>
-            <input type="file" accept="application/pdf, application/json" onChange={(e) => SaveArchiveApp(e)}/>
+            <br/>
+            <label htmlFor="addMajorVersion"><FontAwesomeIcon className="edit-icon" icon={faPen}/>select file</label>
+            <input id={"addMajorVersion"} type="file" accept="application/zip" onChange={(e) => SaveArchiveApp(e)}/>
             <p>{loadingApp}</p>
             <button className={"SaveButton"} onClick={SaveApp}>Save</button>
         </div>

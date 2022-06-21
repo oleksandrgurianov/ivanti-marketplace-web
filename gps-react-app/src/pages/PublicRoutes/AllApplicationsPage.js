@@ -14,8 +14,8 @@ const AllApplicationsPage = () => {
 
     const [sort, setSort] = useState('');
 
-    const getApplications = () => {
-         axios.get(`http://localhost:8080/application?name=${name}&sort=${sort}`)
+    const getApplications = async () => {
+        await axios.get(`http://localhost:8080/application?name=${name}&sort=${sort}`)
             .then(res => {
                 setApplications(res.data.applications);
                 console.log(res.data.applications);

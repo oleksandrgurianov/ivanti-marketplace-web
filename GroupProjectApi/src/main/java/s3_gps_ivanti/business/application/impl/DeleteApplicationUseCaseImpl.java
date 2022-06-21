@@ -22,9 +22,9 @@ public class DeleteApplicationUseCaseImpl implements DeleteApplicationUseCase {
     private final AccessTokenDTO requestAccessToken;
 
     @Override
-    public void deleteApplications(String id) {
+    public void deleteApplications(String name) {
 
-        Application application = applicationRepository.findById(id).orElse(null);
+        Application application = applicationRepository.findByName(name);
 
         if(application == null) {
             throw new ApplicationNotFoundException();
@@ -34,7 +34,7 @@ public class DeleteApplicationUseCaseImpl implements DeleteApplicationUseCase {
             throw new InvalidAccessTokenException("Unauthorized");
         }
 
-        application.setStatus(true);
+        application.setStatus(!application.isStatus());
 
         applicationRepository.save(application);
     }

@@ -34,7 +34,7 @@ public class CreateMinorVersionUseCaseImpl implements CreateMinorVersionUseCase 
     @Override
     public CreateMinorVersionResponseDTO createVersion(CreateMinorVersionRequestDTO versionRequestDTO) {
 
-        Application application = applicationRepository.findById(versionRequestDTO.getApplicationID()).orElse(null);
+        Application application = applicationRepository.findByName(versionRequestDTO.getAppName());
 
         if(application == null) {
             throw new ApplicationNotFoundException();
@@ -42,17 +42,6 @@ public class CreateMinorVersionUseCaseImpl implements CreateMinorVersionUseCase 
 
         if(!requestAccessToken.getUserID().equals(application.getCreator().getId())){
             throw new InvalidCredentialsException();
-        }
-
-        Version latestVersion = getLatestVersion.getLatestVersion(application);
-
-        DecimalFormat df = new DecimalFormat("###.##");
-
-        double nextVersion = latestVersion.getNumber() + 0.1;
-
-        nextVersion = Double.parseDouble(df.format(nextVersion));
-        if(nextVersion != versionRequestDTO.getNumber()){
-            throw new VersionNumberIncorrectException();
         }
 
         List<Version> newVersions = new ArrayList<>();

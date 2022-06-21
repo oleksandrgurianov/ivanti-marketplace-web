@@ -24,4 +24,5 @@ public class ApplicationDetailedInfoDTO {
     private List<VersionDTO> versions;
     private List<ReviewDTO> reviews;
     private CustomerSmallDetailDTO creator;
+    private boolean isDiscontinued;
 }

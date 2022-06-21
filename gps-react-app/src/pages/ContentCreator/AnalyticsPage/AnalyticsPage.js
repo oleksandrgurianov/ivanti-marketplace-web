@@ -5,6 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
 import AnalyticsPerMonth from "./component/AnalyticsPerMonth";
 import AnalyticsPerVersion from "./component/AnalyticsPerVersion";
+import useAuth from "../../../hooks/useAuth";
 
 function AnalyticsPage() {
     const [appsForMonth, setAppsForMonth] = useState([]);
@@ -12,7 +13,8 @@ function AnalyticsPage() {
     const [isMonth, setIsMonth] = useState(true);
     const [year, setYear] = useState(0);
 
-    let username = localStorage.getItem("username");
+    const {auth} = useAuth()
+    const username = auth?.decoded?.sub
 
     useEffect(() => {
         getAllApplicationsAnalyticsForMonth();

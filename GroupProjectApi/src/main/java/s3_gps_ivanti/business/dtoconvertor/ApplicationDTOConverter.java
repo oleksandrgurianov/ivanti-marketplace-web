@@ -84,6 +84,7 @@ public class ApplicationDTOConverter {
                 .versions(VersionDTOConverter.convertToListOfDTO(application.getVersions()))
                 .reviews(ReviewDTOConverter.convertToListOfDTO(application.getReviews()))
                 .creator(CustomerSmallDetailDTO.builder().id(application.getCreator().getId()).username(application.getCreator().getUsername()).build())
+                .isDiscontinued(application.isStatus())
                 .build();
     }
 

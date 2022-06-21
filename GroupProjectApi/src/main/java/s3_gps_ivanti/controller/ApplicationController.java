@@ -47,9 +47,7 @@ public class ApplicationController {
     }
 
     @GetMapping(path = "/download/{fileId}/{appName}")
-    public ResponseEntity<DownloadApplicationResponseDTO> downloadApplication(@PathVariable("fileId")String fileId,
-                                                                              @PathVariable("appName")String appName)
-            throws GeneralSecurityException, IOException{
+    public ResponseEntity<DownloadApplicationResponseDTO> downloadApplication(@PathVariable("fileId")String fileId, @PathVariable("appName")String appName) throws GeneralSecurityException, IOException{
 
 
 
@@ -115,10 +113,10 @@ public class ApplicationController {
 
     @IsAuthenticated
     @RolesAllowed({"ROLE_Creator"})
-    @DeleteMapping({"{applicationID}"})
-    public ResponseEntity<Object> deleteApplications(@PathVariable("applicationID") String applicationID) {
+    @PutMapping({"{name}"})
+    public ResponseEntity<Object> deleteApplications(@PathVariable("name") String name) {
 
-        deleteApplications.deleteApplications(applicationID);
+        deleteApplications.deleteApplications(name);
         return ResponseEntity.ok().build();
     }
 }

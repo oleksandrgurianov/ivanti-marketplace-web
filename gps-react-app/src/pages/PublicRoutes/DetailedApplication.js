@@ -14,6 +14,7 @@ const DetailedApplicationPage = () => {
     const { auth } = useAuth();
     const username = auth?.decoded?.sub;
     const [isCreator, setIsCreator] = useState(false)
+    const navigate =  useNavigate()
 
     useEffect(() => {
         getApplication()
@@ -30,7 +31,7 @@ const DetailedApplicationPage = () => {
     const [application, setApplication] = useState({})
     const [version, setVersion] = useState("1.0")
     const [appLocation, setAppLocation] = useState('')
-    const [arrayOfBytes, setArrayOfBytes] = useState({});
+    const[arrayOfBytes,setArrayOfBytes] = useState('')
 
     const getApplication = () => {
         axios.get(URL)
@@ -100,6 +101,7 @@ const DetailedApplicationPage = () => {
     const checkRoleStatus = () => {
         auth?.roles?.map((role) => {
             if (role === "Creator") {
+                setIsCreator(true)
                 const username = localStorage.getItem("username");
                 if (username === application?.creator?.username){
                     console.log("match!")
