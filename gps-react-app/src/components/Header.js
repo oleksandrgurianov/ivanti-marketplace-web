@@ -200,8 +200,6 @@ function Navbar() {
         }
     }
 
-    
-
   return (
     <>
         <div className='Nav'>
@@ -229,15 +227,15 @@ function Navbar() {
                     <div className='dropdown-content'  id="myDropdown">
                         { isCreator ? (
                             <>
-                                <Link to={'/creator/my-apps'}>My Account</Link>
+                                <Link className='NavLink' to={'/creator/my-apps'}>My Account</Link>
                             </>
                         ) : (
                             <>
-                                <Link to={'/*'}>My Account</Link>
+                                <Link className='NavLink' to={'/*'}>My Account</Link>
                             </>
                         )}
                         <hr />
-                        <Link to={'/logout'}>Logout</Link>
+                        <Link className='NavLink' to={'/logout'}>Log Out</Link>
                     </div>
                 </ div>
             }
