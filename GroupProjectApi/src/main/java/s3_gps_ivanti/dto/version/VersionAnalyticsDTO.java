@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class VersionAnalyticsRequestDTO {
-    String app;
-    double number;
-    int year;
+public class VersionAnalyticsDTO {
+    private double number;
+    private long totalDownloads;
+    private long totalReviews;
 }

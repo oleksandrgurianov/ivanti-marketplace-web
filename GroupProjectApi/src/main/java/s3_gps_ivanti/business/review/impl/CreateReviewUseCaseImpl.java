@@ -8,7 +8,6 @@ import s3_gps_ivanti.business.exception.ReviewByCustomerAlreadyExistException;
 import s3_gps_ivanti.business.review.CreateReviewUseCase;
 import s3_gps_ivanti.business.validation.ApplicationNameValidation;
 import s3_gps_ivanti.business.validation.CustomerUsernameValidation;
-import s3_gps_ivanti.dto.login.AccessTokenDTO;
 import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
 import s3_gps_ivanti.dto.review.CreateReviewResponseDTO;
 import s3_gps_ivanti.repository.ReviewRepository;
@@ -25,17 +24,14 @@ import javax.transaction.Transactional;
 public class CreateReviewUseCaseImpl implements CreateReviewUseCase {
 
     private final ReviewRepository reviewRepository;
-    private final UserRepository userRepository;
     private final UpdateRating updateRating;
     private final ApplicationNameValidation applicationIsValid;
     private final CustomerUsernameValidation customerIsValid;
 
     @Override
     public CreateReviewResponseDTO createReview(CreateReviewRequestDTO request) {
-        applicationIsValid.applicationIdIsValid(request.getApplicationName());
-        customerIsValid.customerIsValid(request.getCustomerName());
-
-        User user = userRepository.findUserByUsername(request.getCustomerName());
+        applicationIsValid.applicationIsValid(request.getApplicationName());
+        User user = customerIsValid.customerIsValid(request.getCustomerName());
 
         if(reviewRepository.existsByCustomerAndAndApplicationName(user, request.getApplicationName())){
             throw new ReviewByCustomerAlreadyExistException();
@@ -50,7 +46,7 @@ public class CreateReviewUseCaseImpl implements CreateReviewUseCase {
                 .build();
     }
     private Review saveReview(CreateReviewRequestDTO request){
-        User user = userRepository.findUserByUsername(request.getCustomerName());
+        User user = customerIsValid.customerIsValid(request.getCustomerName());
 
         Review review = ReviewDTOConverter.convertToEntityCreate(request);
         review.setCustomer(user);

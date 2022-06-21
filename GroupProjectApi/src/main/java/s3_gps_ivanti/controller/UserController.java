@@ -5,10 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import s3_gps_ivanti.business.application.GetApplicationsAnalyticsPerMonthUseCase;
+import s3_gps_ivanti.business.application.GetApplicationsAnalyticsPerVersionUseCase;
 import s3_gps_ivanti.business.user.*;
 import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
 import s3_gps_ivanti.dto.application.ApplicationAnalyticsRequestDTO;
 import s3_gps_ivanti.dto.application.ApplicationAnalyticsResponseDTO;
+import s3_gps_ivanti.dto.application.ApplicationVersionAnalyticsDTO;
 import s3_gps_ivanti.dto.user.*;
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +29,7 @@ public class UserController {
     private final GetCustomerUseCase getCustomer;
     private final UpdateCustomerUseCase updateCustomer;
     private final GetApplicationsAnalyticsPerMonthUseCase applicationsAnalyticsPerMonth;
+    private final GetApplicationsAnalyticsPerVersionUseCase applicationsAnalyticsPerVersion;
 
     //All
     @PostMapping()
@@ -80,7 +83,7 @@ public class UserController {
     }
 
 
-    //todo fix this
+    //TODO is this a public resource, can anyone use this?
     @GetMapping("{creatorName}/statistics")
     public ResponseEntity<List<ApplicationAnalyticsResponseDTO>>getAppAnalytics(@PathVariable String creatorName, @RequestParam(value = "year", required = false) Integer year) {
         ApplicationAnalyticsRequestDTO request = new ApplicationAnalyticsRequestDTO();
@@ -95,5 +98,22 @@ public class UserController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @GetMapping("{creatorName}/statistics/version")
+    public ResponseEntity<List<ApplicationVersionAnalyticsDTO>>getAppVersionAnalytics(@PathVariable String creatorName) {
+        List<ApplicationVersionAnalyticsDTO> analytics = applicationsAnalyticsPerVersion.getVersionAnalytics(creatorName);
+
+        return ResponseEntity.ok().body(analytics);
+    }
+    //TODO fix this
+   /* @GetMapping("{id}")
+   public ResponseEntity<Application> getApplicationsBySearch(@PathVariable("id") long id) {
+
+        Application Application = applicationService.getApplicationsByID(id);
+        /       if(Application != null) {
+            return ResponseEntity.ok().body(Application);} else {
+            return ResponseEntity.notFound().build();
+      }
+    }*/
 }
 

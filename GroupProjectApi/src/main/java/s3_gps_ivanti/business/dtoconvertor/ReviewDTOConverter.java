@@ -5,11 +5,7 @@ import s3_gps_ivanti.dto.review.ReviewDTO;
 import s3_gps_ivanti.dto.review.UpdateReviewDTO;
 import s3_gps_ivanti.repository.entity.Review;
 
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +40,6 @@ public class ReviewDTOConverter {
     public static UpdateReviewDTO convertToDTOForUpdate(Review r) {
         return UpdateReviewDTO.builder()
                 .id(r.getId())
-                .applicationName(r.getApplicationName())
-                .customerName(r.getCustomer().getUsername())
                 .rating(r.getRating())
                 .title(r.getTitle())
                 .description(r.getDescription())
@@ -58,7 +52,6 @@ public class ReviewDTOConverter {
                 .rating(review.getRating())
                 .title(review.getTitle())
                 .description(review.getDescription())
-                .date(LocalDateTime.now())
                 .reply(null)
                 .build();
     }

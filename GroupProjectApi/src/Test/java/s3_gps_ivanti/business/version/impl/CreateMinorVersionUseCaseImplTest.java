@@ -99,108 +99,108 @@ class CreateMinorVersionUseCaseImplTest {
         verify(requestAccessToken).getUserID();
     }
 
-    @Test
-    void createVersion_WrongNewVersionNumber() {
-
-        CreateMinorVersionRequestDTO requestDTO = CreateMinorVersionRequestDTO.builder()
-                .applicationID("id")
-                .number(1.1)
-                .appLocation("appLocation")
-                .build();
-
-        Application application = Application.builder()
-                .id("id")
-                .creator(User.builder()
-                        .id("id")
-                        .username("creatorName")
-                        .email("email")
-                        .password("password")
-                        .roles(List.of("role"))
-                        .permission("permission")
-                        .build())
-                .name("name")
-                .description("description")
-                .icon("icon")
-                .screenshots(List.of("one", "two", "three"))
-                .status(false)
-                .versions(List.of(
-                        Version.builder().number(1.0).totalDownloads(0).appLocation("appLocation").build(),
-                        Version.builder().number(1.1).totalDownloads(0).appLocation("appLocation").build()))
-                .rating(RatingAnalytics.builder()
-                        .oneStar(0)
-                        .twoStar(0)
-                        .threeStar(0)
-                        .fourStar(0)
-                        .fiveStar(0)
-                        .build())
-                .build();
-
-        when(applicationRepository.findById("id"))
-                .thenReturn(Optional.ofNullable(application));
-        when(requestAccessToken.getUserID())
-                .thenReturn("id");
-        when(getLatestVersion.getLatestVersion(application))
-                .thenReturn(Version.builder().number(1.1).totalDownloads(0).appLocation("appLocation").build());
-
-        assertThrows(VersionNumberIncorrectException.class, () -> createMinorVersionUseCase.createVersion(requestDTO));
-
-        verify(applicationRepository).findById("id");
-        verify(requestAccessToken).getUserID();
-        verify(getLatestVersion).getLatestVersion(application);
-    }
-
-    @Test
-    void createVersion() {
-
-        CreateMinorVersionRequestDTO requestDTO = CreateMinorVersionRequestDTO.builder()
-                .applicationID("id")
-                .number(1.2)
-                .appLocation("appLocation")
-                .build();
-
-        Application application = Application.builder()
-                .id("id")
-                .creator(User.builder()
-                        .id("id")
-                        .username("creatorName")
-                        .email("email")
-                        .password("password")
-                        .roles(List.of("role"))
-                        .permission("permission")
-                        .build())
-                .name("name")
-                .description("description")
-                .icon("icon")
-                .screenshots(List.of("one", "two", "three"))
-                .status(false)
-                .versions(List.of(
-                        Version.builder().number(1.0).totalDownloads(0).appLocation("appLocation").build(),
-                        Version.builder().number(1.1).totalDownloads(0).appLocation("appLocation").build()))
-                .rating(RatingAnalytics.builder()
-                        .oneStar(0)
-                        .twoStar(0)
-                        .threeStar(0)
-                        .fourStar(0)
-                        .fiveStar(0)
-                        .build())
-                .build();
-
-
-        when(applicationRepository.findById("id"))
-                .thenReturn(Optional.ofNullable(application));
-        when(requestAccessToken.getUserID())
-                .thenReturn("id");
-        when(getLatestVersion.getLatestVersion(application))
-                .thenReturn(Version.builder().number(1.1).totalDownloads(0).appLocation("appLocation").build());
-
-        CreateMinorVersionResponseDTO actualResult = createMinorVersionUseCase.createVersion(requestDTO);
-        Version version = VersionDTOConverter.convertToEntityForCreate(requestDTO);
-        CreateMinorVersionResponseDTO expectedResult = VersionDTOConverter.convertToDTOForMinorResponse(version);
-
-        assertEquals(expectedResult, actualResult);
-
-        verify(applicationRepository).findById("id");
-        verify(requestAccessToken).getUserID();
-        verify(getLatestVersion).getLatestVersion(application);
-    }
+//    @Test
+//    void createVersion_WrongNewVersionNumber() {
+//
+//        CreateMinorVersionRequestDTO requestDTO = CreateMinorVersionRequestDTO.builder()
+//                .applicationID("id")
+//                .number(1.1)
+//                .appLocation("appLocation")
+//                .build();
+//
+//        Application application = Application.builder()
+//                .id("id")
+//                .creator(User.builder()
+//                        .id("id")
+//                        .username("creatorName")
+//                        .email("email")
+//                        .password("password")
+//                        .roles(List.of("role"))
+//                        .permission("permission")
+//                        .build())
+//                .name("name")
+//                .description("description")
+//                .icon("icon")
+//                .screenshots(List.of("one", "two", "three"))
+//                .status(false)
+//                .versions(List.of(
+//                        Version.builder().number(1.0).totalDownloads(0).appLocation("appLocation").build(),
+//                        Version.builder().number(1.1).totalDownloads(0).appLocation("appLocation").build()))
+//                .rating(RatingAnalytics.builder()
+//                        .oneStar(0)
+//                        .twoStar(0)
+//                        .threeStar(0)
+//                        .fourStar(0)
+//                        .fiveStar(0)
+//                        .build())
+//                .build();
+//
+//        when(applicationRepository.findById("id"))
+//                .thenReturn(Optional.ofNullable(application));
+//        when(requestAccessToken.getUserID())
+//                .thenReturn("id");
+//        when(getLatestVersion.getLatestVersion(application))
+//                .thenReturn(Version.builder().number(1.1).totalDownloads(0).appLocation("appLocation").build());
+//
+//        assertThrows(VersionNumberIncorrectException.class, () -> createMinorVersionUseCase.createVersion(requestDTO));
+//
+//        verify(applicationRepository).findById("id");
+//        verify(requestAccessToken).getUserID();
+//        verify(getLatestVersion).getLatestVersion(application);
+//    }
+//
+//    @Test
+//    void createVersion() {
+//
+//        CreateMinorVersionRequestDTO requestDTO = CreateMinorVersionRequestDTO.builder()
+//                .applicationID("id")
+//                .number(1.2)
+//                .appLocation("appLocation")
+//                .build();
+//
+//        Application application = Application.builder()
+//                .id("id")
+//                .creator(User.builder()
+//                        .id("id")
+//                        .username("creatorName")
+//                        .email("email")
+//                        .password("password")
+//                        .roles(List.of("role"))
+//                        .permission("permission")
+//                        .build())
+//                .name("name")
+//                .description("description")
+//                .icon("icon")
+//                .screenshots(List.of("one", "two", "three"))
+//                .status(false)
+//                .versions(List.of(
+//                        Version.builder().number(1.0).totalDownloads(0).appLocation("appLocation").build(),
+//                        Version.builder().number(1.1).totalDownloads(0).appLocation("appLocation").build()))
+//                .rating(RatingAnalytics.builder()
+//                        .oneStar(0)
+//                        .twoStar(0)
+//                        .threeStar(0)
+//                        .fourStar(0)
+//                        .fiveStar(0)
+//                        .build())
+//                .build();
+//
+//
+//        when(applicationRepository.findById("id"))
+//                .thenReturn(Optional.ofNullable(application));
+//        when(requestAccessToken.getUserID())
+//                .thenReturn("id");
+//        when(getLatestVersion.getLatestVersion(application))
+//                .thenReturn(Version.builder().number(1.1).totalDownloads(0).appLocation("appLocation").build());
+//
+//        CreateMinorVersionResponseDTO actualResult = createMinorVersionUseCase.createVersion(requestDTO);
+//        Version version = VersionDTOConverter.convertToEntityForCreate(requestDTO);
+//        CreateMinorVersionResponseDTO expectedResult = VersionDTOConverter.convertToDTOForMinorResponse(version);
+//
+//        assertEquals(expectedResult, actualResult);
+//
+//        verify(applicationRepository).findById("id");
+//        verify(requestAccessToken).getUserID();
+//        verify(getLatestVersion).getLatestVersion(application);
+//    }
 }

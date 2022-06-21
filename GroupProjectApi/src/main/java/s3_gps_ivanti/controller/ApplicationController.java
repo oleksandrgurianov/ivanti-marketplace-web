@@ -46,15 +46,22 @@ public class ApplicationController {
         return ResponseEntity.ok().body(applicationDetailedInfoDTO);
     }
 
-    @RequestMapping(path = "/download/{fileId}/{appName}", method = RequestMethod.GET)
-    public void downloadApplication(@PathVariable("fileId") String fileId, @PathVariable("appName") String appName) throws GeneralSecurityException, IOException {
+    @GetMapping(path = "/download/{fileId}/{appName}")
+    public ResponseEntity<DownloadApplicationResponseDTO> downloadApplication(@PathVariable("fileId")String fileId,
+                                                                              @PathVariable("appName")String appName)
+            throws GeneralSecurityException, IOException{
+
+
 
         DriveQuickstart dq = new DriveQuickstart();
         String home = System.getProperty("user.home");
-        String path = home + "/Downloads" + "/" + appName + ".zip";
-        dq.downloadApplication(path, fileId);
+        String path = home + "/Downloads" + "/" + appName + ".png";
+        byte[] arrayOfBytes = dq.downloadApplication(path, fileId);
+        DownloadApplicationResponseDTO downloadApplicationResponseDTO = new DownloadApplicationResponseDTO(arrayOfBytes);
 
         System.out.println("Success");
+
+        return ResponseEntity.ok().body(downloadApplicationResponseDTO);
 
     }
 

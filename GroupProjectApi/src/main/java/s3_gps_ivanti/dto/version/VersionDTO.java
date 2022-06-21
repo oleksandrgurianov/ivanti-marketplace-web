@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class VersionDTO {
     private double number;
-    private int totalDownloads;
+    private long totalDownloads;
+    private long totalReviews;
     private String appLocation;
-    private List<DownloadsPerMonth> downloads;
 }
