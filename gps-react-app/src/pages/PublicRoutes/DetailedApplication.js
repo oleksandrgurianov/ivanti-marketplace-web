@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import useAuth from '../../hooks/useAuth';
 
@@ -87,29 +88,22 @@ const DetailedApplicationPage = () => {
         }
     }
 
-    // useEffect(() => {
-    //     console.log(application?.creator?.username)
-    //     if (application?.creator?.username === auth?.decoded?.sub) {
-    //         // setIsCreator(false)
-    //         console.log("yay")
-    //     } else {
-    //         setIsCreator(false)
-    //     }
-    // }, [application])
+    useEffect(() => {
+        const username = localStorage.getItem("username");
+        if (username === application?.creator?.username){
+            console.log("match!")
+            setIsCreator(true)
+        } else {
+            console.log("hahaha no")
+            setIsCreator(false)
+        }
+    }, [application])
 
     
     const checkRoleStatus = () => {
         auth?.roles?.map((role) => {
             if (role === "Creator") {
                 setIsCreator(true)
-                const username = localStorage.getItem("username");
-                if (username === application?.creator?.username){
-                    console.log("match!")
-                } else {
-                    console.log("hahaha no")
-                }
-                setIsCreator(true) // TODO check if creator id matches application id
-                // console.log(auth?.decoded?.sub)
             }
         })
     }
@@ -187,7 +181,7 @@ const DetailedApplicationPage = () => {
         </div>
         {isCreator?
             <AdminReviewList reviews = {application?.reviews} app = {application?.name}/>:
-            <ReviewList ownReview = {ownReview} reviews = {application?.reviews} app = {application?.name}/>
+            <ReviewList  reviews = {application?.reviews} app = {application?.name}/>
         }
 
         <hr />
