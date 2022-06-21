@@ -25,7 +25,7 @@ function HomePage () {
   return (
       <>
           <div className='home'>
-          <h1 className='title'>Top 10</h1>
+          <h1 className='title'>Featured</h1>
               <hr/>
           {applications.length !== 0 ? (
               <div className='my-apps-list'>
