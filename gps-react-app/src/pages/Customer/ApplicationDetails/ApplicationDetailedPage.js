@@ -28,7 +28,7 @@ const ApplicationDetailedPage = () => {
                 setAppLocation(response.data.versions[0].appLocation);
                 console.log(response.data);
                 console.log(appLocation);
-                console.log(name);
+                console.log(name); 
             })
             .catch(err => {
                 console.log(err);
