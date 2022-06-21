@@ -2,13 +2,12 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
-// import '../../../styles/ContentCreator/MyAppsPage/MyAppsPage.css';
+import '../../styles/ContentCreator/MyAppsPage/MyAppsPage.css';
 import loading from "../../images/loading.gif";
 import { useStateWithCallbackLazy } from 'use-state-with-callback';
 import BasicApplication from '../../components/BasicApplication';
 
 const AllApplicationsPage = () => {
-
     const [applications, setApplications] = useState([]);
 
     const [name, setName] = useStateWithCallbackLazy('');
@@ -40,7 +39,7 @@ const AllApplicationsPage = () => {
 
     useEffect(() => {
         getApplications();
-    }, []);
+    }, [applications]);
 
     return (
         <>
