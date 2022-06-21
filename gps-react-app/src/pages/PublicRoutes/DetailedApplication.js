@@ -85,46 +85,59 @@ const DetailedApplicationPage = () => {
             console.log("Something went wrong");
         }
     }
+    
+    // useEffect(() => {
+    //     console.log(application?.creator?.username)
+    //     if (application?.creator?.username === auth?.decoded?.sub) {
+    //         // setIsCreator(false)
+    //         console.log("yay")
+    //     } else {
+    //         setIsCreator(false)
+    //     }
+    // }, [application])
 
     
     const checkRoleStatus = () => {
         auth?.roles?.map((role) => {
             if (role === "Creator") {
                 setIsCreator(true)
+                const username = localStorage.getItem("username");
+                if (username === application?.creator?.username){
+                    console.log("match!")
+                } else {
+                    console.log("hahaha no")
+                }
+                setIsCreator(true) // TODO check if creator id matches application id
+                // console.log(auth?.decoded?.sub)
             }
         })
     }
+    
+    // const getReview = () => {
+    //     axios.get(`http://localhost:8080/review/${username}/${application.name}`)
+    //         .then(res => {
+    //             setOwnReview(res.data);
+    //         })
+    //         .catch(err => {
+    //             console.log(err.message);
+    //             setOwnReview(null);
+    //         });
+    // }
 
-    const deleteApp = ()=>{
-        const config = {
-            headers: { Authorization: 'Bearer ' + auth?.accessToken}
-        }
+    // useEffect(() => {
+    //     getReview();
+    // }, [application])
+    
 
-        axios.put(`http://localhost:8080/application/${params.name}`, null, config)
-            .then(function (){})
-            .catch(err => {
-                console.log(err)}
-            )
-            navigate('/creator/my-apps')
-    }
-
-    return (
+  return (
     <div className='app'>
         <div className='app-controls'>
             <img className='icon' alt='application logo' src={application.icon} />
             <h1>{application.name}</h1>
             { isCreator ? (
                 <>
-                    <Link className='edit-button' to={`/creator/update/${application.name}`}>Edit</Link>
-                    { application.discontinued ? (
-                        <>
-                            <button className='delete-button' onClick={deleteApp}>Activate</button>
-                        </>
-                    ) : (
-                        <>
-                            <button className='delete-button' onClick={deleteApp}>Discontinue</button>
-                        </>
-                    )}
+                    <Link className='edit-button' to={'/*'}>Edit</Link>
+                    <Link className='delete-button' to={'/*'}>Delete</Link>
                 </>
             ) : (
                 <>
@@ -148,8 +161,8 @@ const DetailedApplicationPage = () => {
                 </dropdown>
                 { isCreator ? (
                     <>
-                        <Link className='version-button' to={`/creator/version/${application.name}/minor`}>Add minor version</Link>
-                        <Link className='version-button' to={`/creator/version/${application.name}/major`}>Add major version</Link>
+                        <Link className='version-button' to={'/*'}>Add minor version</Link>
+                        <Link className='version-button' to={'/*'}>Add major version</Link>
                     </>
                 ) : (null)}
             </div>
@@ -168,7 +181,7 @@ const DetailedApplicationPage = () => {
             <button className='see-all-button'>See All</button>
         </div>
         <div className='overall-rating'>
-            <p className='rating-number'>{application.avgRating?.toFixed(1)}</p>
+            <p className='rating-number'>{application.avgRating}</p>
             <p>out of 5</p>
         </div>
         <ReviewList reviews={application.reviews} />
@@ -177,7 +190,7 @@ const DetailedApplicationPage = () => {
             <h2>Description</h2>
             <p>{application.description}</p>
         </div>
-    </div>
+    </div> 
   )
 }
 
