@@ -11,12 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewDTOConverter {
-    private ReviewDTOConverter(){}
+    private ReviewDTOConverter() {
+    }
 
     public static List<ReviewDTO> convertToListOfDTO(List<Review> reviews) {
         List<ReviewDTO> result = new ArrayList<>();
 
-        for (Review r:reviews) {
+        for (Review r : reviews) {
             result.add(ReviewDTOConverter.convertToDTOForView(r));
         }
 
@@ -38,12 +39,15 @@ public class ReviewDTOConverter {
     }
 
     public static UpdateReviewDTO convertToDTOForUpdate(Review r) {
-        return UpdateReviewDTO.builder()
-                .id(r.getId())
-                .rating(r.getRating())
-                .title(r.getTitle())
-                .description(r.getDescription())
-                .build();
+        if (r != null) {
+            return UpdateReviewDTO.builder()
+                    .id(r.getId())
+                    .rating(r.getRating())
+                    .title(r.getTitle())
+                    .description(r.getDescription())
+                    .build();
+        }
+        return null;
     }
 
     public static Review convertToEntityCreate(CreateReviewRequestDTO review) {
@@ -56,7 +60,7 @@ public class ReviewDTOConverter {
                 .build();
     }
 
-    private static String timePassed(LocalDateTime start, LocalDateTime end){
+    private static String timePassed(LocalDateTime start, LocalDateTime end) {
         long seconds = ChronoUnit.SECONDS.between(start, end);
         long minutes = ChronoUnit.MINUTES.between(start, end);
         long hours = ChronoUnit.HOURS.between(start, end);
@@ -64,48 +68,48 @@ public class ReviewDTOConverter {
         long months = ChronoUnit.MONTHS.between(start, end);
         long years = ChronoUnit.YEARS.between(start, end);
 
-        if(seconds < 0){
+        if (seconds < 0) {
             return "just now";
         }
-        if(seconds == 1){
+        if (seconds == 1) {
             return "one sec ago";
         }
-        if(seconds > 1 && seconds < 60){
+        if (seconds > 1 && seconds < 60) {
             return seconds + "secs ago";
         }
-        if(seconds > 60){
-            if(minutes == 1){
+        if (seconds > 60) {
+            if (minutes == 1) {
                 return "one min ago";
             }
-            if(minutes > 1 && minutes < 60){
+            if (minutes > 1 && minutes < 60) {
                 return minutes + "mins ago";
             }
-            if(minutes > 60){
-                if(hours == 1){
+            if (minutes > 60) {
+                if (hours == 1) {
                     return "one hr ago";
                 }
-                if(hours > 1 && hours < 24){
+                if (hours > 1 && hours < 24) {
                     return hours + "hrs ago";
                 }
-                if(hours > 24){
-                    if(days == 1){
+                if (hours > 24) {
+                    if (days == 1) {
                         return "one day ago";
                     }
-                    if(days > 1 && days < 30){
+                    if (days > 1 && days < 30) {
                         return days + "days ago";
                     }
-                    if(days > 30){
-                        if(months == 1){
+                    if (days > 30) {
+                        if (months == 1) {
                             return "one month ago";
                         }
-                        if(months > 1 && months < 12){
+                        if (months > 1 && months < 12) {
                             return months + "months ago";
                         }
-                        if(months > 12){
-                            if(years == 1){
+                        if (months > 12) {
+                            if (years == 1) {
                                 return "one yr ago";
                             }
-                            if(years > 1){
+                            if (years > 1) {
                                 return years + "yrs ago";
                             }
                         }

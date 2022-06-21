@@ -111,7 +111,6 @@ class LoginUseCaseImplTest {
                         .build());
         LoginResponseDTO expectedResult =LoginResponseDTO.builder()
                 .accessToken(accessToken)
-                .permission(user.getPermission())
                 .build();
 
         assertEquals(expectedResult,actualResult);
