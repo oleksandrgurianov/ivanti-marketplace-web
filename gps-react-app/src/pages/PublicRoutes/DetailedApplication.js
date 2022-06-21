@@ -91,10 +91,8 @@ const DetailedApplicationPage = () => {
     useEffect(() => {
         const username = localStorage.getItem("username");
         if (username === application?.creator?.username){
-            console.log("match!")
             setIsCreator(true)
         } else {
-            console.log("hahaha no")
             setIsCreator(false)
         }
     }, [application])
@@ -123,6 +121,20 @@ const DetailedApplicationPage = () => {
     //     getReview();
     // }, [application])
 
+    const deleteApp = ()=>{
+        const config = {
+            headers: { Authorization: 'Bearer ' + auth?.accessToken}
+        }
+
+        axios.put(`http://localhost:8080/application/${params.name}`, null, config)
+            .then(function (){})
+            .catch(err => {
+                console.log(err)}
+            )
+            navigate('/creator/my-apps')
+    }
+
+
 
   return (
     <div className='app'>
@@ -131,8 +143,17 @@ const DetailedApplicationPage = () => {
             <h1>{application.name}</h1>
             { isCreator ? (
                 <>
-                    <Link className='edit-button' to={'/*'}>Edit</Link>
-                    <Link className='delete-button' to={'/*'}>Delete</Link>
+                    <Link className='edit-button' to={`/creator/update/${application.name}`}>Edit</Link>
+                    { application.discontinued ? (
+                        <>
+                            <button className='delete-button' onClick={deleteApp}>Activate</button>
+                        </>
+                    ) : (
+                        <>
+                            <button className='delete-button' onClick={deleteApp}>Discontinue</button>
+                        </>
+                    )}
+
                 </>
             ) : (
                 <>
@@ -156,8 +177,8 @@ const DetailedApplicationPage = () => {
                 </dropdown>
                 { isCreator ? (
                     <>
-                        <Link className='version-button' to={'/*'}>Add minor version</Link>
-                        <Link className='version-button' to={'/*'}>Add major version</Link>
+                        <Link className='version-button' to={`/creator/version/${application.name}/minor`}>Add minor version</Link>
+                        <Link className='version-button' to={`/creator/version/${application.name}/major`}>Add major version</Link>
                     </>
                 ) : (null)}
             </div>

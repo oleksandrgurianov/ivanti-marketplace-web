@@ -22,7 +22,7 @@ const LoginPage = () => {
 
     function storeUsername(username){
         setUsername(username)
-        localStorage.setItem("username", username);
+        
     }
 
     const handleSubmit = async (e) => {
@@ -41,6 +41,7 @@ const LoginPage = () => {
             const roles = decoded?.roles;
             console.log(roles)
             setAuth({ accessToken, decoded, roles });
+            localStorage.setItem("username", username);
 
             setUsername('')
             setPassword('')

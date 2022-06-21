@@ -8,6 +8,7 @@ const Logout = () => {
 
     const handleLogout = () => {
         setAuth({})
+        localStorage.removeItem("username")
         navigate('/login')
     }
 
