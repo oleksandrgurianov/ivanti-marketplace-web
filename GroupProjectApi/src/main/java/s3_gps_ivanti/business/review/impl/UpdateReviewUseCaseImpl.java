@@ -12,6 +12,8 @@ import s3_gps_ivanti.dto.review.UpdateReviewDTO;
 import s3_gps_ivanti.repository.ReviewRepository;
 import s3_gps_ivanti.repository.entity.Review;
 
+import java.time.LocalDateTime;
+
 @Service
 @Primary
 @RequiredArgsConstructor
@@ -29,6 +31,7 @@ public class UpdateReviewUseCaseImpl implements UpdateReviewUseCase {
         review.setDescription(request.getDescription());
         review.setTitle(request.getTitle());
         review.setRating(request.getRating());
+        review.setDate(LocalDateTime.now());
 
         updateRating.addAppRating(review.getApplicationName(), review.getRating());
 

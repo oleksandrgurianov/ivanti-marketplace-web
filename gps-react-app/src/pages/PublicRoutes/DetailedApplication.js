@@ -43,6 +43,48 @@ const DetailedApplicationPage = () => {
         
     }
 
+    function base64ToArrayBuffer(base64) {
+        let binaryString = window.atob(base64);
+        let binaryLen = binaryString.length;
+        let bytes = new Uint8Array(binaryLen);
+        for (let i = 0; i < binaryLen; i++) {
+            let ascii = binaryString.charCodeAt(i);
+            bytes[i] = ascii;
+        }
+        return bytes;
+    }
+
+    const saveByteArray = (name, byte)  => {
+        let blob = new Blob([byte], {type: "image/png"});
+        let link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        let fileName = name;
+        link.download = fileName;
+        link.click();
+    };
+
+    const downloadApplication = async (e) => {
+        e.preventDefault();
+        try {
+            console.log("METHOD STARTED");
+            console.log(appLocation);
+            console.log(application.name);
+            const response = await axios.get(`http://localhost:8080/application/download/${appLocation}/${application.name}`)
+                .then(
+                    response => {
+                        setArrayOfBytes(response.data);
+                        let bytes = base64ToArrayBuffer(arrayOfBytes.arrayOfBytes)
+                        saveByteArray(application.name, bytes);
+                        console.log(arrayOfBytes);
+                        console.log(arrayOfBytes.arrayOfBytes);
+                    }
+                )
+            console.log("SUCCESSFUL");
+        } catch (err){
+            console.log("Something went wrong");
+        }
+    }
+
     // useEffect(() => {
     //     console.log(application?.creator?.username)
     //     if (application?.creator?.username === auth?.decoded?.sub) {
@@ -63,8 +105,16 @@ const DetailedApplicationPage = () => {
         })
     }
 
-    const downloadApplication = async (e) => {
-        e.preventDefault();
+    // const getReview = () => {
+    //     axios.get(`http://localhost:8080/review/${username}/${application.name}`)
+    //         .then(res => {
+    //             setOwnReview(res.data);
+    //         })
+    //         .catch(err => {
+    //             console.log(err.message);
+    //             setOwnReview(null);
+    //         });
+    // }
 
         try {
             console.log("METHOD STARTED");
@@ -109,7 +159,7 @@ const DetailedApplicationPage = () => {
                 </>
             ) : (
                 <>
-                    <Link className='edit-button' to={''}>
+                    <Link className='delete-button' to={''}>
                         <span onClick={downloadApplication}>Download</span>
                     </Link>
                 </>
