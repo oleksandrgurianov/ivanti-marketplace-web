@@ -32,7 +32,6 @@ a {
 
 /* Header */
 .Nav {
-    overflow: hidden;
     position: fixed;
     background: rgba(0,0,0,.8);
     height: 44px;
@@ -122,6 +121,7 @@ a {
 
 .show {
     display: block;
+    z-index: 1000;
 }
 
 .Nav .NavLinkLogin {
