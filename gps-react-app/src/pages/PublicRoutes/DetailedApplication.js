@@ -45,6 +45,7 @@ const DetailedApplicationPage = () => {
         .then(res => {
             setApplication(res.data)
             setAppLocation(res.data.versions[0].appLocation)
+            console.log(res.data.versions[0].appLocation)
         })
         .catch(err => {
             console.log(err)
@@ -186,9 +187,7 @@ const DetailedApplicationPage = () => {
                     <Tutorial visible={showTutorial} closeTutorial={closeTutorial} content={tutorialContentCustomer} />
                     <button onClick={() => setShowTutorial(true)} className='btn-open-tutorial'><BsQuestionCircle /></button>
                     {auth?.accessToken ? <>
-                        <Link className='delete-button' to={''}>
-                        <span onClick={downloadApplication}>Download</span>
-                    </Link>
+                    <a href={appLocation} className='delete-button' target='_blank'>Download</a>
                      </> : null}
                     
                 </>
