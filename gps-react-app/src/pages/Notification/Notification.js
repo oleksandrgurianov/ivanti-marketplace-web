@@ -5,31 +5,26 @@ import useAuth from "../../hooks/useAuth";
 
 let stompClient = null;
 const Notification = () => {
-    const storedUsername = localStorage.getItem("username")
+
+    const { auth } = useAuth();
+  
+    const username = auth?.decoded?.sub;   
 
     useEffect(() => {
         connect()
     }, []);
-
-
-
-    const setMessageValue =(e) =>{
-        setPrivateMessage(e.target.value)
-    }
-    const [privateMessage, setPrivateMessage] = useState('');
+  
     const [userData, setUserData] = useState({
-            username: storedUsername,
-            CreatorUsername: 'Bob',
-            connected: false,
-            message: '',
-            AppId: 9
+            username: username,
+            CreatorUsername: "",
+            connected: false           
     });
 
         useEffect(() => {
             console.log(userData);
         }, [userData]);
 
-       const connect = () => { //Connect automatically when press add review in the Customer and connect with login in the Creator
+       const connect = () => { 
             let Sock = new SockJS('http://localhost:8080/ws');
             stompClient = over(Sock);
             stompClient.connect({}, onConnected, onError);
@@ -40,11 +35,15 @@ const Notification = () => {
             stompClient.subscribe('/notifications/messages', onPrivateNotification);
         }
 
+       
+
         const onPrivateNotification = (payload) => {
-            const payloadData = JSON.parse(payload.body);
-            if (storedUsername === userData.CreatorUsername){
-                console.log("PAYLOAD", payload)
-            alert(userData.username + " sent a new review for your app nº" + userData.AppId + " : " + payloadData);
+            const payloadData = JSON.parse(payload.body);            
+            setUserData({...userData, "connected": true});   
+
+            if (username === payloadData.creatorName){
+                alert(payloadData.senderName + " leaved a review for your app " + payloadData.appId +  " : " + payloadData.message);
+                console.log("PAYLOAD", payload)            
             }
         }
 
@@ -52,33 +51,8 @@ const Notification = () => {
             console.log("ERROR", err);
         }
 
-        const sendNotification = () => { //sends notification
-            if (stompClient) {
-                stompClient.send('/app/message', {}, JSON.stringify(privateMessage));  //sends the notification to the CreatorId (if connected)
-                setUserData({...userData, "message": ""});
-            }
-        }
-
-        return (null
-           /* <div className="container">
-                     <>
-                          {userData.connected ? //customer leaving a review
-                        <>
-                            <div className="send-notification">
-                                <input type="text" className="input-message" placeholder="enter the message"
-                                   value={privateMessage} onChange={setMessageValue}/>
-                                <button type="button" className="send-button" onClick={sendNotification}>send</button>
-                            </div>
-                         </>
-                        :
-                        <div className="leave-review">
-                            <h1>APP logo</h1>
-                        <button type="button" onClick={connect}>Leave a Review</button>
-                        </div>}
-                    </>
-                }
-            </div>*/
-        )
+        return (null)
+      
     }
 
 export default Notification

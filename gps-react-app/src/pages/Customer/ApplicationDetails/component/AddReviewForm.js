@@ -5,8 +5,11 @@ import ReviewForm from "../../../../styles/ReviewForm.css"
 import { FaStar } from 'react-icons/fa'
 import axios from "axios";
 import useAuth from "../../../../hooks/useAuth";
+import SockJS from "sockjs-client";
+import {over} from "stompjs";
 
-function AddReviewForm({ review, setOpenPopup, app, setUpdate }) {
+
+function AddReviewForm({ review, setOpenPopup, app, setUpdate, creator }) {
     const url = "http://localhost:8080/review";
     const {auth} = useAuth();
     let username = auth?.decoded?.sub;
@@ -68,8 +71,38 @@ function AddReviewForm({ review, setOpenPopup, app, setUpdate }) {
                 console.log(res.data);
                 setUpdate(prev=>!prev);
             });
+            sendNotification() //websockets added
         setOpenPopup(false)
     }
+
+    //Websockets => sends notification
+    let Sock = new SockJS('http://localhost:8080/ws');
+    let stompClient =  over(Sock);
+   
+    const [userData, setUserData] = useState({
+            username: username,          
+            connected: true        
+    });
+
+        useEffect(() => {
+            console.log(userData);
+        }, [userData]);
+ 
+
+        const sendNotification = () => { 
+            if (stompClient) {
+                var notificationBody =
+                {
+                    senderName: userData.username,
+                    message: title,
+                    appId: app,
+                    creatorName: creator 
+                }
+                stompClient.send('/app/message', {}, JSON.stringify(notificationBody)); //sends the notification to the CreatorId (if connected)
+                setUserData({...userData, "message": "", "AppId": ""});
+            }
+        }
+    //
 
     return (
         <>
