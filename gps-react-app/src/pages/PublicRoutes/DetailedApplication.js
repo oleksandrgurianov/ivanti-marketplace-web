@@ -6,9 +6,11 @@ import useAuth from '../../hooks/useAuth';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
+import { BsQuestionCircle } from 'react-icons/bs'
 
 import ReviewList from '../Customer/ApplicationDetails/component/ReviewList';
 import AdminReviewList from "../ContentCreator/ApplicationPage/components/AdminReviewList";
+import Tutorial from '../../components/Tutorial';
 
 
 const DetailedApplicationPage = () => {
@@ -92,6 +94,7 @@ const DetailedApplicationPage = () => {
         }
     }
 
+
     useEffect(() => {
         const username = localStorage.getItem("username");
         if (username === application?.creator?.username){
@@ -138,6 +141,23 @@ const DetailedApplicationPage = () => {
             navigate('/creator/my-apps')
     }
 
+    // tutorial
+    const [showTutorial, setShowTutorial] = useState(false) 
+    const closeTutorial = () => {
+        setShowTutorial(false)
+    }
+    
+    const tutorialContent = {
+        'title': 'Application Info',
+        'header': 'Manage your application',
+        'body': 'This is the place to manage your application. If you want to update the screenshots or description, you can press the edit button. If you want to upload a new version of your application, click the Add Major Version or Add Minor Version, depending on what version you want to add. To discontinue click the Discontinue button, and to reactivate a discontinued app click the active button.'
+    }
+
+    const tutorialContentCustomer = {
+        'title': 'Application Info',
+        'header': 'Download this application',
+        'body': 'When logged in to your customer account you can download this application. Just click the download button and the download should begin.'
+    }
 
 
   return (
@@ -147,6 +167,8 @@ const DetailedApplicationPage = () => {
             <h1>{application.name}</h1>
             { isCreator ? (
                 <>
+                    <Tutorial visible={showTutorial} closeTutorial={closeTutorial} content={tutorialContent} />
+                    <button onClick={() => setShowTutorial(true)} className='btn-open-tutorial'><BsQuestionCircle /></button>
                     <Link className='edit-button' to={`/creator/update/${application.name}`}>Edit</Link>
                     { application.discontinued ? (
                         <>
@@ -161,9 +183,14 @@ const DetailedApplicationPage = () => {
                 </>
             ) : (
                 <>
-                    <Link className='delete-button' to={''}>
+                    <Tutorial visible={showTutorial} closeTutorial={closeTutorial} content={tutorialContentCustomer} />
+                    <button onClick={() => setShowTutorial(true)} className='btn-open-tutorial'><BsQuestionCircle /></button>
+                    {auth?.accessToken ? <>
+                        <Link className='delete-button' to={''}>
                         <span onClick={downloadApplication}>Download</span>
                     </Link>
+                     </> : null}
+                    
                 </>
             )}
         </div>

@@ -6,6 +6,8 @@ import {useParams, useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCirclePlus, faPen} from "@fortawesome/free-solid-svg-icons";
 import useAuth from "../../hooks/useAuth";
+import Tutorial from "../../components/Tutorial";
+import { BsQuestionCircle } from 'react-icons/bs'
 
 function AddApplicationPage() {
 
@@ -208,14 +210,25 @@ function AddApplicationPage() {
         }
     }
 
+    // tutorial
+    const [showTutorial, setShowTutorial] = useState(false) 
+    const closeTutorial = () => {
+        setShowTutorial(false)
+    }
+    const tutorialContent = {
+        'title': 'Add Application Page',
+        'header': 'Upload a new application',
+        'body': 'This is where you can upload a new application. All you need to do is enter the application name, add a description, upload at least one screenshot and finally upload the package itself, as a zip file. When you are finished, press done and the application is uploaded to the marketplace.'
+    }
 
     return (
         <div className="container">
+            <Tutorial visible={showTutorial} closeTutorial={closeTutorial} content={tutorialContent}/>
             <span id={"error"}/>
             <div className={"app-controls"}>
                 <img className={"icon"} src={icon} alt={"application icon"}/>
                 <h1>{name}</h1>
-                <button className={"preview-button"}>Preview</button>
+                <button onClick={() => setShowTutorial(true)} className='btn-open-tutorial'><BsQuestionCircle /></button>
                 <button className={"done-button"} onClick={SaveApp}>Done</button>
             </div>
             <hr/>
