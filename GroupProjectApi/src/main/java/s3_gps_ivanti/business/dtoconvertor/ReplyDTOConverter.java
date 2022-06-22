@@ -7,10 +7,13 @@ public class ReplyDTOConverter {
     private ReplyDTOConverter(){}
 
     public static Reply convertToEntity(ReplyDTO dto){
-        return Reply.builder()
-                .title(dto.getTitle())
-                .description(dto.getDescription())
-                .build();
+        if(dto!=null){
+            return Reply.builder()
+                    .title(dto.getTitle())
+                    .description(dto.getDescription())
+                    .build();
+        }
+        else return null;
     }
     public static ReplyDTO convertToDTO(Reply reply){
         if(reply==null){

@@ -4,23 +4,30 @@ import Popup from "./Popup";
 import AddReplyForm from "./AddReplyForm";
 import axios from "axios";
 
-function AdminReviewList({ reviews, app }) {
+function AdminReviewList({reviews, setUpdate}) {
+    const [reply, setReply] = useState(null);
+    const [updateList, setUpdateList] = useState(true);
     const [openPopup, setOpenPopup] = useState(false)
 
-    const handleDelete = (id) => {
-        axios.delete(`http://localhost:8080/review/${id}`)
-            .then(res => {
-                console.log(res.status);
-            })
-            .catch(err => {
-                console.log(err.message);
-            });
+    useEffect(() => {
+        setUpdate(prev=>!prev)
+    }, [updateList])
+
+    const handleDelete = async (reviewID) => {
+        const updateReply = {
+            id: reviewID,
+            reply: null
+        }
+        const response = await axios.put(`http://localhost:8080/reply`, updateReply);
+        setUpdate(prev => !prev)
+        console.log(response.status)
     }
 
     return (
         <div>
             <div className={"app-reviews"}>
-                <Popup openPopup={openPopup}><AddReplyForm setOpenPopup={setOpenPopup} app={app}/></Popup>
+                <Popup openPopup={openPopup}><AddReplyForm review={reply} setOpenPopup={setOpenPopup}
+                                                           setUpdate={setUpdateList}/></Popup>
                 {reviews?.map(review =>
                     <div className={"review-card"}>
                         <div className={"card-title"}>
@@ -54,9 +61,29 @@ function AdminReviewList({ reviews, app }) {
                                     <p className={"text"}>{review?.reply?.title}</p>
                                 </div>
                                 <p className={"card-description"}>{review.reply?.description}</p>
-                                <button className={"reply-button"}>Update</button>
-                                <button className={"reply-button"}>Delete</button>
-                            </> : <button className={"reply-button"}>Reply</button>}
+                                <button className={"reply-button"} onClick={() => {
+                                    setReply({
+                                        id: review?.id,
+                                        reply: review?.reply
+                                    });
+                                    setOpenPopup(true)
+                                }}>Update
+                                </button>
+                                <button className={"reply-button"}
+                                        onClick=
+                                            {() => {
+                                                handleDelete(review.id)
+                                            }}>Delete
+                                </button>
+                            </> : <button className={"reply-button"}
+                                          onClick={() => {
+                                              setReply({
+                                                  id: review?.id,
+                                                  reply: review?.reply
+                                              });
+                                              setOpenPopup(true)
+                                          }}>Reply
+                            </button>}
                     </div>
                 )}
             </div>

@@ -37,6 +37,8 @@ public class UpdateApplicationUseCaseImpl implements UpdateApplicationUseCase {
         }
 
         Application newApplication = ApplicationDTOConverter.convertToEntityForUpdate(applicationRequestDTO, application);
+        newApplication.setDownloads(application.getDownloads());
+        newApplication.setReviewsPerMonths(application.getReviewsPerMonths());
 
         applicationRepository.save(newApplication);
     }

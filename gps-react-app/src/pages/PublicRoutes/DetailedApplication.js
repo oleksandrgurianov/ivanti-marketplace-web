@@ -13,13 +13,17 @@ import AdminReviewList from "../ContentCreator/ApplicationPage/components/AdminR
 
 const DetailedApplicationPage = () => {
     const { auth } = useAuth();
+
+    const [ownReview, setOwnReview] = useState(null);
+    const [updateList, setUpdateList] = useState(true);
     const username = auth?.decoded?.sub;
+
     const [isCreator, setIsCreator] = useState(false)
     const navigate =  useNavigate()
 
     useEffect(() => {
         getApplication()
-    }, [])
+    }, [updateList])
 
     useEffect(() => {
         checkRoleStatus()
@@ -106,20 +110,20 @@ const DetailedApplicationPage = () => {
         })
     }
 
-    // const getReview = () => {
-    //     axios.get(`http://localhost:8080/review/${username}/${application.name}`)
-    //         .then(res => {
-    //             setOwnReview(res.data);
-    //         })
-    //         .catch(err => {
-    //             console.log(err.message);
-    //             setOwnReview(null);
-    //         });
-    // }
+    useEffect(() => {
+        getReview();
+    }, [application])
 
-    // useEffect(() => {
-    //     getReview();
-    // }, [application])
+    const getReview = () => {
+        axios.get(`http://localhost:8080/review/${username}/${application.name}`)
+            .then(res => {
+                setOwnReview(res.data);
+            })
+            .catch(err => {
+                console.log(err.message);
+                setOwnReview(null);
+            });
+    }
 
     const deleteApp = ()=>{
         const config = {
@@ -201,8 +205,8 @@ const DetailedApplicationPage = () => {
             <p>out of 5</p>
         </div>
         {isCreator?
-            <AdminReviewList reviews = {application?.reviews} app = {application?.name}/>:
-            <ReviewList  reviews = {application?.reviews} app = {application?.name}/>
+            <AdminReviewList reviews = {application?.reviews} setUpdate={setUpdateList}/>:
+            <ReviewList ownReview={ownReview?ownReview:null} reviews = {application?.reviews} app = {application?.name} setUpdate={setUpdateList}/>
         }
 
         <hr />

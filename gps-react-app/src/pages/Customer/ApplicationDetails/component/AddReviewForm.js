@@ -6,7 +6,7 @@ import { FaStar } from 'react-icons/fa'
 import axios from "axios";
 import useAuth from "../../../../hooks/useAuth";
 
-function AddReviewForm({ review, setOpenPopup, app }) {
+function AddReviewForm({ review, setOpenPopup, app, setUpdate }) {
     const url = "http://localhost:8080/review";
     const {auth} = useAuth();
     let username = auth?.decoded?.sub;
@@ -30,8 +30,6 @@ function AddReviewForm({ review, setOpenPopup, app }) {
     },[])
 
     useEffect(() => {
-        console.log(app)
-        console.log(username)
         setValidTitle(title?.length > 0);
     }, [title])
 
@@ -54,6 +52,7 @@ function AddReviewForm({ review, setOpenPopup, app }) {
             })
                 .then(res => {
                     console.log(res.data);
+                    setUpdate(prev=>!prev);
                 });
             setOpenPopup(false)
         }
@@ -67,6 +66,7 @@ function AddReviewForm({ review, setOpenPopup, app }) {
         })
             .then(res => {
                 console.log(res.data);
+                setUpdate(prev=>!prev);
             });
         setOpenPopup(false)
     }

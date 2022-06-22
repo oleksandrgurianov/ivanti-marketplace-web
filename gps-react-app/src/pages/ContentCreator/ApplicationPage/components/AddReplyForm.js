@@ -2,42 +2,43 @@ import {useState, useEffect} from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faClose} from '@fortawesome/free-solid-svg-icons'
 import ReviewForm from "../../../../styles/ReviewForm.css"
-import {FaStar} from 'react-icons/fa'
 import axios from "axios";
 
-function AddReplyForm({reply, setOpenPopup, app}) {
-    const url = "http://localhost:8080/review";
-    let username = localStorage.getItem("username");
-
+function AddReplyForm({review, setOpenPopup, setUpdate}) {
     const [validTitle, setValidTitle] = useState(false);
-    const [title, setTitle] = useState(reply != null ? reply.title : "");
+    const [title, setTitle] = useState(review != null ? review?.reply?.title : "");
 
     const [validDescription, setValidDescription] = useState(false);
-    const [description, setDescription] = useState(reply != null ? reply.description : "");
+    const [description, setDescription] = useState(review != null ? review.reply?.description : "");
 
     useEffect(() => {
-        if (reply != null) {
-            setTitle(reply?.title)
-            setDescription(reply?.description)
+        if (review?.reply) {
+            setTitle(review?.title)
+            setDescription(review?.description)
         }
     }, [])
 
     useEffect(() => {
         setValidTitle(title?.length > 0);
+        console.log(review)
     }, [title])
 
     useEffect(() => {
         setValidDescription(description?.length > 0);
     }, [description])
 
+
     const handleSubmit = () => {
-        axios.put(url, {
-            id: reply?.id,
-            title: title,
-            description: description
+        axios.put(`http://localhost:8080/reply`, {
+            id: review?.id,
+            reply:{
+                title: title,
+                description: description
+            }
         })
             .then(res => {
                 console.log(res.data);
+                setUpdate(prev => !prev)
             });
         setOpenPopup(false)
     }

@@ -7,14 +7,16 @@ import AddReviewForm from "./AddReviewForm";
 import axios from "axios";
 import useAuth from "../../../../hooks/useAuth";
 
-function ReviewList({ownReview, reviews, app}) {
+function ReviewList({ownReview, reviews, app, setUpdate}) {
     const [openPopup, setOpenPopup] = useState(false)
+    const [updateList, setUpdateList] = useState(true);
     const {auth} = useAuth();
 
     const handleDelete = (id) => {
         axios.delete(`http://localhost:8080/review/${id}`)
             .then(res => {
                 console.log(res.status);
+                setUpdate(prev=>!prev)
             })
             .catch(err => {
                 console.log(err.message);
@@ -22,8 +24,8 @@ function ReviewList({ownReview, reviews, app}) {
     }
 
     useEffect(() => {
-        console.log(app)
-    }, [])
+        setUpdate(prev=>!prev)
+    }, [updateList])
 
     return (
         <div>
@@ -31,8 +33,8 @@ function ReviewList({ownReview, reviews, app}) {
                 {
                     auth?.accessToken ?
                         <div>
-                            <Popup openPopup={openPopup}><AddReviewForm review={ownReview} setOpenPopup={setOpenPopup}
-                                                                        app={app}/></Popup>
+                            <Popup openPopup={openPopup}><AddReviewForm review={ownReview?ownReview:null} setOpenPopup={setOpenPopup}
+                                                                        app={app} setUpdate={setUpdateList}/></Popup>
                             {
                                 !ownReview ?
                                     <div className={"add-review-card"} onClick={() => {

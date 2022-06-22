@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import s3_gps_ivanti.business.review.CreateReviewUseCase;
 import s3_gps_ivanti.business.review.DeleteReviewUseCase;
-import s3_gps_ivanti.business.review.GetReviewByCustomerAndApp;
+import s3_gps_ivanti.business.review.GetReviewByCustomerAndAppUseCase;
 import s3_gps_ivanti.business.review.UpdateReviewUseCase;
 import s3_gps_ivanti.configuration.security.isauthenticated.IsAuthenticated;
 import s3_gps_ivanti.dto.review.CreateReviewRequestDTO;
@@ -25,7 +25,7 @@ public class ReviewController {
    private final CreateReviewUseCase createReviewService;
    private final DeleteReviewUseCase deleteReviewService;
    private final UpdateReviewUseCase updateReviewService;
-   private final GetReviewByCustomerAndApp getReviewByCustomerAndApp;
+   private final GetReviewByCustomerAndAppUseCase getReviewByCustomerAndApp;
 
 
    @GetMapping("/{customer}/{application}")

@@ -22,7 +22,7 @@ class GetReviewByCustomerAndAppImplTest {
     @Mock
     private CustomerUsernameValidation customerIsValid;
     @InjectMocks
-    private GetReviewByCustomerAndAppImpl getReviewByCustomerAndApp;
+    private GetReviewByCustomerAndAppUseCaseImpl getReviewByCustomerAndApp;
 
     @Test
     void getReviewByCustomerAndApp() {
