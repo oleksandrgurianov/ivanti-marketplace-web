@@ -45,32 +45,26 @@ function AnalyticsPage() {
 
     return (
         <div className={"analytics"}>
-            <div className={"analytics-controls"}>
+            <div className={'header'}>
                 <h1 className={"title"}>Analytics</h1>
-                <input className={"search-field"} type="text" placeholder="Search"/>
-                <div className={"year-dropdown"}>
-                    <select>
-                        <option value="2022" onClick={() => setYear(2022)}>2022</option>
-                        <option value="2021" onClick={() => setYear(2021)}>2021</option>
-                    </select>
-                    <FontAwesomeIcon className="dropdown-icon" icon={faCaretDown}/>
-                </div>
+                <label>
+                    <input
+                        type={'radio'}
+                        checked={isMonth}
+                        onClick={(e) => setIsMonth(e)}
+                    />
+                    Per month
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        checked={!isMonth}
+                        onClick={(e) => setIsMonth(!e)}
+                    />
+                    Per version
+                </label>
             </div>
-            <hr/>
-            <div className="radio-button">
-                <input
-                    type="radio"
-                    checked={isMonth}
-                    onClick={() => setIsMonth(true)}
-                />
-                <label onClick={() => setIsMonth(true)}>Per Month</label>
-                <input
-                    type="radio"
-                    checked={!isMonth}
-                    onClick={() => setIsMonth(false)}
-                />
-                <label onClick={() => setIsMonth(false)}>Per Version</label>
-            </div>
+            <hr className={'analytics-line'}/>
             {isMonth ?
                 <AnalyticsPerMonth applications={appsForMonth}/> :
                 <AnalyticsPerVersion applications={appsForVersion}/>
