@@ -52,15 +52,8 @@ function Navbar() {
             { isCreator ? (
                 <>
                     {auth?.decoded && <Link className='NavLink' to={'/creator/analytics'}>Analytics</Link>}
-                    {auth?.decoded && <Link className='NavLink' to={'/creator/my-apps'}>My Apps</Link>}                   
-                   {/* {auth?.decoded && <Notification />}*/}
-                  
                 </>
-            ) : (
-                <>                   
-                    {auth?.decoded && <Link className='NavLink' to={'/*'}>My Downloads</Link> }                 
-                </>
-            )}
+            ) : (null)}
 
 
 
@@ -73,13 +66,9 @@ function Navbar() {
                     <div className='dropdown-content'  id="myDropdown">
                         { isCreator ? (
                             <>
-                                <Link className='NavLink' to={'/creator/my-apps'}>My Account</Link>
+                                <Link className='NavLink' to={'/creator/my-apps'}>My Apps</Link>
                             </>
-                        ) : (
-                            <>
-                                <Link className='NavLink' to={'/*'}>My Account</Link>
-                            </>
-                        )}
+                        ) : (null)}
                         <hr />
                         <Link className='NavLink' to={'/logout'}>Log Out</Link>
                         <Notification />
