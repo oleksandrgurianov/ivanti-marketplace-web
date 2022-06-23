@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b458ae6c-b656-4f23-a4b5-324c63246418" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gps-react-app/src/pages/ContentCreator/AnalyticsPage/AnalyticsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../gps-react-app/src/pages/ContentCreator/AnalyticsPage/AnalyticsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gps-react-app/src/pages/ContentCreator/AnalyticsPage/component/AnalyticsPerVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/../gps-react-app/src/pages/ContentCreator/AnalyticsPage/component/AnalyticsPerVersion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gps-react-app/src/pages/ContentCreator/ApplicationPage/components/AdminReviewList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../gps-react-app/src/pages/ContentCreator/ApplicationPage/components/AdminReviewList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gps-react-app/src/styles/ContentCreator/AnalyticsPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/../gps-react-app/src/styles/ContentCreator/AnalyticsPage.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,18 +46,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="mongo" />
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "WebServerToolWindowFactoryState": "false",
+    "spring.configuration.checksum": "f87b9e13b0765126559323ba54e8d7f6"
+  }
+}]]></component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="GroupProjectApi" />
@@ -94,6 +87,7 @@
       <option name="presentableId" value="Default" />
       <updated>1655937527068</updated>
       <workItem from="1655937529021" duration="600000" />
+      <workItem from="1656002080186" duration="2322000" />
     </task>
     <servers />
   </component>
