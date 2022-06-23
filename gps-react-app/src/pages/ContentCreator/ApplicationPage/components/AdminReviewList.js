@@ -61,7 +61,7 @@ function AdminReviewList({reviews, setUpdate}) {
                                     <p className={"text"}>{review?.reply?.title}</p>
                                 </div>
                                 <p className={"card-description"}>{review.reply?.description}</p>
-                                <div className={'reply-controls'}>
+                                <div className={'review-controls'}>
                                     <button className={"reply-button"} onClick={() => {
                                         setReply({
                                             id: review?.id,

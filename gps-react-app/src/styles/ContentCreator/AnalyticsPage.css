@@ -12,6 +12,36 @@
     margin: 0;
 }
 
+.year-dropdown {
+    display: grid;
+    grid-template-areas: "select .dropdown-icon";
+    align-items: center;
+    height: 35px;
+    min-width: auto;
+    margin: 8px 0 0 10px;
+    border: 1px solid lightgrey;
+    border-radius: 50px;
+    background-color: red;
+    padding: 0 15px;
+    font-size: 15px;
+    cursor: pointer;
+    line-height: 1.1;
+}
+
+option {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    height: 35px;
+    width: 100%;
+    font-size: inherit;
+    color: black;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+}
+
 .add-icon {
     height: 25px;
     margin: 8px 10px 0 15px;

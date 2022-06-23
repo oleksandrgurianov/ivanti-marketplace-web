@@ -9,8 +9,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gps-react-app/src/pages/ContentCreator/AnalyticsPage/AnalyticsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../gps-react-app/src/pages/ContentCreator/AnalyticsPage/AnalyticsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gps-react-app/src/pages/ContentCreator/AnalyticsPage/component/AnalyticsPerMonth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../gps-react-app/src/pages/ContentCreator/AnalyticsPage/component/AnalyticsPerMonth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gps-react-app/src/pages/ContentCreator/AnalyticsPage/component/AnalyticsPerVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/../gps-react-app/src/pages/ContentCreator/AnalyticsPage/component/AnalyticsPerVersion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gps-react-app/src/pages/ContentCreator/ApplicationPage/components/AdminReviewList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../gps-react-app/src/pages/ContentCreator/ApplicationPage/components/AdminReviewList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gps-react-app/src/styles/ContentCreator/AnalyticsPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/../gps-react-app/src/styles/ContentCreator/AnalyticsPage.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +53,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mongo" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />

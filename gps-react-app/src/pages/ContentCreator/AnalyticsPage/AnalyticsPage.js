@@ -63,8 +63,16 @@ function AnalyticsPage() {
                     />
                     Per version
                 </label>
+                <div className={"year-dropdown"}>
+                    <select onInput={(e)=>{setYear(e.target.value)}}>
+                        <option value={2022}>2022</option>
+                        <option value={2021}>2021</option>
+                    </select>
+                    <FontAwesomeIcon className="dropdown-icon" icon={faCaretDown}/>
+                </div>
             </div>
             <hr className={'analytics-line'}/>
+
             {isMonth ?
                 <AnalyticsPerMonth applications={appsForMonth}/> :
                 <AnalyticsPerVersion applications={appsForVersion}/>
