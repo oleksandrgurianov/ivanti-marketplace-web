@@ -3,12 +3,13 @@ import { registerables, Chart } from 'chart.js';
 import React from "react";
 import { Link } from 'react-router-dom'
 import "../../../../styles/ContentCreator/AnalyticsPage.css";
+import loading from "../../../../images/loading.gif";
 
 function AnalyticsPerVersion({ applications }) {
     Chart.register(...registerables)
     return (
         <div>
-            {
+            {applications.length !== 0 ?
                 applications.map(app =>
                     <>
                         <div className={"app-downloads"}>
@@ -65,6 +66,8 @@ function AnalyticsPerVersion({ applications }) {
                         </div>
                         <hr />
                     </>
+                ) : (
+                    <img className={"loading-apps"} src={loading}/>
                 )
             }
         </div>

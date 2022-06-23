@@ -25,7 +25,7 @@ function AnalyticsPage() {
     }, [isMonth]);
 
     const getAllApplicationsAnalyticsForMonth = () => {
-        axios.get(`http://localhost:8080/user/` + username + `/statistics?year=2021`)
+        axios.get(`http://localhost:8080/user/` + username + `/statistics?year=`+year)
             .then(res => {
                 setAppsForMonth(res.data);
             })
@@ -49,9 +49,9 @@ function AnalyticsPage() {
                 <h1 className={"title"}>Analytics</h1>
                 <input className={"search-field"} type="text" placeholder="Search"/>
                 <div className={"year-dropdown"}>
-                    <select>
-                        <option value="2022" onClick={() => setYear(2022)}>2022</option>
-                        <option value="2021" onClick={() => setYear(2021)}>2021</option>
+                    <select onInput={(e) => setYear(e.target.value)}>
+                        <option value={2022}>2022</option>
+                        <option value={2021}>2021</option>
                     </select>
                     <FontAwesomeIcon className="dropdown-icon" icon={faCaretDown}/>
                 </div>
