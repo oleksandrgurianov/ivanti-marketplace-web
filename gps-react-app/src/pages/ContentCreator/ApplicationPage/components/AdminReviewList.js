@@ -61,20 +61,22 @@ function AdminReviewList({reviews, setUpdate}) {
                                     <p className={"text"}>{review?.reply?.title}</p>
                                 </div>
                                 <p className={"card-description"}>{review.reply?.description}</p>
-                                <button className={"reply-button"} onClick={() => {
-                                    setReply({
-                                        id: review?.id,
-                                        reply: review?.reply
-                                    });
-                                    setOpenPopup(true)
-                                }}>Update
-                                </button>
-                                <button className={"reply-button"}
-                                        onClick=
-                                            {() => {
-                                                handleDelete(review.id)
-                                            }}>Delete
-                                </button>
+                                <div className={'reply-controls'}>
+                                    <button className={"reply-button"} onClick={() => {
+                                        setReply({
+                                            id: review?.id,
+                                            reply: review?.reply
+                                        });
+                                        setOpenPopup(true)
+                                    }}>Update
+                                    </button>
+                                    <button className={"reply-button"}
+                                            onClick=
+                                                {() => {
+                                                    handleDelete(review.id)
+                                                }}>Delete
+                                    </button>
+                                </div>
                             </> : <button className={"reply-button"}
                                           onClick={() => {
                                               setReply({

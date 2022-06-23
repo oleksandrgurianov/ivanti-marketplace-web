@@ -75,6 +75,9 @@
 }
 
 .delete-button {
+    border: none;
+    line-height: initial;
+    margin-bottom: 15px;
     background-color: red;
 }
 
@@ -264,6 +267,14 @@
 .add-review-card:hover{
     background-color: #4F4746;
     color: white;
+}
+
+.review-controls {
+    margin-left: auto;
+}
+
+.review-controls button:first-child {
+    margin-right: 5px;
 }
 
 .card-title, .card-stars {

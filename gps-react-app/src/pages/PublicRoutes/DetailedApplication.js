@@ -187,7 +187,7 @@ const DetailedApplicationPage = () => {
                     <Tutorial visible={showTutorial} closeTutorial={closeTutorial} content={tutorialContentCustomer} />
                     <button onClick={() => setShowTutorial(true)} className='btn-open-tutorial'><BsQuestionCircle /></button>
                     {auth?.accessToken ? <>
-                    <a href={appLocation} className='delete-button' target='_blank'>Download</a>
+                    <a href={appLocation} className='edit-button' target='_blank'>Download</a>
                      </> : null}
                     
                 </>

@@ -61,13 +61,15 @@ function ReviewList({ownReview, reviews, app, setUpdate}) {
                                             <p className={"nickname"}>{ownReview?.customerName}</p>
                                         </div>
                                         <p className={"card-description"}>{ownReview?.description}</p>
-                                        <button className={"reply-button"} onClick={() => {
-                                            setOpenPopup(true)
-                                        }}>Update
-                                        </button>
-                                        <button className={"reply-button"}
-                                                onClick={() => handleDelete(ownReview?.id)}>Delete
-                                        </button>
+                                        <div className={'review-controls'}>
+                                            <button className={"reply-button"} onClick={() => {
+                                                setOpenPopup(true)
+                                            }}>Update
+                                            </button>
+                                            <button className={"reply-button"}
+                                                    onClick={() => handleDelete(ownReview?.id)}>Delete
+                                            </button>
+                                        </div>
                                     </div>
                             }
                         </div> : <div></div>
