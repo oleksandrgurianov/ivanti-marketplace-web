@@ -232,7 +232,7 @@ const DetailedApplicationPage = () => {
         </div>
         {isCreator?
             <AdminReviewList reviews = {application?.reviews} setUpdate={setUpdateList}/>:
-            <ReviewList ownReview={ownReview?ownReview:null} reviews = {application?.reviews} app = {application?.name} setUpdate={setUpdateList}/>
+            <ReviewList ownReview={ownReview?ownReview:null} reviews = {application?.reviews} app = {application?.name} setUpdate={setUpdateList} creator={application?.creator?.username}/>
         }
 
         <hr />

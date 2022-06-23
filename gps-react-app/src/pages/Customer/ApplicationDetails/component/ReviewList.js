@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, createFactory} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faAdd} from '@fortawesome/free-solid-svg-icons'
 import {FaStar} from 'react-icons/fa'
@@ -7,7 +7,7 @@ import AddReviewForm from "./AddReviewForm";
 import axios from "axios";
 import useAuth from "../../../../hooks/useAuth";
 
-function ReviewList({ownReview, reviews, app, setUpdate}) {
+function ReviewList({ownReview, reviews, app, setUpdate, creator}) {
     const [openPopup, setOpenPopup] = useState(false)
     const [updateList, setUpdateList] = useState(true);
     const {auth} = useAuth();
@@ -34,7 +34,7 @@ function ReviewList({ownReview, reviews, app, setUpdate}) {
                     auth?.accessToken ?
                         <div>
                             <Popup openPopup={openPopup}><AddReviewForm review={ownReview?ownReview:null} setOpenPopup={setOpenPopup}
-                                                                        app={app} setUpdate={setUpdateList}/></Popup>
+                                                                        app={app} setUpdate={setUpdateList} creator={creator}/></Popup>
                             {
                                 !ownReview ?
                                     <div className={"add-review-card"} onClick={() => {
